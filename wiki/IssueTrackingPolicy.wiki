@@ -1,0 +1,17 @@
+#summary *The Issue Tracking Policy for this project*
+#labels Featured
+
+= Introduction =
+
+Throughout the sprints when issues arise, they are to be dealt with immediately. These issues can include impediments discovered during the weekly meetings, bugs, or change requests. When dealing with bugs and other high priority issues, they are to be resolved before the feature they are associated with is signed off.
+
+
+= Details =
+*Issue Tracking Workflow*
+ - Open a new issue through the google code project page <br/>
+ - Fill out the summary and description of the issue <br/>
+ - Cc to relevant team members <br/>
+ - Make sure the issue type and priority are set accordingly <br/>
+ - Submit the issue <br/>
+
+I will then assign the issue to a team member. When the issue is fixed it is to be signed off by the other two team members, and the issue page is to be updated.
