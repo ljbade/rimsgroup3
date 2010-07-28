@@ -8,10 +8,15 @@ Throughout the sprints when issues arise, they are to be dealt with immediately.
 
 = Details =
 *Issue Tracking Workflow*
- - Open a new issue through the google code project page <br/>
- - Fill out the summary and description of the issue <br/>
- - Cc to relevant team members <br/>
- - Make sure the issue type and priority are set accordingly <br/>
- - Submit the issue <br/>
-
-I will then assign the issue to a team member. When the issue is fixed it is to be signed off by the other two team members, and the issue page is to be updated.
+- Open a new issue through the google code project page <br/>
+- Fill out the summary and description of the issue <br/>
+- Cc to relevant team members <br/>
+- Make sure the issue type and priority are set accordingly <br/>
+- Submit the issue <br/>
+<br/>
+After the issue has been submitted:<br/>
+- I (Adam) will assign the issue to a team member based on the workload of the team members at the time<br/>
+<br/>
+After the issue has been resolved:<br/>
+- The two team members that have not assigned or submitted the issue will then sign the issue off.<br/>
+- Issue page is then updated.
