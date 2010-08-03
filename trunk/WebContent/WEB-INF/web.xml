@@ -1,12 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-  <display-name>rimsgroup3</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>rimsgroup3</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<description />
+		<display-name>HelloWorld</display-name>
+		<servlet-name>HelloWorld</servlet-name>
+		<servlet-class>nz.ac.massey.rimsgroup3.experimental.HelloWorld</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HelloWorld</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<!--  Used for JUnit testing on server with Apache Cactus -->
+	<filter>
+		<filter-name>FilterRedirector</filter-name>
+		<filter-class>org.apache.cactus.server.FilterTestRedirector</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>FilterRedirector</filter-name>
+		<url-pattern>/FilterRedirector</url-pattern>
+	</filter-mapping>
+	<servlet>
+		<servlet-name>ServletRedirector</servlet-name>
+		<servlet-class>org.apache.cactus.server.ServletTestRedirector</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>JspRedirector</servlet-name>
+		<jsp-file>/jspRedirector.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletRedirector</servlet-name>
+		<url-pattern>/ServletRedirector</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>JspRedirector</servlet-name>
+		<url-pattern>/JspRedirector</url-pattern>
+	</servlet-mapping>
 </web-app>
