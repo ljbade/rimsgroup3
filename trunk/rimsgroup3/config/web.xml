@@ -97,7 +97,7 @@
         </init-param>
         <init-param>
             <param-name>listings</param-name>
-            <param-value>false</param-value>
+            <param-value>true</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
@@ -118,8 +118,6 @@
   <!--                                                                      -->
   <!--   debug               Debugging detail level for messages logged     -->
   <!--                       by this servlet.  [0]                          -->
-
-<!--
     <servlet>
         <servlet-name>invoker</servlet-name>
         <servlet-class>
@@ -131,8 +129,6 @@
         </init-param>
         <load-on-startup>2</load-on-startup>
     </servlet>
--->
-
 
   <!-- The JSP page compiler and execution servlet, which is the mechanism  -->
   <!-- used by Tomcat to support JSP pages.  Traditionally, this servlet    -->
@@ -379,12 +375,10 @@
     </servlet-mapping>
 
     <!-- The mapping for the deprecated invoker servlet -->
-<!--
     <servlet-mapping>
         <servlet-name>invoker</servlet-name>
         <url-pattern>/servlet/*</url-pattern>
     </servlet-mapping>
--->
 
     <!-- The mapping for the JSP servlet -->
     <servlet-mapping>
