@@ -33,22 +33,29 @@ hza.style.display = state;
 
 <body>
 <div id="pageDiv">
+
 <h2>RIMS Assistant</h2>
-<form name="searchForm" action="results.jsp" method="post" onsubmit=""> 
+<form name="searchForm" action="DoiRequest" method="post" onsubmit=""> 
 <table width="280px">
 <tr>
+	<td>10.1016/j.tcs.2010.07.007  -  multiple authors</td>
+</tr>
+<tr>
+	<td>10.3998/3336451.0009.101  -  1 author</td>
+</tr>
+<tr>
 <td>
-<input type="text" name="searchBox" width="280px"/>
+<input type="text" name="search" size="30"/>
 </td>
 </tr>
 <tr>
 <td>
-<input type="submit" name"new" value="New Article"/><input type="submit" name="search" value="Search"/>
+<input type="submit" name="new" value="New Article"/><input type="submit" name="search" value="Search"/>
 </td>
 </tr>
 </table>
 </form>
-
+</div>
 <p><a href="#" onclick="showhide('div1');">Advanced Search</a></p> 
 <div id="div1" style="display: none;">
 <form>
