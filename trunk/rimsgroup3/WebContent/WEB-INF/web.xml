@@ -60,4 +60,14 @@
     <servlet-name>HelloWorldServletWithJSP</servlet-name>
     <url-pattern>/HelloWorldServletWithJSP</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoiRequest</display-name>
+    <servlet-name>DoiRequest</servlet-name>
+    <servlet-class>nz.ac.massey.rimsgroup3.DoiRequest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoiRequest</servlet-name>
+    <url-pattern>/DoiRequest</url-pattern>
+  </servlet-mapping>
 </web-app>
