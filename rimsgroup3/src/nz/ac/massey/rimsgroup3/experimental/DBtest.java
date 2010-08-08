@@ -7,15 +7,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class PetersServlet
+ * Servlet implementation class DBtest
  */
-public class PetersServlet extends HttpServlet {
+public class DBtest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PetersServlet() {
+    public DBtest() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -23,7 +23,7 @@ public class PetersServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().print("<html><head><title>Test Page</title><body><h1>Hello Peter!</h1></body></html>");
 	}
 
