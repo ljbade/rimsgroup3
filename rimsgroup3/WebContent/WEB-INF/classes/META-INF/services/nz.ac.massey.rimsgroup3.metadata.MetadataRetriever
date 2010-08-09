@@ -1,0 +1,2 @@
+nz.ac.massey.rimsgroup3.metadata.plugin.CrossrefRetriever	# Uses Crossref (http://www.crossref.org)
+nz.ac.massey.rimsgroup3.metadata.plugin.ScopusRetriever		# Uses Scopus (http://www.scopus.com)

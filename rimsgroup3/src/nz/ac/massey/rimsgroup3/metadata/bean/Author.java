@@ -1,16 +1,17 @@
 /**
  * 
  */
-package nz.ac.massey.rimsgroup3.metadata;
+package nz.ac.massey.rimsgroup3.metadata.bean;
 
 /**
  * @author Leith
  *
  */
 public class Author extends Person {
-	String type;
-	String department, college;
-	String email;
+	
+	private String type;
+	private String department, college;
+	private String email;
 	
 	/**
 	 * @return the type
