@@ -1,7 +1,7 @@
 /**
  * 
  */
-package nz.ac.massey.rimsgroup3.metadata;
+package nz.ac.massey.rimsgroup3.metadata.bean;
 
 import java.util.Date;
 
@@ -10,11 +10,12 @@ import java.util.Date;
  *
  */
 public class Conference extends Publication {
-	String abstractTitle;
-	String conferenceName;
-	Date startDate;
-	Date endDate;
-	String location;
+	
+	private String abstractTitle;
+	private String conferenceName;
+	private Date startDate;
+	private Date endDate;
+	private String location;
 	
 	/**
 	 * @return the abstractTitle

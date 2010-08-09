@@ -1,7 +1,7 @@
 /**
  * 
  */
-package nz.ac.massey.rimsgroup3.metadata;
+package nz.ac.massey.rimsgroup3.metadata.bean;
 
 import java.util.List;
 
@@ -10,10 +10,11 @@ import java.util.List;
  *
  */
 public class Book extends Publication {
-	String placePublished;
-	String chapterTitle;
-	String bookTitle;
-	List<Editor> editors;
+	
+	private String placePublished;
+	private String chapterTitle;
+	private String bookTitle;
+	private List<Editor> editors;
 	
 	/**
 	 * @return the placePublished

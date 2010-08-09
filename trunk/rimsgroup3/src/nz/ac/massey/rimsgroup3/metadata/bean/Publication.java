@@ -1,7 +1,7 @@
 /**
  *  
  */
-package nz.ac.massey.rimsgroup3.metadata;
+package nz.ac.massey.rimsgroup3.metadata.bean;
 
 import java.util.List;
 
@@ -10,15 +10,16 @@ import java.util.List;
  *
  */
 public abstract class Publication {
-	String id;
-	int year;
-	int startPage, endPage;
-	String issnIsbn;
-	String abstractText;
-	List<String> keyWords;
-	String url;	
-	boolean isQualityAssured;
-	List<Author> authors;
+	
+	protected String id;
+	protected int year;
+	protected int startPage, endPage;
+	protected String issnIsbn;
+	protected String abstractText;
+	protected List<String> keyWords;
+	protected String url;	
+	protected boolean isQualityAssured;
+	protected List<Author> authors;
 	
 	/**
 	 * @return the id

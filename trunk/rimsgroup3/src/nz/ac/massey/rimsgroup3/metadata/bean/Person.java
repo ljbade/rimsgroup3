@@ -1,17 +1,17 @@
 /**
  * 
  */
-package nz.ac.massey.rimsgroup3.metadata;
+package nz.ac.massey.rimsgroup3.metadata.bean;
 
 /**
  * @author Leith
  *
  */
 public abstract class Person {
-
-	String firstName;
-	String middleName;
-	String lastName;
+	
+	protected String firstName;
+	protected String middleName;
+	protected String lastName;
 
 	/**
 	 * @return the firstName

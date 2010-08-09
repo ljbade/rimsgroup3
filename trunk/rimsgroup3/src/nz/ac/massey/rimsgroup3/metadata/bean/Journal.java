@@ -1,17 +1,17 @@
 /**
  * 
  */
-package nz.ac.massey.rimsgroup3.metadata;
+package nz.ac.massey.rimsgroup3.metadata.bean;
 
 /**
  * @author Leith
  *
  */
 public class Journal extends Publication {
-	int volume;
-	int issue;
-	String journalTitle;
-	String articleTitle;
+	private int volume;
+	private int issue;
+	private String journalTitle;
+	private String articleTitle;
 	
 	/**
 	 * @return the volume
