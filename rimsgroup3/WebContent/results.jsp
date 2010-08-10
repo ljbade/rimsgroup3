@@ -1,4 +1,4 @@
-<%@ page  language="java" %>
+<%@ page  language="java" pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -11,7 +11,7 @@
 <body>
 <div class="results">
 <h3>Results</h3>
-<jsp:useBean id="doiObj" class="nz.ac.massey.rimsgroup3.DOI" scope="session" ></jsp:useBean>
+<jsp:useBean id="publication" class="nz.ac.massey.rimsgroup3.metadata.bean.Journal" scope="session" ></jsp:useBean>
 
 <form name="resultsForm" action="confirmation.jsp" method="post" onsubmit="">
 <div class="firstSet">
@@ -75,19 +75,19 @@
 <table align="left">
 <tr>
 <td><label for="authors">Authors:</label></td>
-<td><input type="text" name="authors" size="40" value="<c:out value="${doiObj.authorsStr}" />" /></td>
+<td><input type="text" name="authors" size="40" value="<c:out value="${publication.authorsString}" />" /></td>
 </tr>
 <tr>
 <td><label for="articleTitle">Article/Output Title:</label></td>
-<td><input type="text" name="articleTitle" size="40" value="<c:out value="${doiObj.title}" />" /></td>
+<td><input type="text" name="articleTitle" size="40" value="<c:out value="${publication.articleTitle}" />" /></td>
 </tr>
 <tr>
 <td><label for="journalTitle">Journal/Publication Title:</label></td>
-<td><input type="text" name="journalTitle" size="40" value="<c:out value="${doiObj.journal}" />" /></td>
+<td><input type="text" name="journalTitle" size="40" value="<c:out value="${publication.journalTitle}" />" /></td>
 </tr>
 <tr>
 <td><label for="year">Publication Year:</label></td>
-<td><input type="text" name="year" size="40" value="<c:out value="${doiObj.year}" />" /> </td>
+<td><input type="text" name="year" size="40" value="<c:out value="${publication.year}" />" /> </td>
 </tr>
 <tr>
 <td><label for="publisher">Publisher:</label></td>
@@ -95,29 +95,29 @@
 </tr>
 <tr>
 <td><label for="issn">ISSN:</label></td>
-<td><input type="text" name="issn" size="40" value="<c:out value="${doiObj.issn}" />" /></td>
+<td><input type="text" name="issn" size="40" value="<c:out value="${publication.issn}" />" /></td>
 </tr>
 <tr>
 <td><label for="volume">Volume/Number:</label></td>
-<td><input type="text" name="volume" size="40" value="<c:out value="${doiObj.volume}"/>" /></td>
+<td><input type="text" name="volume" size="40" value="<c:out value="${publication.volume}"/>" /></td>
 </tr>
 <tr>
 <td><label for="pageNum">Page numbers:</label></td>
-<td><input type="text" name="pageNum" size="40" value="<c:out value="${doiObj.startPage}" />" /> </td>
+<td><input type="text" name="pageNum" size="40" value="<c:out value="${publication.startPage}-${publication.endPage}" />" /> </td>
 </tr>
 <tr>
 <td><label for="url">URL Address:</label></td>
-<td><input type="text" name="url" size="40" value="<c:out value="${doiObj.resource}" />" />
-	<a  class="smallLink" href="<c:out value="${doiObj.resource}" />" >Follow Link</a>
+<td><input type="text" name="url" size="40" value="<c:out value="${publication.url}" />" />
+	<a  class="smallLink" href="<c:out value="${publication.url}" />" >Follow Link</a>
 </td>
 </tr>
 <tr>
 <td><label for="doi">DOI:</label></td>
-<td><input type="text" name="doi" size="40" value="<c:out value="${doiObj.doi}" />" /></td>
+<td><input type="text" name="doi" size="40" value="<c:out value="${publication.doi}" />" /></td>
 </tr>
 <tr>
 <td><label for="keywords">Keywords:</label></td>
-<td><input type="text" name="keywords" /></td>
+<td><input type="text" name="keywords" value="<c:out value="${publication.keyWords}" />"/></td>
 </tr>
 </table>
 <table>
@@ -127,7 +127,7 @@
 </td>
 <td>
 <textarea name="abstract" rows="15" cols="50">
-
+<c:out value="${publication.abstractText}" />
 </textarea>
 </td>
 </tr>

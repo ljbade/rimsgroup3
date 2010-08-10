@@ -88,9 +88,9 @@ public class CrossrefRetriever implements MetadataRetriever {
 		// but this needs expand-result="true"
 		// otherwise have to use rules in XSD comment
 		
-		result.setId(doi); // TODO: it would be better to use the returned DOI...
+		result.setDoi(doi); // TODO: it would be better to use the returned DOI...
 		result.setUrl("http://dx.doi.org/" + doi); // TODO: should we use the <resource> ? 
-		result.setIssnIsbn(safelyGetElement(xmlDoc, "issn")); // TODO: reformat this ?
+		result.setIssn(safelyGetElement(xmlDoc, "issn")); // TODO: reformat this ?
 		result.setYear(safeParseInt(safelyGetElement(xmlDoc, "year")));
 		result.setStartPage(safeParseInt(safelyGetElement(xmlDoc, "first_page")));
 		result.setEndPage(safeParseInt(safelyGetElement(xmlDoc, "last_page")));
@@ -106,17 +106,33 @@ public class CrossrefRetriever implements MetadataRetriever {
 		if (nodeList == null)
 			return authors;
 		
-		for(int i = 0; i < nodeList.getLength(); i++)
-		{
+		for(int i = 0; i < nodeList.getLength(); i++) {
 			Element element = (Element) nodeList.item(i);
 			
 			if (!element.getAttribute("contributor_role").equals("author"))
 				continue;
 			
 			Author author = new Author();
-			author.setFirstName(safelyGetElement(element, "given_name")); // TODO: split out middle name
-			author.setLastName(safelyGetElement(element, "surname"));
 			
+			String givenName = safelyGetElement(element, "given_name");
+			
+			if (givenName.length() > 0) {
+				int middleIndex = givenName.indexOf(' ');
+				if (middleIndex != -1) {
+					author.setFirstName(givenName.substring(0, middleIndex));
+					author.setMiddleName(givenName.substring(middleIndex + 1, givenName.length() - 1));
+				} else {
+					author.setFirstName(givenName);
+					author.setMiddleName("");
+				}
+				
+				author.setLastName(safelyGetElement(element, "surname"));
+			} else {
+				author.setFirstName("");
+				author.setMiddleName("");
+				author.setLastName("");
+			}
+				
 			authors.add(author);
 		}
 		

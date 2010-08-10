@@ -25,7 +25,7 @@ public class CrossrefRetrieverTest extends TestCase {
 		String doi = "10.1109/79.952804";
 		Journal expected = new Journal();
 		expected.setJournalTitle("Journal of Electronic Publishing");
-		expected.setIssnIsbn("10802711");
+		expected.setIssn("10802711");
 		expected.setVolume(9);
 		expected.setYear(2006);
 		expected.setIssue(1);
@@ -37,7 +37,7 @@ public class CrossrefRetrieverTest extends TestCase {
 		assertTrue(result != null);
 		
 		assertTrue(result.getJournalTitle().equals(expected.getJournalTitle()));
-		assertTrue(result.getIssnIsbn().equals(expected.getIssnIsbn()));
+		assertTrue(result.getIssn().equals(expected.getIssn()));
 		assertTrue(result.getVolume() == expected.getVolume());
 		assertTrue(result.getYear() == expected.getYear());
 		assertTrue(result.getIssue() == expected.getIssue());

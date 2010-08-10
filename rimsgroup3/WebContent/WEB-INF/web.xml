@@ -16,16 +16,6 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>HelloWorldServlet</display-name>
-    <servlet-name>HelloWorldServlet</servlet-name>
-    <servlet-class>nz.ac.massey.rimsgroup3.experimental.HelloWorldServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>HelloWorldServlet</servlet-name>
-    <url-pattern>/HelloWorldServlet</url-pattern>
-  </servlet-mapping>
   <filter>
     <filter-name>FilterRedirector</filter-name>
     <filter-class>org.apache.cactus.server.FilterTestRedirector</filter-class>
@@ -52,19 +42,9 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>HelloWorldServletWithJSP</display-name>
-    <servlet-name>HelloWorldServletWithJSP</servlet-name>
-    <servlet-class>nz.ac.massey.rimsgroup3.experimental.HelloWorldServletWithJSP</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>HelloWorldServletWithJSP</servlet-name>
-    <url-pattern>/HelloWorldServletWithJSP</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>DoiRequest</display-name>
     <servlet-name>DoiRequest</servlet-name>
-    <servlet-class>nz.ac.massey.rimsgroup3.DoiRequest</servlet-class>
+    <servlet-class>nz.ac.massey.rimsgroup3.servlet.DoiRequest</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DoiRequest</servlet-name>
