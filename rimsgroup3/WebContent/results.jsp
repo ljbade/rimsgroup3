@@ -72,7 +72,7 @@
 </div>
 
 <div class="thirdSet">
-<table align="center">
+<table align="left">
 <tr>
 <td><label for="authors">Authors:</label></td>
 <td><input type="text" name="authors" size="40" value="<c:out value="${doiObj.authorsStr}" />" /></td>
@@ -114,6 +114,22 @@
 <tr>
 <td><label for="doi">DOI:</label></td>
 <td><input type="text" name="doi" size="40" value="<c:out value="${doiObj.doi}" />" /></td>
+</tr>
+<tr>
+<td><label for="keywords">Keywords:</label></td>
+<td><input type="text" name="keywords" /></td>
+</tr>
+</table>
+<table>
+<tr>
+<td>
+<label for="abstract">Abstract:</label>
+</td>
+<td>
+<textarea name="abstract" rows="15" cols="50">
+
+</textarea>
+</td>
 </tr>
 </table>
 </div>
