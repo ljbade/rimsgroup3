@@ -50,10 +50,18 @@ hza.style.display = state;
 </td>
 </tr>
 <tr>
+<td colspan="2">
+Journal <input type="radio" name="articleType" value="journal" checked/>
+Conference <input type="radio" name="articleType" value="conference"/>
+Book <input type="radio" name="articleType" value="book"/>
+</td>
+</tr>
+<tr>
 <td>
 <input type="submit" name="new" value="New Article"/><input type="submit" name="search" value="Search"/>
 </td>
 </tr>
+
 </table>
 <c:if test="${param.success == null }">
 </c:if>
@@ -70,6 +78,7 @@ hza.style.display = state;
 <table>
 <tr>
 <td><label for="authors">Primary Author:</label></td>
+<td><input type="text" name="authors"/></td>
 </tr>
 <tr>
 <td><label for="fName">First Name:</label></td>
