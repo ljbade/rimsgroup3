@@ -71,7 +71,7 @@ Book <input type="radio" name="articleType" value="book"/>
 
 
 </form>
-</div>
+
 <p><a href="#" onclick="showhide('div1');">Advanced Search</a></p> 
 <div id="div1" style="display: none;">
 <form name="advancedForm" action="AdvancedRequest" method="post" onsubmit=""> 
@@ -125,6 +125,6 @@ Book <input type="radio" name="articleType" value="book"/>
 <input type="submit" name="advSearch" value="Search"/>
 </form>
 </div>
-
+</div>
 </body>
 </html>
