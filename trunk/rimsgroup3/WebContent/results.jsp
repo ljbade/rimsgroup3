@@ -1,14 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page  language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="main.css" type="text/css"/>
 <title>RIMS Assistant - Results</title>
+
 </head>
 
 <body>
 <div class="results">
 <h3>Results</h3>
+<jsp:useBean id="doiObj" class="nz.ac.massey.rimsgroup3.DOI" scope="session" ></jsp:useBean>
 
 <form name="resultsForm" action="confirmation.jsp" method="post" onsubmit="">
 <div class="firstSet">
@@ -72,39 +75,45 @@
 <table align="center">
 <tr>
 <td><label for="authors">Authors:</label></td>
-<td><input type="text" name="authors" /></td>
+<td><input type="text" name="authors" size="40" value="<c:out value="${doiObj.authorsStr}" />" /></td>
 </tr>
 <tr>
 <td><label for="articleTitle">Article/Output Title:</label></td>
-<td><input type="text" name="articleTitle" /></td>
+<td><input type="text" name="articleTitle" size="40" value="<c:out value="${doiObj.title}" />" /></td>
 </tr>
 <tr>
 <td><label for="journalTitle">Journal/Publication Title:</label></td>
-<td><input type="text" name="journalTitle" /></td>
+<td><input type="text" name="journalTitle" size="40" value="<c:out value="${doiObj.journal}" />" /></td>
 </tr>
 <tr>
 <td><label for="year">Publication Year:</label></td>
-<td><input type="text" name="year" /></td>
+<td><input type="text" name="year" size="40" value="<c:out value="${doiObj.year}" />" /> </td>
 </tr>
 <tr>
 <td><label for="publisher">Publisher:</label></td>
-<td><input type="text" name="publisher" /></td>
+<td><input type="text" name="publisher" size="40" /></td>
 </tr>
 <tr>
 <td><label for="issn">ISSN:</label></td>
-<td><input type="text" name="issn" /></td>
+<td><input type="text" name="issn" size="40" value="<c:out value="${doiObj.issn}" />" /></td>
 </tr>
 <tr>
 <td><label for="volume">Volume/Number:</label></td>
-<td><input type="text" name="volume" /></td>
+<td><input type="text" name="volume" size="40" value="<c:out value="${doiObj.volume}"/>" /></td>
 </tr>
 <tr>
 <td><label for="pageNum">Page numbers:</label></td>
-<td><input type="text" name="pageNum" /></td>
+<td><input type="text" name="pageNum" size="40" value="<c:out value="${doiObj.startPage}" />" /> </td>
 </tr>
 <tr>
 <td><label for="url">URL Address:</label></td>
-<td><input type="text" name="url" /></td>
+<td><input type="text" name="url" size="40" value="<c:out value="${doiObj.resource}" />" />
+	<a  class="smallLink" href="<c:out value="${doiObj.resource}" />" >Follow Link</a>
+</td>
+</tr>
+<tr>
+<td><label for="doi">DOI:</label></td>
+<td><input type="text" name="doi" size="40" value="<c:out value="${doiObj.doi}" />" /></td>
 </tr>
 </table>
 </div>

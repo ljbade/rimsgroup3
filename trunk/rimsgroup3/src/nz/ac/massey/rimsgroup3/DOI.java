@@ -18,7 +18,9 @@ import org.xml.sax.SAXException;
 public class DOI {
     // variables
     String journal, abbrev, issn, doi, resource, month, day, year, date, volume, issue, title, given_name, surname;
-
+    String startPage, lastPage, authorsStr;
+    ArrayList<String> authors;
+    
     // constructor
     public DOI() {
                
@@ -64,7 +66,15 @@ public class DOI {
     public void setSurname(String surname) {
         this.surname = surname;
     }
-
+    public void setStartPage(String page) {
+    	startPage = page;
+    }
+    public void setLastPage(String page) {
+    	lastPage = page;
+    }
+    public void setAuthorsStr(String a) {
+    	authorsStr = a;
+    }
     // getters
     public String getJournal() {
         return journal;
@@ -97,7 +107,7 @@ public class DOI {
         return issue;
     }
     public String getTitle() {
-        return resource;
+        return title;
     }
     public String getName() {
         return given_name;
@@ -105,22 +115,17 @@ public class DOI {
     public String getSurname() {
         return surname;
     }
-
-    // return all variables in HTML formatted string
-    public String getString() {
-        String result = "";
-        result = journal.toString() + "<br />" + abbrev.toString() + "<br />" + issn.toString() + "<br />";
-        result += resource.toString() + "<br />" + month.toString() + "<br />" + day.toString() + "<br />";
-        result += year.toString() + "<br />" + volume.toString() + "<br />" + issue.toString() + "<br />";
-        result += title.toString() + "<br />";
-        //result += given_name.toString() + "<br />" + surname.toString() + "<br />";
-
-        return result;
+    public String getStartPage() {
+    	return startPage;
     }
-    
-
+    public String getLastPage() {
+    	return lastPage;
+    }
+    public String getAuthorsStr() {
+    	return authorsStr;
+    }
     // accept inputStream from servlet
-	public void processStream(InputStream stream) {
+	public Boolean processStream(InputStream stream) {
 		// xml document from stream object
         DocumentBuilderFactory f = DocumentBuilderFactory.newInstance();
         f.setValidating( false );
@@ -136,28 +141,68 @@ public class DOI {
 			e.printStackTrace();
 		}
 		
+		// nl is used to catch results of getElementsByTagName and check more than zero elements exist
+		NodeList nl;
+		
+		// check for failure of crossref - existence of <error> tag
+		nl = d.getElementsByTagName("error");
+		if(nl.getLength() > 0) return false; // no doi info returned
+		
+		 
 		// begin parsing elements of xml document
         journal = d.getElementsByTagName("full_title").item(0).getTextContent();
-        abbrev = d.getElementsByTagName("abbrev_title").item(0).getTextContent();;
+        abbrev = d.getElementsByTagName("abbrev_title").item(0).getTextContent();
+        title = d.getElementsByTagName("title").item(0).getTextContent();
+        // may be more than 1 issn
         issn = d.getElementsByTagName("issn").item(0).getTextContent();
-        resource = d.getElementsByTagName("resource").item(0).getTextContent();;
+        
+        // cab be two resource elements (one for the journal, one for the article)
+        // so take the second if more than one exist
+        nl = d.getElementsByTagName("resource");
+        if(nl.getLength() > 1) {
+        	resource = nl.item(1).getTextContent();
+        } else resource = nl.item(0).getTextContent();
+        
         month = d.getElementsByTagName("month").item(0).getTextContent();
         day = d.getElementsByTagName("day").item(0).getTextContent();
         year = d.getElementsByTagName("year").item(0).getTextContent();
-        volume = d.getElementsByTagName("volume").item(0).getTextContent();
-        issue = d.getElementsByTagName("issue").item(0).getTextContent();
-        title = d.getElementsByTagName("title").item(0).getTextContent();
+        date = day + "/" + month + "/" + year;
         
-        /*
-        // special  processing for catching all authors listed in XML
+     // optional elements in XML file
+        nl = d.getElementsByTagName("first_page");
+        if(nl.getLength() > 0) {
+        	startPage = nl.item(0).getTextContent();
+        } else startPage = "";
+        
+        nl = d.getElementsByTagName("last_page");
+        if(nl.getLength() > 0) {
+        	lastPage = nl.item(0).getTextContent();
+        } else lastPage = "";
+                
+        nl = d.getElementsByTagName("volume");
+        if (nl.getLength() > 0) {
+        	volume = nl.item(0).getTextContent();
+        } else volume = "";
+        
+        nl = d.getElementsByTagName("issue");
+        if (nl.getLength() > 0) {
+        	issue = nl.item(0).getTextContent();
+        } else issue = "";
+        
+               
+        // processing for catching all authors listed in XML
         NodeList authorsNL = d.getElementsByTagName("person_name");
-        ArrayList<String> authors = new ArrayList<String>();
+        authors = new ArrayList<String>();
         // run through authorsNL node list and concat first and last names in arrayList
         for (int i = 0; i < authorsNL.getLength(); i++) {
+        	if(authorsNL.item(i) != null) {
         	authors.add(authorsNL.item(i).getFirstChild().getTextContent() + " " + authorsNL.item(i).getLastChild().getTextContent());
+        	authorsStr += authorsNL.item(i).getFirstChild().getTextContent() + " " + authorsNL.item(i).getLastChild().getTextContent() + ", ";
+        	}
         }
-        */
-    
+        
+        // all processing worked
+        return true;
 		
 	}
 }
