@@ -1,4 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page  language="java" import="java.util.*" session="true" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -54,15 +55,29 @@ hza.style.display = state;
 </td>
 </tr>
 </table>
+<c:if test="${param.success == null }">
+</c:if>
+<c:if test="${param.success == 'no'}">
+	DOI search failed.		
+</c:if>
+
+
 </form>
 </div>
 <p><a href="#" onclick="showhide('div1');">Advanced Search</a></p> 
 <div id="div1" style="display: none;">
-<form>
+<form name="advancedForm" action="AdvancedRequest" method="post" onsubmit=""> 
 <table>
 <tr>
-<td><label for="authors">Authors:</label></td>
-<td><input type="text" name="authors" /></td>
+<td><label for="authors">Primary Author:</label></td>
+</tr>
+<tr>
+<td><label for="fName">First Name:</label></td>
+<td><input type="text" name="fName" /></td>
+</tr>
+<tr>
+<td><label for="lName">Last Name:</label></td>
+<td><input type="text" name="lName" /></td>
 </tr>
 <tr>
 <td><label for="articleTitle">Article/Output Title:</label></td>
@@ -98,7 +113,7 @@ hza.style.display = state;
 </tr>
 </table>
 
-<input type="button" name="advSearch" value="Search"/>
+<input type="submit" name="advSearch" value="Search"/>
 </form>
 </div>
 
