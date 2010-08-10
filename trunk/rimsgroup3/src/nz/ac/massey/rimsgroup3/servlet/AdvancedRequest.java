@@ -1,4 +1,4 @@
-package nz.ac.massey.rimsgroup3;
+package nz.ac.massey.rimsgroup3.servlet;
 
 import java.io.IOException;
 import java.io.InputStream;

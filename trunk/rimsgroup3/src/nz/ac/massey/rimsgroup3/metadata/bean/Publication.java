@@ -11,10 +11,10 @@ import java.util.List;
  */
 public abstract class Publication {
 	
-	protected String id;
+	protected String doi;
 	protected int year;
 	protected int startPage, endPage;
-	protected String issnIsbn;
+	protected String issn;
 	protected String abstractText;
 	protected List<String> keyWords;
 	protected String url;	
@@ -24,15 +24,15 @@ public abstract class Publication {
 	/**
 	 * @return the id
 	 */
-	public String getId() {
-		return id;
+	public String getDoi() {
+		return doi;
 	}
 	
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(String id) {
-		this.id = id;
+	public void setDoi(String id) {
+		this.doi = id;
 	}
 	
 	/**
@@ -80,15 +80,15 @@ public abstract class Publication {
 	/**
 	 * @return the issnIsbn
 	 */
-	public String getIssnIsbn() {
-		return issnIsbn;
+	public String getIssn() {
+		return issn;
 	}
 	
 	/**
 	 * @param issnIsbn the issnIsbn to set
 	 */
-	public void setIssnIsbn(String issnIsbn) {
-		this.issnIsbn = issnIsbn;
+	public void setIssn(String issnIsbn) {
+		this.issn = issnIsbn;
 	}
 	
 	/**
@@ -161,4 +161,13 @@ public abstract class Publication {
 		this.authors = authors;
 	}
 	
+	public String getAuthorsString() {
+		StringBuilder authorsString = new StringBuilder();
+		
+		for (Author author : authors) {
+			authorsString.append(author.getFirstName() + " " + author.getMiddleName() + (author.getMiddleName().length() != 0 ? " " : "") + author.getLastName() + ", ");
+		}
+		
+		return authorsString.toString();
+	}
 }
