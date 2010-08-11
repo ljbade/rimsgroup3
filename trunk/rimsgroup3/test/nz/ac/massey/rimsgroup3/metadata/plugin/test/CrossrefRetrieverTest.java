@@ -26,9 +26,9 @@ public class CrossrefRetrieverTest extends TestCase {
 		Journal expected = new Journal();
 		expected.setJournalTitle("Journal of Electronic Publishing");
 		expected.setIssn("10802711");
-		expected.setVolume(9);
-		expected.setYear(2006);
-		expected.setIssue(1);
+		expected.setVolume("9");
+		expected.setYear("2006");
+		expected.setIssue("1");
 		expected.setArticleTitle("In Google We Trust?");
 		// TODO need to test other fields too!
 		

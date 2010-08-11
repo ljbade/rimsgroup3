@@ -8,36 +8,36 @@ package nz.ac.massey.rimsgroup3.metadata.bean;
  *
  */
 public class Journal extends Publication {
-	private int volume;
-	private int issue;
+	private String volume;
+	private String issue;
 	private String journalTitle;
 	private String articleTitle;
 	
 	/**
 	 * @return the volume
 	 */
-	public int getVolume() {
+	public String getVolume() {
 		return volume;
 	}
 	
 	/**
 	 * @param volume the volume to set
 	 */
-	public void setVolume(int volume) {
+	public void setVolume(String volume) {
 		this.volume = volume;
 	}
 	
 	/**
 	 * @return the issue
 	 */
-	public int getIssue() {
+	public String getIssue() {
 		return issue;
 	}
 	
 	/**
 	 * @param issue the issue to set
 	 */
-	public void setIssue(int issue) {
+	public void setIssue(String issue) {
 		this.issue = issue;
 	}
 	
