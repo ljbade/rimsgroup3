@@ -11,15 +11,60 @@ import java.util.List;
  */
 public abstract class Publication {
 	
+	protected String id;
 	protected String doi;
-	protected int year;
-	protected int startPage, endPage;
+	protected String year;
+	protected String startPage, endPage;
 	protected String issn;
 	protected String abstractText;
 	protected List<String> keyWords;
 	protected String url;	
-	protected boolean isQualityAssured;
+	protected String isQualityAssured;
 	protected List<Author> authors;
+	protected String publisher;
+	protected String publicationCategory;
+	
+	/**
+	 * @return the id
+	 */
+	public String getID() {
+		return id;
+	}
+	
+	/**
+	 * @param id the id to set
+	 */
+	public void setID(String id) {
+		this.id = id;
+	}
+	
+	/**
+	 * @return the publisher
+	 */
+	public String getPublicationCategory() {
+		return publicationCategory;
+	}
+	
+	/**
+	 * @param publicationCategory the publicationCategroy to set
+	 */
+	public void setPublicationCategory(String publicationCategory) {
+		this.publicationCategory = publicationCategory;
+	}
+	
+	/**
+	 * @return the publisher
+	 */
+	public String getPublisher() {
+		return publisher;
+	}
+	
+	/**
+	 *  @param publisher the publisher to set
+	 */
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
 	
 	/**
 	 * @return the id
@@ -38,42 +83,42 @@ public abstract class Publication {
 	/**
 	 * @return the year
 	 */
-	public int getYear() {
+	public String getYear() {
 		return year;
 	}
 	
 	/**
 	 * @param year the year to set
 	 */
-	public void setYear(int year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 	
 	/**
 	 * @return the startPage
 	 */
-	public int getStartPage() {
+	public String getStartPage() {
 		return startPage;
 	}
 	
 	/**
 	 * @param startPage the startPage to set
 	 */
-	public void setStartPage(int startPage) {
+	public void setStartPage(String startPage) {
 		this.startPage = startPage;
 	}
 	
 	/**
 	 * @return the endPage
 	 */
-	public int getEndPage() {
+	public String getEndPage() {
 		return endPage;
 	}
 	
 	/**
 	 * @param endPage the endPage to set
 	 */
-	public void setEndPage(int endPage) {
+	public void setEndPage(String endPage) {
 		this.endPage = endPage;
 	}
 	
@@ -136,14 +181,14 @@ public abstract class Publication {
 	/**
 	 * @return the isQualityAssured
 	 */
-	public boolean isQualityAssured() {
+	public String isQualityAssured() {
 		return isQualityAssured;
 	}
 	
 	/**
 	 * @param isQualityAssured the isQualityAssured to set
 	 */
-	public void setQualityAssured(boolean isQualityAssured) {
+	public void setQualityAssured(String isQualityAssured) {
 		this.isQualityAssured = isQualityAssured;
 	}
 	

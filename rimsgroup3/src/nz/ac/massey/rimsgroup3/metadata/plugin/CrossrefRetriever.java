@@ -91,9 +91,9 @@ public class CrossrefRetriever implements MetadataRetriever {
 		result.setDoi(doi); // TODO: it would be better to use the returned DOI...
 		result.setUrl("http://dx.doi.org/" + doi); // TODO: should we use the <resource> ? 
 		result.setIssn(safelyGetElement(xmlDoc, "issn")); // TODO: reformat this ?
-		result.setYear(safeParseInt(safelyGetElement(xmlDoc, "year")));
-		result.setStartPage(safeParseInt(safelyGetElement(xmlDoc, "first_page")));
-		result.setEndPage(safeParseInt(safelyGetElement(xmlDoc, "last_page")));
+		result.setYear((safelyGetElement(xmlDoc, "year")));
+		result.setStartPage((safelyGetElement(xmlDoc, "first_page")));
+		result.setEndPage((safelyGetElement(xmlDoc, "last_page")));
 		result.setAuthors(parseAuthors(xmlDoc));		
 		
 		return result;
@@ -143,8 +143,8 @@ public class CrossrefRetriever implements MetadataRetriever {
 		Journal result = new Journal();
 		
 		result.setJournalTitle(safelyGetElement(xmlDoc, "journal_title"));
-		result.setVolume(safeParseInt(safelyGetElement(xmlDoc, "volume")));
-		result.setIssue(safeParseInt(safelyGetElement(xmlDoc, "issue")));
+		result.setVolume((safelyGetElement(xmlDoc, "volume")));
+		result.setIssue((safelyGetElement(xmlDoc, "issue")));
 		result.setArticleTitle(safelyGetElement(xmlDoc, "article_title"));
 		
 		return result;
@@ -161,6 +161,7 @@ public class CrossrefRetriever implements MetadataRetriever {
 		
 		return result;
 	}
+	
 	
 	/**
 	 * Parses the string into an int handling the case where the string is not valid.

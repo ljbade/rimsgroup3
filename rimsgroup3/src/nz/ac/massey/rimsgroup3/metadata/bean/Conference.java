@@ -13,8 +13,8 @@ public class Conference extends Publication {
 	
 	private String abstractTitle;
 	private String conferenceName;
-	private Date startDate;
-	private Date endDate;
+	private String startDate;
+	private String endDate;
 	private String location;
 	
 	/**
@@ -48,28 +48,28 @@ public class Conference extends Publication {
 	/**
 	 * @return the startDate
 	 */
-	public Date getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
 	
 	/**
 	 * @param startDate the startDate to set
 	 */
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 	
 	/**
 	 * @return the endDate
 	 */
-	public Date getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
 	
 	/**
 	 * @param endDate the endDate to set
 	 */
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 	

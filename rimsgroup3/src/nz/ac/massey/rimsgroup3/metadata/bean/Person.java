@@ -9,10 +9,18 @@ package nz.ac.massey.rimsgroup3.metadata.bean;
  */
 public abstract class Person {
 	
+	protected String id;
 	protected String firstName;
 	protected String middleName;
 	protected String lastName;
 
+	public String getID() {
+		return id;
+	}
+	
+	public void setID(String id){
+		this.id = id;
+	}
 	/**
 	 * @return the firstName
 	 */
