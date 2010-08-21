@@ -24,7 +24,7 @@ div.secondSet{
 	border-style:solid;
 	width:880px;
 	padding:10px;
-	height:90px;
+	height:auto;
 	margin-bottom:10px;
 }
 
@@ -61,4 +61,10 @@ table.resultTable{
 }
 .smallLink {
 	font-size: 10pt;	
+}
+.rightAligned {
+    text-align: right;
+}
+.abstract {
+    float: right;
 }
