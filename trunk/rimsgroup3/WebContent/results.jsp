@@ -5,7 +5,54 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="main.css" type="text/css"/>
 <title>RIMS Assistant - Results</title>
+		<script type="text/javascript">
+			var counter = 1;
+			function addNew() {
+				// Get the main Div in which all the other divs will be added
+				var mainContainer = document.getElementById('mainContainer');
+				// Create a new div for holding text and button input elements
+				var newDiv = document.createElement('div');
+				// Create a new text input
+				var newText = document.createElement('input');
+				newText.type = "input";
+				newText.name = "author" + counter;
+				newDiv.innerHTML+= "<label for=\"author + counter\">Author:</label>";
+				newDiv.appendChild(newText);
+				var newText = document.createElement('input');
+				newText.type = "input";
+				newText.name = "staffID" + counter;
+				newDiv.innerHTML+= "<label for=\"staffID + counter\">Staff ID:</label>";
+				newDiv.appendChild(newText);
+				
+				var newText = document.createElement('input');
+				newText.type = "input";
+				newText.name = "unit" + counter;
+				newDiv.innerHTML+= "<label for=\"unit + counter\">Unit:</label>";
+				newDiv.appendChild(newText);
+				
+				var newText = document.createElement('input');
+				newText.type = "input";
+				newText.name = "mailCode" + counter;
+				newDiv.innerHTML+= "<label for=\"mailCode + counter\">Mail Code:</label>";
+				newDiv.appendChild(newText);
+				
+				// Create a new button input
+				var newDelButton = document.createElement('input');
+				newDelButton.type = "button";
+				newDelButton.value = "Delete";
 
+				// Append new button input to the newDiv
+				newDiv.appendChild(newDelButton);
+				// Append newDiv input to the mainContainer div
+				mainContainer.appendChild(newDiv);
+				counter++;
+				
+				// Add a handler to button for deleting the newDiv from the mainContainer
+				newDelButton.onclick = function() {
+						mainContainer.removeChild(newDiv);
+				}
+			}
+		</script>
 </head>
 
 <body>
@@ -13,45 +60,14 @@
 <h3>Results</h3>
 <jsp:useBean id="publication" class="nz.ac.massey.rimsgroup3.metadata.bean.Journal" scope="session" ></jsp:useBean>
 
-<form name="resultsForm" action="confirmation.jsp" method="post" onsubmit="">
-<div class="firstSet">
-<table align="left" class="resultTable">
-<tr>
-	<td><label for="name">Name:</label></td>
-	<td><input type="text" name="name"/></td>
-</tr>
-<tr>
-	<td><label for="staffId">Staff ID:</label></td>
-	<td><input type="text" name="staffId"/></td>
-</tr>
-<tr>
-	<td><label for="unit">Unit:</label></td>
-	<td><input type="text" name="unit"/></td>
-</tr>
-<tr>
-	<td><label for="mailCode">Mail Code:</label></td>
-	<td><input type="text" name="mailCode"/></td>
-</tr>
-</table>
-
-<table class="resultTable" cellpadding="5px">
-<tr>
-<td>Research or Professsional/Community</td><td>Quality Assured?</td><td>Confidential?</td>
-</tr>
-<tr>
-<td>Research (PBRF)       <input type="radio" name="research" value="research"/> <br/>
-    Professional/Community<input type="radio" name="research" value="professional"/>
-</td>
-<td>
-	Yes<input type="radio" name="qa" value="yes"/> <br/>
-    No <input type="radio" name="qa" value="no"/>
-</td>
-<td>
-	Yes<input type="radio" name="confidential" value="yes"/> <br/>
-    No <input type="radio" name="confidential" value="no"/>
-</td>
-</tr>
-</table>
+<form name="resultsForm" action="confirmation.jsp" method="post" onSubmit="" >
+<div id="mainContainer" class="firstSet">
+	<div><label for="author0">Author:</label><input type="text" name="author0">
+         <label for="staffID0">Staff ID:</label><input type="text" name="staffID0">
+         <label for="unit0">Unit:</label><input type="text" name="unit0">
+         <label for="mailCode0">Mail Code:</label><input type="text" name="mailCode0">
+         <input type="button" value="Add" onClick="addNew()">
+    </div>
 </div>
 <div class="secondSet" >
 <table class="resultTable" align="center">
@@ -67,6 +83,24 @@
 <td><input type="radio" name="contribution" value="full article in journal"/>Full Article in Journal</td>
 <td><input type="radio" name="contribution" value="misc"/>Editorial, Brief Communication, Letter or Note</td>
 <td><input type="radio" name="contribution" value="other"/>Other</td>
+</tr>
+</table>
+<table class="resultTable" cellpadding="5px" align="center">
+<tr>
+<td>Research or Professsional/Community</td><td>Quality Assured?</td><td>Confidential?</td>
+</tr>
+<tr>
+<td>Research (PBRF)       <input type="radio" name="research" value="research"/> <br/>
+    Professional/Community<input type="radio" name="research" value="professional"/>
+</td>
+<td>
+	Yes<input type="radio" name="qa" value="yes"/> <br/>
+    No <input type="radio" name="qa" value="no"/>
+</td>
+<td>
+	Yes<input type="radio" name="confidential" value="yes"/> <br/>
+    No <input type="radio" name="confidential" value="no"/>
+</td>
 </tr>
 </table>
 </div>
