@@ -51,8 +51,17 @@
 				newDelButton.onclick = function() {
 						mainContainer.removeChild(newDiv);
 				}
-			}
-		</script>
+                        }
+
+var cnt;
+function wordCount(count) {
+    var words = count.split(/\s/);
+    cnt = words.length;
+    var label = document.getElementById('wordcount');
+    label.innerHTML = "Word count: " + cnt;
+
+}
+</script>
 </head>
 
 <body>
@@ -62,11 +71,11 @@
 
 <form name="resultsForm" action="confirmation.jsp" method="post" onSubmit="" >
 <div id="mainContainer" class="firstSet">
-	<div><label for="author0">Author:</label><input type="text" name="author0">
-         <label for="staffID0">Staff ID:</label><input type="text" name="staffID0">
-         <label for="unit0">Unit:</label><input type="text" name="unit0">
-         <label for="mailCode0">Mail Code:</label><input type="text" name="mailCode0">
-         <input type="button" value="Add" onClick="addNew()">
+	<div><label for="author0">Author:</label><input type="text" name="author0" />
+         <label for="staffID0">Staff ID:</label><input type="text" name="staffID0" />
+         <label for="unit0">Unit:</label><input type="text" name="unit0" />
+         <label for="mailCode0">Mail Code:</label><input type="text" name="mailCode0" />
+         <input type="button" value="Add" onClick="addNew()" />
     </div>
 </div>
 <div class="secondSet" >
@@ -151,19 +160,23 @@
 </tr>
 <tr>
 <td><label for="keywords">Keywords:</label></td>
-<td><input type="text" name="keywords" value="<c:out value="${publication.keyWords}" />"/></td>
+<td><input type="text" name="keywords"  value="<c:out value="${publication.keyWords}" />"/></td>
 </tr>
 </table>
-<table>
+<table class="abstract">
 <tr>
 <td>
 <label for="abstract">Abstract:</label>
 </td>
 <td>
-<textarea name="abstract" rows="15" cols="50">
+    <textarea name="abstract" rows="15" cols="40" onkeyup="wordCount(this.value);">
 <c:out value="${publication.abstractText}" />
 </textarea>
 </td>
+</tr>
+<tr>
+    <td></td>
+    <td><label id="wordcount" class="smallLink"></label></td>
 </tr>
 </table>
 </div>
