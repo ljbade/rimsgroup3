@@ -12,55 +12,80 @@
 				var mainContainer = document.getElementById('mainContainer');
 				// Create a new div for holding text and button input elements
 				var newDiv = document.createElement('div');
+				newDiv.id = counter;
 				// Create a new text input
 				var newText = document.createElement('input');
 				newText.type = "input";
-				newText.name = "author" + counter;
+				newText.id = "author" + counter;
 				newDiv.innerHTML+= "<label for=\"author + counter\">Author:</label>";
 				newDiv.appendChild(newText);
+				
 				var newText = document.createElement('input');
 				newText.type = "input";
-				newText.name = "staffID" + counter;
+				newText.id = "staffID" + counter;
 				newDiv.innerHTML+= "<label for=\"staffID + counter\">Staff ID:</label>";
 				newDiv.appendChild(newText);
 				
 				var newText = document.createElement('input');
 				newText.type = "input";
-				newText.name = "unit" + counter;
+				newText.id = "unit" + counter;
 				newDiv.innerHTML+= "<label for=\"unit + counter\">Unit:</label>";
 				newDiv.appendChild(newText);
 				
 				var newText = document.createElement('input');
 				newText.type = "input";
-				newText.name = "mailCode" + counter;
+				newText.id = "mailCode" + counter;
 				newDiv.innerHTML+= "<label for=\"mailCode + counter\">Mail Code:</label>";
 				newDiv.appendChild(newText);
-				
-				// Create a new button input
-				var newDelButton = document.createElement('input');
-				newDelButton.type = "button";
-				newDelButton.value = "Delete";
+
+				var newMoveUpBtn = document.createElement('input');
+				newMoveUpBtn.type = "button";
+				newMoveUpBtn.value = "Move Up";
 
 				// Append new button input to the newDiv
-				newDiv.appendChild(newDelButton);
+				//newDiv.appendChild(newDelButton);
+				newDiv.appendChild(newMoveUpBtn);
+				
 				// Append newDiv input to the mainContainer div
 				mainContainer.appendChild(newDiv);
 				counter++;
 				
-				// Add a handler to button for deleting the newDiv from the mainContainer
-				newDelButton.onclick = function() {
-						mainContainer.removeChild(newDiv);
+				newMoveUpBtn.onclick = function() {
+						var thisDiv = newMoveUpBtn.parentNode.id;
+						
+						var temp = document.getElementById("author" + thisDiv).value;
+						document.getElementById("author" + thisDiv).value = document.getElementById("author" + (thisDiv - 1)).value;
+						document.getElementById("author" + (thisDiv - 1)).value = temp;
+						
+						var temp = document.getElementById("staffID" + thisDiv).value;
+						document.getElementById("staffID" + thisDiv).value = document.getElementById("staffID" + (thisDiv - 1)).value;
+						document.getElementById("staffID" + (thisDiv - 1)).value = temp;
+						
+						var temp = document.getElementById("unit" + thisDiv).value;
+						document.getElementById("unit" + thisDiv).value = document.getElementById("unit" + (thisDiv - 1)).value;
+						document.getElementById("unit" + (thisDiv - 1)).value = temp;
+						
+						var temp = document.getElementById("mailCode" + thisDiv).value;
+						document.getElementById("mailCode" + thisDiv).value = document.getElementById("mailCode" + (thisDiv - 1)).value;
+						document.getElementById("mailCode" + (thisDiv - 1)).value = temp;
+	
 				}
-                        }
+			}
+			function deleteIt(){
+				var mainContainer = document.getElementById('mainContainer');
+				mainContainer.removeChild(document.getElementById(counter-1));
+				if(counter>1){
+					counter--;
+				}
+			}
 
-var cnt;
-function wordCount(count) {
-    var words = count.split(/\s/);
-    cnt = words.length;
-    var label = document.getElementById('wordcount');
-    label.innerHTML = "Word count: " + cnt;
-
-}
+			var cnt;
+			function wordCount(count) {
+			    var words = count.split(/\s/);
+			    cnt = words.length;
+			    var label = document.getElementById('wordcount');
+			    label.innerHTML = "Word count: " + cnt;
+			}
 </script>
 </head>
 
@@ -70,12 +95,13 @@ function wordCount(count) {
 <jsp:useBean id="publication" class="nz.ac.massey.rimsgroup3.metadata.bean.Journal" scope="session" ></jsp:useBean>
 
 <form name="resultsForm" action="confirmation.jsp" method="post" onSubmit="" >
-<div id="mainContainer" class="firstSet">
-	<div><label for="author0">Author:</label><input type="text" name="author0" />
-         <label for="staffID0">Staff ID:</label><input type="text" name="staffID0" />
-         <label for="unit0">Unit:</label><input type="text" name="unit0" />
-         <label for="mailCode0">Mail Code:</label><input type="text" name="mailCode0" />
-         <input type="button" value="Add" onClick="addNew()" />
+<div id="mainContainer">
+	<div><label for="author0">Author:</label><input type="text" id="author0">
+       	 <label for="staffID0">Staff ID:</label><input type="text" id="staffID0">
+       	 <label for="unit0">Unit:</label><input type="text" id="unit0">
+      	 <label for="mailCode0">Mail Code:</label><input type="text" id="mailCode0">
+       	 <input type="button" value="Add" onClick="addNew()">
+         <input type="button" value="Delete" onClick="deleteIt()">
     </div>
 </div>
 <div class="secondSet" >
@@ -169,7 +195,7 @@ function wordCount(count) {
 <label for="abstract">Abstract:</label>
 </td>
 <td>
-    <textarea name="abstract" rows="15" cols="40" onkeyup="wordCount(this.value);">
+    <textarea name="abstract" rows="15" cols="40" onKeyUp="wordCount(this.value);">
 <c:out value="${publication.abstractText}" />
 </textarea>
 </td>
