@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="main.css" type="text/css"/>
+<script type="text/javascript" src="resultsScript.js"></script>
 <title>RIMS Assisstant - Results</title>
 </head>
 <body>
@@ -12,26 +13,17 @@
 <div class="results">
 <h3>Results</h3>
 
-<form name="resultsForm" action="confirmation.jsp" method="post" onsubmit="">
+<form name="resultsForm" action="confirmation.jsp" method="post" onSubmit="">
 <div class="firstSet">
-<table align="left" class="resultTable">
-<tr>
-	<td><label for="name">Name:</label></td>
-	<td><input type="text" name="name"/></td>
-</tr>
-<tr>
-	<td><label for="staffId">Staff ID:</label></td>
-	<td><input type="text" name="staffId"/></td>
-</tr>
-<tr>
-	<td><label for="unit">Unit:</label></td>
-	<td><input type="text" name="unit"/></td>
-</tr>
-<tr>
-	<td><label for="mailCode">Mail Code:</label></td>
-	<td><input type="text" name="mailCode"/></td>
-</tr>
-</table>
+<div id="mainContainer">
+	<div><label for="author0">Author:</label><input type="text" id="author0">
+       	 <label for="staffID0">Staff ID:</label><input type="text" id="staffID0">
+       	 <label for="unit0">Unit:</label><input type="text" id="unit0">
+      	 <label for="mailCode0">Mail Code:</label><input type="text" id="mailCode0">
+       	 <input type="button" value="Add" onClick="addNew()">
+         <input type="button" value="Delete" onClick="deleteIt()">
+    </div>
+</div>
 <table class="resultTable" align="center">
 <tr>
 	<td><label for="placePublished">Place Published:</label></td>
