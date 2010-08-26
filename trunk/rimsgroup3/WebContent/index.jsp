@@ -5,6 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="main.css" type="text/css"/>
 <title>RIMS Assistant - Home</title>
+<script type="text/javascript" src="resultsScript.js"></script>
 <script language="javascript"> 
 <!--
 var state = 'none';
@@ -36,7 +37,7 @@ hza.style.display = state;
 <div id="pageDiv">
 
 <h2>RIMS Assistant</h2>
-<form name="searchForm" action="DoiRequest" method="post" onsubmit=""> 
+<form name="searchForm" action="DoiRequest" method="post" onSubmit=""> 
 <table width="280px">
 <tr>
 	<td>10.1016/j.tcs.2010.07.007  -  multiple authors</td>
@@ -63,9 +64,9 @@ hza.style.display = state;
 </c:if>
 </form>
 
-<p><a href="#" onclick="showhide('div1');">Advanced Search</a></p> 
+<p><a href="#" onClick="showhide('div1');">Advanced Search</a></p> 
 <div id="div1" style="display: none;">
-<form name="advancedForm" action="AdvancedRequest" method="post" onsubmit=""> 
+<form name="advancedForm" action="AdvancedRequest" method="post" onSubmit=""> 
 <table>
 <tr>
 <td><label for="authors">Primary Author:</label></td>
