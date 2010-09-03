@@ -7,7 +7,7 @@ package nz.ac.massey.rimsgroup3.metadata.bean;
  * @author Leith
  *
  */
-public abstract class Person {
+public class Person {
 	
 	protected String id;
 	protected String firstName;

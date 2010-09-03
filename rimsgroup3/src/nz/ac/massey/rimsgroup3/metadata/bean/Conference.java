@@ -11,6 +11,7 @@ import java.util.Date;
  */
 public class Conference extends Publication {
 	
+	
 	private String abstractTitle;
 	private String conferenceName;
 	private String startDate;
