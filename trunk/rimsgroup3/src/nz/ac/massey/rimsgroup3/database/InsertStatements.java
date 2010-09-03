@@ -2,6 +2,7 @@ package nz.ac.massey.rimsgroup3.database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.*;
 
 
 
@@ -9,7 +10,7 @@ import nz.ac.massey.rimsgroup3.metadata.bean.*;
 
 
 
-public class Statements {
+public class InsertStatements {
 
 
 	public static PreparedStatement authorStatement(Connection connection,
@@ -79,8 +80,8 @@ public class Statements {
 			Editor editor, Book book){
 		try {
 			PreparedStatement statementEditor = connection.prepareStatement
-			("INSERT INTO EDITORS " + "VALUES(?,?,?,?)");
-
+			("INSERT INTO EDITORS " + "(EDITOR_FIRST_NAME,EDITOR_MIDDLE_NAME,EDITOR_LAST_NAME,PUBLICATION_ID) "
+					+ "VALUES(?,?,?,?)");
 				statementEditor.setString(1, editor.getFirstName());
 				statementEditor.setString(2, editor.getLastName());
 				statementEditor.setString(3, editor.getMiddleName());
@@ -119,7 +120,7 @@ public class Statements {
 			Publication publication){
 		try {
 			PreparedStatement statementPublication = connection.prepareStatement
-			("INSERT INTO PUBLICATION " + "VALUES(?,?,?,?,?,?,?,?,?)");
+			("INSERT INTO PUBLICATION " + "VALUES(?,?,?,?,?,?,?,?,?,?,?)");
 				statementPublication.setString(1, publication.getID());
 				statementPublication.setString(2, publication.getPublicationCategory());
 				statementPublication.setString(3, publication.getPublisher());
@@ -129,7 +130,17 @@ public class Statements {
 				statementPublication.setString(7, publication.getIssn());
 				statementPublication.setString(8, publication.getUrl()); 
 				statementPublication.setString(9, publication.isQualityAssured());
-				
+				statementPublication.setString(10, publication.getAbstractText());
+				List <String> keyWords =   new ArrayList<String>();
+				keyWords = publication.getKeyWords();
+				int i = 0;
+				String keywords = "";
+				while ( i != keyWords.size())
+				{
+					keywords = keywords + "," + keyWords.get(i);
+					i++;
+				}
+				statementPublication.setString(11, keywords);
 				return statementPublication;
 			}
 		
@@ -144,12 +155,12 @@ public class Statements {
 	public static PreparedStatement publishedStatment(Connection connection, 
 			Publication publication, Author author){
 		try {
-			PreparedStatement statementEditor = connection.prepareStatement
+			PreparedStatement statementPublished = connection.prepareStatement
 			("INSERT INTO PUBLISHED " + "VALUES(?,?)");
 
-				statementEditor.setString(1, publication.getID());
-				statementEditor.setString(2, author.getID());
-				return statementEditor;
+				statementPublished.setString(1, publication.getID());
+				statementPublished.setString(2, author.getID());
+				return statementPublished;
 			}
 			catch (Exception e)
 			{

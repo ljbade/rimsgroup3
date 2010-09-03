@@ -9,7 +9,7 @@ import java.util.List;
  * @author Leith
  *
  */
-public abstract class Publication {
+public class Publication {
 	
 	protected String id;
 	protected String doi;
@@ -210,9 +210,21 @@ public abstract class Publication {
 		StringBuilder authorsString = new StringBuilder();
 		
 		for (Author author : authors) {
-			authorsString.append(author.getFirstName() + " " + author.getMiddleName() + (author.getMiddleName().length() != 0 ? " " : "") + author.getLastName() + ", ");
+			authorsString.append(author.getFirstName() + " " 
+					+ author.getMiddleName() + (author.getMiddleName().length() != 0 ? " " : "") 
+						+ author.getLastName() + ", ");
 		}
 		
 		return authorsString.toString();
 	}
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -54,10 +54,20 @@
     <description></description>
     <display-name>DBtest</display-name>
     <servlet-name>DBtest</servlet-name>
-    <servlet-class>nz.ac.massey.rimsgroup3.experimental.DBtest</servlet-class>
+    <servlet-class>nz.ac.massey.rimsgroup3.database.DBtest</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DBtest</servlet-name>
     <url-pattern>/DBtest</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DatabaseRead</display-name>
+    <servlet-name>DatabaseRead</servlet-name>
+    <servlet-class>nz.ac.massey.rimsgroup3.database.DatabaseRead</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DatabaseRead</servlet-name>
+    <url-pattern>/DatabaseRead</url-pattern>
   </servlet-mapping>
 </web-app>
