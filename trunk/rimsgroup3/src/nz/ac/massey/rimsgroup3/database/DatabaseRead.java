@@ -53,6 +53,9 @@ public class DatabaseRead extends HttpServlet {
 		Connection connection = null;
 		Information information = new Information();
 		
+		HttpSession publicationDOI = request.getSession();
+		String query = publicationDOI.getAttribute("publicationDOI").toString();
+		System.out.println(query);
 		try {
 			synchronized (dataSource)
 			{		
@@ -71,7 +74,7 @@ public class DatabaseRead extends HttpServlet {
 			information.setPublication(publicationRS);
 			
 			
-			String category = publicationRS.getPublicationCategory();
+			String category = publicationRS.getPublicationCategory().toLowerCase();
 			
 			if (category == "conference")
 			{
