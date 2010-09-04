@@ -17,13 +17,13 @@ import org.apache.catalina.Session;
 /**
  * Servlet implementation class DBtest
  */
-public class DBtest extends HttpServlet {
+public class DatabaseInsert extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DataSource dataSource;  
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DBtest() {
+    public DatabaseInsert() {
         super();
         // TODO Auto-generated constructor stub
     }

@@ -23,10 +23,10 @@ import nz.ac.massey.rimsgroup3.database.*;
 import nz.ac.massey.rimsgroup3.metadata.bean.*;
 
 
-public class DatabaseTest extends ServletTestCase{
+public class TestingDatabase extends ServletTestCase{
 	
 	
-	public DatabaseTest(String name)
+	public TestingDatabase(String name)
 	{
 		super(name);
 		System.setProperty("cactus.contextURL", "http://localhost:8080/rimsgroup3");
@@ -110,7 +110,7 @@ public class DatabaseTest extends ServletTestCase{
 		//information.setConference(conference);
 		
 		request.setAttribute("info", information);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/DBtest");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/DatabaseInsert");
 		dispatcher.forward(request, response);
 
 		

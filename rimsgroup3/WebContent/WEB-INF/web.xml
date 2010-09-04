@@ -52,13 +52,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>DBtest</display-name>
-    <servlet-name>DBtest</servlet-name>
-    <servlet-class>nz.ac.massey.rimsgroup3.database.DBtest</servlet-class>
+    <display-name>DatabaseInsert</display-name>
+    <servlet-name>DatabaseInsert</servlet-name>
+    <servlet-class>nz.ac.massey.rimsgroup3.database.DatabaseInsert</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>DBtest</servlet-name>
-    <url-pattern>/DBtest</url-pattern>
+    <servlet-name>DatabaseInsert</servlet-name>
+    <url-pattern>/DatabaseInsert</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
