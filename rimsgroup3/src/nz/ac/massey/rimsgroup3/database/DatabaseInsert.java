@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.*;
 import java.util.*;
 import java.sql.*;
@@ -49,7 +50,9 @@ public class DatabaseInsert extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Connection connection = null;
-		Information information = (Information) request.getAttribute("info");
+		HttpSession publicationDOI = request.getSession();
+		Information information = (Information) publicationDOI.getAttribute("info");
+		//Information information = (Information) request.getAttribute("info");
 		
 		List <Author> authors = information.getAuthors();
 		Publication publication = information.getPublication();
