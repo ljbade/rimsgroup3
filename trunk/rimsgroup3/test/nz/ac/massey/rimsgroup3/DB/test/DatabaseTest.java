@@ -13,6 +13,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import org.apache.cactus.*;
@@ -31,21 +32,14 @@ public class DatabaseTest extends ServletTestCase{
 		System.setProperty("cactus.contextURL", "http://localhost:8080/rimsgroup3");
 	}
 	
-	public void beginDBtest(WebRequest request){
-		
-		//request.setURL("localhost:8080", "/rimsgroup3", "/DBtest", null, null);
-		
-		
-
-	}
 	
-	public void testDatabse() throws SQLException, ServletException, IOException {
+	public void testBook() throws SQLException, ServletException, IOException {
 
 		
 		
 		Publication publication = new Publication();
 		publication.setID("08326517");
-		publication.setPublicationCategory("cat");
+		publication.setPublicationCategory("book");
 		publication.setPublisher("publisher");
 		publication.setYear("1988");
 		publication.setStartPage("1");
@@ -65,14 +59,14 @@ public class DatabaseTest extends ServletTestCase{
 		author.setDepartment("Department");
 		author.setEmail("madeup@hotmail.com");
 		author.setFirstName("Firstname");
-		author.setID("4");
+		author.setID("1");
 		author.setLastName("lastName");
 		author.setMiddleName("MiddleName");
 		author.setType("type");
 		List <Author> authors = new ArrayList<Author>();
 		authors.add(author);
 		
-		Conference conference = new Conference();
+		/*Conference conference = new Conference();
 		conference.setID(publication.getID());
 		conference.setAbstractTitle("abstractTitle");
 		conference.setConferenceName("conferenceName");
@@ -85,7 +79,7 @@ public class DatabaseTest extends ServletTestCase{
 		journal.setVolume("4");
 		journal.setIssue("2");
 		journal.setJournalTitle("journalTitle");
-		journal.setArticleTitle("articleTitle");
+		journal.setArticleTitle("articleTitle");*/
 		
 		Editor editor = new Editor();
 		editor.setFirstName("firstName");
@@ -111,13 +105,15 @@ public class DatabaseTest extends ServletTestCase{
 		information.setAuthors(authors);
 		information.setEditors(editors);
 		information.setBook(book);
-		information.setJournal(journal);
+		//information.setJournal(journal);
 		information.setPublication(publication);
-		information.setConference(conference);
+		//information.setConference(conference);
 		
 		request.setAttribute("info", information);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/DBtest");
 		dispatcher.forward(request, response);
+
+		
 		DatabaseRead dbtest = new DatabaseRead();
 		dbtest.init(config);
 		dbtest.doGet(request,response);
@@ -126,7 +122,6 @@ public class DatabaseTest extends ServletTestCase{
 		
 		Information checkInformation = new Information();
 		checkInformation = (Information) session.getAttribute("information");
-		
 		String connection = null;
 		assertEquals(connection, null);
 
