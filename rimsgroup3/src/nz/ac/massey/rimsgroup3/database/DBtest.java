@@ -12,6 +12,8 @@ import javax.sql.*;
 import java.util.*;
 import java.sql.*;
 import javax.naming.*;
+
+import org.apache.catalina.Session;
 /**
  * Servlet implementation class DBtest
  */
@@ -49,12 +51,18 @@ public class DBtest extends HttpServlet {
 		Connection connection = null;
 		Information information = (Information) request.getAttribute("info");
 		
-		Book book = information.getBook();
-		Journal journal = information.getJournal();
-		Conference conference = information.getConference();
 		List <Author> authors = information.getAuthors();
 		Publication publication = information.getPublication();
 		List <Editor> editors = information.getEditors();
+		Book book = null;
+		Journal journal = null;
+		Conference conference = null;
+		
+		String category = publication.getPublicationCategory().toLowerCase();
+		
+		if (category == "book") book = information.getBook();
+		if (category == "journal") journal = information.getJournal();
+		if (category == "conference") conference = information.getConference();
 		
 		try 
 		{
@@ -66,6 +74,7 @@ public class DBtest extends HttpServlet {
 			
 			PreparedStatement statementPublication = InsertStatements.publicationStatment(connection, publication);
 			statementPublication.executeUpdate();
+			if (statementPublication != null) statementPublication.close();
 			
 			int i = 0;
 			while (i != authors.size())
@@ -78,29 +87,34 @@ public class DBtest extends HttpServlet {
 				if (statementAuthor != null) statementAuthor.close();
 				if (statementPublished != null) statementPublished.close();
 			}
-			PreparedStatement statementBook = InsertStatements.bookStatment(connection, book);
-			PreparedStatement statementJournal = InsertStatements.journalStatment(connection, journal);
-			PreparedStatement statementConference = InsertStatements.conferenceStatment(connection, conference);
 			
-			//statementAuthor.executeUpdate();
-
-			statementBook.executeUpdate();
-			statementJournal.executeUpdate();
-			statementConference.executeUpdate();
-			
-			//if (statementAuthor != null) statementAuthor.close();
-			if (statementPublication != null) statementPublication.close();
-			if (statementBook != null) statementBook.close();
-			if (statementJournal != null) statementJournal.close();
-			if (statementConference != null) statementConference.close();
-			
-			i = 0;
-			while (i != editors.size())
+			if (category == "journal")
 			{
-				PreparedStatement statementEditor = InsertStatements.editorStatment(connection, editors.get(i), book);
-				statementEditor.executeUpdate();
-				i++;
-				if (statementEditor != null) statementEditor.close();
+				PreparedStatement statementJournal = InsertStatements.journalStatment(connection, journal);
+				statementJournal.executeUpdate();
+				if (statementJournal != null) statementJournal.close();
+			}
+			
+			if (category == "conference")
+			{
+				PreparedStatement statementConference = InsertStatements.conferenceStatment(connection, conference);			
+				statementConference.executeUpdate();
+				if (statementConference != null) statementConference.close();
+			}
+			
+			if (category == "book") 
+			{
+				PreparedStatement statementBook = InsertStatements.bookStatment(connection, book);
+				statementBook.executeUpdate();
+				if (statementBook != null) statementBook.close();
+				i = 0;
+				while (i != editors.size())
+				{
+					PreparedStatement statementEditor = InsertStatements.editorStatment(connection, editors.get(i), book);
+					statementEditor.executeUpdate();
+					i++;
+					if (statementEditor != null) statementEditor.close();
+				}
 			}
 			connection.commit();
 			connection.setAutoCommit(true);
