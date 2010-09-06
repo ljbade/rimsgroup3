@@ -70,10 +70,6 @@ hza.style.display = state;
     <form name="advancedForm" action="AdvancedRequest" method="post" onSubmit=""> 
     <table>
     <tr>
-    <td><label for="authors">Primary Author:</label></td>
-    <td><input type="text" name="authors"/></td>
-    </tr>
-    <tr>
     <td><label for="fName">First Name:</label></td>
     <td><input type="text" name="fName" /></td>
     </tr>
@@ -82,24 +78,12 @@ hza.style.display = state;
     <td><input type="text" name="lName" /></td>
     </tr>
     <tr>
-    <td><label for="articleTitle">Article/Output Title:</label></td>
-    <td><input type="text" name="articleTitle" /></td>
-    </tr>
-    <tr>
     <td><label for="journalTitle">Journal/Publication Title:</label></td>
     <td><input type="text" name="journalTitle" /></td>
     </tr>
     <tr>
     <td><label for="year">Publication Year:</label></td>
     <td><input type="text" name="year" /></td>
-    </tr>
-    <tr>
-    <td><label for="publisher">Publisher:</label></td>
-    <td><input type="text" name="publisher" /></td>
-    </tr>
-    <tr>
-    <td><label for="issn">ISSN:</label></td>
-    <td><input type="text" name="issn" /></td>
     </tr>
     </table>
     <input type="submit" name="advSearch" value="Search"/>
