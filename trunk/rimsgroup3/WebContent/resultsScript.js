@@ -6,6 +6,7 @@ function addNew() {
 	// Create a new div for holding text and button input elements
 	var newDiv = document.createElement('div');
 	newDiv.id = counter;
+
 	// Create a new text input
 	var newText = document.createElement('input');
 	newText.type = "input";
