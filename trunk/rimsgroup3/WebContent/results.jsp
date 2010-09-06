@@ -24,8 +24,8 @@
 </div>
 <div class="secondSet" >
 <table class="resultTable" align="center">
-  <tr>
-<td colspan="3">Journal Contribution:</td>
+<tr>
+<th colspan="3">Journal Contribution:</th>
 </tr>
 <tr>
 <td><input type="radio" name="contribution" value="review article"/>Review Article</td>
@@ -40,19 +40,19 @@
 </table>
 <table class="resultTable" cellpadding="5px" align="center">
 <tr>
-<td>Research or Professsional/Community</td><td>Quality Assured?</td><td>Confidential?</td>
+<th>Research or Professsional/Community</th><th>Quality Assured?</th><th>Confidential?</th>
 </tr>
 <tr>
-<td>Research (PBRF)       <input type="radio" name="research" value="research"/> <br/>
-    Professional/Community<input type="radio" name="research" value="professional"/>
+<td><input type="radio" name="research" value="research"/>Research (PBRF)<br/>
+    <input type="radio" name="research" value="professional"/>Professional/Community
 </td>
 <td>
-	Yes<input type="radio" name="qa" value="yes"/> <br/>
-    No <input type="radio" name="qa" value="no"/>
+	<input type="radio" name="qa" value="yes"/>Yes<br/>
+    <input type="radio" name="qa" value="no"/>No
 </td>
 <td>
-	Yes<input type="radio" name="confidential" value="yes"/> <br/>
-    No <input type="radio" name="confidential" value="no"/>
+	<input type="radio" name="confidential" value="yes"/>Yes<br/>
+    <input type="radio" name="confidential" value="no"/>No
 </td>
 </tr>
 </table>

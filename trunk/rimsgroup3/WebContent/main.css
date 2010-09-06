@@ -1,46 +1,80 @@
 @charset "utf-8";
 /* CSS Document */
 
+h3{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:16pt;
+	color:#FFF;
+}
+
+label{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:9pt;
+}
+
 div.results{
+	background-color:#09F;
 	border:thin;
 	border-color:#000;
 	border-style:solid;
 	width:980px;
 	padding:10px;
+	-moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -khtml-border-radius: 20px;
+    border-radius: 20px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:9pt;
+	text-align:center;
 }
 
 div.firstSet{
-	border:2px;
-	border-color:#63C;
+	background-color:#FFF;
+	border:4px;
+	border-color:#06C;
 	border-style:solid;
 	width:950px;
 	padding:10px;
 	margin-bottom:10px;
+	-moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -khtml-border-radius: 20px;
+    border-radius: 20px;
 }
 
 div.secondSet{
-	border:2px;
-	border-color:#63C;
+	background-color:#FFF;
+	border:4px;
+	border-color:#06C;
 	border-style:solid;
 	width:950px;
 	padding:10px;
 	height:auto;
 	margin-bottom:10px;
+	-moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -khtml-border-radius: 20px;
+    border-radius: 20px;
 }
 
 div.thirdSet{
-	border:2px;
-	border-color:#63C;
+	background-color:#FFF;
+	border:4px;
+	border-color:#06C;
 	border-style:solid;
 	width:950px;
 	padding:10px;
 	height:330px;
 	margin-bottom:10px;
+	-moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -khtml-border-radius: 20px;
+    border-radius: 20px;
 }
 
 div.printPage{
 	border:thin;
-	border-color:#000;
+	border-color:#06C;
 	border-style:solid;
 	width: 360px;
 	height:160px;
@@ -49,16 +83,39 @@ div.printPage{
 
 table.resultTable{
 	padding:5px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:9pt;
 }
 
-#pageDiv{
+.smallPage{
+	background-color:#09F;
 	border:thin;
 	border-color:#000;
 	border-style:solid;
 	width:300px;
 	padding:10px;
+	-moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -khtml-border-radius: 20px;
+    border-radius: 20px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:9pt;
+	text-align:center;
 	
 }
+
+.innerIndex{
+	background-color:#FFF;
+	border:4px;
+	border-color:#06C;
+	border-style:solid;
+	padding:10px;
+	-moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -khtml-border-radius: 20px;
+    border-radius: 20px;
+}
+
 .smallLink {
 	font-size: 10pt;	
 }
