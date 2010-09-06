@@ -1,6 +1,6 @@
 <%@ page  language="java" pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="main.css" type="text/css"/>
@@ -14,13 +14,14 @@
 
 <form name="resultsForm" action="confirmation.jsp" method="post" onSubmit="" >
 <div id="mainContainer" class="firstSet">
-	<div><label for="author0">Author:</label><input type="text" id="author0" />
-       	 <label for="staffID0">Staff ID:</label><input type="text" id="staffID0" />
-       	 <label for="unit0">Unit:</label><input type="text" id="unit0" />
-      	 <label for="mailCode0">Mail Code:</label><input type="text" id="mailCode0" /> 
-       	 <input type="button" value="Add" onClick="addNew();" />
-         <input type="button" value="Delete" onClick="deleteIt();" />
-    </div>
+<div>
+<label for="author0">Author:</label><input type="text" id="author0" />
+<label for="staffID0">Staff ID:</label><input type="text" id="staffID0" />
+<label for="unit0">Unit:</label><input type="text" id="unit0" />
+<label for="mailCode0">Mail Code:</label><input type="text" id="mailCode0" /> 
+<input type="button" value="Add" onClick="addNew();" />
+<input type="button" value="Delete" onClick="deleteIt();" />
+</div>
 </div>
 <div class="secondSet" >
 <table class="resultTable" align="center">
