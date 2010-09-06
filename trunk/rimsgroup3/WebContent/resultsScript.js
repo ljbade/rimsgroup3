@@ -62,7 +62,7 @@ function addNew() {
 			document.getElementById("mailCode" + thisDiv).value = document.getElementById("mailCode" + (thisDiv - 1)).value;
 			document.getElementById("mailCode" + (thisDiv - 1)).value = temp;
 
-	}
+	};
 }
 function deleteIt(){
 	var mainContainer = document.getElementById('mainContainer');
