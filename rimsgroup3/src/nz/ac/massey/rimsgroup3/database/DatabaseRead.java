@@ -55,7 +55,6 @@ public class DatabaseRead extends HttpServlet {
 		
 		HttpSession publicationDOI = request.getSession();
 		String query = publicationDOI.getAttribute("publicationDOI").toString();
-		System.out.println(query);
 		try {
 			synchronized (dataSource)
 			{		
@@ -68,8 +67,8 @@ public class DatabaseRead extends HttpServlet {
 			Book bookRS = null;
 			List <Editor> editorRS = null;
 			
-			authorRS = ReadStatements.authorReadStatement(connection);
-			publicationRS = ReadStatements.publicationReadStatment(connection);
+			authorRS = ReadStatements.authorReadStatement(connection, query);
+			publicationRS = ReadStatements.publicationReadStatment(connection, query);
 			information.setAuthors(authorRS);
 			information.setPublication(publicationRS);
 			
@@ -79,13 +78,13 @@ public class DatabaseRead extends HttpServlet {
 			if (category == "conference")
 			{
 				conferenceRS = new Conference();
-				conferenceRS = ReadStatements.conferenceReadStatment(connection);
+				conferenceRS = ReadStatements.conferenceReadStatment(connection, query);
 				information.setConference(conferenceRS);
 			}
 			if (category == "journal") 
 			{
 				journalRS = new Journal();
-				journalRS = ReadStatements.journalReadStatment(connection);
+				journalRS = ReadStatements.journalReadStatment(connection,query);
 				information.setJournal(journalRS);
 				
 			}
@@ -93,8 +92,8 @@ public class DatabaseRead extends HttpServlet {
 			{
 				bookRS = new Book();
 				editorRS = new ArrayList<Editor>();
-				bookRS = ReadStatements.bookReadStatment(connection);
-				editorRS = ReadStatements.editorReadStatment(connection);
+				bookRS = ReadStatements.bookReadStatment(connection,query);
+				editorRS = ReadStatements.editorReadStatment(connection,query);
 				information.setBook(bookRS);
 				information.setEditors(editorRS);
 			}
