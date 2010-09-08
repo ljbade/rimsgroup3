@@ -10,11 +10,13 @@ import nz.ac.massey.rimsgroup3.metadata.bean.*;
 
 public class ReadStatements {
 	
-	public static List<Author> authorReadStatement(Connection connection) {
-
+	public static List<Author> authorReadStatement(Connection connection, String query) {
+		
 		try { 
 			PreparedStatement statementAuthor = connection.prepareStatement
-			("SELECT * FROM AUTHOR");
+			("SELECT * FROM AUTHOR WHERE AUTHOR_ID = (SELECT AUTHOR_ID FROM PUBLISHED " +
+					"WHERE PUBLICATION_ID = (SELECT PUBLICATION_ID FROM PUBLICATION " +
+						"WHERE URL_LOCATION = '" + query + "'))");
 			ResultSet authorRS = statementAuthor.executeQuery();
 			List <Author> authors = new ArrayList<Author>();
 			while (authorRS.next())
@@ -40,19 +42,20 @@ public class ReadStatements {
 		}
 	}
 	
-	public static Book bookReadStatment(Connection connection){
+	public static Book bookReadStatment(Connection connection, String query){
 		try {
 			PreparedStatement statementBook = connection.prepareStatement
-			("SELECT * FROM BOOK");
+			("SELECT PLACE_PUBLISHED,CHAPTER_TITLE,BOOK_TITLE FROM BOOK " +
+					"WHERE PUBLICATION_ID = (SELECT PUBLICATION_ID FROM PUBLICATION " +
+						"WHERE URL_LOCATION = '" + query + "')");
 				ResultSet bookRS = statementBook.executeQuery();
 				Book bookCheck = null;
 				while (bookRS.next())
 				{
 					bookCheck = new Book();
-					bookCheck.setID(bookRS.getString(1));
-					bookCheck.setPlacePublished(bookRS.getString(2));
-					bookCheck.setChapterTitle(bookRS.getString(3));
-					bookCheck.setBookTitle(bookRS.getString(4));
+					bookCheck.setPlacePublished(bookRS.getString(1));
+					bookCheck.setChapterTitle(bookRS.getString(2));
+					bookCheck.setBookTitle(bookRS.getString(3));
 				}
 				if (statementBook != null) statementBook.close();
 				return bookCheck;
@@ -65,21 +68,22 @@ public class ReadStatements {
 		
 	}
 	
-	public static Conference conferenceReadStatment(Connection connection){
+	public static Conference conferenceReadStatment(Connection connection, String query){
 		try {
 			PreparedStatement statementConference = connection.prepareStatement
-			("SELECT * FROM CONFERENCE");
+			("SELECT ABSTRACT_TITLE,CONFERENCE_NAME,START_DATE,END_DATE,LOCATION FROM CONFERENCE " +
+					"WHERE PUBLICATION_ID = (SELECT PUBLICATION_ID FROM PUBLICATION " +
+					"WHERE URL_LOCATION = '" + query + "')");
 				ResultSet conferenceRS = statementConference.executeQuery();
 				Conference conferenceCheck = null;
 				conferenceCheck = new Conference();
 				while (conferenceRS.next())
 				{
-					conferenceCheck.setID(conferenceRS.getString(1));
-					conferenceCheck.setAbstractTitle(conferenceRS.getString(2));
-					conferenceCheck.setConferenceName(conferenceRS.getString(3));
-					conferenceCheck.setStartDate(conferenceRS.getString(4));
-					conferenceCheck.setEndDate(conferenceRS.getString(5));
-					conferenceCheck.setLocation(conferenceRS.getString(6));
+					conferenceCheck.setAbstractTitle(conferenceRS.getString(1));
+					conferenceCheck.setConferenceName(conferenceRS.getString(2));
+					conferenceCheck.setStartDate(conferenceRS.getString(3));
+					conferenceCheck.setEndDate(conferenceRS.getString(4));
+					conferenceCheck.setLocation(conferenceRS.getString(5));
 				}
 				if(statementConference != null) statementConference.close();
 				return conferenceCheck;
@@ -92,10 +96,12 @@ public class ReadStatements {
 		
 	}
 	
-	public static List<Editor> editorReadStatment(Connection connection){
+	public static List<Editor> editorReadStatment(Connection connection, String query){
 		try {
 			PreparedStatement statementEditor = connection.prepareStatement
-			("SELECT EDITOR_FIRST_NAME, EDITOR_LAST_NAME, EDITOR_MIDDLE_NAME FROM EDITORS");
+			("SELECT SELECT EDITOR_FIRST_NAME, EDITOR_LAST_NAME, EDITOR_MIDDLE_NAME FROM EDITORS " +
+					"WHERE PUBLICATION_ID = (SELECT PUBLICATION_ID FROM PUBLICATION " +
+						"WHERE URL_LOCATION = '" + query + "')");
 			ResultSet editorRS = statementEditor.executeQuery();
 			List <Editor> editors = new ArrayList<Editor>();
 			while (editorRS.next())
@@ -116,20 +122,22 @@ public class ReadStatements {
 		
 	}
 	
-	public static Journal journalReadStatment(Connection connection){
+	public static Journal journalReadStatment(Connection connection, String query){
 		try {
 			PreparedStatement statementJournal = connection.prepareStatement
-			("SELECT * FROM JOURNAL");
+			("SELECT ARTICLE_TITLE,JOURNAL_TITLE,VOLUME_NO,ISSUE_NO FROM JOURNAL " + 
+					"WHERE PUBLICATION_ID = (SELECT PUBLICATION_ID FROM PUBLICATION " +
+						"WHERE URL_LOCATION = '" + query + "')"); 
+								
 				ResultSet journalRS = statementJournal.executeQuery();
 				Journal journalCheck = null;
 				while (journalRS.next())
 				{
 					journalCheck = new Journal();
-					journalCheck.setID(journalRS.getString(1));
-					journalCheck.setArticleTitle(journalRS.getString(2));
-					journalCheck.setJournalTitle(journalRS.getString(3));
-					journalCheck.setVolume(journalRS.getString(4));
-					journalCheck.setIssue(journalRS.getString(5));
+					journalCheck.setArticleTitle(journalRS.getString(1));
+					journalCheck.setJournalTitle(journalRS.getString(2));
+					journalCheck.setVolume(journalRS.getString(3));
+					journalCheck.setIssue(journalRS.getString(4));
 				}
 				if (statementJournal != null) statementJournal.close();
 				return journalCheck;
@@ -142,10 +150,10 @@ public class ReadStatements {
 		
 	}
 	
-	public static Publication publicationReadStatment(Connection connection){
+	public static Publication publicationReadStatment(Connection connection, String query){
 		try {
 			PreparedStatement statementPublication = connection.prepareStatement
-			("SELECT * FROM PUBLICATION");
+			("SELECT * FROM PUBLICATION WHERE URL_LOCATION = '" + query + "'" );
 				ResultSet publicationRS = statementPublication.executeQuery();
 				Publication publicationCheck = null;
 				while (publicationRS.next())
