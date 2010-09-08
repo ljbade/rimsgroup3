@@ -1,0 +1,65 @@
+@charset "utf-8";
+/* CSS Document */
+
+div.results{
+	border:thin;
+	border-color:#000;
+	border-style:solid;
+	width:900px;
+	padding:10px;
+}
+
+div.firstSet{
+	border:2px;
+	border-color:#63C;
+	border-style:solid;
+	width:880px;
+	padding:10px;
+	height:120px;
+	margin-bottom:10px;
+}
+
+div.secondSet{
+	border:2px;
+	border-color:#63C;
+	border-style:solid;
+	width:880px;
+	padding:10px;
+	height:90px;
+	margin-bottom:10px;
+}
+
+div.thirdSet{
+	border:2px;
+	border-color:#63C;
+	border-style:solid;
+	width:880px;
+	padding:10px;
+	height:300px;
+	margin-bottom:10px;
+}
+
+div.printPage{
+	border:thin;
+	border-color:#000;
+	border-style:solid;
+	width: 360px;
+	height:160px;
+	padding:10px;
+}
+
+table.resultTable{
+	padding:5px;
+}
+
+#pageDiv{
+	border:thin;
+	border-color:#000;
+	border-style:solid;
+	width:300px;
+	padding:10px;
+	
+}
+.smallLink {
+	font-size: 10pt;	
+}
