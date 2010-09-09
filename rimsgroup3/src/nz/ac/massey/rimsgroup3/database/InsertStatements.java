@@ -83,8 +83,8 @@ public class InsertStatements {
 			("INSERT INTO EDITORS " + "(EDITOR_FIRST_NAME,EDITOR_MIDDLE_NAME,EDITOR_LAST_NAME,PUBLICATION_ID) "
 					+ "VALUES(?,?,?,?)");
 				statementEditor.setString(1, editor.getFirstName());
-				statementEditor.setString(2, editor.getLastName());
-				statementEditor.setString(3, editor.getMiddleName());
+				statementEditor.setString(2, editor.getMiddleName());
+				statementEditor.setString(3, editor.getLastName());
 				statementEditor.setString(4, book.getID());
 				return statementEditor;
 			}

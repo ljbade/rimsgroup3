@@ -14,9 +14,11 @@ public class ReadStatements {
 		
 		try { 
 			PreparedStatement statementAuthor = connection.prepareStatement
-			("SELECT * FROM AUTHOR WHERE AUTHOR_ID = (SELECT AUTHOR_ID FROM PUBLISHED " +
-					"WHERE PUBLICATION_ID = (SELECT PUBLICATION_ID FROM PUBLICATION " +
-						"WHERE URL_LOCATION = '" + query + "'))");
+			("SELECT AUTHOR.AUTHOR_ID, FIRST_NAME, LAST_NAME, MIDDLE_NAME, TYPE, DEPARTMENT, " +
+					"COLLEGE, EMAIL FROM AUTHOR, PUBLISHED WHERE AUTHOR.AUTHOR_ID = " +
+						"PUBLISHED.AUTHOR_ID and PUBLICATION_ID = " +
+							"(SELECT PUBLICATION_ID FROM PUBLICATION " +
+								"WHERE URL_LOCATION = '" + query + "')");
 			ResultSet authorRS = statementAuthor.executeQuery();
 			List <Author> authors = new ArrayList<Author>();
 			while (authorRS.next())
@@ -99,7 +101,7 @@ public class ReadStatements {
 	public static List<Editor> editorReadStatment(Connection connection, String query){
 		try {
 			PreparedStatement statementEditor = connection.prepareStatement
-			("SELECT SELECT EDITOR_FIRST_NAME, EDITOR_LAST_NAME, EDITOR_MIDDLE_NAME FROM EDITORS " +
+			("SELECT EDITOR_FIRST_NAME, EDITOR_MIDDLE_NAME, EDITOR_LAST_NAME FROM EDITORS " +
 					"WHERE PUBLICATION_ID = (SELECT PUBLICATION_ID FROM PUBLICATION " +
 						"WHERE URL_LOCATION = '" + query + "')");
 			ResultSet editorRS = statementEditor.executeQuery();
@@ -108,8 +110,9 @@ public class ReadStatements {
 			{
 				Editor editorCheck = new Editor();
 				editorCheck.setFirstName(editorRS.getString(1));
-				editorCheck.setLastName(editorRS.getString(2));
-				editorCheck.setMiddleName(editorRS.getString(3));			
+				editorCheck.setMiddleName(editorRS.getString(2));
+				editorCheck.setLastName(editorRS.getString(3));	
+				editors.add(editorCheck);
 			}
 			if (statementEditor != null) statementEditor.close();
 			return editors;

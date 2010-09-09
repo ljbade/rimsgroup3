@@ -52,7 +52,6 @@ public class DatabaseInsert extends HttpServlet {
 		Connection connection = null;
 		HttpSession publicationDOI = request.getSession();
 		Information information = (Information) publicationDOI.getAttribute("info");
-		//Information information = (Information) request.getAttribute("info");
 		
 		List <Author> authors = information.getAuthors();
 		Publication publication = information.getPublication();

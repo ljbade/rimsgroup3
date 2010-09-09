@@ -72,31 +72,22 @@ public class DatabaseRead extends HttpServlet {
 			information.setAuthors(authorRS);
 			information.setPublication(publicationRS);
 			
-			
-			String category = publicationRS.getPublicationCategory().toLowerCase();
-			
-			if (category == "conference")
-			{
 				conferenceRS = new Conference();
 				conferenceRS = ReadStatements.conferenceReadStatment(connection, query);
 				information.setConference(conferenceRS);
-			}
-			if (category == "journal") 
-			{
+			
 				journalRS = new Journal();
 				journalRS = ReadStatements.journalReadStatment(connection,query);
 				information.setJournal(journalRS);
 				
-			}
-			if (category == "book")
-			{
+			
 				bookRS = new Book();
 				editorRS = new ArrayList<Editor>();
 				bookRS = ReadStatements.bookReadStatment(connection,query);
 				editorRS = ReadStatements.editorReadStatment(connection,query);
 				information.setBook(bookRS);
 				information.setEditors(editorRS);
-			}
+			
 			
 			HttpSession session = request.getSession(true);        
 		    session.setAttribute("information", information);
