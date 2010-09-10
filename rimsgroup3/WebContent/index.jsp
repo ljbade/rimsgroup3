@@ -3,9 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="main.css" type="text/css"/>
+<link rel="stylesheet" href="styles/main.css" type="text/css"/>
 <title>RIMS Assistant - Home</title>
-<script type="text/javascript" src="resultsScript.js"></script>
+<script type="text/javascript" src="scripts/resultsScript.js"></script>
+<script type="text/javascript" src="scripts/ajax.js"></script>
 <script language="javascript"> 
 <!--
 var state = 'none';
@@ -48,16 +49,19 @@ hza.style.display = state;
     </tr>
     <tr>
     <td>
-    <input type="text" name="search" size="30"/>
+    <input type="text" name="search" id="search" size="30"/>
     </td>
     </tr>
     <tr>
     <td>
-    <input type="submit" name="new" value="New Article"/><input type="submit" name="search" value="Search"/>
+    <input type="button" name="new" value="New Article" onclick="sendRequest('get', 'DoiRequest', document.getElementById('search').value)"/><input type="submit" name="search" value="Search"/>
     </td>
     </tr>
     
     </table>
+    <div id="ajax_response" >
+        
+    </div>
     <c:if test="${param.success == null }">
     </c:if>
     <c:if test="${param.success == 'no'}">

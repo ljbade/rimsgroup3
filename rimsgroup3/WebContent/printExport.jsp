@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="main.css" type="text/css"/>
+<link rel="stylesheet" href="styles/main.css" type="text/css"/>
 <title>RIMS Assistant - Print/Export</title>
 </head>
 

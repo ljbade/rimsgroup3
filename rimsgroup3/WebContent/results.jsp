@@ -3,8 +3,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="main.css" type="text/css"/>
-<script type="text/javascript" src="resultsScript.js"> </script>
+<link rel="stylesheet" href="styles/main.css" type="text/css"/>
+<script type="text/javascript" src="scripts/resultsScript.js"> </script>
 <title>RIMS Assistant - Results</title>
 </head>
 <body>
