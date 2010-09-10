@@ -73,10 +73,8 @@ function deleteIt(){
 	}
 }
 
-var cnt;
+/* count number of characters in abstract text */
 function wordCount(count) {
-	var words = count.split(/\s/);
-	cnt = words.length;
 	var label = document.getElementById('wordcount');
-	label.innerHTML = "Word count: " + cnt;
+	label.innerHTML = "Character count: " + count.length;
 }

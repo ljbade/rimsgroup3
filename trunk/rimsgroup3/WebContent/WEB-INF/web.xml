@@ -52,6 +52,16 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>AdvancedRequest</display-name>
+    <servlet-name>AdvancedRequest</servlet-name>
+    <servlet-class>nz.ac.massey.rimsgroup3.servlet.AdvancedRequest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdvancedRequest</servlet-name>
+    <url-pattern>/AdvancedRequest</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>DatabaseInsert</display-name>
     <servlet-name>DatabaseInsert</servlet-name>
     <servlet-class>nz.ac.massey.rimsgroup3.database.DatabaseInsert</servlet-class>

@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="main.css" type="text/css"/>
-<script type="text/javascript" src="resultsScript.js"></script>
+<link rel="stylesheet" href="styles/main.css" type="text/css"/>
+<script type="text/javascript" src="scripts/resultsScript.js"></script>
 <title>RIMS Assisstant - Results</title>
 </head>
 <body>
