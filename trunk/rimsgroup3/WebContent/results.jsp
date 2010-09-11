@@ -96,7 +96,7 @@
 <tr>
 <td><label for="url">URL Address:</label></td>
 <td><input type="text" name="url" size="40" value="<c:out value="${publication.url}" />" />
-	<a  class="smallLink" href="<c:out value="${publication.url}" />" >Follow Link</a>
+	<a  class="smallLink" target="_new" href="<c:out value="${publication.url}" />" >Follow Link</a>
 </td>
 </tr>
 <tr>
