@@ -111,7 +111,8 @@ public class ReadStatements {
 				Editor editorCheck = new Editor();
 				editorCheck.setFirstName(editorRS.getString(1));
 				editorCheck.setMiddleName(editorRS.getString(2));
-				editorCheck.setLastName(editorRS.getString(3));	
+				editorCheck.setLastName(editorRS.getString(3));
+				//editorCheck.setID(editorRS.getInt(4));
 				editors.add(editorCheck);
 			}
 			if (statementEditor != null) statementEditor.close();

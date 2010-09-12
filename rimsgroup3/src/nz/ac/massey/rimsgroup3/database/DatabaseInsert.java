@@ -10,11 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.*;
+
 import java.util.*;
 import java.sql.*;
-import javax.naming.*;
 
 import org.apache.catalina.Session;
+import org.apache.tomcat.dbcp.dbcp.DataSourceConnectionFactory;
 /**
  * Servlet implementation class DBtest
  */
@@ -30,7 +31,8 @@ public class DatabaseInsert extends HttpServlet {
     }
     
     public void init(ServletConfig config) throws ServletException {
-       /* try {
+       
+    	/* try {
           Context init = new InitialContext();
           Context ctx = (Context) init.lookup("java:comp/env");
           dataSource = (DataSource) ctx.lookup("jdbc/rimsgroup3");
@@ -40,7 +42,11 @@ public class DatabaseInsert extends HttpServlet {
           throw new ServletException(
             "JNDI EXCEPTION",ex);
         }*/
-    	dataSource = DatabaseConnection.setUp();
+    	super.init(config);
+    	String db = config.getInitParameter("test");
+    	DatabaseConnection datasource = new DatabaseConnection();
+    	this.dataSource =  datasource.setUp(db);
+    	
       }
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -50,8 +56,8 @@ public class DatabaseInsert extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Connection connection = null;
-		HttpSession publicationDOI = request.getSession();
-		Information information = (Information) publicationDOI.getAttribute("info");
+		HttpSession insertInformation = request.getSession();
+		Information information = (Information) insertInformation.getAttribute("info");
 		
 		List <Author> authors = information.getAuthors();
 		Publication publication = information.getPublication();
@@ -156,9 +162,10 @@ public class DatabaseInsert extends HttpServlet {
 					"</body></html>");
 			
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			e.printStackTrace();
+			//connection.rollback();
 		}
 		finally 
 		{

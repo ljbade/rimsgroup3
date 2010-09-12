@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -43,7 +42,10 @@ public class DatabaseRead extends HttpServlet {
            throw new ServletException(
              "JNDI EXCEPTION",ex);
          }*/
-     	dataSource = DatabaseConnection.setUp();
+     	super.init(config);
+    	String db = config.getInitParameter("test");
+    	DatabaseConnection datasource = new DatabaseConnection();
+    	this.dataSource =  datasource.setUp(db);
        }
     
 	/**
@@ -71,31 +73,31 @@ public class DatabaseRead extends HttpServlet {
 			publicationRS = ReadStatements.publicationReadStatment(connection, query);
 			information.setAuthors(authorRS);
 			information.setPublication(publicationRS);
+			String category = publicationRS.getPublicationCategory();
 			
+			if (category.equals("conference"))
+			{
 				conferenceRS = new Conference();
 				conferenceRS = ReadStatements.conferenceReadStatment(connection, query);
 				information.setConference(conferenceRS);
-			
+			}
+			if (category.equals("journal"))
+			{
 				journalRS = new Journal();
 				journalRS = ReadStatements.journalReadStatment(connection,query);
 				information.setJournal(journalRS);
-				
-			
+			}
+			if (category.equals("book"))
+			{
 				bookRS = new Book();
 				editorRS = new ArrayList<Editor>();
 				bookRS = ReadStatements.bookReadStatment(connection,query);
 				editorRS = ReadStatements.editorReadStatment(connection,query);
 				information.setBook(bookRS);
 				information.setEditors(editorRS);
-			
-			
+			}
 			HttpSession session = request.getSession(true);        
 		    session.setAttribute("information", information);
-			
-		    /*if (information != null)
-		    {
-		    	response.sendRedirect("results.jsp");
-		    }*/
 			
 			
 		} 
