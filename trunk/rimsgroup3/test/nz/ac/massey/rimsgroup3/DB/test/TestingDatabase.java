@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -64,6 +63,14 @@ public class TestingDatabase extends ServletTestCase{
 		System.setProperty("cactus.contextURL", "http://localhost:8080/rimsgroup3");
 	}
 	
+	
+	public void setUp(){
+
+	}
+	
+	public void tearDown(){
+
+	}
 	
 	public void testBook() throws SQLException, ServletException, IOException {
 
@@ -125,7 +132,8 @@ public class TestingDatabase extends ServletTestCase{
 		HttpSession session = request.getSession(true);  
 		session.setAttribute("info", information);
 	    session.setAttribute("publicationDOI", publication.getUrl());
-		
+		config.setInitParameter("test", "testDB");
+	    
 	    DatabaseInsert dbinsert = new DatabaseInsert();
 	    dbinsert.init(config);
 	    dbinsert.doGet(request, response);
@@ -212,7 +220,8 @@ public class TestingDatabase extends ServletTestCase{
 		HttpSession session = request.getSession(true);  
 		session.setAttribute("info", information);
 	    session.setAttribute("publicationDOI", publication.getUrl());
-		
+	    config.setInitParameter("test", "testDB");
+	    
 	    DatabaseInsert dbinsert = new DatabaseInsert();
 	    dbinsert.init(config);
 	    dbinsert.doGet(request, response);
@@ -294,6 +303,7 @@ public class TestingDatabase extends ServletTestCase{
 		HttpSession session = request.getSession(true);  
 		session.setAttribute("info", information);
 	    session.setAttribute("publicationDOI", publication.getUrl());
+	    config.setInitParameter("test", "testDB");
 		
 	    DatabaseInsert dbinsert = new DatabaseInsert();
 	    dbinsert.init(config);
@@ -322,8 +332,6 @@ public class TestingDatabase extends ServletTestCase{
 	}
 	
 	
-	public void tearDown(){
 
-	}
 	
 }

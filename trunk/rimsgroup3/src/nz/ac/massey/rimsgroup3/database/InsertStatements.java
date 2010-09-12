@@ -137,7 +137,7 @@ public class InsertStatements {
 				String keywords = "";
 				while ( i != keyWords.size())
 				{
-					keywords = keywords + "," + keyWords.get(i);
+					keywords +=  "," + keyWords.get(i);
 					i++;
 				}
 				statementPublication.setString(11, keywords);

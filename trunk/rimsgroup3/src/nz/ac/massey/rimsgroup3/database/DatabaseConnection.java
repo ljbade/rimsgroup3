@@ -8,15 +8,19 @@ import java.sql.*;
 import javax.naming.*;
 
 public class DatabaseConnection {
-	private static DataSource dataSource ;
+	private DataSource dataSource ;
 	
-	public static DataSource setUp() throws ServletException
+	public DataSource setUp(String db) throws ServletException
 	{
 		try {
 			Context init = new InitialContext();
 			Context ctx = (Context) init.lookup("java:comp/env");
-			dataSource = (DataSource) ctx.lookup("jdbc/rimsgroup3");
-       // System.out.println("win");
+			if (db == null)
+				dataSource = (DataSource) ctx.lookup("jdbc/rimsgroup3");
+			else
+				dataSource = (DataSource) ctx.lookup("jdbc/swctest");
+				
+			
 		}
 		catch (NamingException ex) {
 			throw new ServletException(
