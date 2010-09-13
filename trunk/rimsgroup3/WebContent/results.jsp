@@ -4,7 +4,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="styles/main.css" type="text/css"/>
-<script type="text/javascript" src="scripts/resultsScript.js"> </script>
+<script type="text/javascript" src="scripts/resultsScript.js">
+</script>
 <title>RIMS Assistant - Results</title>
 </head>
 <body>
@@ -12,15 +13,13 @@
 <h3>Results</h3>
 <jsp:useBean id="publication" class="nz.ac.massey.rimsgroup3.metadata.bean.Journal" scope="session" ></jsp:useBean>
 
-<form name="resultsForm" action="confirmation.jsp" method="post" onSubmit="" >
+<form name="resultsForm" method="post">
 <div id="mainContainer" class="firstSet">
 <div>
 <label for="author0">Author:</label><input type="text" id="author0" />
 <label for="staffID0">Staff ID:</label><input type="text" id="staffID0" />
 <label for="unit0">Unit:</label><input type="text" id="unit0" />
 <label for="mailCode0">Mail Code:</label><input type="text" id="mailCode0" /> 
-<input type="button" value="Add" onClick="addNew();" />
-<input type="button" value="Delete" onClick="deleteIt();" />
 </div>
 </div>
 <div class="secondSet" >
@@ -125,8 +124,11 @@
 </tr>
 </table>
 </div>
+<div>
 <a href="index.jsp"><input type="button" name="back" value="Back" /></a>
 <input type="submit" name="confirm" value="Confirm"/>
+<input type="checkbox" value="print" name="printCheck"/><label for="printCheck">Print</label>
+</div>
 </form>
 </div>
 </body>
