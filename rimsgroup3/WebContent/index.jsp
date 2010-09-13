@@ -74,23 +74,31 @@ hza.style.display = state;
     <form name="advancedForm" action="AdvancedRequest" method="post" onSubmit=""> 
     <table>
     <tr>
-    <td><label for="fName">First Name:</label></td>
-    <td><input type="text" name="fName" /></td>
+    <td><label for="fName" >First Name:</label></td>
+    <td><input type="text" name="fName" id="fName" /></td>
     </tr>
     <tr>
     <td><label for="lName">Last Name:</label></td>
-    <td><input type="text" name="lName" /></td>
+    <td><input type="text" name="lName" id="lName" /></td>
     </tr>
     <tr>
     <td><label for="journalTitle">Journal/Publication Title:</label></td>
-    <td><input type="text" name="journalTitle" /></td>
+    <td><input type="text" name="journalTitle" id="journalTitle" /></td>
+    </tr>
+    <tr>
+        <td><label for="articleTitle">Article Title:</label></td>
+        <td><input type="text" name="articleTitle" id="articleTitle" /></td>
     </tr>
     <tr>
     <td><label for="year">Publication Year:</label></td>
-    <td><input type="text" name="year" /></td>
+    <td><input type="text" name="year" id="year" /></td>
     </tr>
     </table>
-    <input type="submit" name="advSearch" value="Search"/>
+    <input type="submit" name="advSearch" value="Search" />
+    <br />
+     <div id="ajax_response2" >
+        
+    </div>
     </form>
     </div>
   </div>
