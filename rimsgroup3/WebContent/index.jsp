@@ -30,6 +30,7 @@ hza = document.getElementById(layer_ref);
 hza.style.display = state; 
 } 
 } 
+
 //--> 
 </script> 
 </head>
@@ -49,12 +50,12 @@ hza.style.display = state;
     </tr>
     <tr>
     <td>
-    <input type="text" name="search" id="search" size="30"/>
+    <input type="text" name="search" id="searchBox" size="30" value="Enter DOI here..."  onClick=" this.value='';" "/>
     </td>
     </tr>
     <tr>
     <td>
-    <input type="button" name="new" value="New Article" onclick="sendRequest('get', 'DoiRequest', document.getElementById('search').value)"/><input type="submit" name="search" value="Search"/>
+    <input type="button" name="new" value="Gather DOI data" onClick="sendRequest('get', 'DoiRequest', document.getElementById('search').value)"/>
     </td>
     </tr>
     
@@ -73,10 +74,6 @@ hza.style.display = state;
     <div id="div1" style="display: none;">
     <form name="advancedForm" action="AdvancedRequest" method="post" onSubmit=""> 
     <table>
-    <tr>
-    <td><label for="fName" >First Name:</label></td>
-    <td><input type="text" name="fName" id="fName" /></td>
-    </tr>
     <tr>
     <td><label for="lName">Last Name:</label></td>
     <td><input type="text" name="lName" id="lName" /></td>
