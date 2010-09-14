@@ -1,4 +1,4 @@
-package nz.ac.massey.rimsgroup3.DB.test;
+package nz.ac.massey.rimsgroup3.database.test;
 
 
 

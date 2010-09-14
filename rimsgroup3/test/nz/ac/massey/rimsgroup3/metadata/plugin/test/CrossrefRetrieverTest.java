@@ -21,8 +21,8 @@ public class CrossrefRetrieverTest extends TestCase {
 	}
 	
 	public void testJournalDoi() {
-		//String doi = "10.3998/3336451.0009.101";
-		String doi = "10.1109/79.952804";
+		String doi = "10.3998/3336451.0009.101";
+		//String doi = "10.1109/79.952804";
 		Journal expected = new Journal();
 		expected.setJournalTitle("Journal of Electronic Publishing");
 		expected.setIssn("10802711");
@@ -38,9 +38,9 @@ public class CrossrefRetrieverTest extends TestCase {
 		
 		assertTrue(result.getJournalTitle().equals(expected.getJournalTitle()));
 		assertTrue(result.getIssn().equals(expected.getIssn()));
-		assertTrue(result.getVolume() == expected.getVolume());
-		assertTrue(result.getYear() == expected.getYear());
-		assertTrue(result.getIssue() == expected.getIssue());
+		assertTrue(result.getVolume().equals(expected.getVolume()));
+		assertTrue(result.getYear().equals(expected.getYear()));
+		assertTrue(result.getIssue().equals(expected.getIssue()));
 		assertTrue(result.getArticleTitle().equals(expected.getArticleTitle()));
 	}
 }
