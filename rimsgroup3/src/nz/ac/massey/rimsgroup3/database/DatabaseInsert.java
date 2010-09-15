@@ -51,7 +51,7 @@ public class DatabaseInsert extends HttpServlet {
 	 * http://www.red5tutorials.net/index.php/Howtos:Tomcat
 	 * http://java.sun.com/developer/Books/javaserverpages/tomcat/Sams-Tomcat-KS_ch09.pdf
 	 */
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Connection connection = null;
 		HttpSession insertInformation = request.getSession();
@@ -59,22 +59,8 @@ public class DatabaseInsert extends HttpServlet {
 		
 		List <Author> authors = information.getAuthors();
 		Publication publication = information.getPublication();
-		List <Editor> editors = information.getEditors();
-		Book book = null;
-		Journal journal = null;
-		Conference conference = null;
-		
-		String category = publication.getPublicationCategory().toLowerCase();
-		
-		if (category == "book"){
-			book = information.getBook();
-		}
-		if (category == "journal"){
-			journal = information.getJournal();
-		}
-		if (category == "conference"){
-			conference = information.getConference();
-		}
+		Author author = new Author();
+		String doi = publication.getDoi();
 		
 		try 
 		{
@@ -84,101 +70,36 @@ public class DatabaseInsert extends HttpServlet {
 			}
 			connection.setAutoCommit(false);
 			
-			PreparedStatement statementPublication = InsertStatements.publicationStatment(connection, publication);
+			PreparedStatement statementPublication = InsertStatements.publicationStatment(connection, doi);
 			statementPublication.executeUpdate();
-			if (statementPublication != null) {
+			if (statementPublication != null){
 				statementPublication.close();
 			}
-			
 			int i = 0;
 			while (i != authors.size())
 			{
-				PreparedStatement statementAuthor = InsertStatements.authorStatement(connection, authors.get(i));
-				PreparedStatement statementPublished = InsertStatements.publishedStatment(connection, publication, authors.get(i));
-				statementAuthor.executeUpdate();
-				statementPublished.executeUpdate();
-				i++;
-				if (statementAuthor != null) {
-					statementAuthor.close();
-				}
-				if (statementPublished != null){
-					statementPublished.close();
-				}
-			}
-			
-			if (category == "journal")
-			{
-				PreparedStatement statementJournal = InsertStatements.journalStatment(connection, journal);
-				statementJournal.executeUpdate();
-				if (statementJournal != null) {
-					statementJournal.close();
-				}
-			}
-			
-			if (category == "conference")
-			{
-				PreparedStatement statementConference = InsertStatements.conferenceStatment(connection, conference);			
-				statementConference.executeUpdate();
-				if (statementConference != null) {
-					statementConference.close();
-				}
-			}
-			
-			if (category == "book") 
-			{
-				PreparedStatement statementBook = InsertStatements.bookStatment(connection, book);
-				statementBook.executeUpdate();
-				if (statementBook != null) {
-					statementBook.close();
-				}
-				i = 0;
-				while (i != editors.size())
+				author = authors.get(i);
+				
+				if (author.getUniversity().toLowerCase().contains("massey"))
 				{
-					PreparedStatement statementEditor = InsertStatements.editorStatment(connection, editors.get(i), book);
-					statementEditor.executeUpdate();
-					i++;
-					if (statementEditor != null) {
-						statementEditor.close();
+					PreparedStatement statementMasseyAuthor = InsertStatements.masseyAuthorStatement(connection, author);
+					statementMasseyAuthor.executeUpdate();
+					if (statementMasseyAuthor != null) {
+						statementMasseyAuthor.close();
 					}
 				}
+				else
+				{
+					PreparedStatement statementMiscAuthor = InsertStatements.miscAuthorStatement(connection, author);
+					statementMiscAuthor.executeUpdate();
+					if (statementMiscAuthor != null) {
+						statementMiscAuthor.close();
+					}
+				}
+				i++;
 			}
 			connection.commit();
-			connection.setAutoCommit(true);
-			
-			/*
-			List<Author> authorRS = ReadStatements.authorReadStatement(connection);
-			Publication publicationRS = ReadStatements.publicationReadStatment(connection);
-			Conference conferenceRS = ReadStatements.conferenceReadStatment(connection);
-			Book bookRS = ReadStatements.bookReadStatment(connection);
-			Journal journalRS = ReadStatements.journalReadStatment(connection);
-			List<Editor> editorRS = ReadStatements.editorReadStatment(connection);
-			*/
-			
-			/*int a = 0;
-			String check = "";
-			while (a != authorRS.size())
-			{
-				Author authorCheck = new Author();
-				authorCheck = authorRS.get(a);
-				check = check + authorCheck.getID();
-				a++;
-			}*/
-			/*int b = 0;
-			String checkpub = "";
-			List<String> listKeyWords = publicationRS.getKeyWords();
-			while (b != listKeyWords.size())
-			{
-				checkpub = checkpub + listKeyWords.get(b);
-				b++;
-			}*/
-			
-			
-			
-			response.getWriter().print("<html><head><title>Test Page</title><body><h1>Hello Peter!</h1>" +
-					"" + //check +
-					"" + //checkpub +
-					"</body></html>");
-			
+			connection.setAutoCommit(true);	
 		}
 		catch (SQLException e)
 		{
@@ -189,7 +110,8 @@ public class DatabaseInsert extends HttpServlet {
 		{
 			try
 			{
-				if (connection != null){
+				if (connection != null)
+				{
 					connection.close();
 				}
 			}
@@ -198,10 +120,8 @@ public class DatabaseInsert extends HttpServlet {
 				System.err.println(e.getMessage());
 			}
 		}
-	
-	
 	}
-	
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
