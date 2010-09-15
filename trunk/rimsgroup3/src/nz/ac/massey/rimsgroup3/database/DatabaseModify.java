@@ -1,9 +1,7 @@
 package nz.ac.massey.rimsgroup3.database;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.servlet.ServletConfig;
@@ -12,14 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
 import nz.ac.massey.rimsgroup3.metadata.bean.*;
 /**
  * Servlet implementation class DatabaseModify
  */
 public class DatabaseModify extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private DataSource datasource ;
+	//private DataSource datasource ;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -51,10 +48,10 @@ public class DatabaseModify extends HttpServlet {
 		Information originalInformation = (Information) modifyInformation.getAttribute("information");
 		
 		Publication origPublication = originalInformation.getPublication();
-		List<Author> origAuthor = originalInformation.getAuthors();
+		//List<Author> origAuthor = originalInformation.getAuthors();
 		
 		Publication newPublication = modifyToThisInformation.getPublication();
-		List<Author> newAuthor = modifyToThisInformation.getAuthors();
+		//List<Author> newAuthor = modifyToThisInformation.getAuthors();
 		
 		String origCategory = origPublication.getPublicationCategory();
 		String newCategory = newPublication.getPublicationCategory();
