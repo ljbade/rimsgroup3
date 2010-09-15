@@ -12,6 +12,22 @@ public class Author extends Person {
 	private String type;
 	private String department, college;
 	private String email;
+	private String university;
+	
+	/**
+	 * @return the university
+	 */
+	public String getUniversity() {
+		return university;
+	}
+	
+	/**
+	 * @param university the university to set
+	 */
+	public void setUniversity(String university){
+		this.university = university;
+	}
+	
 	
 	/**
 	 * @return the type

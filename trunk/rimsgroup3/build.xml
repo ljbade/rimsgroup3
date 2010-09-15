@@ -181,6 +181,7 @@
 
 				<pathelement location="${build.dir}/emmainstr"/>
 				<pathelement location="${build.dir}/classes"/>
+				<path refid="build.classpath"/> 
 				<path refid="emma.lib"/>
 			</classpath>
 			<formatter type="xml"/>
