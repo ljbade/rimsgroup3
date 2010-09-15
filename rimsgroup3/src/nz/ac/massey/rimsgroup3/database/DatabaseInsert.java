@@ -14,8 +14,6 @@ import javax.sql.*;
 import java.util.*;
 import java.sql.*;
 
-import org.apache.catalina.Session;
-import org.apache.tomcat.dbcp.dbcp.DataSourceConnectionFactory;
 /**
  * Servlet implementation class DBtest
  */
@@ -68,9 +66,15 @@ public class DatabaseInsert extends HttpServlet {
 		
 		String category = publication.getPublicationCategory().toLowerCase();
 		
-		if (category == "book") book = information.getBook();
-		if (category == "journal") journal = information.getJournal();
-		if (category == "conference") conference = information.getConference();
+		if (category == "book"){
+			book = information.getBook();
+		}
+		if (category == "journal"){
+			journal = information.getJournal();
+		}
+		if (category == "conference"){
+			conference = information.getConference();
+		}
 		
 		try 
 		{
@@ -82,7 +86,9 @@ public class DatabaseInsert extends HttpServlet {
 			
 			PreparedStatement statementPublication = InsertStatements.publicationStatment(connection, publication);
 			statementPublication.executeUpdate();
-			if (statementPublication != null) statementPublication.close();
+			if (statementPublication != null) {
+				statementPublication.close();
+			}
 			
 			int i = 0;
 			while (i != authors.size())
@@ -92,36 +98,48 @@ public class DatabaseInsert extends HttpServlet {
 				statementAuthor.executeUpdate();
 				statementPublished.executeUpdate();
 				i++;
-				if (statementAuthor != null) statementAuthor.close();
-				if (statementPublished != null) statementPublished.close();
+				if (statementAuthor != null) {
+					statementAuthor.close();
+				}
+				if (statementPublished != null){
+					statementPublished.close();
+				}
 			}
 			
 			if (category == "journal")
 			{
 				PreparedStatement statementJournal = InsertStatements.journalStatment(connection, journal);
 				statementJournal.executeUpdate();
-				if (statementJournal != null) statementJournal.close();
+				if (statementJournal != null) {
+					statementJournal.close();
+				}
 			}
 			
 			if (category == "conference")
 			{
 				PreparedStatement statementConference = InsertStatements.conferenceStatment(connection, conference);			
 				statementConference.executeUpdate();
-				if (statementConference != null) statementConference.close();
+				if (statementConference != null) {
+					statementConference.close();
+				}
 			}
 			
 			if (category == "book") 
 			{
 				PreparedStatement statementBook = InsertStatements.bookStatment(connection, book);
 				statementBook.executeUpdate();
-				if (statementBook != null) statementBook.close();
+				if (statementBook != null) {
+					statementBook.close();
+				}
 				i = 0;
 				while (i != editors.size())
 				{
 					PreparedStatement statementEditor = InsertStatements.editorStatment(connection, editors.get(i), book);
 					statementEditor.executeUpdate();
 					i++;
-					if (statementEditor != null) statementEditor.close();
+					if (statementEditor != null) {
+						statementEditor.close();
+					}
 				}
 			}
 			connection.commit();
@@ -171,8 +189,7 @@ public class DatabaseInsert extends HttpServlet {
 		{
 			try
 			{
-				if (connection != null)
-				{
+				if (connection != null){
 					connection.close();
 				}
 			}

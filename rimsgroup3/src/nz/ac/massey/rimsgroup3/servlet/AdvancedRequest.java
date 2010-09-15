@@ -1,7 +1,5 @@
 package nz.ac.massey.rimsgroup3.servlet;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.io.*;
@@ -63,8 +61,8 @@ public class AdvancedRequest extends HttpServlet {
         	
         	while (titlePos < resultsArray.length) {
         		// check title in response matches entered title - if so use DOI from matching row
-        		String test1 = resultsArray[titlePos].toString();
-        		String test2 = articleTitle;
+        		//String test1 = resultsArray[titlePos].toString();
+        		//String test2 = articleTitle;
         		if(resultsArray[titlePos].contains(articleTitle)) {
         			String[] subStr = resultsArray[doiPos].split("org/");
                     subStr = subStr[1].split(">");
