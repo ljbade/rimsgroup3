@@ -78,22 +78,12 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>DatabaseRead</display-name>
-    <servlet-name>DatabaseRead</servlet-name>
-    <servlet-class>nz.ac.massey.rimsgroup3.database.DatabaseRead</servlet-class>
+    <display-name>DatabaseSearchDOI</display-name>
+    <servlet-name>DatabaseSearchDOI</servlet-name>
+    <servlet-class>nz.ac.massey.rimsgroup3.database.DatabaseSearchDOI</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>DatabaseRead</servlet-name>
-    <url-pattern>/DatabaseRead</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>DatabaseModify</display-name>
-    <servlet-name>DatabaseModify</servlet-name>
-    <servlet-class>nz.ac.massey.rimsgroup3.database.DatabaseModify</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DatabaseModify</servlet-name>
-    <url-pattern>/DatabaseModify</url-pattern>
+    <servlet-name>DatabaseSearchDOI</servlet-name>
+    <url-pattern>/DatabaseSearchDOI</url-pattern>
   </servlet-mapping>
 </web-app>

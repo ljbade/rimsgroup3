@@ -20,28 +20,18 @@ import nz.ac.massey.rimsgroup3.metadata.bean.*;
 /**
  * Servlet implementation class DatabaseRead
  */
-public class DatabaseRead extends HttpServlet {
+public class DatabaseSearchDOI extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private DataSource dataSource;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DatabaseRead() {
+    public DatabaseSearchDOI() {
         super();
         // TODO Auto-generated constructor stub
     }
 
     public void init(ServletConfig config) throws ServletException {
-        /* try {
-           Context init = new InitialContext();
-           Context ctx = (Context) init.lookup("java:comp/env");
-           dataSource = (DataSource) ctx.lookup("jdbc/rimsgroup3");
-          // System.out.println("win");
-         }
-         catch (NamingException ex) {
-           throw new ServletException(
-             "JNDI EXCEPTION",ex);
-         }*/
      	super.init(config);
     	String db = config.getInitParameter("test");
     	DatabaseConnection datasource = new DatabaseConnection();
@@ -53,7 +43,6 @@ public class DatabaseRead extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Connection connection = null;
-		Information information = new Information();
 		
 		HttpSession publicationDOI = request.getSession();
 		String query = publicationDOI.getAttribute("publicationDOI").toString();
@@ -62,44 +51,10 @@ public class DatabaseRead extends HttpServlet {
 			{		
 				connection = dataSource.getConnection();
 			}
-			List<Author> authorRS = new ArrayList<Author>();
-			Publication publicationRS = new Publication();
-			Conference conferenceRS = null;
-			Journal journalRS = null;
-			Book bookRS = null;
-			List <Editor> editorRS = null;
-			
-			authorRS = ReadStatements.authorReadStatement(connection, query);
-			publicationRS = ReadStatements.publicationReadStatment(connection, query);
-			information.setAuthors(authorRS);
-			information.setPublication(publicationRS);
-			String category = publicationRS.getPublicationCategory();
-			
-			if (category.equals("conference"))
-			{
-				conferenceRS = new Conference();
-				conferenceRS = ReadStatements.conferenceReadStatment(connection, query);
-				information.setConference(conferenceRS);
-			}
-			if (category.equals("journal"))
-			{
-				journalRS = new Journal();
-				journalRS = ReadStatements.journalReadStatment(connection,query);
-				information.setJournal(journalRS);
-			}
-			if (category.equals("book"))
-			{
-				bookRS = new Book();
-				editorRS = new ArrayList<Editor>();
-				bookRS = ReadStatements.bookReadStatment(connection,query);
-				editorRS = ReadStatements.editorReadStatment(connection,query);
-				information.setBook(bookRS);
-				information.setEditors(editorRS);
-			}
+			Boolean doiInDatabase = null;
+			doiInDatabase = ReadStatements.publicationReadStatment(connection, query);
 			HttpSession session = request.getSession(true);        
-		    session.setAttribute("information", information);
-			
-			
+		    session.setAttribute("information", doiInDatabase);
 		} 
 		catch (SQLException e) {
 		// TODO Auto-generated catch block

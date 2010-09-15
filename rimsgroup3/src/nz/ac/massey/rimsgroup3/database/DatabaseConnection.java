@@ -3,8 +3,6 @@ package nz.ac.massey.rimsgroup3.database;
 import javax.servlet.ServletException;
 import javax.sql.*;
 
-import java.util.*;
-import java.sql.*;
 import javax.naming.*;
 
 public class DatabaseConnection {
@@ -19,8 +17,6 @@ public class DatabaseConnection {
 				dataSource = (DataSource) ctx.lookup("jdbc/rimsgroup3");
 			else
 				dataSource = (DataSource) ctx.lookup("jdbc/swctest");
-				
-			
 		}
 		catch (NamingException ex) {
 			throw new ServletException(

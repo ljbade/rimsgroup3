@@ -138,9 +138,9 @@ public class TestingDatabase extends ServletTestCase{
 	    dbinsert.init(config);
 	    dbinsert.doGet(request, response);
 	    
-	    DatabaseRead dbread = new DatabaseRead();
+	    /*DatabaseRead dbread = new DatabaseRead();
 		dbread.init(config);
-		dbread.doGet(request,response);
+		dbread.doGet(request,response);*/
 	
 		
 		Information checkInformation = new Information();
@@ -226,9 +226,9 @@ public class TestingDatabase extends ServletTestCase{
 	    dbinsert.init(config);
 	    dbinsert.doGet(request, response);
 	    
-	    DatabaseRead dbread = new DatabaseRead();
-		dbread.init(config);
-		dbread.doGet(request,response);
+	    //DatabaseRead dbread = new DatabaseRead();
+		//dbread.init(config);
+		//dbread.doGet(request,response);
 		
 		Information checkInformation = new Information();
 		checkInformation = (Information) session.getAttribute("information");
@@ -309,9 +309,9 @@ public class TestingDatabase extends ServletTestCase{
 	    dbinsert.init(config);
 	    dbinsert.doGet(request, response);
 	    
-	    DatabaseRead dbread = new DatabaseRead();
+	   /* DatabaseRead dbread = new DatabaseRead();
 		dbread.init(config);
-		dbread.doGet(request,response);
+		dbread.doGet(request,response);*/
 	
 		Information checkInformation = new Information();
 		checkInformation = (Information) session.getAttribute("information");
