@@ -44,23 +44,36 @@ function sendRequest(method, url, doi){
   }
 }
 
-// ajax function for advanced search
-// takes method (get), url (AdvancedReques servlet) and the fields from the advanced search form
-function sendAdvancedRequest(method, url, fName, lName, jTitle, aTitle, year){
-  // start  progress display
-  var progress = document.getElementById('ajax_response2');
-  var html = "<br /><img src='ajax-loader.gif' /><br /> Search in progress. Please wait..."
-  progress.innerHTML = html;
-
-  // send AJAX request
-  if(method == 'get' || method == "GET"){
-     url = url + "?aulast=" + lName + "&title=" + journalTitle + "&articleTitle=" + aTitle + "&year=" + year;
-     http.open(method,url,true);
-     http.onreadystatechange = handleResponse;
-     http.send(null);
-  }
+// ajax calling function for screenscaping class
+function getAbstract(method, url, resource){
+	// start  progress display
+	  var progress = document.getElementById('abstract_progress');
+	  var html = "<br /><img src='ajax-loader.gif' /><br /> Locating article abstract. Please wait..."
+	  progress.innerHTML = html;
+	  // send AJAX request
+	  if(method == 'get' || method == "GET"){
+	     url = url + "?resource=" + resource;
+	     http.open(method,url,true);
+	     http.onreadystatechange = handleAbstractResponse;
+	     http.send(null);
+	  }
 }
 
+// response handler for getAbstract method
+function handleAbstractResponse() {
+	if(http.readyState == 4 && http.status == 200){
+	     var response = http.responseText;
+	     if(response){
+	      //stop progress display
+	      var progress = document.getElementById('abstract_progress');
+	      progress.innerHTML = "";
+	      // display response
+	      document.getElementById('abstract').innerHTML = response;
+	     }
+	}
+}
+
+// response handler for doiRequest method
 function handleResponse(){
   if(http.readyState == 4 && http.status == 200){
      var response = http.responseText;
@@ -70,14 +83,10 @@ function handleResponse(){
       progress.innerHTML = "Search complete, redirecting...";
 
       // redirect to results
-      window.location = "results.jsp"
+      window.location = "results.jsp";
 
      }
   }
-
-function displayProgress() {
-    
-}
 }
 
 
