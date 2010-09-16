@@ -96,4 +96,14 @@
     <servlet-name>DatabaseSearchAuthors</servlet-name>
     <url-pattern>/DatabaseSearchAuthors</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AbstractText</display-name>
+    <servlet-name>AbstractText</servlet-name>
+    <servlet-class>nz.ac.massey.rimsgroup3.servlet.AbstractText</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AbstractText</servlet-name>
+    <url-pattern>/AbstractText</url-pattern>
+  </servlet-mapping>
 </web-app>
