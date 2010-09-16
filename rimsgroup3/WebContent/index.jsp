@@ -30,7 +30,6 @@ hza = document.getElementById(layer_ref);
 hza.style.display = state; 
 } 
 } 
-
 //--> 
 </script> 
 </head>
@@ -40,26 +39,23 @@ hza.style.display = state;
   <h3>RIMS Assistant</h3>
   
   <div class="innerIndex">
-    <form name="searchForm" action="DoiRequest" method="post"> 
+    <form name="searchForm" action="DoiRequest" method="post" onSubmit=""> 
+    <h2>DOI Search:</h2>
     <table width="280px">
     <tr>
-        <td>10.1016/j.tcs.2010.07.007  -  multiple authors</td>
-    </tr>
-    <tr>
-        <td>10.3998/3336451.0009.101  -  1 author</td>
-    </tr>
-    <tr>
     <td>
-    <input type="text" name="search" id="searchBox" size="30" value="Enter DOI here..." onClick="this.value='';"/>
+    <input type="text" name="search" id="search" size="30"/>
     </td>
     </tr>
     <tr>
     <td>
-    <input type="button" name="new" value="Gather DOI data" onClick="sendRequest('get', 'DoiRequest', document.getElementById('searchBox').value)" />
+    <input type="button" name="new" value="New Article" onclick="sendRequest('get', 'DoiRequest', document.getElementById('search').value)"/><input type="submit" name="search" value="Search"/>
     </td>
     </tr>
+    
     </table>
-    <div id="ajax_response" >      
+    <div id="ajax_response" >
+        
     </div>
     <c:if test="${param.success == null }">
     </c:if>
@@ -67,12 +63,16 @@ hza.style.display = state;
         DOI search failed.		
     </c:if>
     </form>
-    
+   
     <p><a href="#" onClick="showhide('div1');">Advanced Search</a></p> 
-    <div id="div1" style="display: none;">
-    <form name="advancedForm" action="AdvancedRequest" method="post"> 
+    <!--  added closing div here --> 
+    </div>
+    <br />
+    <!--  advanced search div -->
+    <div id="div1" style="display: none;" class="innerIndex">
+    <form name="advancedForm" action="AdvancedRequest" method="post" onSubmit=""> 
+    <h2>Advanced Search:</h2>
     <table>
-    <tr>
     <td><label for="lName">Last Name:</label></td>
     <td><input type="text" name="lName" id="lName" /></td>
     </tr>
@@ -91,7 +91,7 @@ hza.style.display = state;
     </table>
     <input type="submit" name="advSearch" value="Search" />
     <br />
-    <div id="ajax_response2" >
+     <div id="ajax_response2" >
         
     </div>
     </form>
