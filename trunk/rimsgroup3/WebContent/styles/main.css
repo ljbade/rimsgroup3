@@ -10,7 +10,12 @@ h3{
 	font-size:16pt;
 	color:#FFF;
 }
-
+h2 {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14pt;
+	color: #09F;
+	text-align: left;
+}
 label{
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:9pt;
