@@ -1,5 +1,7 @@
 package nz.ac.massey.rimsgroup3.servlet;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.io.*;
@@ -31,10 +33,11 @@ public class AdvancedRequest extends HttpServlet {
     throws ServletException, IOException {
     	
     	// get parameters from request
-    	String lName = request.getParameter("lName").toString().trim();
-    	String pubYear = request.getParameter("year").toString().trim();
-    	String journal = request.getParameter("journalTitle").toString().trim();
-    	String articleTitle = request.getParameter("articleTitle").toString().trim();
+    	// all strings lower cased to make search function case insensitive
+    	String lName = request.getParameter("lName").toString().trim().toLowerCase();
+    	String pubYear = request.getParameter("year").toString().trim().toLowerCase();
+    	String journal = request.getParameter("journalTitle").toString().trim().toLowerCase();
+    	String articleTitle = request.getParameter("articleTitle").toString().trim().toLowerCase();
     	journal = journal.replaceAll(" ", "%20");
     	// advanced search creates and calls openUrl with search criteria - returns string array of returned HTML
     	String[] resultsArray = advancedSearch(lName, pubYear, journal);
@@ -42,14 +45,14 @@ public class AdvancedRequest extends HttpServlet {
         // run through array looking for doi and article title
         // if array length is less than 23 only one result was returned
     	if(resultsArray.length < 2) {
-    		// no useable result returned
+    		// no usable result returned
     		response.sendRedirect("index.jsp?success=no");
     	}
     	else if(resultsArray.length < 24) {
         	// break string down to doi - initial string =  colspan=1 width=230><a href=http://dx.doi.org/10.3998/3336451.0009.101> doi:10.3998/3336451.0009.101</a>
             String[] subStr = resultsArray[19].split("org/"); // doi is at 19 cell in array
             subStr = subStr[1].split(">");
-            //out.print(subStr[1].substring(5, subStr[1].length() - 3));
+            
             // send DOI found in array to service class for processing
             DOIsearch(subStr[1].substring(5, subStr[1].length() - 3), request, response);  
             
@@ -61,18 +64,17 @@ public class AdvancedRequest extends HttpServlet {
         	
         	while (titlePos < resultsArray.length) {
         		// check title in response matches entered title - if so use DOI from matching row
-        		//String test1 = resultsArray[titlePos].toString();
-        		//String test2 = articleTitle;
         		if(resultsArray[titlePos].contains(articleTitle)) {
         			String[] subStr = resultsArray[doiPos].split("org/");
                     subStr = subStr[1].split(">");
-                    //out.print(subStr[1].substring(5, subStr[1].length() - 3));
+                    
                     // send DOI found in array to service class for processing
+                    titlePos = resultsArray.length; // to clear loop on return
                     DOIsearch(subStr[1].substring(5, subStr[1].length() - 3), request, response); 
         		}
         		else { // increase doiPos and titlePos to next row
-        			doiPos += 8;
-        			titlePos += 8;
+        			doiPos += 11;
+        			titlePos += 11;
         		}        		
         	}            
         }    	
@@ -109,6 +111,7 @@ public class AdvancedRequest extends HttpServlet {
             InputStream stream = connection.getInputStream();
             
             String streamStr = convertStreamToString(stream);
+            streamStr = streamStr.toLowerCase(); // lowercase it to make search function case insensitive
             String[] splitStream;
             splitStream = streamStr.split("<td");
 
