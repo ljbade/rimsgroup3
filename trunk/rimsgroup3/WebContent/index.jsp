@@ -40,7 +40,7 @@ hza.style.display = state;
   <h3>RIMS Assistant</h3>
   
   <div class="innerIndex">
-    <form name="searchForm" action="DoiRequest" method="post" onSubmit=""> 
+    <form name="searchForm" action="DoiRequest" method="post"> 
     <table width="280px">
     <tr>
         <td>10.1016/j.tcs.2010.07.007  -  multiple authors</td>
@@ -50,18 +50,16 @@ hza.style.display = state;
     </tr>
     <tr>
     <td>
-    <input type="text" name="search" id="searchBox" size="30" value="Enter DOI here..."  onClick=" this.value='';" "/>
+    <input type="text" name="search" id="searchBox" size="30" value="Enter DOI here..." onClick="this.value='';"/>
     </td>
     </tr>
     <tr>
     <td>
-    <input type="button" name="new" value="Gather DOI data" onClick="sendRequest('get', 'DoiRequest', document.getElementById('search').value)"/>
+    <input type="button" name="new" value="Gather DOI data" onClick="sendRequest('get', 'DoiRequest', document.getElementById('searchBox').value)" />
     </td>
     </tr>
-    
     </table>
-    <div id="ajax_response" >
-        
+    <div id="ajax_response" >      
     </div>
     <c:if test="${param.success == null }">
     </c:if>
@@ -72,7 +70,7 @@ hza.style.display = state;
     
     <p><a href="#" onClick="showhide('div1');">Advanced Search</a></p> 
     <div id="div1" style="display: none;">
-    <form name="advancedForm" action="AdvancedRequest" method="post" onSubmit=""> 
+    <form name="advancedForm" action="AdvancedRequest" method="post"> 
     <table>
     <tr>
     <td><label for="lName">Last Name:</label></td>
@@ -93,7 +91,7 @@ hza.style.display = state;
     </table>
     <input type="submit" name="advSearch" value="Search" />
     <br />
-     <div id="ajax_response2" >
+    <div id="ajax_response2" >
         
     </div>
     </form>
