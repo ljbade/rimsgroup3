@@ -10,32 +10,62 @@ import nz.ac.massey.rimsgroup3.metadata.bean.*;
 
 public class ReadStatements {
 	
-	public static List<Author> authorReadStatement(Connection connection, String query) {
+	public static Author miscReadStatement(Connection connection, Author author) {
+		Author authoredIt = author;
+		authoredIt.setInDatabase(false);
+		String authorFirstName = authoredIt.getFirstName();
+		String authorMiddleName = authoredIt.getMiddleName();
 		
+		PreparedStatement statementAuthor = null;
 		try { 
-			PreparedStatement statementAuthor = connection.prepareStatement
-			("SELECT AUTHOR.AUTHOR_ID, FIRST_NAME, LAST_NAME, MIDDLE_NAME, TYPE, DEPARTMENT, " +
-					"COLLEGE, EMAIL FROM AUTHOR, PUBLISHED WHERE AUTHOR.AUTHOR_ID = " +
-						"PUBLISHED.AUTHOR_ID and PUBLICATION_ID = " +
-							"(SELECT PUBLICATION_ID FROM PUBLICATION " +
-								"WHERE URL_LOCATION = '" + query + "')");
+			if(authorMiddleName.equals(null) && authorFirstName.length() == 1)
+			{
+				statementAuthor = connection.prepareStatement
+				("SELECT AFFILIATION FROM MISC_AUTHOR WHERE MISC_LAST_NAME = ? AND LOCATE(?,MISC_FIRST_NAME) = 1"); 
+					
+			}else if(authorMiddleName.equals(null))
+			{
+				statementAuthor = connection.prepareStatement
+				("SELECT AFFILIATION FROM MISC_AUTHOR WHERE MISC_LAST_NAME = ? AND LOCATE(MISC_FIRST_NAME,?) = 1"); 
+			}else if (authorFirstName.length() == 1 && authorMiddleName.length() == 1)
+			{	
+				statementAuthor = connection.prepareStatement
+				("SELECT AFFILIATION FROM MISC_AUTHOR WHERE MISC_LAST_NAME = ? AND LOCATE(?,MISC_FIRST_NAME) = 1 " +
+						"AND LOCATE(?,MISC_FIRST_NAME) = 1");
+			}
+			else if (authorFirstName.length() == 1)
+			{
+				statementAuthor = connection.prepareStatement
+				("SELECT AFFILIATION FROM MISC_AUTHOR WHERE MISC_LAST_NAME = ? AND LOCATE(?,MISC_FIRST_NAME) = 1 " +
+						"AND LOCATE(MISC_MIDDLE_NAME,?) = 1");
+			}
+			else if (authorMiddleName.length() == 1)
+			{
+				statementAuthor = connection.prepareStatement
+				("SELECT AFFILIATION FROM MISC_AUTHOR WHERE MISC_LAST_NAME = ? AND LOCATE(MISC_FIRST_NAME,?) = 1 " +
+						"AND LOCATE(?,MISC_MIDDLE_NAME) = 1");
+			}
+			else 
+			{
+				statementAuthor = connection.prepareStatement
+				("SELECT AFFILIATION FROM MISC_AUTHOR WHERE MISC_LAST_NAME = ? AND LOCATE(MISC_FIRST_NAME,?) = 1 " +
+						"AND LOCATE(MISC_MIDDLE_NAME,?) = 1");
+			}
+			
+			statementAuthor.setString(1, author.getLastName());
+			statementAuthor.setString(2, author.getFirstName());
+			if (!authorMiddleName.equals(null))
+			{
+				statementAuthor.setString(3, author.getMiddleName());
+			}
 			ResultSet authorRS = statementAuthor.executeQuery();
-			List <Author> authors = new ArrayList<Author>();
 			while (authorRS.next())
 			{
-				Author authorCheck = new Author();
-				authorCheck.setID(authorRS.getString(1));
-				authorCheck.setFirstName(authorRS.getString(2));
-				authorCheck.setLastName(authorRS.getString(3));
-				authorCheck.setMiddleName(authorRS.getString(4));
-				authorCheck.setType(authorRS.getString(5));
-				authorCheck.setDepartment(authorRS.getString(6));
-				authorCheck.setCollege(authorRS.getString(7));
-				authorCheck.setEmail(authorRS.getString(8));
-				authors.add(authorCheck);
+				authoredIt.setUniversity(authorRS.getString(1));
+				authoredIt.setInDatabase(true);
 			}
 			if  (statementAuthor != null) statementAuthor.close();
-			return authors;
+			return authoredIt;
 		}
 		catch (Exception e)
 		{
@@ -44,12 +74,78 @@ public class ReadStatements {
 		}
 	}
 	
-	
+	public static Author masseyReadStatement(Connection connection, Author author) {
+		Author authoredIt = author;
+		authoredIt.setInDatabase(false);
+		String authorFirstName = authoredIt.getFirstName();
+		String authorMiddleName = authoredIt.getMiddleName();
+		
+		PreparedStatement statementAuthor = null;
+		try { 
+			if(authorMiddleName.equals(null) && authorFirstName.length() == 1)
+			{
+				statementAuthor = connection.prepareStatement
+				("SELECT MASSEY_ID, TYPE, DEPARTMENT, COLLEGE FROM MASSEY_AUTHOR WHERE MASSEY_LAST_NAME = ? AND LOCATE(?,MASSEY_FIRST_NAME) = 1"); 
+					
+			}else if(authorMiddleName.equals(null))
+			{
+				statementAuthor = connection.prepareStatement
+				("SELECT MASSEY_ID, TYPE, DEPARTMENT, COLLEGE FROM MASSEY_AUTHOR WHERE MASSEY_LAST_NAME = ? AND LOCATE(MASSEY_FIRST_NAME,?) = 1"); 
+			}else if (authorFirstName.length() == 1 && authorMiddleName.length() == 1)
+			{	
+				statementAuthor = connection.prepareStatement
+				("SELECT MASSEY_ID, TYPE, DEPARTMENT, COLLEGE FROM MASSEY_AUTHOR WHERE MASSEY_LAST_NAME = ? AND LOCATE(?,MASSEY_FIRST_NAME) = 1 " +
+						"AND LOCATE(?,MASSEY_FIRST_NAME) = 1");
+			}
+			else if (authorFirstName.length() == 1)
+			{
+				statementAuthor = connection.prepareStatement
+				("SELECT MASSEY_ID, TYPE, DEPARTMENT, COLLEGE FROM MASSEY_AUTHOR WHERE MASSEY_LAST_NAME = ? AND LOCATE(?,MASSEY_FIRST_NAME) = 1 " +
+						"AND LOCATE(MASSEY_MIDDLE_NAME,?) = 1");
+			}
+			else if (authorMiddleName.length() == 1)
+			{
+				statementAuthor = connection.prepareStatement
+				("SELECT MASSEY_ID, TYPE, DEPARTMENT, COLLEGE FROM MASSEY_AUTHOR WHERE MASSEY_LAST_NAME = ? AND LOCATE(MASSEY_FIRST_NAME,?) = 1 " +
+						"AND LOCATE(?,MASSEY_MIDDLE_NAME) = 1");
+			}
+			else 
+			{
+				statementAuthor = connection.prepareStatement
+				("SELECT MASSEY_ID, TYPE, DEPARTMENT, COLLEGE FROM MASSEY_AUTHOR WHERE MASSEY_LAST_NAME = ? AND LOCATE(MASSEY_FIRST_NAME,?) = 1 " +
+						"AND LOCATE(MASSEY_MIDDLE_NAME,?) = 1");
+			}
+			
+			statementAuthor.setString(1, author.getLastName());
+			statementAuthor.setString(2, author.getFirstName());
+			if (!authorMiddleName.equals(null))
+			{
+				statementAuthor.setString(3, author.getMiddleName());
+			}
+			ResultSet authorRS = statementAuthor.executeQuery();
+			while (authorRS.next())
+			{
+				authoredIt.setID(authorRS.getString(1));
+				authoredIt.setType(authorRS.getString(2));
+				authoredIt.setDepartment(authorRS.getString(3));
+				authoredIt.setCollege(authorRS.getString(4));
+				authoredIt.setInDatabase(true);
+			}
+			if  (statementAuthor != null) statementAuthor.close();
+			return authoredIt;
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 	public static Boolean publicationReadStatment(Connection connection, String query){
 		try {
 			PreparedStatement statementPublication = connection.prepareStatement
-			("SELECT PUBlICATION_DOI FROM PUBLICATION WHERE PUBLICATION_DOI = '" + query + "'" );
+			("SELECT PUBlICATION_DOI FROM PUBLICATION WHERE PUBLICATION_DOI = ?");
+				statementPublication.setString(1, query);
 				ResultSet publicationRS = statementPublication.executeQuery();
 				Boolean publicationCheck = null;
 				if (publicationRS.next())

@@ -13,31 +13,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 import javax.sql.DataSource;
 
 import nz.ac.massey.rimsgroup3.metadata.bean.*;
 /**
- * Servlet implementation class DatabaseRead
+ * Servlet implementation class DatabaseSearchAuthors
  */
-public class DatabaseSearchDOI extends HttpServlet {
+public class DatabaseSearchAuthors extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private DataSource dataSource;
+    DataSource dataSource;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DatabaseSearchDOI() {
+    public DatabaseSearchAuthors() {
         super();
         // TODO Auto-generated constructor stub
     }
-
+    
     public void init(ServletConfig config) throws ServletException {
      	super.init(config);
     	String db = config.getInitParameter("test");
     	DatabaseConnection datasource = new DatabaseConnection();
     	this.dataSource =  datasource.setUp(db);
        }
-    
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -45,22 +44,33 @@ public class DatabaseSearchDOI extends HttpServlet {
 		Connection connection = null;
 		
 		HttpSession publicationDOI = request.getSession();
-		String query = publicationDOI.getAttribute("publicationDOI").toString();
+		List<Author> authorList = (List<Author>) publicationDOI.getAttribute("publicationAuthors");
+		List<Author> authorsDetails = new ArrayList();
+		Author author = new Author();
 		try {
 			synchronized (dataSource)
 			{		
 				connection = dataSource.getConnection();
 			}
-			Boolean doiInDatabase = null;
-			doiInDatabase = ReadStatements.publicationReadStatment(connection, query);
+			int i = 0;
+			while (i != authorList.size())
+			{
+				author = authorList.get(i);
+				author = ReadStatements.masseyReadStatement(connection, author);
+				if (author.getInDatabase() != true)
+				{
+					author = ReadStatements.miscReadStatement(connection, author);
+				}
+				authorsDetails.add(author);
+				i++;
+			}
 			//HttpSession session = request.getSession(true);        
-		    publicationDOI.setAttribute("boolean", doiInDatabase);
+		    publicationDOI.setAttribute("publicationAuthors", authorsDetails);
 		} 
 		catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 		}
-		
 		finally 
 		{
 			try

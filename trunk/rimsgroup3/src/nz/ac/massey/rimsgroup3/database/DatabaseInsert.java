@@ -30,16 +30,6 @@ public class DatabaseInsert extends HttpServlet {
     
     public void init(ServletConfig config) throws ServletException {
        
-    	/* try {
-          Context init = new InitialContext();
-          Context ctx = (Context) init.lookup("java:comp/env");
-          dataSource = (DataSource) ctx.lookup("jdbc/rimsgroup3");
-         // System.out.println("win");
-        }
-        catch (NamingException ex) {
-          throw new ServletException(
-            "JNDI EXCEPTION",ex);
-        }*/
     	super.init(config);
     	String db = config.getInitParameter("test");
     	DatabaseConnection datasource = new DatabaseConnection();
@@ -55,12 +45,12 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 		
 		Connection connection = null;
 		HttpSession insertInformation = request.getSession();
-		Information information = (Information) insertInformation.getAttribute("info");
-		
-		List <Author> authors = information.getAuthors();
-		Publication publication = information.getPublication();
+		//Information information = (Information) insertInformation.getAttribute("info");
+		String doi = insertInformation.getAttribute("publicationDOI").toString();
+		List <Author> authorList = (List<Author>) insertInformation.getAttribute("publicationAuthors");
+		//Publication publication = information.getPublication();
 		Author author = new Author();
-		String doi = publication.getDoi();
+		
 		
 		try 
 		{
@@ -76,9 +66,9 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 				statementPublication.close();
 			}
 			int i = 0;
-			while (i != authors.size())
+			while (i != authorList.size())
 			{
-				author = authors.get(i);
+				author = authorList.get(i);
 				
 				if (author.getUniversity().toLowerCase().contains("massey"))
 				{

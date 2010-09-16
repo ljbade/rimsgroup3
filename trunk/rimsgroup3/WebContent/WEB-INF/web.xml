@@ -8,7 +8,7 @@
     <res-type>javax.sql.DataSource</res-type>
     <res-auth>Container</res-auth>
   </resource-ref>
-   <resource-ref>
+  <resource-ref>
     <description>rimsgroup3 test db connection</description>
     <res-ref-name>jdbc/swctest</res-ref-name>
     <res-type>javax.sql.DataSource</res-type>
@@ -85,5 +85,15 @@
   <servlet-mapping>
     <servlet-name>DatabaseSearchDOI</servlet-name>
     <url-pattern>/DatabaseSearchDOI</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DatabaseSearchAuthors</display-name>
+    <servlet-name>DatabaseSearchAuthors</servlet-name>
+    <servlet-class>nz.ac.massey.rimsgroup3.database.DatabaseSearchAuthors</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DatabaseSearchAuthors</servlet-name>
+    <url-pattern>/DatabaseSearchAuthors</url-pattern>
   </servlet-mapping>
 </web-app>

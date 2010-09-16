@@ -17,7 +17,7 @@ public class InsertStatements {
 			Author author) {
 		try {
 		PreparedStatement statementMasseyAuthor = connection.prepareStatement
-		("INSERT INTO AUTHOR " + "VALUES(?,?,?,?,?,?,?)");
+		("INSERT INTO MASSEY_AUTHOR VALUES(?,?,?,?,?,?,?)");
 			statementMasseyAuthor.setString(1, author.getID());
 			statementMasseyAuthor.setString(2, author.getFirstName());
 			statementMasseyAuthor.setString(3, author.getLastName());
@@ -38,7 +38,7 @@ public class InsertStatements {
 			Author author) {
 		try {
 		PreparedStatement statementMiscAuthor = connection.prepareStatement
-		("INSERT INTO MISC_AUTHOR MISC_FIRST_NAME, MISC_LAST_NAME, MISC_MIDDLE_NAME, MISC_AFFILIATION " 
+		("INSERT INTO MISC_AUTHOR (MISC_FIRST_NAME, MISC_LAST_NAME, MISC_MIDDLE_NAME, AFFILIATION) " 
 				+ "VALUES(?,?,?,?)");
 			statementMiscAuthor.setString(1, author.getFirstName());
 			statementMiscAuthor.setString(2, author.getLastName());

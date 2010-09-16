@@ -13,6 +13,7 @@ public class Author extends Person {
 	private String department, college;
 	private String email;
 	private String university;
+	private Boolean inDatabase;
 	
 	/**
 	 * @return the university
@@ -83,6 +84,19 @@ public class Author extends Person {
 	 */
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	/**
+	 * @return the InDatabase
+	 */
+	public void setInDatabase(Boolean inDatabase) {
+		this.inDatabase = inDatabase;
+	}
+	/**
+	 * @param InDatabase the InDatabase to set
+	 */
+	public Boolean getInDatabase() {
+		return inDatabase;
 	}
 	
 }
