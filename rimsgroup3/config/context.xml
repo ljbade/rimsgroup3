@@ -55,5 +55,11 @@
 		password="" driverClassName="com.mysql.jdbc.Driver"
 		url="jdbc:mysql://localhost:3306/swctest?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8"
 		validationQuery="SELECT 1" />
+		
+		<Resource name="jdbc/datatest" auth="Container" type="javax.sql.DataSource"
+		maxActive="100" maxIdle="30" maxWait="10000" username="root"
+		password="" driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/datatest?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8"
+		validationQuery="SELECT 1" />
 
 </Context>

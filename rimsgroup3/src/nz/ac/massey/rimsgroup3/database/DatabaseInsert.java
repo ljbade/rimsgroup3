@@ -69,7 +69,8 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 			while (i != authorList.size())
 			{
 				author = authorList.get(i);
-				
+				if(author.getInDatabase() == false)
+				{
 				if (author.getUniversity().toLowerCase().contains("massey"))
 				{
 					PreparedStatement statementMasseyAuthor = InsertStatements.masseyAuthorStatement(connection, author);
@@ -85,6 +86,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 					if (statementMiscAuthor != null) {
 						statementMiscAuthor.close();
 					}
+				}
 				}
 				i++;
 			}

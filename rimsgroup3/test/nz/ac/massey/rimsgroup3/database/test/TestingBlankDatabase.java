@@ -20,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import org.apache.cactus.*;
+import org.apache.catalina.Server;
 import org.eclipse.jdt.internal.compiler.batch.FileSystem.Classpath;
 
 import junit.framework.*;
@@ -29,10 +30,10 @@ import nz.ac.massey.rimsgroup3.metadata.bean.*;
 import nz.ac.massey.rimsgroup3.runner.ScriptRunner;
 
 
-public class TestingDatabase extends ServletTestCase{
+public class TestingBlankDatabase extends ServletTestCase{
 	DataSource dataSource;
-	
-	public TestingDatabase(String name)
+	private String dbSelection;
+	public TestingBlankDatabase(String name)
 	{
 		super(name);
 		System.setProperty("cactus.contextURL", "http://localhost:8080/rimsgroup3");
@@ -41,9 +42,9 @@ public class TestingDatabase extends ServletTestCase{
 	
 	
 	public void setUp() throws SQLException, ServletException, IOException{
-		String db = "test";
+		this.dbSelection = "swctest";
     	DatabaseConnection datasource = new DatabaseConnection();
-    	this.dataSource =  datasource.setUp(db);
+    	this.dataSource =  datasource.setUp(this.dbSelection);
     	Connection connection = null;
     	
     	synchronized (dataSource)
@@ -60,7 +61,7 @@ public class TestingDatabase extends ServletTestCase{
 	}
 	
 	public void testNoPublication() throws SQLException, ServletException, IOException {
-		config.setInitParameter("test", "testDB");
+		config.setInitParameter("test", this.dbSelection);
 		String doi = "doi1";
 		
 		HttpSession session = request.getSession(true);  
@@ -73,40 +74,34 @@ public class TestingDatabase extends ServletTestCase{
 	    
 		Boolean checkInDB = (Boolean) session.getAttribute("boolean");
 		assertFalse(checkInDB);
-		
-	    /*DatabaseRead dbread = new DatabaseRead();
-		dbread.init(config);
-		dbread.doGet(request,response);
-	
-		Information checkInformation = new Information();
-		checkInformation = (Information) session.getAttribute("information");*/
 
 
 	}
-	/*
+	
 	public void testInsert() throws SQLException, ServletException, IOException {
-		config.setInitParameter("test", "testDB");
+		config.setInitParameter("test", this.dbSelection);
 		String doi = "doi1";
 		List <Author> authorsInserted = new ArrayList<Author>();
 		
-	    Author author = new Author();
-		author.setCollege("College");
-		author.setDepartment("Department");
-		author.setFirstName("Princess");
-		author.setID("1");
-		author.setLastName("Leia");
-		author.setMiddleName("mid");
-		author.setType("type");
-		author.setUniversity("Massey");
+	    Author authorMass1 = new Author();
+		authorMass1.setCollege("College");
+		authorMass1.setDepartment("Department");
+		authorMass1.setFirstName("Princess");
+		authorMass1.setID("1");
+		authorMass1.setLastName("Leia");
+		authorMass1.setMiddleName("mid");
+		authorMass1.setType("type");
+		authorMass1.setUniversity("Massey");
 		 
-		Author author2 = new Author();
-		author2.setFirstName("Hans");
-		author2.setLastName("Solo");
-		author2.setMiddleName("middle");
-		author2.setUniversity("Dublin");
+		Author authorMisc1 = new Author();
+		authorMisc1.setID("2");
+		authorMisc1.setFirstName("Hans");
+		authorMisc1.setLastName("Solo");
+		authorMisc1.setMiddleName("middle");
+		authorMisc1.setUniversity("Dublin");
 		
-		authorsInserted.add(author);
-		authorsInserted.add(author2);
+		authorsInserted.add(authorMass1);
+		authorsInserted.add(authorMisc1);
 	    
 		HttpSession session = request.getSession(true);  
 	    session.setAttribute("publicationDOI", doi);
@@ -125,13 +120,13 @@ public class TestingDatabase extends ServletTestCase{
 		
 		List <Author> authorsChecked = new ArrayList<Author>();
 		Author authorCheck1 = new Author();
-		authorCheck1.setFirstName(author.getFirstName());
-		authorCheck1.setLastName(author.getLastName());
-		authorCheck1.setMiddleName(author.getMiddleName());
+		authorCheck1.setFirstName(authorMass1.getFirstName());
+		authorCheck1.setLastName(authorMass1.getLastName());
+		authorCheck1.setMiddleName(authorMass1.getMiddleName());
 		Author authorCheck2 = new Author();
-		authorCheck2.setFirstName(author2.getFirstName());
-		authorCheck2.setLastName(author2.getLastName());
-		authorCheck2.setMiddleName(author.getMiddleName());
+		authorCheck2.setFirstName(authorMisc1.getFirstName());
+		authorCheck2.setLastName(authorMisc1.getLastName());
+		authorCheck2.setMiddleName(authorMisc1.getMiddleName());
 		authorsChecked.add(authorCheck1);
 		authorsChecked.add(authorCheck2);
 		
@@ -152,14 +147,19 @@ public class TestingDatabase extends ServletTestCase{
 			authorComparison(authorRetrieved,authorCompare);
 			i++;
 		}
-		//authorsReturned
+		
 
 	}
-	*/
 	
 	private void authorComparison(Author authorRetrieved, Author authorCompare){
 		assertEquals(authorCompare.getFirstName(),authorRetrieved.getFirstName());
 		assertEquals(authorCompare.getLastName(),authorRetrieved.getLastName());
+		assertEquals(authorCompare.getMiddleName(),authorRetrieved.getMiddleName());
+		assertEquals(authorCompare.getID(),authorRetrieved.getID());
+		assertEquals(authorCompare.getType(),authorRetrieved.getType());
+		assertEquals(authorCompare.getCollege(),authorRetrieved.getCollege());
+		assertEquals(authorCompare.getUniversity(),authorRetrieved.getUniversity());
+		assertEquals(authorCompare.getDepartment(),authorRetrieved.getDepartment());
 	}
 	
 

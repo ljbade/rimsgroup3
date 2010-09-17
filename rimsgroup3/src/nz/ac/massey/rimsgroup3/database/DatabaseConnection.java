@@ -15,6 +15,8 @@ public class DatabaseConnection {
 			Context ctx = (Context) init.lookup("java:comp/env");
 			if (db == null)
 				dataSource = (DataSource) ctx.lookup("jdbc/rimsgroup3");
+			else if (db.equals("datatest"))
+				dataSource = (DataSource) ctx.lookup("jdbc/datatest");
 			else
 				dataSource = (DataSource) ctx.lookup("jdbc/swctest");
 		}
