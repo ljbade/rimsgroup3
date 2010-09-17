@@ -18,50 +18,51 @@ public class ReadStatements {
 		
 		PreparedStatement statementAuthor = null;
 		try { 
-			if(authorMiddleName.equals(null) && authorFirstName.length() == 1)
+			if(authorMiddleName == null && authorFirstName.length() == 1)
 			{
 				statementAuthor = connection.prepareStatement
-				("SELECT AFFILIATION FROM MISC_AUTHOR WHERE MISC_LAST_NAME = ? AND LOCATE(?,MISC_FIRST_NAME) = 1"); 
+				("SELECT MISC_ID, AFFILIATION FROM MISC_AUTHOR WHERE MISC_LAST_NAME = ? AND LOCATE(?,MISC_FIRST_NAME) = 1"); 
 					
-			}else if(authorMiddleName.equals(null))
+			}else if(authorMiddleName == null)
 			{
 				statementAuthor = connection.prepareStatement
-				("SELECT AFFILIATION FROM MISC_AUTHOR WHERE MISC_LAST_NAME = ? AND LOCATE(MISC_FIRST_NAME,?) = 1"); 
+				("SELECT MISC_ID, AFFILIATION FROM MISC_AUTHOR WHERE MISC_LAST_NAME = ? AND LOCATE(MISC_FIRST_NAME,?) = 1"); 
 			}else if (authorFirstName.length() == 1 && authorMiddleName.length() == 1)
 			{	
 				statementAuthor = connection.prepareStatement
-				("SELECT AFFILIATION FROM MISC_AUTHOR WHERE MISC_LAST_NAME = ? AND LOCATE(?,MISC_FIRST_NAME) = 1 " +
+				("SELECT MISC_ID, AFFILIATION FROM MISC_AUTHOR WHERE MISC_LAST_NAME = ? AND LOCATE(?,MISC_FIRST_NAME) = 1 " +
 						"AND LOCATE(?,MISC_FIRST_NAME) = 1");
 			}
 			else if (authorFirstName.length() == 1)
 			{
 				statementAuthor = connection.prepareStatement
-				("SELECT AFFILIATION FROM MISC_AUTHOR WHERE MISC_LAST_NAME = ? AND LOCATE(?,MISC_FIRST_NAME) = 1 " +
+				("SELECT MISC_ID, AFFILIATION FROM MISC_AUTHOR WHERE MISC_LAST_NAME = ? AND LOCATE(?,MISC_FIRST_NAME) = 1 " +
 						"AND LOCATE(MISC_MIDDLE_NAME,?) = 1");
 			}
 			else if (authorMiddleName.length() == 1)
 			{
 				statementAuthor = connection.prepareStatement
-				("SELECT AFFILIATION FROM MISC_AUTHOR WHERE MISC_LAST_NAME = ? AND LOCATE(MISC_FIRST_NAME,?) = 1 " +
+				("SELECT MISC_ID, AFFILIATION FROM MISC_AUTHOR WHERE MISC_LAST_NAME = ? AND LOCATE(MISC_FIRST_NAME,?) = 1 " +
 						"AND LOCATE(?,MISC_MIDDLE_NAME) = 1");
 			}
 			else 
 			{
 				statementAuthor = connection.prepareStatement
-				("SELECT AFFILIATION FROM MISC_AUTHOR WHERE MISC_LAST_NAME = ? AND LOCATE(MISC_FIRST_NAME,?) = 1 " +
+				("SELECT MISC_ID, AFFILIATION FROM MISC_AUTHOR WHERE MISC_LAST_NAME = ? AND LOCATE(MISC_FIRST_NAME,?) = 1 " +
 						"AND LOCATE(MISC_MIDDLE_NAME,?) = 1");
 			}
 			
 			statementAuthor.setString(1, author.getLastName());
 			statementAuthor.setString(2, author.getFirstName());
-			if (!authorMiddleName.equals(null))
+			if (authorMiddleName != null)
 			{
 				statementAuthor.setString(3, author.getMiddleName());
 			}
 			ResultSet authorRS = statementAuthor.executeQuery();
 			while (authorRS.next())
 			{
-				authoredIt.setUniversity(authorRS.getString(1));
+				authoredIt.setID(authorRS.getString(1));
+				authoredIt.setUniversity(authorRS.getString(2));
 				authoredIt.setInDatabase(true);
 			}
 			if  (statementAuthor != null) statementAuthor.close();
@@ -82,12 +83,12 @@ public class ReadStatements {
 		
 		PreparedStatement statementAuthor = null;
 		try { 
-			if(authorMiddleName.equals(null) && authorFirstName.length() == 1)
+			if(authorMiddleName == null && authorFirstName.length() == 1)
 			{
 				statementAuthor = connection.prepareStatement
 				("SELECT MASSEY_ID, TYPE, DEPARTMENT, COLLEGE FROM MASSEY_AUTHOR WHERE MASSEY_LAST_NAME = ? AND LOCATE(?,MASSEY_FIRST_NAME) = 1"); 
 					
-			}else if(authorMiddleName.equals(null))
+			}else if(authorMiddleName == null)
 			{
 				statementAuthor = connection.prepareStatement
 				("SELECT MASSEY_ID, TYPE, DEPARTMENT, COLLEGE FROM MASSEY_AUTHOR WHERE MASSEY_LAST_NAME = ? AND LOCATE(MASSEY_FIRST_NAME,?) = 1"); 
@@ -118,7 +119,7 @@ public class ReadStatements {
 			
 			statementAuthor.setString(1, author.getLastName());
 			statementAuthor.setString(2, author.getFirstName());
-			if (!authorMiddleName.equals(null))
+			if (authorMiddleName != null)
 			{
 				statementAuthor.setString(3, author.getMiddleName());
 			}
@@ -129,6 +130,7 @@ public class ReadStatements {
 				authoredIt.setType(authorRS.getString(2));
 				authoredIt.setDepartment(authorRS.getString(3));
 				authoredIt.setCollege(authorRS.getString(4));
+				authoredIt.setUniversity("Massey");
 				authoredIt.setInDatabase(true);
 			}
 			if  (statementAuthor != null) statementAuthor.close();

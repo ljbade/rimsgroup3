@@ -1,6 +1,7 @@
 package nz.ac.massey.rimsgroup3.runner;
-
-
+/**
+ * Copyright 2010 Peter Williamson
+*/
 /**
  *  
  *

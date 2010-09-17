@@ -25,6 +25,7 @@ public class InsertStatements {
 			statementMasseyAuthor.setString(5, author.getType());
 			statementMasseyAuthor.setString(6, author.getDepartment());
 			statementMasseyAuthor.setString(7, author.getCollege());
+			
 			return statementMasseyAuthor;
 		}
 		catch (Exception e)
@@ -38,12 +39,13 @@ public class InsertStatements {
 			Author author) {
 		try {
 		PreparedStatement statementMiscAuthor = connection.prepareStatement
-		("INSERT INTO MISC_AUTHOR (MISC_FIRST_NAME, MISC_LAST_NAME, MISC_MIDDLE_NAME, AFFILIATION) " 
-				+ "VALUES(?,?,?,?)");
-			statementMiscAuthor.setString(1, author.getFirstName());
-			statementMiscAuthor.setString(2, author.getLastName());
-			statementMiscAuthor.setString(3, author.getMiddleName());
-			statementMiscAuthor.setString(4, author.getUniversity());
+		("INSERT INTO MISC_AUTHOR VALUES(?,?,?,?,?)"); 
+			
+			statementMiscAuthor.setString(1, author.getID());
+			statementMiscAuthor.setString(2, author.getFirstName());
+			statementMiscAuthor.setString(3, author.getLastName());
+			statementMiscAuthor.setString(4, author.getMiddleName());
+			statementMiscAuthor.setString(5, author.getUniversity());
 			return statementMiscAuthor;
 		}
 		catch (Exception e)
