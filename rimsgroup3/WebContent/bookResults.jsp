@@ -20,8 +20,6 @@
        	 <label for="staffID0">Staff ID:</label><input type="text" id="staffID0">
        	 <label for="unit0">Unit:</label><input type="text" id="unit0">
       	 <label for="mailCode0">Mail Code:</label><input type="text" id="mailCode0">
-       	 <input type="button" value="Add" onClick="addNew()">
-         <input type="button" value="Delete" onClick="deleteIt()">
     </div>
 </div>
 <table class="resultTable" align="center">
