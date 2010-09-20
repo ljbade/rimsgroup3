@@ -31,25 +31,25 @@ public class ReadStatements {
 			{	
 				statementAuthor = connection.prepareStatement
 				("SELECT MISC_ID, AFFILIATION FROM MISC_AUTHOR WHERE MISC_LAST_NAME = ? AND LOCATE(?,MISC_FIRST_NAME) = 1 " +
-						"AND LOCATE(?,MISC_FIRST_NAME) = 1");
+						"AND (LOCATE(?,MISC_MIDDLE_NAME) = 1 OR MISC_MIDDLE_NAME IS NULL)");
 			}
 			else if (authorFirstName.length() == 1)
 			{
 				statementAuthor = connection.prepareStatement
 				("SELECT MISC_ID, AFFILIATION FROM MISC_AUTHOR WHERE MISC_LAST_NAME = ? AND LOCATE(?,MISC_FIRST_NAME) = 1 " +
-						"AND LOCATE(MISC_MIDDLE_NAME,?) = 1");
+						"AND (LOCATE(MISC_MIDDLE_NAME,?) = 1 OR MISC_MIDDLE_NAME IS NULL)");
 			}
 			else if (authorMiddleName.length() == 1)
 			{
 				statementAuthor = connection.prepareStatement
 				("SELECT MISC_ID, AFFILIATION FROM MISC_AUTHOR WHERE MISC_LAST_NAME = ? AND LOCATE(MISC_FIRST_NAME,?) = 1 " +
-						"AND LOCATE(?,MISC_MIDDLE_NAME) = 1");
+						"AND (LOCATE(?,MISC_MIDDLE_NAME) = 1 OR MISC_MIDDLE_NAME IS NULL)");
 			}
 			else 
 			{
 				statementAuthor = connection.prepareStatement
 				("SELECT MISC_ID, AFFILIATION FROM MISC_AUTHOR WHERE MISC_LAST_NAME = ? AND LOCATE(MISC_FIRST_NAME,?) = 1 " +
-						"AND LOCATE(MISC_MIDDLE_NAME,?) = 1");
+						"AND (LOCATE(MISC_MIDDLE_NAME,?) = 1 OR MISC_MIDDLE_NAME IS NULL)");
 			}
 			
 			statementAuthor.setString(1, author.getLastName());
@@ -86,7 +86,7 @@ public class ReadStatements {
 			if(authorMiddleName == null && authorFirstName.length() == 1)
 			{
 				statementAuthor = connection.prepareStatement
-				("SELECT MASSEY_ID, TYPE, DEPARTMENT, COLLEGE FROM MASSEY_AUTHOR WHERE MASSEY_LAST_NAME = ? AND LOCATE(?,MASSEY_FIRST_NAME) = 1"); 
+				("SELECT MASSEY_ID, TYPE, DEPARTMENT, COLLEGE FROM MASSEY_AUTHOR WHERE MASSEY_LAST_NAME = ? AND (LOCATE(?,MASSEY_FIRST_NAME) = 1)"); 
 					
 			}else if(authorMiddleName == null)
 			{
@@ -96,25 +96,25 @@ public class ReadStatements {
 			{	
 				statementAuthor = connection.prepareStatement
 				("SELECT MASSEY_ID, TYPE, DEPARTMENT, COLLEGE FROM MASSEY_AUTHOR WHERE MASSEY_LAST_NAME = ? AND LOCATE(?,MASSEY_FIRST_NAME) = 1 " +
-						"AND LOCATE(?,MASSEY_FIRST_NAME) = 1");
+						"AND (LOCATE(?,MASSEY_MIDDLE_NAME) = 1 OR MASSEY_MIDDLE_NAME IS NULL)");
 			}
 			else if (authorFirstName.length() == 1)
 			{
 				statementAuthor = connection.prepareStatement
 				("SELECT MASSEY_ID, TYPE, DEPARTMENT, COLLEGE FROM MASSEY_AUTHOR WHERE MASSEY_LAST_NAME = ? AND LOCATE(?,MASSEY_FIRST_NAME) = 1 " +
-						"AND LOCATE(MASSEY_MIDDLE_NAME,?) = 1");
+						"AND (LOCATE(MASSEY_MIDDLE_NAME,?) = 1 OR MASSEY_MIDDLE_NAME IS NULL)");
 			}
 			else if (authorMiddleName.length() == 1)
 			{
 				statementAuthor = connection.prepareStatement
 				("SELECT MASSEY_ID, TYPE, DEPARTMENT, COLLEGE FROM MASSEY_AUTHOR WHERE MASSEY_LAST_NAME = ? AND LOCATE(MASSEY_FIRST_NAME,?) = 1 " +
-						"AND LOCATE(?,MASSEY_MIDDLE_NAME) = 1");
+						"AND (LOCATE(?,MASSEY_MIDDLE_NAME) = 1 OR MASSEY_MIDDLE_NAME IS NULL)");
 			}
 			else 
 			{
 				statementAuthor = connection.prepareStatement
 				("SELECT MASSEY_ID, TYPE, DEPARTMENT, COLLEGE FROM MASSEY_AUTHOR WHERE MASSEY_LAST_NAME = ? AND LOCATE(MASSEY_FIRST_NAME,?) = 1 " +
-						"AND LOCATE(MASSEY_MIDDLE_NAME,?) = 1");
+						"AND (LOCATE(MASSEY_MIDDLE_NAME,?) = 1 OR MASSEY_MIDDLE_NAME IS NULL)");
 			}
 			
 			statementAuthor.setString(1, author.getLastName());
@@ -165,8 +165,6 @@ public class ReadStatements {
 			}
 			
 	}
-	
-
 	
 
 }
