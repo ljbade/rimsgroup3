@@ -77,7 +77,7 @@ public class TestingBlankDatabase extends ServletTestCase{
 
 
 	}
-	
+
 	public void testInsert() throws SQLException, ServletException, IOException {
 		config.setInitParameter("test", this.dbSelection);
 		String doi = "doi1";
