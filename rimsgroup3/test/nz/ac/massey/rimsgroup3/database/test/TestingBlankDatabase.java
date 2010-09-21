@@ -87,7 +87,7 @@ public class TestingBlankDatabase extends ServletTestCase{
 		authorMass1.setCollege("College");
 		authorMass1.setDepartment("Department");
 		authorMass1.setFirstName("Princess");
-		authorMass1.setID("1");
+		authorMass1.setID("01");
 		authorMass1.setLastName("Leia");
 		authorMass1.setMiddleName("mid");
 		authorMass1.setType("type");
@@ -102,6 +102,9 @@ public class TestingBlankDatabase extends ServletTestCase{
 		
 		authorsInserted.add(authorMass1);
 		authorsInserted.add(authorMisc1);
+		
+		List <Author> authorsExpected = new ArrayList<Author>();
+		authorsExpected = authorExpected();
 	    
 		HttpSession session = request.getSession(true);  
 	    session.setAttribute("publicationDOI", doi);
@@ -109,7 +112,7 @@ public class TestingBlankDatabase extends ServletTestCase{
 	    DatabaseInsert dbInsert = new DatabaseInsert();
 	    dbInsert.init(config);
 	    dbInsert.doGet(request, response);
-		session.removeAttribute("publicationAuthors");
+		
 	    
 		DatabaseSearchDOI dbSearchDOI = new DatabaseSearchDOI();
 		dbSearchDOI.init(config);
@@ -134,16 +137,15 @@ public class TestingBlankDatabase extends ServletTestCase{
 		session.setAttribute("publicationAuthors", authorsChecked);
 		dbSearchAuthor.init(config);
 		dbSearchAuthor.doGet(request, response);
-		//session.removeAttribute("publicationAuthors");
 	    
 		List <Author> authorsReturned = new ArrayList<Author>();
 		authorsReturned = (List<Author>) session.getAttribute("publicationAuthors");
 		int i = 0;
-		assertEquals(authorsInserted.size(),authorsReturned.size());
+		assertEquals(authorsExpected.size(),authorsReturned.size());
 		while (authorsReturned.size() != i)
 		{
 			Author authorRetrieved = authorsReturned.get(i);
-			Author authorCompare = authorsInserted.get(i);
+			Author authorCompare = authorsExpected.get(i);
 			authorComparison(authorRetrieved,authorCompare);
 			i++;
 		}
@@ -162,6 +164,29 @@ public class TestingBlankDatabase extends ServletTestCase{
 		assertEquals(authorCompare.getDepartment(),authorRetrieved.getDepartment());
 	}
 	
-
+	private List<Author> authorExpected(){
+		List <Author> authorsExpected = new ArrayList<Author>();
+		
+	    Author massExp1 = new Author();
+		massExp1.setCollege("College");
+		massExp1.setDepartment("Department");
+		massExp1.setFirstName("Princess");
+		massExp1.setID("01");
+		massExp1.setLastName("Leia");
+		massExp1.setMiddleName("mid");
+		massExp1.setType("type");
+		massExp1.setUniversity("Massey");
+		 
+		Author miscExp1 = new Author();
+		miscExp1.setID("2");
+		miscExp1.setFirstName("Hans");
+		miscExp1.setLastName("Solo");
+		miscExp1.setMiddleName("middle");
+		miscExp1.setUniversity("Dublin");
+		
+		authorsExpected.add(massExp1);
+		authorsExpected.add(miscExp1);
+		return authorsExpected;
+	}
 	
 }

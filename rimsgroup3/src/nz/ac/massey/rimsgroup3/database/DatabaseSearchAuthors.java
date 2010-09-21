@@ -45,7 +45,7 @@ public class DatabaseSearchAuthors extends HttpServlet {
 		
 		HttpSession publicationDOI = request.getSession();
 		List<Author> authorList = (List<Author>) publicationDOI.getAttribute("publicationAuthors");
-		List<Author> authorsDetails = new ArrayList();
+		List<Author> authorsDetails = new ArrayList<Author>();
 		Author author = new Author();
 		try {
 			synchronized (dataSource)
@@ -55,6 +55,7 @@ public class DatabaseSearchAuthors extends HttpServlet {
 			int i = 0;
 			while (i != authorList.size())
 			{
+				
 				author = authorList.get(i);
 				author = ReadStatements.masseyReadStatement(connection, author);
 				if (author.getInDatabase() != true)

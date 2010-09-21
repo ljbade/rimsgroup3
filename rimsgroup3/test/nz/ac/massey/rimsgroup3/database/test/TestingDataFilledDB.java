@@ -132,6 +132,7 @@ private String dbSelection;
 		dbSearchAuthor.init(config);
 		dbSearchAuthor.doGet(request, response);
 	    
+		
 		List <Author> authorsReturned = new ArrayList<Author>();
 		authorsReturned = (List<Author>) session.getAttribute("publicationAuthors");
 		int i = 0;
@@ -149,56 +150,65 @@ private String dbSelection;
 	
 	public void testAuthorsFound() throws SQLException, ServletException, IOException{
 		config.setInitParameter("test", this.dbSelection);
-		
 		List <Author> authorsChecked = new ArrayList<Author>();
+		List <Author> authorsExpected = new ArrayList<Author>();
+		
 		Author masseyCheck1 = new Author();
-		masseyCheck1.setFirstName("g");
+		masseyCheck1.setFirstName("E");
 		masseyCheck1.setLastName("Bobbison");
+		
 		Author masseyCheck2 = new Author();
-		masseyCheck2.setFirstName("g");
+		masseyCheck2.setFirstName("E");
 		masseyCheck2.setLastName("Harte");
 		masseyCheck2.setMiddleName("c");
+		
 		Author masseyCheck3 = new Author();
-		masseyCheck3.setFirstName("Squall");
+		masseyCheck3.setFirstName("zidane");
 		masseyCheck3.setLastName("Anderson");
 		masseyCheck3.setMiddleName("D");
+		
 		Author masseyCheck4 = new Author();
-		masseyCheck4.setFirstName("Raw");
+		masseyCheck4.setFirstName("Richard");
 		masseyCheck4.setLastName("Mccaw");
-		//authorCheck4.setMiddleName("");
+		
 		Author masseyCheck5 = new Author();
-		masseyCheck5.setFirstName("man");
-		masseyCheck5.setLastName("Mccaw");
-		masseyCheck5.setMiddleName("sam");
+		masseyCheck5.setFirstName("names");
+		masseyCheck5.setLastName("noddy");
+		masseyCheck5.setMiddleName("damn");
+		
 		Author masseyCheck6 = new Author();
-		masseyCheck6.setFirstName("R");
-		masseyCheck6.setLastName("Mccaw");
-		masseyCheck6.setMiddleName("huf");
+		masseyCheck6.setFirstName("c");
+		masseyCheck6.setLastName("Smithy");
+		masseyCheck6.setMiddleName("apache");
 		
 		Author miscCheck1 = new Author();
-		miscCheck1.setFirstName("g");
-		miscCheck1.setLastName("Bobbison");
-		//miscCheck1.setMiddleName("");
+		miscCheck1.setFirstName("z");
+		miscCheck1.setLastName("Daphine");
+		
 		Author miscCheck2 = new Author();
-		miscCheck2.setFirstName("c");
-		miscCheck2.setLastName("Harte");
+		miscCheck2.setFirstName("e");
+		miscCheck2.setLastName("Bobbison");
 		miscCheck2.setMiddleName("c");
+		
 		Author miscCheck3 = new Author();
-		miscCheck3.setFirstName("Zas");
-		miscCheck3.setLastName("Mccaw");
+		miscCheck3.setFirstName("boris");
+		miscCheck3.setLastName("Harte");
 		miscCheck3.setMiddleName("D");
+		
 		Author miscCheck4 = new Author();
-		miscCheck4.setFirstName("Raw");
-		miscCheck4.setLastName("Mccaw");
-		//miscCheck4.setMiddleName("");
+		miscCheck4.setFirstName("tana");
+		miscCheck4.setLastName("Umagan");
+		
 		Author miscCheck5 = new Author();
-		miscCheck5.setFirstName("Rawr");
-		miscCheck5.setLastName("Mccaw");
-		miscCheck5.setMiddleName("Sas");
+		miscCheck5.setFirstName("Forest");
+		miscCheck5.setLastName("Canning");
+		miscCheck5.setMiddleName("Ceaser");
+		
 		Author miscCheck6 = new Author();
-		miscCheck6.setFirstName("R");
-		miscCheck6.setLastName("Mccaw");
-		miscCheck6.setMiddleName("Huf");
+		miscCheck6.setFirstName("q");
+		miscCheck6.setLastName("Bosling");
+		miscCheck6.setMiddleName("maximus");
+		
 		authorsChecked.add(masseyCheck1);
 		authorsChecked.add(miscCheck1);
 		authorsChecked.add(masseyCheck2);
@@ -211,22 +221,24 @@ private String dbSelection;
 		authorsChecked.add(miscCheck6);
 		authorsChecked.add(masseyCheck5);
 		authorsChecked.add(masseyCheck6);
-		
+
+		authorsExpected = authorsExpected();
 		
 		DatabaseSearchAuthors dbSearchAuthor = new DatabaseSearchAuthors();
 		session.setAttribute("publicationAuthors", authorsChecked);
 		dbSearchAuthor.init(config);
 		dbSearchAuthor.doGet(request, response);
+		
+		//masseyCheck1.setDepartment("test");
 	    
-		List <Author> authorsReturned = new ArrayList<Author>();
-		authorsReturned = (List<Author>) session.getAttribute("publicationAuthors");
+		session.getAttribute("publicationAuthors");
 		int i = 0;
-		assertEquals(authorsChecked.size(),authorsReturned.size());
-		while (authorsReturned.size() != i)
+		assertEquals(authorsExpected.size(),authorsChecked.size());
+		while (authorsChecked.size() != i)
 		{
-			Author authorRetrieved = authorsReturned.get(i);
+			Author authorRetrieved = authorsChecked.get(i);
 			assertTrue(authorRetrieved.getInDatabase());
-			Author authorCompare = authorsChecked.get(i);
+			Author authorCompare = authorsExpected.get(i);
 			authorComparison(authorRetrieved,authorCompare);
 			i++;
 		}
@@ -245,7 +257,134 @@ private String dbSelection;
 		assertEquals(authorCompare.getDepartment(),authorRetrieved.getDepartment());
 	}
 	
+	
+	protected List<Author> authorsChecked(){
+		
+		List <Author> authorsChecked = new ArrayList<Author>();
+		
+		return authorsChecked;
+	}
+	
+	
+	private List<Author> authorsExpected(){
+		
+		List <Author> authorsExpected = new ArrayList<Author>();
+		
+		Author masseyExp1 = new Author();
+		masseyExp1.setFirstName("E");
+		masseyExp1.setLastName("Bobbison");
+		masseyExp1.setUniversity("Massey");
+		masseyExp1.setCollege("Science");
+		masseyExp1.setType("Student");
+		masseyExp1.setDepartment("SEAT");
+		masseyExp1.setID("61120");
+		
+		Author masseyExp2 = new Author();
+		masseyExp2.setFirstName("E");
+		masseyExp2.setLastName("Harte");
+		masseyExp2.setMiddleName("c");
+		masseyExp2.setUniversity("Massey");
+		masseyExp2.setCollege("Science");
+		masseyExp2.setType("Professor");
+		masseyExp2.setDepartment("SEAT");
+		masseyExp2.setID("61132");
+		
+		Author masseyExp3 = new Author();
+		masseyExp3.setFirstName("zidane");
+		masseyExp3.setLastName("Anderson");
+		masseyExp3.setMiddleName("D");
+		masseyExp3.setUniversity("Massey");
+		masseyExp3.setCollege("Science");
+		masseyExp3.setType("Professor");
+		masseyExp3.setDepartment("SEAT");
+		masseyExp3.setID("61144");
+		
+		Author masseyExp4 = new Author();
+		masseyExp4.setFirstName("Richard");
+		masseyExp4.setLastName("Mccaw");
+		masseyExp4.setUniversity("Massey");
+		masseyExp4.setCollege("Science");
+		masseyExp4.setType("Student");
+		masseyExp4.setDepartment("SEAT");
+		masseyExp4.setID("61139");
+		
+		Author masseyExp5 = new Author();
+		masseyExp5.setFirstName("names");
+		masseyExp5.setLastName("noddy");
+		masseyExp5.setMiddleName("damn");
+		masseyExp5.setUniversity("Massey");
+		masseyExp5.setCollege("Science");
+		masseyExp5.setType("Student");
+		masseyExp5.setDepartment("SEAT");
+		masseyExp5.setID("61149");
+		
+		Author masseyExp6 = new Author();
+		masseyExp6.setFirstName("c");
+		masseyExp6.setLastName("Smithy");
+		masseyExp6.setMiddleName("apache");
+		masseyExp6.setUniversity("Massey");
+		masseyExp6.setCollege("Science");
+		masseyExp6.setType("Student");
+		masseyExp6.setDepartment("SEAT");
+		masseyExp6.setID("61142");
+		
+		Author miscExp1 = new Author();
+		miscExp1.setFirstName("z");
+		miscExp1.setLastName("Daphine");
+		miscExp1.setUniversity("Dublin University");
+		miscExp1.setID("0661138");
+		
+		Author miscExp2 = new Author();
+		miscExp2.setFirstName("e");
+		miscExp2.setLastName("Bobbison");
+		miscExp2.setMiddleName("c");
+		miscExp2.setUniversity("Dublin University");
+		miscExp2.setID("0961120");
+		
+		Author miscExp3 = new Author();
+		miscExp3.setFirstName("boris");
+		miscExp3.setLastName("Harte");
+		miscExp3.setMiddleName("D");
+		miscExp3.setUniversity("Dublin University");
+		miscExp3.setID("0461132");
+		
+		Author miscExp4 = new Author();
+		miscExp4.setFirstName("tana");
+		miscExp4.setLastName("Umagan");
+		miscExp4.setUniversity("Kyoto University");
+		miscExp4.setID("0061140");
+		
+		Author miscExp5 = new Author();
+		miscExp5.setFirstName("Forest");
+		miscExp5.setLastName("Canning");
+		miscExp5.setMiddleName("Ceaser");
+		miscExp5.setUniversity("Dublin University");
+		miscExp5.setID("0861134");
+		
+		Author miscExp6 = new Author();
+		miscExp6.setFirstName("q");
+		miscExp6.setLastName("Bosling");
+		miscExp6.setMiddleName("maximus");
+		miscExp6.setUniversity("Cali University");
+		miscExp6.setID("0561131");
+		
+		authorsExpected.add(masseyExp1);
+		authorsExpected.add(miscExp1);
+		authorsExpected.add(masseyExp2);
+		authorsExpected.add(miscExp2);
+		authorsExpected.add(miscExp3);
+		authorsExpected.add(miscExp4);
+		authorsExpected.add(masseyExp3);
+		authorsExpected.add(masseyExp4);
+		authorsExpected.add(miscExp5);
+		authorsExpected.add(miscExp6);
+		authorsExpected.add(masseyExp5);
+		authorsExpected.add(masseyExp6);
+		
+		return authorsExpected;
 
+	}
+	
 	
 }
 
