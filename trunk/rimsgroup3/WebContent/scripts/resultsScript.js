@@ -1,6 +1,6 @@
 // JavaScript Document
 var counter = 1;
-function addNew() {
+function addNew(authorValue) {
 	// Get the main Div in which all the other divs will be added
 	var mainContainer = document.getElementById('authorDiv');
 	// Create a new div for holding text and button input elements
@@ -11,6 +11,7 @@ function addNew() {
 	var newText = document.createElement('input');
 	newText.type = "input";
 	newText.id = "authors" + counter;
+	newText.setAttribute("value",authorValue);
 	newDiv.innerHTML+= "<label for=\"author + counter\">Author:</label>";
 	newDiv.appendChild(newText);
 	
@@ -62,62 +63,12 @@ function deleteIt(){
 	}
 }
 
-function dynamicAdd(){
-	var authorString = "Kevin,James,Stu,Pip";
+function dynamicAdd(authorString){
+	var authorString = "Kevin,Joe,Bob,Tom";
 	var myAuthors = authorString.split(",");
 	
 	for(var i=0;i<myAuthors.length;i++){
-	var currentAuthor = myAuthors[i];
-	// Get the main Div in which all the other divs will be added
-	var mainContainer = document.getElementById('authorDiv');
-	// Create a new div for holding text and button input elements
-	var newDiv = document.createElement('div');
-	newDiv.id = counter;
-
-	var newText = document.createElement('input');
-	newText.setAttribute("type","text");
-	newText.setAttribute("id", "authors" + counter);
-	newText.setAttribute("value",currentAuthor);
-	newDiv.innerHTML+= "<label>Author:</label>";
-	newDiv.appendChild(newText);
-	
-	var newText = document.createElement('input');
-	newText.type = "input";
-	newText.id = "affiliation" + counter;
-	newDiv.innerHTML+= "<label>Affiliation:</label>";
-	newDiv.appendChild(newText);
-	
-	var newText = document.createElement('input');
-	newText.type = "input";
-	newText.id = "id" + counter;
-	newDiv.innerHTML+= "<label>ID Number:</label>";
-	newDiv.appendChild(newText);
-
-	var newMoveUpBtn = document.createElement('input');
-	newMoveUpBtn.type = "button";
-	newMoveUpBtn.value = "Move Up";
-	
-	newMoveUpBtn.onclick = function() {
-			  var thisDiv = newMoveUpBtn.parentNode.id;
-			  
-			  var temp = document.getElementById("authors" + thisDiv).value;
-			  document.getElementById("authors" + thisDiv).value = document.getElementById("authors" + (thisDiv - 1)).value;
-			  document.getElementById("authors" + (thisDiv - 1)).value = temp;
-			  
-			  var temp = document.getElementById("affiliation" + thisDiv).value;
-			  document.getElementById("affiliation" + thisDiv).value = document.getElementById("affiliation" + (thisDiv - 1)).value;
-			  document.getElementById("affiliation" + (thisDiv - 1)).value = temp;
-			  
-			  var temp = document.getElementById("id" + thisDiv).value;
-			  document.getElementById("id" + thisDiv).value = document.getElementById("id" + (thisDiv - 1)).value;
-			  document.getElementById("id" + (thisDiv - 1)).value = temp;
-	  };
-	 
-	newDiv.appendChild(newMoveUpBtn);
-	
-	// Append newDiv input to the mainContainer div
-	mainContainer.appendChild(newDiv);
-	counter++;
+		addNew(myAuthors[i]);
 	}	
 }
 
