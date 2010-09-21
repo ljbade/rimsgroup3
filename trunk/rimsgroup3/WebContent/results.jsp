@@ -16,10 +16,10 @@
 <form name="resultsForm" method="post">
 <div id="mainContainer" class="firstSet">
 <div>
-<label for="author0">Author:</label><input type="text" id="author0" />
-<label for="staffID0">Staff ID:</label><input type="text" id="staffID0" />
-<label for="unit0">Unit:</label><input type="text" id="unit0" />
-<label for="mailCode0">Mail Code:</label><input type="text" id="mailCode0" /> 
+<label for="topAuthor">Author:</label><input type="text" id="topAuthor" />
+<label for="staffID">Staff ID:</label><input type="text" id="staffID" />
+<label for="unit">Unit:</label><input type="text" id="unit" />
+<label for="mailCode">Mail Code:</label><input type="text" id="mailCode" /> 
 </div>
 </div>
 <div class="secondSet" >
@@ -58,12 +58,19 @@
 </table>
 </div>
 
+<div id="authorDiv" class="firstSet">
+<div>
+<label for="authors0">Author:</label>
+<input type="text" name="authors0" size="20" value="<c:out value="${publication.authorsString}" />" />
+<label for="afilliation0">Affiliation:</label>
+<input type="text" name="affiliation0" size="20" />
+<label for="id0">ID Number:</label>
+<input type="text" name="id0" size="20" /><input type="button" value="Add" onClick="addNew();"/><input type="button" value="Delete" onClick="deleteIt();"/>
+</div>
+</div>
+
 <div class="thirdSet">
 <table align="left">
-<tr>
-<td><label for="authors">Authors:</label></td>
-<td><input type="text" name="authors" size="40" value="<c:out value="${publication.authorsString}" />" /></td>
-</tr>
 <tr>
 <td><label for="articleTitle">Article/Output Title:</label></td>
 <td><input type="text" name="articleTitle" size="40" value="<c:out value="${publication.articleTitle}" />" /></td>
