@@ -20,42 +20,45 @@ function addNew() {
 	newText.type = "text";
 	newText.name = "fName" + counter;
 	newText.setAttribute("size","15");
-	newDiv.innerHTML+= "<label>First Name:</label>";
+	newDiv.innerHTML+= "<label>First Name:&nbsp;</label>";
 	newDiv.appendChild(newText);
 	
 	var newText = document.createElement('input');
 	newText.type = "text";
 	newText.name = "mName" + counter;
 	newText.setAttribute("size","15");
-	newDiv.innerHTML+= "<label>M. Name:</label>";
+	newDiv.innerHTML+= "<label>&nbsp;M. Name:&nbsp;</label>";
 	newDiv.appendChild(newText);
 	
 	var newText = document.createElement('input');
 	newText.type = "text";
 	newText.name = "lName" + counter;
 	newText.setAttribute("size","15");
-	newDiv.innerHTML+= "<label>Last Name:</label>";
+	newDiv.innerHTML+= "<label>&nbsp;Last Name:&nbsp;</label>";
 	newDiv.appendChild(newText);
 	
 	var newText = document.createElement('input');
 	newText.type = "text";
 	newText.name = "affiliation" + counter;
 	newText.setAttribute("size","15");
-	newDiv.innerHTML+= "<label>Affiliation:</label>";
+	newDiv.innerHTML+= "<label>&nbsp;Affiliation:&nbsp;</label>";
 	newDiv.appendChild(newText);
 	
 	var newText = document.createElement('input');
 	newText.type = "text";
 	newText.name = "id" + counter;
 	newText.setAttribute("size","15");
-	newDiv.innerHTML+= "<label>ID Number:</label>";
+	newDiv.innerHTML+= "<label>&nbsp;ID Number:&nbsp;</label>";
 	newDiv.appendChild(newText);
 
 	var newMoveUpBtn = document.createElement('input');
 	newMoveUpBtn.type = "button";
 	newMoveUpBtn.value = "Move Up";
 	newMoveUpBtn.id = "moveUp" + counter;
-	newMoveUpBtn.setAttribute("onClick","moveUp(this.id)");
+	newDiv.innerHTML+= "&nbsp;";
+	newMoveUpBtn.onclick = function(){
+		moveUp("moveUp" + counter);
+	};
 
 	// Append new button input to the newDiv
 	//newDiv.appendChild(newDelButton);
@@ -67,7 +70,6 @@ function addNew() {
 }
 
 function moveUp(name) {
-	
 	var thisButton = document.getElementById(name);
 	var thisDiv = thisButton.parentNode.getAttribute("id");
 	

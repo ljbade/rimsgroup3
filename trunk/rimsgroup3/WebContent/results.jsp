@@ -67,19 +67,23 @@
 		</script>
 	</c:if>
 	    <div id="${status.count}">
-		    <label for="fName">First Name:</label>
+		    <label for="fName${status.count}">First Name:</label>
 		    <input type="text" name="fName${status.count}" size="15" value="<c:out value="${author.firstName}" />" />
-		    <label for="mName">M. Name:</label>
+		    
+		    <label for="mName${status.count}">M. Name:</label>
 		    <input type="text" name="mName${status.count}" size="15" value="<c:out value="${author.middleName}" />" />
-		    <label for="lName">Last Name:</label>
+		    
+		    <label for="lName${status.count}">Last Name:</label>
 		    <input type="text" name="lName${status.count}" size="15" value="<c:out value="${author.lastName}" />" />
-		    <label for="afilliation${status.count}">Affiliation:</label>
-		    <input type="text" name="affiliation" size="15" />
+		    
+		    <label for="afiliation${status.count}">Affiliation:</label>
+		    <input type="text" name="affiliation${status.count}" size="15" />
+		    
 		    <label for="id${status.count}">ID Number:</label>
 		    <input type="text" name="id${status.count}" size="15" />
 	    
 		    <c:if test="${status.count > 1}">
-		    	<input type="button" id="moveUp${status.count}" onClick="moveUp(this.id);" value="Move Up"/>
+		    	<input type="button" id="moveUp${status.count}" onclick="moveUp(this.id);" value="Move Up"/>
 		    </c:if>
 	    </div>
 	</c:forEach>
@@ -112,7 +116,7 @@
 </tr>
 <tr>
 <td><label for="volume">Volume/Number:</label></td>
-<td><input type="text" name="volume" size="65" value="<c:out value="${publication.volume}"/>" /></td>
+<td><input type="text" name="volume" size="65" value="<c:out value="${publication.volume}"/> / <c:out value="${publication.issue}"/>" /></td>
 </tr>
 <tr>
 <td><label for="pageNum">Page numbers:</label></td>
