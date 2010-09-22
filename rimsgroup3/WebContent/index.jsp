@@ -49,7 +49,7 @@ hza.style.display = state;
     </tr>
     <tr>
     <td>
-    <input type="button" name="new" value="New Article" onclick="sendRequest('get', 'DoiRequest', document.getElementById('search').value)"/><input type="submit" name="search" value="Search"/>
+    <input type="button" name="new" value="New Article" onclick="sendRequest('get', 'DoiRequest', document.getElementById('search').value)"/>
     </td>
     </tr>
     
