@@ -131,7 +131,7 @@
                prefix="localhost_access_log." suffix=".txt" pattern="common" resolveHosts="false"/>
         -->
 
-      <Context docBase="rimsgroup3" path="/rimsgroup3" reloadable="true" source="org.eclipse.jst.jee.server:rimsgroup3"/><Context docBase="rimsgroup3" path="/rimsgroup3" reloadable="true" source="org.eclipse.jst.jee.server:rimsgroup3"/></Host>
+      <Context docBase="rimsgroup3" path="/rimsgroup3" reloadable="true" source="org.eclipse.jst.jee.server:rimsgroup3"/></Host>
     </Engine>
   </Service>
 </Server>
