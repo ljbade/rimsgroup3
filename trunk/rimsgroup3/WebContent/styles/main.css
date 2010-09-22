@@ -26,7 +26,7 @@ div.results{
 	border:thin;
 	border-color:#000;
 	border-style:solid;
-	width:980px;
+	width:1180px;
 	padding:10px;
 	-moz-border-radius: 20px;
     -webkit-border-radius: 20px;
@@ -42,7 +42,7 @@ div.firstSet{
 	border:4px;
 	border-color:#06C;
 	border-style:solid;
-	width:950px;
+	width:1150px;
 	padding:10px;
 	margin-bottom:10px;
 	-moz-border-radius: 20px;
@@ -56,7 +56,7 @@ div.secondSet{
 	border:4px;
 	border-color:#06C;
 	border-style:solid;
-	width:950px;
+	width:1150px;
 	padding:10px;
 	height:auto;
 	margin-bottom:10px;
@@ -71,7 +71,7 @@ div.thirdSet{
 	border:4px;
 	border-color:#06C;
 	border-style:solid;
-	width:950px;
+	width:1150px;
 	padding:10px;
 	height:330px;
 	margin-bottom:10px;
@@ -81,14 +81,6 @@ div.thirdSet{
     border-radius: 20px;
 }
 
-div.printPage{
-	border:thin;
-	border-color:#06C;
-	border-style:solid;
-	width: 360px;
-	height:160px;
-	padding:10px;
-}
 
 table.resultTable{
 	padding:5px;

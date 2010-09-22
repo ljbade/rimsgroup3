@@ -94,7 +94,9 @@ public class CrossrefRetriever implements MetadataRetriever {
 		result.setYear((safelyGetElement(xmlDoc, "year")));
 		result.setStartPage((safelyGetElement(xmlDoc, "first_page")));
 		result.setEndPage((safelyGetElement(xmlDoc, "last_page")));
-		result.setAuthors(parseAuthors(xmlDoc));		
+		ArrayList<Author> authors = parseAuthors(xmlDoc);
+		result.setAuthors(authors);
+		result.setNumberOfAuthors(authors.size());
 		
 		return result;
 	}

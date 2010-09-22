@@ -23,7 +23,16 @@ public class Publication {
 	protected List<Author> authors;
 	protected String publisher;
 	protected String publicationCategory;
+	protected int numberOfAuthors;
 	
+	public void setNumberOfAuthors(int numberOfAuthors) {
+		this.numberOfAuthors = numberOfAuthors;
+	}
+
+	public int getNumberOfAuthors() {
+		return numberOfAuthors;
+	}
+
 	/**
 	 * @return the id
 	 */
