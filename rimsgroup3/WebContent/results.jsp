@@ -58,66 +58,79 @@
 </table>
 </div>
 
-<div id="authorDiv" class="firstSet">
-<c:forEach items="<c:out value="${publication.authors}" />" var="author" varStatus="status">
-    <div>
-    <label for="fName">First Name:</label>
-    <input type="text" name="fName" size="20" value="<c:out value="${author.firstName}" />" />
-    <label for="mName">Middle Name:</label>
-    <input type="text" name="mName" size="20" value="<c:out value="${author.middleName}" />" />
-    <label for="lName">Last Name:</label>
-    <input type="text" name="lName" size="20" value="<c:out value="${author.lastName}" />" />
-    <label for="afilliation">Affiliation:</label>
-    <input type="text" name="affiliation0" size="20" />
-    <label for="id">ID Number:</label>
-    </div>
-</c:forEach>
-<input type="text" name="id0" size="20" /><input type="button" value="Add" onClick="addNew();"/><input type="button" value="Delete" onClick="deleteIt();"/>
+<div class="firstSet">
+<div id="authorDiv" align="left">
+	<c:forEach items="${publication.authors}" var="author" varStatus="status">
+	<c:if test="${status.count==1}">
+		<script>
+			setCount("${publication.numberOfAuthors}");
+		</script>
+	</c:if>
+	    <div id="${status.count}">
+		    <label for="fName">First Name:</label>
+		    <input type="text" name="fName${status.count}" size="15" value="<c:out value="${author.firstName}" />" />
+		    <label for="mName">M. Name:</label>
+		    <input type="text" name="mName${status.count}" size="15" value="<c:out value="${author.middleName}" />" />
+		    <label for="lName">Last Name:</label>
+		    <input type="text" name="lName${status.count}" size="15" value="<c:out value="${author.lastName}" />" />
+		    <label for="afilliation${status.count}">Affiliation:</label>
+		    <input type="text" name="affiliation" size="15" />
+		    <label for="id${status.count}">ID Number:</label>
+		    <input type="text" name="id${status.count}" size="15" />
+	    
+		    <c:if test="${status.count > 1}">
+		    	<input type="button" onClick="moveUp();" value="Move Up"/>
+		    </c:if>
+	    </div>
+	</c:forEach>
+	
+</div>
+<input align="right" type="button" value="Add" onClick="addNew();"/><input align="right" type="button" value="Delete" onClick="deleteIt();"/>
 </div>
 
 <div class="thirdSet">
 <table align="left">
 <tr>
 <td><label for="articleTitle">Article/Output Title:</label></td>
-<td><input type="text" name="articleTitle" size="40" value="<c:out value="${publication.articleTitle}" />" /></td>
+<td><input type="text" name="articleTitle" size="65" value="<c:out value="${publication.articleTitle}" />" /></td>
 </tr>
 <tr>
 <td><label for="journalTitle">Journal/Publication Title:</label></td>
-<td><input type="text" name="journalTitle" size="40" value="<c:out value="${publication.journalTitle}" />" /></td>
+<td><input type="text" name="journalTitle" size="65" value="<c:out value="${publication.journalTitle}" />" /></td>
 </tr>
 <tr>
 <td><label for="year">Publication Year:</label></td>
-<td><input type="text" name="year" size="40" value="<c:out value="${publication.year}" />" /> </td>
+<td><input type="text" name="year" size="65" value="<c:out value="${publication.year}" />" /> </td>
 </tr>
 <tr>
 <td><label for="publisher">Publisher:</label></td>
-<td><input type="text" name="publisher" size="40" /></td>
+<td><input type="text" name="publisher" size="65" /></td>
 </tr>
 <tr>
 <td><label for="issn">ISSN:</label></td>
-<td><input type="text" name="issn" size="40" value="<c:out value="${publication.issn}" />" /></td>
+<td><input type="text" name="issn" size="65" value="<c:out value="${publication.issn}" />" /></td>
 </tr>
 <tr>
 <td><label for="volume">Volume/Number:</label></td>
-<td><input type="text" name="volume" size="40" value="<c:out value="${publication.volume}"/>" /></td>
+<td><input type="text" name="volume" size="65" value="<c:out value="${publication.volume}"/>" /></td>
 </tr>
 <tr>
 <td><label for="pageNum">Page numbers:</label></td>
-<td><input type="text" name="pageNum" size="40" value="<c:out value="${publication.startPage}-${publication.endPage}" />" /> </td>
+<td><input type="text" name="pageNum" size="65" value="<c:out value="${publication.startPage}-${publication.endPage}" />" /> </td>
 </tr>
 <tr>
 <td><label for="url">URL Address:</label></td>
-<td><input type="text" name="url" size="40" value="<c:out value="${publication.url}" />" />
+<td><input type="text" name="url" size="45" value="<c:out value="${publication.url}" />" />
 	<a  class="smallLink" target="_new" href="<c:out value="${publication.url}" />" >Follow Link</a>
 </td>
 </tr>
 <tr>
 <td><label for="doi">DOI:</label></td>
-<td><input type="text" name="doi" size="40" value="<c:out value="${publication.doi}" />" /></td>
+<td><input type="text" name="doi" size="65" value="<c:out value="${publication.doi}" />" /></td>
 </tr>
 <tr>
 <td><label for="keywords">Keywords:</label></td>
-<td><input type="text" name="keywords"  value="<c:out value="${publication.keyWords}" />"/></td>
+<td><input type="text" name="keywords" size="65"  value="<c:out value="${publication.keyWords}" />"/></td>
 </tr>
 </table>
 <table class="abstract">
@@ -126,7 +139,7 @@
 <label for="abstract">Abstract:</label>
 </td>
 <td>
-    <textarea name="abstract" rows="15" cols="40" onKeyUp="wordCount(this.value);">
+    <textarea name="abstract" rows="15" cols="45" onKeyUp="wordCount(this.value);">
 <c:out value="${publication.abstractText}" />
 </textarea>
 </td>
