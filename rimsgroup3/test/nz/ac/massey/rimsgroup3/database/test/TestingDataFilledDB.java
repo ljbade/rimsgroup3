@@ -50,8 +50,8 @@ private String dbSelection;
 			connection = dataSource.getConnection();
 		}
     	ScriptRunner runner = new ScriptRunner(connection ,false, true);
-    	runner.runScript(new BufferedReader(new FileReader("C:/Users/Peter/Documents/University/Software C/Createtables.sql")));
-    	runner.runScript(new BufferedReader(new FileReader("C:/Users/Peter/Documents/University/Software C/testCode.sql")));
+    	runner.runScript(new BufferedReader(new FileReader("/scripts/create-tables.sql")));
+    	runner.runScript(new BufferedReader(new FileReader("/scripts/testCode.sql")));
 	}
 	
 	public void tearDown(){

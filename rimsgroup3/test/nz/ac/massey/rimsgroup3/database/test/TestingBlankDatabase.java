@@ -52,7 +52,7 @@ public class TestingBlankDatabase extends ServletTestCase{
 			connection = dataSource.getConnection();
 		}
     	ScriptRunner runner = new ScriptRunner(connection ,false, true);
-    	runner.runScript(new BufferedReader(new FileReader("C:/Users/Peter/Documents/University/Software C/Createtables.sql")));
+    	runner.runScript(new BufferedReader(new FileReader("/scripts/create-tables.sql")));
     	
 	}
 	
@@ -61,16 +61,7 @@ public class TestingBlankDatabase extends ServletTestCase{
 	}
 	
 	public void testNoPublication() throws SQLException, ServletException, IOException {
-		config.setInitParameter("test", this.dbSelection);
-		String doi = "doi1";
 		
-		HttpSession session = request.getSession(true);  
-	    session.setAttribute("publicationDOI", doi);
-		
-	    
-		DatabaseSearchDOI dbSearchDOI = new DatabaseSearchDOI();
-		dbSearchDOI.init(config);
-		dbSearchDOI.doGet(request, response);
 	    
 		Boolean checkInDB = (Boolean) session.getAttribute("boolean");
 		assertFalse(checkInDB);
@@ -114,9 +105,7 @@ public class TestingBlankDatabase extends ServletTestCase{
 	    dbInsert.doGet(request, response);
 		
 	    
-		DatabaseSearchDOI dbSearchDOI = new DatabaseSearchDOI();
-		dbSearchDOI.init(config);
-		dbSearchDOI.doGet(request, response);
+	
 		
 		Boolean checkInDB = (Boolean) session.getAttribute("boolean");
 		assertTrue(checkInDB);
@@ -133,10 +122,6 @@ public class TestingBlankDatabase extends ServletTestCase{
 		authorsChecked.add(authorCheck1);
 		authorsChecked.add(authorCheck2);
 		
-		DatabaseSearchAuthors dbSearchAuthor = new DatabaseSearchAuthors();
-		session.setAttribute("publicationAuthors", authorsChecked);
-		dbSearchAuthor.init(config);
-		dbSearchAuthor.doGet(request, response);
 	    
 		List <Author> authorsReturned = new ArrayList<Author>();
 		authorsReturned = (List<Author>) session.getAttribute("publicationAuthors");
