@@ -63,7 +63,7 @@
 	<c:forEach items="${publication.authors}" var="author" varStatus="status">
 	<c:if test="${status.count==1}">
 		<script>
-			setCount("${publication.numberOfAuthors}");
+			setCount(${publication.numberOfAuthors});
 		</script>
 	</c:if>
 	    <div id="${status.count}">
@@ -79,7 +79,7 @@
 		    <input type="text" name="id${status.count}" size="15" />
 	    
 		    <c:if test="${status.count > 1}">
-		    	<input type="button" onClick="moveUp();" value="Move Up"/>
+		    	<input type="button" id="moveUp${status.count}" onClick="moveUp(this.id);" value="Move Up"/>
 		    </c:if>
 	    </div>
 	</c:forEach>

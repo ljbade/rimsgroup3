@@ -1,8 +1,11 @@
 // JavaScript Document
 var counter = 1;
+var max = 1;
 
 function setCount(count){
-	counter = count+1;
+	counter = count;
+	counter++;
+	max = counter;
 }
 
 function addNew() {
@@ -51,7 +54,8 @@ function addNew() {
 	var newMoveUpBtn = document.createElement('input');
 	newMoveUpBtn.type = "button";
 	newMoveUpBtn.value = "Move Up";
-	newMoveUpBtn.setAttribute("onClick","moveUp()");
+	newMoveUpBtn.id = "moveUp" + counter;
+	newMoveUpBtn.setAttribute("onClick","moveUp(this.id)");
 
 	// Append new button input to the newDiv
 	//newDiv.appendChild(newDelButton);
@@ -62,8 +66,10 @@ function addNew() {
 	counter++;
 }
 
-function moveUp() {
-	var thisDiv = this.parentNode.id;
+function moveUp(name) {
+	
+	var thisButton = document.getElementById(name);
+	var thisDiv = thisButton.parentNode.getAttribute("id");
 	
 	var temp = document.getElementById("fName" + thisDiv).value;
 	document.getElementById("fName" + thisDiv).value = document.getElementById("fName" + (thisDiv - 1)).value;
@@ -87,9 +93,9 @@ function moveUp() {
 }
 
 function deleteIt(){
-	var mainContainer = document.getElementById('authorDiv');
-	mainContainer.removeChild(document.getElementById(counter-1));
-	if(counter>1){
+	if(counter>max){
+		var mainContainer = document.getElementById('authorDiv');
+		mainContainer.removeChild(document.getElementById(counter-1));
 		counter--;
 	}
 }
