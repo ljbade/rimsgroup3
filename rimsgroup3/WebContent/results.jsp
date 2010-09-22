@@ -59,14 +59,20 @@
 </div>
 
 <div id="authorDiv" class="firstSet">
-<div>
-<label for="authors0">Author:</label>
-<input type="text" name="authors0" size="20" value="<c:out value="${publication.authorsString}" />" />
-<label for="afilliation0">Affiliation:</label>
-<input type="text" name="affiliation0" size="20" />
-<label for="id0">ID Number:</label>
+<c:forEach items="<c:out value="${publication.authors}" />" var="author" varStatus="status">
+    <div>
+    <label for="fName">First Name:</label>
+    <input type="text" name="fName" size="20" value="<c:out value="${author.firstName}" />" />
+    <label for="mName">Middle Name:</label>
+    <input type="text" name="mName" size="20" value="<c:out value="${author.middleName}" />" />
+    <label for="lName">Last Name:</label>
+    <input type="text" name="lName" size="20" value="<c:out value="${author.lastName}" />" />
+    <label for="afilliation">Affiliation:</label>
+    <input type="text" name="affiliation0" size="20" />
+    <label for="id">ID Number:</label>
+    </div>
+</c:forEach>
 <input type="text" name="id0" size="20" /><input type="button" value="Add" onClick="addNew();"/><input type="button" value="Delete" onClick="deleteIt();"/>
-</div>
 </div>
 
 <div class="thirdSet">
