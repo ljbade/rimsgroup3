@@ -89,5 +89,39 @@ function handleResponse(){
   }
 }
 
+// advancedRequest AJAX methods
+// medthod = get, url is the servlet to be called
+// journal, lname, article and year relate to search criteria entered into the form
+function sendAdvancedRequest(method, url, lname, journal, article, year){
+	  // start  progress display
+	  var progress = document.getElementById('ajax_response2');
+	  var html = "<br /><img src='ajax-loader.gif' /><br /> Search in progress. Please wait..."
+	  progress.innerHTML = html;
 
+	  // send AJAX request
+	  if(method == 'get' || method == "GET"){
+		  var name = "?lName=" + lname;
+		  var journalTitle = "&journalTitle=" + journal;
+		  var articleTitle = "&articleTitle=" + article;
+		  var date = "&year=" + year;
+	     url = url + name + journalTitle + articleTitle + date;
+	     http.open(method,url,true);
+	     http.onreadystatechange = handleAdvancedResponse;
+	     http.send(null);
+	  }
+	}
 
+function handleAdvancedResponse(){
+	  if(http.readyState == 4 && http.status == 200){
+	     var response = http.responseText;
+	     if(response){
+	      //stop progress display
+	      var progress = document.getElementById('ajax_response2');
+	      progress.innerHTML = "Search complete, redirecting...";
+
+	      // redirect to results
+	      window.location = "results.jsp";
+
+	     }
+	  }
+	}
