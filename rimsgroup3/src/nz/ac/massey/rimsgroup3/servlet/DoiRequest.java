@@ -1,6 +1,7 @@
 package nz.ac.massey.rimsgroup3.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -51,7 +52,10 @@ public class DoiRequest extends HttpServlet {
         Boolean doiInDB = ReadStatements.publicationReadStatment(connection, query);
         if (doiInDB == true )
         {
-        	response.sendRedirect("index.jsp?success=foundInDatabase");
+        	// Return value.
+            PrintWriter out = response.getWriter();
+            out.println("DOI found");
+            out.flush();
         }
         else
         {*/
@@ -68,9 +72,10 @@ public class DoiRequest extends HttpServlet {
         	} else {
         		response.sendRedirect("index.jsp?success=no");
         	}
+        
        /** } */
         
-    } 
+}
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

@@ -80,6 +80,12 @@ public class CrossrefRetriever implements MetadataRetriever {
 			e.printStackTrace();
 			return null;
 		}
+		// check for failed response from cross ref
+		NodeList nodeList = xmlDoc.getElementsByTagName("msg");
+		String test = nodeList.item(0).getTextContent();
+		if(nodeList.item(0).getTextContent().equals("DOI not found in CrossRef")) {
+			return null;
+		}
 		
 		// Begin parsing elements of XML document
 		Publication result = parseJournal(xmlDoc);
