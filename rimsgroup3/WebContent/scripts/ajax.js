@@ -44,6 +44,27 @@ function sendRequest(method, url, doi){
   }
 }
 
+//response handler for doiRequest method
+function handleResponse(){
+  if(http.readyState == 4 && http.status == 200){
+     var response = http.responseText;
+     
+     if(response.indexOf("DOI found") != -1) {
+    	 var progress = document.getElementById('ajax_response');
+         progress.innerHTML = "DOI has already been processed.";
+     }
+     else {
+      //stop progress display
+      var progress = document.getElementById('ajax_response');
+      progress.innerHTML = "Search complete, redirecting...";
+
+      // redirect to results
+      window.location = "results.jsp";
+
+     }
+  }
+}
+
 // ajax calling function for screenscaping class
 function getAbstract(method, url, resource){
 	// start  progress display
@@ -73,29 +94,10 @@ function handleAbstractResponse() {
 	}
 }
 
-// response handler for doiRequest method
-function handleResponse(){
-  if(http.readyState == 4 && http.status == 200){
-     var response = http.responseText;
-     
-     if(response.indexOf("DOI found") != -1) {
-    	 var progress = document.getElementById('ajax_response');
-         progress.innerHTML = "DOI has already been processed.";
-     }
-     else {
-      //stop progress display
-      var progress = document.getElementById('ajax_response');
-      progress.innerHTML = "Search complete, redirecting...";
 
-      // redirect to results
-      window.location = "results.jsp";
-
-     }
-  }
-}
 
 // advancedRequest AJAX methods
-// medthod = get, url is the servlet to be called
+// method = get, url is the servlet to be called
 // journal, lname, article and year relate to search criteria entered into the form
 function sendAdvancedRequest(method, url, lname, journal, article, year){
 	  // start  progress display
@@ -119,8 +121,11 @@ function sendAdvancedRequest(method, url, lname, journal, article, year){
 function handleAdvancedResponse(){
 	  if(http.readyState == 4 && http.status == 200){
 	     var response = http.responseText;
-	     
-	     if(response){
+	     if(response.indexOf("search failed") != -1) {
+	    	 var progress = document.getElementById('ajax_response2');
+	         progress.innerHTML = "Advanced search found no matches.";
+	     }
+	     else {
 	      //stop progress display
 	      var progress = document.getElementById('ajax_response2');
 	      progress.innerHTML = "Search complete, redirecting...";
