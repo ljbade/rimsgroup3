@@ -92,7 +92,7 @@ hza.style.display = state;
     <td><input type="text" name="year" id="year" /></td>
     </tr>
     </table>
-    <input type="submit" name="advSearch" value="Search" />
+    <input type="button" name="advSearch" value="Search" onclick="sendAdvancedRequest('get', 'AdvancedRequest', document.getElementById('lName').value, document.getElementById('journalTitle').value, document.getElementById('articleTitle').value, document.getElementById('year').value);" />
     <br />
      <div id="ajax_response2" >
         
