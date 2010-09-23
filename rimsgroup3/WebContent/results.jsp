@@ -87,7 +87,6 @@
 		    </c:if>
 	    </div>
 	</c:forEach>
-	
 </div>
 <input align="right" type="button" value="Add" onClick="addNew();"/><input align="right" type="button" value="Delete" onClick="deleteIt();"/>
 </div>
@@ -96,11 +95,11 @@
 <table align="left">
 <tr>
 <td><label for="articleTitle">Article/Output Title:</label></td>
-<td><input type="text" name="articleTitle" size="65" value="<c:out value="${publication.articleTitle}" />" /></td>
+<td><input type="text" name="articleTitle" size="85" value="<c:out value="${publication.articleTitle}" />" /></td>
 </tr>
 <tr>
 <td><label for="journalTitle">Journal/Publication Title:</label></td>
-<td><input type="text" name="journalTitle" size="65" value="<c:out value="${publication.journalTitle}" />" /></td>
+<td><input type="text" name="journalTitle" size="75" value="<c:out value="${publication.journalTitle}" />" /></td>
 </tr>
 <tr>
 <td><label for="year">Publication Year:</label></td>
@@ -116,7 +115,7 @@
 </tr>
 <tr>
 <td><label for="volume">Volume/Number:</label></td>
-<td><input type="text" name="volume" size="65" value="<c:out value="${publication.volume}"/> / <c:out value="${publication.issue}"/>" /></td>
+<td><input type="text" name="volume" size="65" value="<c:out value="${publication.volume} / ${publication.issue}"/>" /></td>
 </tr>
 <tr>
 <td><label for="pageNum">Page numbers:</label></td>
@@ -137,6 +136,7 @@
 <td><input type="text" name="keywords" size="65"  value="<c:out value="${publication.keyWords}" />"/></td>
 </tr>
 </table>
+
 <table class="abstract">
 <tr>
 <td>
@@ -153,6 +153,7 @@
     <td><label id="wordcount" class="smallLink"></label></td>
 </tr>
 </table>
+
 </div>
 <div>
 <a href="index.jsp"><input type="button" name="back" value="Back" /></a>
