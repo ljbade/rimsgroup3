@@ -44,9 +44,12 @@ public class AdvancedRequest extends HttpServlet {
 
         // run through array looking for doi and article title
         // if array length is less than 23 only one result was returned
-    	if(resultsArray.length < 2) {
+    	if(resultsArray.length < 4) {
     		// no usable result returned
-    		response.sendRedirect("index.jsp?success=no");
+    		// Return value to AJAX script
+            PrintWriter out = response.getWriter();
+            out.println("search failed");
+            out.flush();
     	}
     	else if(resultsArray.length < 24) {
         	// break string down to doi - initial string =  colspan=1 width=230><a href=http://dx.doi.org/10.3998/3336451.0009.101> doi:10.3998/3336451.0009.101</a>
