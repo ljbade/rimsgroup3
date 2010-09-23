@@ -77,7 +77,12 @@ function handleAbstractResponse() {
 function handleResponse(){
   if(http.readyState == 4 && http.status == 200){
      var response = http.responseText;
-     if(response){
+     
+     if(response.indexOf("DOI found") != -1) {
+    	 var progress = document.getElementById('ajax_response');
+         progress.innerHTML = "DOI has already been processed.";
+     }
+     else {
       //stop progress display
       var progress = document.getElementById('ajax_response');
       progress.innerHTML = "Search complete, redirecting...";
@@ -114,6 +119,7 @@ function sendAdvancedRequest(method, url, lname, journal, article, year){
 function handleAdvancedResponse(){
 	  if(http.readyState == 4 && http.status == 200){
 	     var response = http.responseText;
+	     
 	     if(response){
 	      //stop progress display
 	      var progress = document.getElementById('ajax_response2');
