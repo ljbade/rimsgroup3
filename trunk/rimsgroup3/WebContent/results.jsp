@@ -59,7 +59,8 @@
 </div>
 
 <div class="firstSet">
-<div id="authorDiv" align="left">
+<h2>Authors</h2>
+<div id="authorDiv">
 	<c:forEach items="${publication.authors}" var="author" varStatus="status">
 	<c:if test="${status.count==1}">
 		<script>
@@ -81,10 +82,11 @@
 		    
 		    <label for="id${status.count}">ID Number:</label>
 		    <input type="text" name="id${status.count}" size="15" />
-	    
+<!-- 
 		    <c:if test="${status.count > 1}">
 		    	<input type="button" id="moveUp${status.count}" onclick="moveUp(this.id);" value="Move Up"/>
 		    </c:if>
+ -->
 	    </div>
 	</c:forEach>
 </div>
@@ -157,8 +159,8 @@
 </div>
 <div>
 <a href="index.jsp"><input type="button" name="back" value="Back" /></a>
-<input type="submit" name="confirm" value="Confirm"/>
-<input type="checkbox" value="print" name="printCheck"/><label for="printCheck">Print</label>
+<input type="submit" name="confirm" value="Confirm"  onclick="checkPrint();"/>
+<input type="checkbox" value="print" name="printCheck" /><label for="printCheck">Print</label>
 </div>
 </form>
 </div>

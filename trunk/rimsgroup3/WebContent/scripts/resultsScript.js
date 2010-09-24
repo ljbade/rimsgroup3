@@ -61,8 +61,7 @@ function addNew() {
 	};
 
 	// Append new button input to the newDiv
-	//newDiv.appendChild(newDelButton);
-	newDiv.appendChild(newMoveUpBtn);
+	//newDiv.appendChild(newMoveUpBtn);
 	
 	// Append newDiv input to the mainContainer div
 	mainContainer.appendChild(newDiv);
@@ -107,4 +106,17 @@ function deleteIt(){
 function wordCount(count) {
 	var label = document.getElementById('wordcount');
 	label.innerHTML = "Character count: " + count.length;
+}
+
+/*when user clicks submit, an alert box is displayed and print box is checked.*/
+function checkPrint(){
+	var confirm = confirm("Are you sure you want to submit the details?");
+	if(confirm == true){
+		var checkBox = document.getElementsByName("printCheck");
+		if(checkBox.checked){
+			window.print();
+		}
+		window.location = index.jsp;
+	}
+	
 }
