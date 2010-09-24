@@ -1,0 +1,9 @@
+body {
+margin: 10px;
+background-color: #fff;
+width: 100%;
+}
+.rightFloat {
+	border: 2px solid black;
+	float: right;
+}
