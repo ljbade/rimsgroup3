@@ -12,21 +12,21 @@ public class Author extends Person {
 	private String type;
 	private String department, college;
 	private String email;
-	private String university;
+	private String affiliation;
 	private Boolean inDatabase;
 	
 	/**
 	 * @return the university
 	 */
-	public String getUniversity() {
-		return university;
+	public String getAffiliation() {
+		return affiliation;
 	}
 	
 	/**
 	 * @param university the university to set
 	 */
-	public void setUniversity(String university){
-		this.university = university;
+	public void setAffiliation(String affiliation){
+		this.affiliation = affiliation;
 	}
 	
 	

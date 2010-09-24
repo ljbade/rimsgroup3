@@ -13,7 +13,7 @@
 <h3>Results</h3>
 <jsp:useBean id="publication" class="nz.ac.massey.rimsgroup3.metadata.bean.Journal" scope="session" ></jsp:useBean>
 
-<form name="resultsForm" method="post">
+<form name="resultsForm" action="CommitRequest" method="post" onSubmit="">
 <div id="mainContainer" class="firstSet">
 <div>
 <label for="topAuthor">Author:</label><input type="text" id="topAuthor" />
@@ -78,10 +78,10 @@
 		    <input type="text" name="lName${status.count}" size="15" value="<c:out value="${author.lastName}" />" />
 		    
 		    <label for="afiliation${status.count}">Affiliation:</label>
-		    <input type="text" name="affiliation${status.count}" size="15" />
+		    <input type="text" name="affiliation${status.count}" size="15" value="<c:out value="${author.affiliation}" />" />
 		    
 		    <label for="id${status.count}">ID Number:</label>
-		    <input type="text" name="id${status.count}" size="15" />
+		    <input type="text" name="id${status.count}" size="15" value="<c:out value="${author.ID}" />" />
 <!-- 
 		    <c:if test="${status.count > 1}">
 		    	<input type="button" id="moveUp${status.count}" onclick="moveUp(this.id);" value="Move Up"/>

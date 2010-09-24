@@ -9,17 +9,17 @@ package nz.ac.massey.rimsgroup3.metadata.bean;
  */
 public class Person {
 	
-	protected String id;
+	protected String ID;
 	protected String firstName;
 	protected String middleName;
 	protected String lastName;
 
 	public String getID() {
-		return id;
+		return ID;
 	}
 	
 	public void setID(String id){
-		this.id = id;
+		this.ID = id;
 	}
 	/**
 	 * @return the firstName
