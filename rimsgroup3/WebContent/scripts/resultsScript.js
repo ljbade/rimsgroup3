@@ -108,15 +108,17 @@ function wordCount(count) {
 	label.innerHTML = "Character count: " + count.length;
 }
 
-/*when user clicks submit, an alert box is displayed and print box is checked.*/
-function checkPrint(){
-	var confirm = confirm("Are you sure you want to submit the details?");
-	if(confirm == true){
-		var checkBox = document.getElementsByName("printCheck");
-		if(checkBox.checked){
-			window.print();
-		}
-		window.location = index.jsp;
+// parse special characters in article title
+function parse() {
+	var title = document.getElementById('articleTitle').value;
+	while(title.indexOf("[sub") != -1) {
+	  title = title.replace("[sub", "<sub>");
+	  title = title.replace("]", "</sub>");
 	}
-	
+	while(title.indexOf("[sup") != -1) {
+		  title = title.replace("[sup", "<sup>");
+		  title = title.replace("]", "</sup>");
+		}
+	document.getElementById('articleTitle').value = title;
+	document.getElementById('htmlTitle').innerHTML = title;
 }
