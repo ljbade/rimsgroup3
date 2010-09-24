@@ -6,14 +6,21 @@
 <link rel="stylesheet" href="styles/main.css" type="text/css"/>
 <script type="text/javascript" src="scripts/resultsScript.js">
 </script>
+<script type="text/javascript" src="scripts/printing.js"></script>
 <title>RIMS Assistant - Results</title>
 </head>
 <body>
+<script type="text/javascript">
+	window.onload = function() {
+		parse();
+	};
+</script>
 <div class="results">
 <h3>Results</h3>
 <jsp:useBean id="publication" class="nz.ac.massey.rimsgroup3.metadata.bean.Journal" scope="session" ></jsp:useBean>
 
 <form name="resultsForm" action="CommitRequest" method="post" onSubmit="">
+<input type="hidden" id="hidden" value="" />
 <div id="mainContainer" class="firstSet">
 <div>
 <label for="topAuthor">Author:</label><input type="text" id="topAuthor" />
@@ -28,14 +35,14 @@
 <th colspan="3">Journal Contribution:</th>
 </tr>
 <tr>
-<td><input type="radio" name="contribution" value="review article"/>Review Article</td>
-<td><input type="radio" name="contribution" value="full article"/>Full Article in Personal Publication</td>
-<td><input type="radio" name="contribution" value="journal editor"/>Journal Editor</td>
+<td><input type="radio" name="contribution" id="reviewRB" value="review article"/>Review Article</td>
+<td><input type="radio" name="contribution" id="fullArticleRB" value="full article"/>Full Article in Personal Publication</td>
+<td><input type="radio" name="contribution" id="editorRB" value="journal editor"/>Journal Editor</td>
 </tr>
 <tr>
-<td><input type="radio" name="contribution" value="full article in journal"/>Full Article in Journal</td>
-<td><input type="radio" name="contribution" value="misc"/>Editorial, Brief Communication, Letter or Note</td>
-<td><input type="radio" name="contribution" value="other"/>Other</td>
+<td><input type="radio" name="contribution" id="fullArticle2RB" value="full article in journal"/>Full Article in Journal</td>
+<td><input type="radio" name="contribution" id="niscRB" value="misc"/>Editorial, Brief Communication, Letter or Note</td>
+<td><input type="radio" name="contribution" id="otherRB" value="other"/>Other</td>
 </tr>
 </table>
 <table class="resultTable" cellpadding="5px" align="center">
@@ -43,16 +50,16 @@
 <th>Research or Professsional/Community</th><th>Quality Assured?</th><th>Confidential?</th>
 </tr>
 <tr>
-<td><input type="radio" name="research" value="research"/>Research (PBRF)<br/>
-    <input type="radio" name="research" value="professional"/>Professional/Community
+<td><input type="radio" name="research" id="reasearchRB" value="research"/>Research (PBRF)<br/>
+    <input type="radio" name="research" id="professionalRB" value="professional"/>Professional/Community
 </td>
 <td>
-	<input type="radio" name="qa" value="yes"/>Yes<br/>
-    <input type="radio" name="qa" value="no"/>No
+	<input type="radio" name="qa" id="qaYesRB" value="yes"/>Yes<br/>
+    <input type="radio" name="qa" id="qaNoRB" value="no"/>No
 </td>
 <td>
-	<input type="radio" name="confidential" value="yes"/>Yes<br/>
-    <input type="radio" name="confidential" value="no"/>No
+	<input type="radio" name="confidential" id="confidYesRB" value="yes"/>Yes<br/>
+    <input type="radio" name="confidential" id="confidNoRB" value="no"/>No
 </td>
 </tr>
 </table>
@@ -65,24 +72,25 @@
 	<c:if test="${status.count==1}">
 		<script>
 			setCount(${publication.numberOfAuthors});
+			document.getElementById('hidden').value = ${publication.numberOfAuthors};
 		</script>
 	</c:if>
 	    <div id="${status.count}">
 		    <label for="fName${status.count}">First Name:</label>
-		    <input type="text" name="fName${status.count}" size="15" value="<c:out value="${author.firstName}" />" />
+		    <input type="text" name="fName${status.count}" id="fName${status.count}" size="15" value="<c:out value="${author.firstName}" />" />
 		    
 		    <label for="mName${status.count}">M. Name:</label>
-		    <input type="text" name="mName${status.count}" size="15" value="<c:out value="${author.middleName}" />" />
+		    <input type="text" name="mName${status.count}" id="mName${status.count}" size="15" value="<c:out value="${author.middleName}" />" />
 		    
 		    <label for="lName${status.count}">Last Name:</label>
-		    <input type="text" name="lName${status.count}" size="15" value="<c:out value="${author.lastName}" />" />
+		    <input type="text" name="lName${status.count}" id="lName${status.count}" size="15" value="<c:out value="${author.lastName}" />" />
 		    
 		    <label for="afiliation${status.count}">Affiliation:</label>
-		    <input type="text" name="affiliation${status.count}" size="15" value="<c:out value="${author.affiliation}" />" />
+		    <input type="text" name="affiliation${status.count}" id="affiliation${status.count}" size="15" />
 		    
 		    <label for="id${status.count}">ID Number:</label>
-		    <input type="text" name="id${status.count}" size="15" value="<c:out value="${author.ID}" />" />
-<!-- 
+		    <input type="text" name="id${status.count}" id="id${status.count}" size="15" />
+	    
 		    <c:if test="${status.count > 1}">
 		    	<input type="button" id="moveUp${status.count}" onclick="moveUp(this.id);" value="Move Up"/>
 		    </c:if>
@@ -94,48 +102,51 @@
 </div>
 
 <div class="thirdSet">
-<table align="left">
+<table align="left" width="60%">
 <tr>
 <td><label for="articleTitle">Article/Output Title:</label></td>
-<td><input type="text" name="articleTitle" size="85" value="<c:out value="${publication.articleTitle}" />" /></td>
+<td><input type="text" name="articleTitle" id="articleTitle" size="85" value="<c:out value="${publication.articleTitle}" />" /></td>
+</tr>
+<tr>
+	<td></td><td><label id="htmlTitle" ></label></td>
 </tr>
 <tr>
 <td><label for="journalTitle">Journal/Publication Title:</label></td>
-<td><input type="text" name="journalTitle" size="75" value="<c:out value="${publication.journalTitle}" />" /></td>
+<td><input type="text" name="journalTitle" id="journalTitle" size="75" value="<c:out value="${publication.journalTitle}" />" /></td>
 </tr>
 <tr>
 <td><label for="year">Publication Year:</label></td>
-<td><input type="text" name="year" size="65" value="<c:out value="${publication.year}" />" /> </td>
+<td><input type="text" name="year" id="year" size="65" value="<c:out value="${publication.year}" />" /> </td>
 </tr>
 <tr>
 <td><label for="publisher">Publisher:</label></td>
-<td><input type="text" name="publisher" size="65" /></td>
+<td><input type="text" name="publisher" id="publisher" size="65" /></td>
 </tr>
 <tr>
 <td><label for="issn">ISSN:</label></td>
-<td><input type="text" name="issn" size="65" value="<c:out value="${publication.issn}" />" /></td>
+<td><input type="text" name="issn" id="issn" size="65" value="<c:out value="${publication.issn}" />" /></td>
 </tr>
 <tr>
 <td><label for="volume">Volume/Number:</label></td>
-<td><input type="text" name="volume" size="65" value="<c:out value="${publication.volume} / ${publication.issue}"/>" /></td>
+<td><input type="text" name="volume" id="volume" size="65" value="<c:out value="${publication.volume} / ${publication.issue}"/>" /></td>
 </tr>
 <tr>
 <td><label for="pageNum">Page numbers:</label></td>
-<td><input type="text" name="pageNum" size="65" value="<c:out value="${publication.startPage}-${publication.endPage}" />" /> </td>
+<td><input type="text" name="pageNum" id="pageNum" size="65" value="<c:out value="${publication.startPage}-${publication.endPage}" />" /> </td>
 </tr>
 <tr>
 <td><label for="url">URL Address:</label></td>
-<td><input type="text" name="url" size="45" value="<c:out value="${publication.url}" />" />
+<td><input type="text" name="url" id="url" size="45" value="<c:out value="${publication.url}" />" />
 	<a  class="smallLink" target="_new" href="<c:out value="${publication.url}" />" >Follow Link</a>
 </td>
 </tr>
 <tr>
 <td><label for="doi">DOI:</label></td>
-<td><input type="text" name="doi" size="65" value="<c:out value="${publication.doi}" />" /></td>
+<td><input type="text" name="doi" id="doi" size="65" value="<c:out value="${publication.doi}" />" /></td>
 </tr>
 <tr>
 <td><label for="keywords">Keywords:</label></td>
-<td><input type="text" name="keywords" size="65"  value="<c:out value="${publication.keyWords}" />"/></td>
+<td><input type="text" name="keywords" id="keywords" size="65"  value="<c:out value="${publication.keyWords}" />"/></td>
 </tr>
 </table>
 
@@ -145,7 +156,7 @@
 <label for="abstract">Abstract:</label>
 </td>
 <td>
-    <textarea name="abstract" rows="15" cols="45" onKeyUp="wordCount(this.value);">
+    <textarea name="abstract" id="abstract" rows="15" cols="45" onKeyUp="wordCount(this.value);">
 <c:out value="${publication.abstractText}" />
 </textarea>
 </td>
@@ -159,9 +170,10 @@
 </div>
 <div>
 <a href="index.jsp"><input type="button" name="back" value="Back" /></a>
-<input type="submit" name="confirm" value="Confirm"  onclick="checkPrint();"/>
-<input type="checkbox" value="print" name="printCheck" /><label for="printCheck">Print</label>
+<input type="submit" name="confirm" value="Confirm" onclick="checkPrinting(document.getElementById('resultsForm'));" />
+<input type="checkbox" value="print" name="printCheck" id="printCheck" /><label for="printCheck">Print</label>
 </div>
+
 </form>
 </div>
 </body>
