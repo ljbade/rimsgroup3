@@ -41,7 +41,8 @@ public class DatabaseInsert extends HttpServlet {
 	 * http://www.red5tutorials.net/index.php/Howtos:Tomcat
 	 * http://java.sun.com/developer/Books/javaserverpages/tomcat/Sams-Tomcat-KS_ch09.pdf
 	 */
-public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+public void doGet(HttpServletRequest request, HttpServletResponse response) 
+throws ServletException, IOException {
 		
 		Connection connection = null;
 		HttpSession insertInformation = request.getSession();
@@ -69,7 +70,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response) thro
 			while (i != authorList.size())
 			{
 				author = authorList.get(i);
-				if (author.getUniversity().toLowerCase().contains("massey"))
+				if (author.getAffiliation().toLowerCase().contains("massey"))
 				{
 					PreparedStatement statementMasseyAuthor = InsertStatements.masseyAuthorStatement(connection, author);
 					statementMasseyAuthor.executeUpdate();

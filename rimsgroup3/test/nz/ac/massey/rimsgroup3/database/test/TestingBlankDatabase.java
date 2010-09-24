@@ -82,14 +82,14 @@ public class TestingBlankDatabase extends ServletTestCase{
 		authorMass1.setLastName("Leia");
 		authorMass1.setMiddleName("mid");
 		authorMass1.setType("type");
-		authorMass1.setUniversity("Massey");
+		authorMass1.setAffiliation("Massey");
 		 
 		Author authorMisc1 = new Author();
 		authorMisc1.setID("2");
 		authorMisc1.setFirstName("Hans");
 		authorMisc1.setLastName("Solo");
 		authorMisc1.setMiddleName("middle");
-		authorMisc1.setUniversity("Dublin");
+		authorMisc1.setAffiliation("Dublin");
 		
 		authorsInserted.add(authorMass1);
 		authorsInserted.add(authorMisc1);
@@ -145,7 +145,7 @@ public class TestingBlankDatabase extends ServletTestCase{
 		assertEquals(authorCompare.getID(),authorRetrieved.getID());
 		assertEquals(authorCompare.getType(),authorRetrieved.getType());
 		assertEquals(authorCompare.getCollege(),authorRetrieved.getCollege());
-		assertEquals(authorCompare.getUniversity(),authorRetrieved.getUniversity());
+		assertEquals(authorCompare.getAffiliation(),authorRetrieved.getAffiliation());
 		assertEquals(authorCompare.getDepartment(),authorRetrieved.getDepartment());
 	}
 	
@@ -160,14 +160,14 @@ public class TestingBlankDatabase extends ServletTestCase{
 		massExp1.setLastName("Leia");
 		massExp1.setMiddleName("mid");
 		massExp1.setType("type");
-		massExp1.setUniversity("Massey");
+		massExp1.setAffiliation("Massey");
 		 
 		Author miscExp1 = new Author();
 		miscExp1.setID("2");
 		miscExp1.setFirstName("Hans");
 		miscExp1.setLastName("Solo");
 		miscExp1.setMiddleName("middle");
-		miscExp1.setUniversity("Dublin");
+		miscExp1.setAffiliation("Dublin");
 		
 		authorsExpected.add(massExp1);
 		authorsExpected.add(miscExp1);

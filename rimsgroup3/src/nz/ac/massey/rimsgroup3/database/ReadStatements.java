@@ -62,7 +62,7 @@ public class ReadStatements {
 			while (authorRS.next())
 			{
 				authoredIt.setID(authorRS.getString(1));
-				authoredIt.setUniversity(authorRS.getString(2));
+				authoredIt.setAffiliation(authorRS.getString(2));
 				authoredIt.setInDatabase(true);
 			}
 			if  (statementAuthor != null) statementAuthor.close();
@@ -130,7 +130,7 @@ public class ReadStatements {
 				authoredIt.setType(authorRS.getString(2));
 				authoredIt.setDepartment(authorRS.getString(3));
 				authoredIt.setCollege(authorRS.getString(4));
-				authoredIt.setUniversity("Massey");
+				authoredIt.setAffiliation("Massey");
 				authoredIt.setInDatabase(true);
 			}
 			if  (statementAuthor != null) statementAuthor.close();

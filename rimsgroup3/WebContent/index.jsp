@@ -65,6 +65,10 @@ hza.style.display = state;
     <c:if test="${param.success == 'no'}">
         DOI search failed.		
     </c:if>
+    <c:if test="${param.success == 'successfulCommit'}">
+        Publication has been successfully submitted.		
+    </c:if>
+    
     </form>
    
     <p><a href="#" onClick="showhide('div1');">Advanced Search</a></p> 

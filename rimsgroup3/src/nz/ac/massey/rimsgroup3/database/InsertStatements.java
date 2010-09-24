@@ -55,13 +55,13 @@ public class InsertStatements {
 			statementMiscAuthor.setString(2, author.getFirstName());
 			statementMiscAuthor.setString(3, author.getLastName());
 			statementMiscAuthor.setString(4, author.getMiddleName());
-			statementMiscAuthor.setString(5, author.getUniversity());
+			statementMiscAuthor.setString(5, author.getAffiliation());
 			statementMiscAuthor.setString(6, author.getFirstName());
 			statementMiscAuthor.setString(7, author.getFirstName());
 			statementMiscAuthor.setString(8, author.getLastName());
 			statementMiscAuthor.setString(9, author.getMiddleName());
 			statementMiscAuthor.setString(10, author.getMiddleName());
-			statementMiscAuthor.setString(11, author.getUniversity());
+			statementMiscAuthor.setString(11, author.getAffiliation());
 			return statementMiscAuthor;
 		}
 		catch (Exception e)

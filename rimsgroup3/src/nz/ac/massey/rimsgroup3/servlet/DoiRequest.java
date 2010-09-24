@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,9 +14,7 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import nz.ac.massey.rimsgroup3.Service;
-import nz.ac.massey.rimsgroup3.database.DatabaseConnection;
-import nz.ac.massey.rimsgroup3.database.ReadStatements;
-import nz.ac.massey.rimsgroup3.database.SearchAuthors;
+import nz.ac.massey.rimsgroup3.database.*;
 import nz.ac.massey.rimsgroup3.metadata.bean.Publication;
 
 /**
@@ -45,35 +42,53 @@ public class DoiRequest extends HttpServlet {
         String query = request.getParameter("search").toString().trim();
      
         // local database is checked here first for already saved info
-      /**  synchronized (dataSource)
+        synchronized (dataSource)
 		{		
 			connection = dataSource.getConnection();
 		}
         Boolean doiInDB = ReadStatements.publicationReadStatment(connection, query);
         if (doiInDB == true )
         {
+
+        	response.sendRedirect("index.jsp?success=foundInDatabase");   	
+
         	// Return value.
             PrintWriter out = response.getWriter();
             out.println("DOI found");
             out.flush();
+
         }
         else
-        {*/
+        {
         // pass DOI to Crossref if local db fails
-        	
         	Publication publication = Service.get().retrievePublication(query);        
            
         //redirect to response page once all done processing
         	if (publication != null) {
-        		/**Publication detailedPublication = SearchAuthors.authorsInDatabase(connection, publication);*/
+        		Publication detailedPublication = SearchAuthors.authorsInDatabase(connection, publication);
         		HttpSession session = request.getSession(true);   
-             	session.setAttribute("publication", publication);  		
+             	session.setAttribute("publication", detailedPublication);  		
         		response.sendRedirect("results.jsp");
         	} else {
         		response.sendRedirect("index.jsp?success=no");
         	}
+
+        }  
+		try
+		{
+			if (connection != null)
+			{
+				connection.close();
+			}
+		}
+		catch (SQLException e)
+		{
+			System.err.println(e.getMessage());
+		}
+
         
        /** } */
+
         
 }
     
