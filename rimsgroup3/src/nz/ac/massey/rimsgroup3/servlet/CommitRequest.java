@@ -13,9 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
-
-
 import nz.ac.massey.rimsgroup3.database.*;
+
 import nz.ac.massey.rimsgroup3.metadata.bean.*;
 
 
