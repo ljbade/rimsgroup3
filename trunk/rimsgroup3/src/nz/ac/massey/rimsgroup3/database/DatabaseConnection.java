@@ -8,6 +8,10 @@ import javax.naming.*;
 public class DatabaseConnection {
 	private DataSource dataSource ;
 	
+	public DatabaseConnection(){
+		
+	}
+	
 	public DataSource setUp(String db) throws ServletException
 	{
 		try {
