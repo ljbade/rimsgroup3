@@ -3,8 +3,6 @@
  */
 package nz.ac.massey.rimsgroup3.metadata.bean;
 
-import java.util.Date;
-
 /**
  * @author Leith
  *

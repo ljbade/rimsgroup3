@@ -13,17 +13,17 @@ public class Author extends Person {
 	private String department, college;
 	private String email;
 	private String affiliation;
-	private Boolean inDatabase;
+	private boolean inDatabase;
 	
 	/**
-	 * @return the university
+	 * @return the affiliation
 	 */
 	public String getAffiliation() {
 		return affiliation;
 	}
 	
 	/**
-	 * @param university the university to set
+	 * @param affiliation the affiliation to set
 	 */
 	public void setAffiliation(String affiliation){
 		this.affiliation = affiliation;
@@ -89,13 +89,13 @@ public class Author extends Person {
 	/**
 	 * @return the InDatabase
 	 */
-	public void setInDatabase(Boolean inDatabase) {
+	public void setInDatabase(boolean inDatabase) {
 		this.inDatabase = inDatabase;
 	}
 	/**
 	 * @param InDatabase the InDatabase to set
 	 */
-	public Boolean getInDatabase() {
+	public boolean getInDatabase() {
 		return inDatabase;
 	}
 	
