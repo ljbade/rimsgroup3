@@ -35,7 +35,7 @@ public class CrossrefRetrieverTest extends TestCase {
 		Journal result = (Journal) retriever.retrievePublication(doi);
 		
 		assertTrue(result != null);
-		
+		// TODO: use assert equals or assert same?
 		assertTrue(result.getJournalTitle().equals(expected.getJournalTitle()));
 		assertTrue(result.getIssn().equals(expected.getIssn()));
 		assertTrue(result.getVolume().equals(expected.getVolume()));

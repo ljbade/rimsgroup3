@@ -19,7 +19,7 @@ public class Publication {
 	protected String abstractText;
 	protected List<String> keyWords;
 	protected String url;	
-	protected String isQualityAssured;
+	protected boolean isQualityAssured;
 	protected List<Author> authors;
 	protected String publisher;
 	protected String publicationCategory;
@@ -190,14 +190,14 @@ public class Publication {
 	/**
 	 * @return the isQualityAssured
 	 */
-	public String isQualityAssured() {
+	public boolean getIsQualityAssured() {
 		return isQualityAssured;
 	}
 	
 	/**
 	 * @param isQualityAssured the isQualityAssured to set
 	 */
-	public void setQualityAssured(String isQualityAssured) {
+	public void setIsQualityAssured(boolean isQualityAssured) {
 		this.isQualityAssured = isQualityAssured;
 	}
 	
@@ -226,14 +226,5 @@ public class Publication {
 		
 		return authorsString.toString();
 	}
-	
-
-	
-	
-	
-	
-	
-	
-	
 	
 }
