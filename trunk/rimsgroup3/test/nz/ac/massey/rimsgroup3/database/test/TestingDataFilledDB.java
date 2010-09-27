@@ -66,9 +66,9 @@ private String dbSelection;
 	    session.setAttribute("publicationDOI", doi);
 		
 	    
-		DatabaseSearchDOI dbSearchDOI = new DatabaseSearchDOI();
-		dbSearchDOI.init(config);
-		dbSearchDOI.doGet(request, response);
+//		DatabaseSearchDOI dbSearchDOI = new DatabaseSearchDOI();
+//		dbSearchDOI.init(config);
+//		dbSearchDOI.doGet(request, response);
 	    
 		Boolean checkInDB = (Boolean) session.getAttribute("boolean");
 		assertFalse(checkInDB);
@@ -84,9 +84,9 @@ private String dbSelection;
 	    session.setAttribute("publicationDOI", doi);
 		
 	    
-		DatabaseSearchDOI dbSearchDOI = new DatabaseSearchDOI();
-		dbSearchDOI.init(config);
-		dbSearchDOI.doGet(request, response);
+//		DatabaseSearchDOI dbSearchDOI = new DatabaseSearchDOI();
+//		dbSearchDOI.init(config);
+//		dbSearchDOI.doGet(request, response);
 	    
 		Boolean checkInDB = (Boolean) session.getAttribute("boolean");
 		assertTrue(checkInDB);
@@ -127,10 +127,10 @@ private String dbSelection;
 		authorsChecked.add(authorCheck5);
 		authorsChecked.add(authorCheck6);
 		
-		DatabaseSearchAuthors dbSearchAuthor = new DatabaseSearchAuthors();
+//		DatabaseSearchAuthors dbSearchAuthor = new DatabaseSearchAuthors();
 		session.setAttribute("publicationAuthors", authorsChecked);
-		dbSearchAuthor.init(config);
-		dbSearchAuthor.doGet(request, response);
+//		dbSearchAuthor.init(config);
+//		dbSearchAuthor.doGet(request, response);
 	    
 		
 		List <Author> authorsReturned = new ArrayList<Author>();
@@ -224,10 +224,10 @@ private String dbSelection;
 
 		authorsExpected = authorsExpected();
 		
-		DatabaseSearchAuthors dbSearchAuthor = new DatabaseSearchAuthors();
+//		DatabaseSearchAuthors dbSearchAuthor = new DatabaseSearchAuthors();
 		session.setAttribute("publicationAuthors", authorsChecked);
-		dbSearchAuthor.init(config);
-		dbSearchAuthor.doGet(request, response);
+//		dbSearchAuthor.init(config);
+//		dbSearchAuthor.doGet(request, response);
 		
 		//masseyCheck1.setDepartment("test");
 	    
