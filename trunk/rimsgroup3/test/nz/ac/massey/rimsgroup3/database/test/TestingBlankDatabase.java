@@ -33,6 +33,8 @@ import nz.ac.massey.rimsgroup3.runner.ScriptRunner;
 public class TestingBlankDatabase extends ServletTestCase{
 	DataSource dataSource;
 	private String dbSelection;
+	Connection connection;
+	
 	public TestingBlankDatabase(String name)
 	{
 		super(name);
@@ -45,14 +47,13 @@ public class TestingBlankDatabase extends ServletTestCase{
 		this.dbSelection = "swctest";
     	DatabaseConnection datasource = new DatabaseConnection();
     	this.dataSource =  datasource.setUp(this.dbSelection);
-    	Connection connection = null;
     	
     	synchronized (dataSource)
 		{
-			connection = dataSource.getConnection();
+			this.connection = dataSource.getConnection();
 		}
-    	ScriptRunner runner = new ScriptRunner(connection ,false, true);
-    	runner.runScript(new BufferedReader(new FileReader("/scripts/create-tables.sql")));
+    	ScriptRunner runner = new ScriptRunner(this.connection ,false, true);
+    	//runner.runScript(new BufferedReader(new FileReader("/scripts/create-tables.sql")));
     	
 	}
 	
@@ -60,21 +61,15 @@ public class TestingBlankDatabase extends ServletTestCase{
 
 	}
 	
-	public void testNoPublication() throws SQLException, ServletException, IOException {
-		
-	    
-		Boolean checkInDB = (Boolean) session.getAttribute("boolean");
-		assertFalse(checkInDB);
-
-
-	}
 
 	public void testInsert() throws SQLException, ServletException, IOException {
-		config.setInitParameter("test", this.dbSelection);
-		String doi = "doi1";
-		List <Author> authorsInserted = new ArrayList<Author>();
 		
-	    Author authorMass1 = new Author();
+		String doi = "10.1016/j.tcs.2010.07.0078";
+		List <Author> authorsInserted = new ArrayList<Author>();
+		Publication publication = new Publication();
+		publication.setDoi(doi);
+	    
+		Author authorMass1 = new Author();
 		authorMass1.setCollege("College");
 		authorMass1.setDepartment("Department");
 		authorMass1.setFirstName("Princess");
@@ -93,44 +88,41 @@ public class TestingBlankDatabase extends ServletTestCase{
 		
 		authorsInserted.add(authorMass1);
 		authorsInserted.add(authorMisc1);
+		publication.setAuthors(authorsInserted);
 		
-		List <Author> authorsExpected = new ArrayList<Author>();
-		authorsExpected = authorExpected();
-	    
-		HttpSession session = request.getSession(true);  
-	    session.setAttribute("publicationDOI", doi);
-	    session.setAttribute("publicationAuthors", authorsInserted);
-	    DatabaseInsert dbInsert = new DatabaseInsert();
-	    dbInsert.init(config);
-	    dbInsert.doGet(request, response);
-		
-	    
-	
-		
-		Boolean checkInDB = (Boolean) session.getAttribute("boolean");
+		try {
+			InsertDetails.detailsToInsert(this.connection, publication);
+			assertTrue(true);
+		}
+		catch(Exception e){
+			assertFalse(false);
+		}
+	  
+		Boolean checkInDB = ReadStatements.publicationReadStatment(this.connection, doi);
 		assertTrue(checkInDB);
 		
-		List <Author> authorsChecked = new ArrayList<Author>();
+		Publication publicationRetrieved = new Publication();
+		List<Author> authorsRetrieved = new ArrayList<Author>();
 		Author authorCheck1 = new Author();
-		authorCheck1.setFirstName(authorMass1.getFirstName());
-		authorCheck1.setLastName(authorMass1.getLastName());
-		authorCheck1.setMiddleName(authorMass1.getMiddleName());
+		authorCheck1.setFirstName("Princess");
+		authorCheck1.setLastName("Leia");
+		authorCheck1.setMiddleName("mid");
 		Author authorCheck2 = new Author();
-		authorCheck2.setFirstName(authorMisc1.getFirstName());
-		authorCheck2.setLastName(authorMisc1.getLastName());
-		authorCheck2.setMiddleName(authorMisc1.getMiddleName());
-		authorsChecked.add(authorCheck1);
-		authorsChecked.add(authorCheck2);
+		authorCheck2.setFirstName("Hans");
+		authorCheck2.setLastName("Solo");
+		authorCheck2.setMiddleName("middle");
+		authorsRetrieved.add(authorCheck1);
+		authorsRetrieved.add(authorCheck2);
+		publicationRetrieved.setAuthors(authorsRetrieved);
 		
-	    
-		List <Author> authorsReturned = new ArrayList<Author>();
-		authorsReturned = (List<Author>) session.getAttribute("publicationAuthors");
+		publicationRetrieved = SearchAuthors.authorsInDatabase(connection, publicationRetrieved);
+		
 		int i = 0;
-		assertEquals(authorsExpected.size(),authorsReturned.size());
-		while (authorsReturned.size() != i)
+		assertEquals(authorsInserted.size(),authorsRetrieved.size());
+		while (authorsInserted.size() != i)
 		{
-			Author authorRetrieved = authorsReturned.get(i);
-			Author authorCompare = authorsExpected.get(i);
+			Author authorRetrieved = authorsRetrieved.get(i);
+			Author authorCompare = authorsInserted.get(i);
 			authorComparison(authorRetrieved,authorCompare);
 			i++;
 		}
@@ -149,29 +141,6 @@ public class TestingBlankDatabase extends ServletTestCase{
 		assertEquals(authorCompare.getDepartment(),authorRetrieved.getDepartment());
 	}
 	
-	private List<Author> authorExpected(){
-		List <Author> authorsExpected = new ArrayList<Author>();
-		
-	    Author massExp1 = new Author();
-		massExp1.setCollege("College");
-		massExp1.setDepartment("Department");
-		massExp1.setFirstName("Princess");
-		massExp1.setID("01");
-		massExp1.setLastName("Leia");
-		massExp1.setMiddleName("mid");
-		massExp1.setType("type");
-		massExp1.setAffiliation("Massey");
-		 
-		Author miscExp1 = new Author();
-		miscExp1.setID("2");
-		miscExp1.setFirstName("Hans");
-		miscExp1.setLastName("Solo");
-		miscExp1.setMiddleName("middle");
-		miscExp1.setAffiliation("Dublin");
-		
-		authorsExpected.add(massExp1);
-		authorsExpected.add(miscExp1);
-		return authorsExpected;
-	}
+
 	
 }

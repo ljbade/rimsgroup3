@@ -30,7 +30,7 @@ public class DoiRequest extends HttpServlet {
 	  public void init(ServletConfig config) throws ServletException {
 	     	super.init(config);
 	    	String db = config.getInitParameter("test");
-	    	DatabaseConnection datasource = new DatabaseConnection();
+	    	DatabaseConnectI datasource = new DatabaseConnection();
 	    	this.dataSource =  datasource.setUp(db);
 	       }
 
