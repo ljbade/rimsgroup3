@@ -37,7 +37,7 @@ public class CommitRequest extends HttpServlet {
         
     	super.init(config);
     	String db = config.getInitParameter("test");
-    	DatabaseConnection datasource = new DatabaseConnection();
+    	DatabaseConnectI datasource = new DatabaseConnection();
     	this.dataSource =  datasource.setUp(db);
     	
       }
@@ -85,7 +85,17 @@ public class CommitRequest extends HttpServlet {
 		{
 			System.out.println("fail commiting");
 		}
-		
+		try
+		{
+			if (connection != null)
+			{
+				connection.close();
+			}
+		}
+		catch (SQLException e)
+		{
+			System.err.println(e.getMessage());
+		}
 	
     }
     

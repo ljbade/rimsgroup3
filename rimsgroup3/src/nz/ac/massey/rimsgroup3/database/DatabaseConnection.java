@@ -5,7 +5,7 @@ import javax.sql.*;
 
 import javax.naming.*;
 
-public class DatabaseConnection {
+public class DatabaseConnection implements DatabaseConnectI {
 	private DataSource dataSource ;
 	
 	public DatabaseConnection(){

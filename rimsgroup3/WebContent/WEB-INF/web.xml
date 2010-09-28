@@ -74,16 +74,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>DatabaseInsert</display-name>
-    <servlet-name>DatabaseInsert</servlet-name>
-    <servlet-class>nz.ac.massey.rimsgroup3.database.DatabaseInsert</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DatabaseInsert</servlet-name>
-    <url-pattern>/DatabaseInsert</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>AbstractText</display-name>
     <servlet-name>AbstractText</servlet-name>
     <servlet-class>nz.ac.massey.rimsgroup3.servlet.AbstractText</servlet-class>

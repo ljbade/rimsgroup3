@@ -31,7 +31,8 @@ import nz.ac.massey.rimsgroup3.runner.ScriptRunner;
 public class TestingDataFilledDB extends ServletTestCase{
 DataSource dataSource;
 private String dbSelection;
-	
+Connection connection;	
+
 	public TestingDataFilledDB(String name)
 	{
 		super(name);
@@ -42,16 +43,15 @@ private String dbSelection;
 	
 	public void setUp() throws SQLException, ServletException, IOException{
 		this.dbSelection = "datatest";
-    	DatabaseConnection datasource = new DatabaseConnection();
+    	DatabaseConnectI datasource = new DatabaseConnection();
     	this.dataSource =  datasource.setUp(this.dbSelection);
-    	Connection connection = null;
     	synchronized (dataSource)
 		{
-			connection = dataSource.getConnection();
+			this.connection = dataSource.getConnection();
 		}
-    	ScriptRunner runner = new ScriptRunner(connection ,false, true);
-    	runner.runScript(new BufferedReader(new FileReader("/scripts/create-tables.sql")));
-    	runner.runScript(new BufferedReader(new FileReader("/scripts/testCode.sql")));
+    	ScriptRunner runner = new ScriptRunner(this.connection ,false, true);
+    	//runner.runScript(new BufferedReader(new FileReader("/scripts/create-tables.sql")));
+    	//runner.runScript(new BufferedReader(new FileReader("/scripts/testCode.sql")));
 	}
 	
 	public void tearDown(){
@@ -59,43 +59,25 @@ private String dbSelection;
 	}
 	
 	public void testNoPublicationFound() throws SQLException, ServletException, IOException {
-		config.setInitParameter("test", this.dbSelection);
 		String doi = "10.1016/j.tcs.2010.07.0078";
-		
-		HttpSession session = request.getSession(true);  
-	    session.setAttribute("publicationDOI", doi);
-		
-	    
-//		DatabaseSearchDOI dbSearchDOI = new DatabaseSearchDOI();
-//		dbSearchDOI.init(config);
-//		dbSearchDOI.doGet(request, response);
-	    
-		Boolean checkInDB = (Boolean) session.getAttribute("boolean");
+		Boolean checkInDB = ReadStatements.publicationReadStatment(connection, doi);
 		assertFalse(checkInDB);
 
 
 	}
 	
 	public void testPublicationFound() throws SQLException, ServletException, IOException {
-		config.setInitParameter("test", this.dbSelection);
 		String doi = "10.1016/j.tcs.2010.07.007";
-		
-		HttpSession session = request.getSession(true);  
-	    session.setAttribute("publicationDOI", doi);
-		
-	    
-//		DatabaseSearchDOI dbSearchDOI = new DatabaseSearchDOI();
-//		dbSearchDOI.init(config);
-//		dbSearchDOI.doGet(request, response);
-	    
-		Boolean checkInDB = (Boolean) session.getAttribute("boolean");
+		Boolean checkInDB = ReadStatements.publicationReadStatment(connection, doi);
 		assertTrue(checkInDB);
 	}
 	
 	public void testNoAuthorsFound() throws SQLException, ServletException, IOException{
-		config.setInitParameter("test", this.dbSelection);
+		
 		
 		List <Author> authorsChecked = new ArrayList<Author>();
+		Publication publication = new Publication();
+		
 		Author authorCheck1 = new Author();
 		authorCheck1.setFirstName("g");
 		authorCheck1.setLastName("Bobbison");
@@ -126,22 +108,19 @@ private String dbSelection;
 		authorsChecked.add(authorCheck4);
 		authorsChecked.add(authorCheck5);
 		authorsChecked.add(authorCheck6);
+		publication.setAuthors(authorsChecked);
 		
-//		DatabaseSearchAuthors dbSearchAuthor = new DatabaseSearchAuthors();
-		session.setAttribute("publicationAuthors", authorsChecked);
-//		dbSearchAuthor.init(config);
-//		dbSearchAuthor.doGet(request, response);
-	    
+		List <Author> authorsExpected = new ArrayList<Author>();
+		authorsExpected = authorsNotFoundExp();
 		
-		List <Author> authorsReturned = new ArrayList<Author>();
-		authorsReturned = (List<Author>) session.getAttribute("publicationAuthors");
+		SearchAuthors.authorsInDatabase(connection, publication);
 		int i = 0;
-		assertEquals(authorsChecked.size(),authorsReturned.size());
-		while (authorsReturned.size() != i)
+		assertEquals(authorsChecked.size(),authorsExpected.size());
+		while (authorsExpected.size() != i)
 		{
-			Author authorRetrieved = authorsReturned.get(i);
+			Author authorRetrieved = authorsChecked.get(i);
 			assertFalse(authorRetrieved.getInDatabase());
-			Author authorCompare = authorsChecked.get(i);
+			Author authorCompare = authorsExpected.get(i);
 			authorComparison(authorRetrieved,authorCompare);
 			i++;
 		}
@@ -149,9 +128,9 @@ private String dbSelection;
 	}
 	
 	public void testAuthorsFound() throws SQLException, ServletException, IOException{
-		config.setInitParameter("test", this.dbSelection);
+		
+		Publication publication = new Publication();
 		List <Author> authorsChecked = new ArrayList<Author>();
-		List <Author> authorsExpected = new ArrayList<Author>();
 		
 		Author masseyCheck1 = new Author();
 		masseyCheck1.setFirstName("E");
@@ -221,17 +200,16 @@ private String dbSelection;
 		authorsChecked.add(miscCheck6);
 		authorsChecked.add(masseyCheck5);
 		authorsChecked.add(masseyCheck6);
+		publication.setAuthors(authorsChecked);
+		
 
-		authorsExpected = authorsExpected();
+		List <Author> authorsExpected = new ArrayList<Author>();
+		authorsExpected = authorsFoundExpected();
 		
-//		DatabaseSearchAuthors dbSearchAuthor = new DatabaseSearchAuthors();
-		session.setAttribute("publicationAuthors", authorsChecked);
-//		dbSearchAuthor.init(config);
-//		dbSearchAuthor.doGet(request, response);
+
+		SearchAuthors.authorsInDatabase(connection, publication);
 		
-		//masseyCheck1.setDepartment("test");
-	    
-		session.getAttribute("publicationAuthors");
+		
 		int i = 0;
 		assertEquals(authorsExpected.size(),authorsChecked.size());
 		while (authorsChecked.size() != i)
@@ -258,15 +236,46 @@ private String dbSelection;
 	}
 	
 	
-	protected List<Author> authorsChecked(){
+	private List<Author> authorsNotFoundExp(){
 		
-		List <Author> authorsChecked = new ArrayList<Author>();
+		List <Author> authorsExpected = new ArrayList<Author>();
 		
-		return authorsChecked;
+		Author authorExp1 = new Author();
+		authorExp1.setFirstName("g");
+		authorExp1.setLastName("Bobbison");
+		//authorCheck1.setMiddleName("");
+		Author authorExp2 = new Author();
+		authorExp2.setFirstName("a");
+		authorExp2.setLastName("Mathews");
+		authorExp2.setMiddleName("c");
+		Author authorExp3 = new Author();
+		authorExp3.setFirstName("Squall");
+		authorExp3.setLastName("Anderson");
+		authorExp3.setMiddleName("D");
+		Author authorExp4 = new Author();
+		authorExp4.setFirstName("Cam");
+		authorExp4.setLastName("Mccaw");
+		//authorCheck4.setMiddleName("");
+		Author authorExp5 = new Author();
+		authorExp5.setFirstName("Alan");
+		authorExp5.setLastName("Laur");
+		authorExp5.setMiddleName("Sack");
+		Author authorExp6 = new Author();
+		authorExp6.setFirstName("D");
+		authorExp6.setLastName("Dietrach");
+		authorExp6.setMiddleName("Huf");
+		authorsExpected.add(authorExp1);
+		authorsExpected.add(authorExp2);
+		authorsExpected.add(authorExp3);
+		authorsExpected.add(authorExp4);
+		authorsExpected.add(authorExp5);
+		authorsExpected.add(authorExp6);
+		return authorsExpected;
 	}
+
 	
 	
-	private List<Author> authorsExpected(){
+	private List<Author> authorsFoundExpected(){
 		
 		List <Author> authorsExpected = new ArrayList<Author>();
 		
