@@ -3,7 +3,11 @@ margin: 10px;
 background-color: #fff;
 width: 100%;
 }
-.rightFloat {
+.contribution {
 	border: 2px solid black;
-	float: right;
+	padding: 10px;
+	width: 70%;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
 }
