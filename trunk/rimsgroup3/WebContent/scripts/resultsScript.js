@@ -66,6 +66,11 @@ function addNew() {
 	// Append newDiv input to the mainContainer div
 	mainContainer.appendChild(newDiv);
 	counter++;
+	
+	// increment value in hidden field so print script knows total number of author rows
+	var rowCount = document.getElementById('hidden').value;
+	rowCount++;
+	document.getElementById('hidden').value = rowCount;
 }
 
 function moveUp(name) {
@@ -99,6 +104,10 @@ function deleteIt(){
 		mainContainer.removeChild(document.getElementById(counter-1));
 		counter--;
 	}
+	// decrement value in hidden field so print script knows total number of author rows
+	var rowCount = document.getElementById('hidden').value;
+	rowCount--;
+	document.getElementById('hidden').value = rowCount;
 }
 
 
