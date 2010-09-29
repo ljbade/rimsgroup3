@@ -48,9 +48,7 @@ public class DoiRequest extends HttpServlet {
 		}
         Boolean doiInDB = ReadStatements.publicationReadStatment(connection, query);
         if (doiInDB == true )
-        {
-
-        	response.sendRedirect("index.jsp?success=foundInDatabase");   	
+        {  	
 
         	// Return value.
             PrintWriter out = response.getWriter();
@@ -68,9 +66,13 @@ public class DoiRequest extends HttpServlet {
         		Publication detailedPublication = SearchAuthors.authorsInDatabase(connection, publication);
         		HttpSession session = request.getSession(true);   
              	session.setAttribute("publication", detailedPublication);  		
-        		response.sendRedirect("results.jsp");
+             	PrintWriter out = response.getWriter();
+                out.println("OK");
+                out.flush();
         	} else {
-        		response.sendRedirect("index.jsp?success=no");
+        		PrintWriter out = response.getWriter();
+                out.println("DOI not found");
+                out.flush();
         	}
 
         }  

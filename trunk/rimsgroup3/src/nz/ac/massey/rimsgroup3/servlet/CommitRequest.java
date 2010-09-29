@@ -47,7 +47,9 @@ public class CommitRequest extends HttpServlet {
     	Publication publication = new Publication();
     	
     	List<Author> authorList = new ArrayList<Author>();
-    	publication.setDoi(request.getParameter("doi"));
+    	String doi = request.getParameter("doi");
+    	doi = doi.substring(doi.indexOf(":")+1);
+    	publication.setDoi(doi);
     	int i = 1;
     	String counter = Integer.toString(i);
     	String id = "id" + counter;
