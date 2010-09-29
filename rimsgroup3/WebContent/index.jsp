@@ -46,7 +46,9 @@ hza.style.display = state;
     <td>
     <input type="text" name="search" id="search" size="30"/>
     </td>
-    
+    </tr>
+    <tr>
+
     <td>
     <input type="button" name="new" value="New Article" onclick="sendRequest('get', 'DoiRequest', document.getElementById('search').value)"/>
     </td>
@@ -80,25 +82,26 @@ hza.style.display = state;
     <h2>Advanced Search:</h2>
     <span style="color:  navy; font-size: 8pt; text-align: right;">All fields are required.</span>
     <table>
-    <td><label for="lName">Last Name:</label></td>
-    <td><input type="text" name="lName" id="lName" /></td>
+    <tr>
+    	<td><label for="lName">Last Name:</label></td>
+    	<td><input type="text" name="lName" id="lName" /></td>
     </tr>
     <tr>
-    <td><label for="journalTitle">Journal/Publication Title:</label></td>
-    <td><input type="text" name="journalTitle" id="journalTitle" /></td>
+   	 	<td><label for="journalTitle">Journal/Publication Title:</label></td>
+    	<td><input type="text" name="journalTitle" id="journalTitle" /></td>
     </tr>
     <tr>
         <td><label for="articleTitle">Article Title:</label></td>
         <td><input type="text" name="articleTitle" id="articleTitle" /></td>
     </tr>
     <tr>
-    <td><label for="year">Publication Year:</label></td>
-    <td><input type="text" name="year" id="year" /></td>
+    	<td><label for="year">Publication Year:</label></td>
+    	<td><input type="text" name="year" id="year" /></td>
     </tr>
     </table>
     <input type="button" name="advSearch" value="Search" onclick="sendAdvancedRequest('get', 'AdvancedRequest', document.getElementById('lName').value, document.getElementById('journalTitle').value, document.getElementById('articleTitle').value, document.getElementById('year').value);" />
     <br />
-     <div id="ajax_response2" >
+    <div id="ajax_response2" >
         
     </div>
     </form>
