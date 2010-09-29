@@ -22,6 +22,11 @@ label{
 	font-size:9pt;
 }
 
+#authorDiv{
+	overflow:auto;
+	height:100px;
+}
+
 div.results{
 	background-color:#09F;
 	border:thin;

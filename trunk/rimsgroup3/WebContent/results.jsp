@@ -53,15 +53,15 @@
 <th>Research or Professsional/Community</th><th>Quality Assured?</th><th>Confidential?</th>
 </tr>
 <tr>
-<td><input type="radio" name="research" id="researchRB" value="research"/>Research (PBRF)<br/>
+<td><input type="radio" name="research" id="researchRB" value="research"/>Research (PBRF)<br />
     <input type="radio" name="research" id="professionalRB" value="professional"/>Professional/Community
 </td>
 <td>
-	<input type="radio" name="qa" id="qaYesRB" value="yes"/>Yes<br/>
+	<input type="radio" name="qa" id="qaYesRB" value="yes"/>Yes<br />
     <input type="radio" name="qa" id="qaNoRB" value="no"/>No
 </td>
 <td>
-	<input type="radio" name="confidential" id="confidYesRB" value="yes"/>Yes<br/>
+	<input type="radio" name="confidential" id="confidYesRB" value="yes"/>Yes<br />
     <input type="radio" name="confidential" id="confidNoRB" value="no"/>No
 </td>
 </tr>
@@ -97,7 +97,7 @@
 		    <c:if test="${status.count > 1}">
 		    	<input type="button" id="moveUp${status.count}" onclick="moveUp(this.id);" value="Move Up"/>
 		    </c:if>
-
+-->
 	    </div>
 	</c:forEach>
 </div>
