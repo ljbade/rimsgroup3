@@ -1,0 +1,311 @@
+<?xml version="1.0"?>
+<project default="all" basedir=".">
+	<property name="name" value="rimsgroup3"/>
+	<property name="version" value="1.0"/>
+	<property name="version_suffix" value="1_0"/>
+	<property name="debug" value="on"/>
+	<property name="src.dir" value="src"/>
+	<property name="src.test.dir" value="test"/>
+	<property name="classes.dir" value="classes"/>
+	<property name="docs.dir" value="docs"/>
+	<property name="lib.dir" value="WebContent/WEB-INF/lib"/>
+	<property name="config.dir" value="config"/>
+	<property name="build.dir" value="build"/>
+	<property name="build.classes" value="${build.dir}/classes"/>
+	<property name="build.lib" value="${build.dir}/lib"/>
+	<property name="build.jar" value="${build.lib}/${name}-${version}.jar"/>
+	<property name="build.test.jar" value="${build.lib}/${name}-tests-${version}.jar"/>
+	<property name="build.tests.jar" value="${build.lib}/${name}-testsuite-${version}.jar"/>
+	<property name="build.docs" value="${build.dir}/docs"/>
+	<property name="build.docs.api" value="${build.docs}/api"/>
+	<property name="build.tmp" value="${build.dir}/tmp"/>
+	<property name="qa.dir" value="${build.dir}/qa-reports"/>
+	<property name="main.class.swing" value="ui.GUI"/>
+	<property name="tomcat.dir" value="${basedir}/../../tomcat" />
+	<property name="tomcat.lib" value="${tomcat.dir}/lib" />
+
+	<!-- =================================================================== -->
+	<!-- Set up build class path  - consists of all libraries in the lib folder                                                   -->
+	<!-- =================================================================== -->
+	<path id="build.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar"/>
+		</fileset>
+		<fileset dir="${tomcat.lib}">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+	<!-- =================================================================== -->
+	<!-- Main target: compile, jar,test and build java docs                                                                           -->
+	<!-- =================================================================== -->
+	<target name="all" description="Main target - compile, jar, docs, PMD and test " depends="emma,compile,tests,jar,javadocs,dependencyanalysis,pmd">
+		<echo>Build finished !</echo>
+	</target>
+	<!-- =================================================================== -->
+	<!-- Deletes the existing build directory                                                                                                           -->
+	<!-- =================================================================== -->
+	<target name="clean">
+		<delete dir="${build.dir}"/>
+	</target>
+	<!-- =================================================================== -->
+	<!-- Prepares the build directory                                                                                                           -->
+	<!-- =================================================================== -->
+	<target name="prepare" depends="clean">
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${build.classes}"/>
+		<mkdir dir="${build.lib}"/>
+		<mkdir dir="${qa.dir}"/>
+	</target>
+	<!-- =================================================================== -->
+	<!-- Compiles the source directory                                                                                                       -->
+	<!-- =================================================================== -->
+	<target name="compile" depends="prepare" description="Compile the whole project">
+		<javac destdir="${build.classes}" 
+             debug="${debug}" 
+             deprecation="on"
+             optimize="on"
+             srcdir="${src.dir}"
+             classpathref="build.classpath"
+      />
+		<javac destdir="${build.classes}" 
+             debug="${debug}" 
+             deprecation="on"
+             optimize="off"
+             srcdir="${src.test.dir}"
+             classpathref="build.classpath"
+      />
+		<copy todir="${build.classes}">
+			<fileset dir="${src.dir}" includes="**/*.properties"/>
+		</copy>
+		<copy todir="${build.classes}">
+			<fileset dir="${src.test.dir}" includes="**/*.properties"/>
+		</copy>
+	</target>
+	<!-- =================================================================== -->
+	<!-- Jar the classes                                                                                                                               -->
+	<!-- =================================================================== -->
+	<target name="jar" depends="compile" description="Creates the jar file">
+		<!-- here we set certain meta information in the jar file dynamically by replacing values in a template -->
+		<filter token="NAME" value="${name}"/>
+		<filter token="TITLE" value="${name}"/>
+		<filter token="VERSION" value="${version}"/>
+		<filter token="VENDOR" value="Massey University"/>
+		<filter token="MAIN_CLASS" value="${main.class.swing}"/>
+		<copy file="WebContent/META-INF/MANIFEST.MF" tofile="${build.tmp}/manifest.mf" filtering="yes"/>
+		<!-- separate jar files for runtime and tests -->
+		<jar jarfile="${build.jar}" 
+           manifest="${build.tmp}/manifest.mf"
+           basedir="${build.classes}"
+           excludes="**/test/**,**/experimental/**" >
+			<service type="nz.ac.massey.rimsgroup3.metadata.MetadataRetriever">
+				<provider classname="nz.ac.massey.rimsgroup3.metadata.plugin.CrossrefRetriever" />
+				<provider classname="nz.ac.massey.rimsgroup3.metadata.plugin.ScopusRetriever" />
+			</service>
+		</jar>
+		<filter token="NAME" value="${name} Tests"/>
+		<filter token="TITLE" value="${name} Tests"/>
+		<copy file="WebContent/META-INF/MANIFEST.MF" tofile="${build.tmp}/manifest4tests.mf" filtering="yes"/>
+		<jar jarfile="${build.test.jar}" 
+           manifest="${build.tmp}/manifest4tests.mf" 
+           basedir="${build.classes}"
+           includes="**/test/**"
+      />
+	</target>
+
+	<!-- ====================================================================== -->
+	<!-- EMMA SETUP -->
+	<!-- ====================================================================== -->
+
+	<property name="coverage.dir" value="${qa.dir}/emma/" />
+	<!-- directory which emma coverage reports will be written to -->
+	<property name="instr.dir" value="${build.dir}/emmainstr/" />
+	<!-- directory which emma instrumentation classes will be written to -->
+	<property name="emma.dir" value="${lib.dir}/emma" />
+	<!-- directory that contains emma.jar and emma_ant.jar -->
+
+	<!-- Set emma.lib to refer to the list of EMMA jar files -->
+	<path id="emma.lib" >
+		<fileset dir="${emma.dir}">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+
+	<!-- Define which classes will be reported in the coverage reports (by default, we will include all classes and assume -->
+	<!-- that your project's output folder is target/classes -->
+	<path id="emma.coverage" >
+		<pathelement location="${build.classes}"/>
+	</path>
+
+	<!-- Load <emma> and <emmajava> custom tasks so that they can be used in ANT -->
+	<taskdef resource="emma_ant.properties" classpathref="emma.lib" />
+
+	<!-- Enable Emma -->
+	<target name="emma" description="turns on EMMA's instrumentation/reporting" >
+
+		<property name="emma.enabled" value="true" />
+
+		<!-- EMMA instr class output directory (it is important to create this property only when EMMA is enabled) -->
+		<mkdir dir="${instr.dir}" />
+
+		<!-- this property, if overriden via -Demma.filter=<list of filter specs>
+	     on ANT's command line, will set the coverage filter; by default,
+	     all classes found in 'emma.coverage.classes' pathref will be instrumented:
+	    -->
+		<property name="emma.filter" value="-*.test.*,-*.experimental.*" />
+
+	</target>
+	<!-- =================================================================== -->
+	<!-- Tests the project, using JUnit tests                                                                                               -->
+	<!-- =================================================================== -->
+
+
+	<target name="tests" depends="jar" description="Tests the project">
+		<!-- ======================================================================= -->
+		<!-- EMMA INSTRUMENTATION -->
+		<!-- ======================================================================= -->
+		<!-- Instrument the classes, this takes the normal classes, and makes instrumented classes instead -->
+		<!-- Note that EMMA takes regular ANT path elements as instrumentation input, which is exceedingly convenient -->
+
+		<emma enabled="${emma.enabled}" >
+			<instr instrpathref="emma.coverage" 
+			    	destdir="${instr.dir}" 
+			    	metadatafile="${coverage.dir}/metadata.emma" 
+			    	merge="true">
+				<filter value="${emma.filter}" />
+			</instr>
+		</emma>
+
+		<mkdir dir="${qa.dir}/testresults" />
+		<junit printsummary="yes" fork="true" haltonfailure="false">
+			<classpath>
+
+				<pathelement location="${build.dir}/emmainstr"/>
+				<pathelement location="${build.dir}/classes"/>
+				<path refid="build.classpath" />
+				<path refid="emma.lib"/>
+			</classpath>
+			<formatter type="xml"/>
+			<batchtest todir="${qa.dir}/testresults">
+				<fileset dir="${build.classes}" includes="**/test/*.class" />
+			</batchtest>
+			<jvmarg value="-Demma.coverage.out.file=${coverage.dir}/coverage.emma"/>
+			<jvmarg value="-Demma.coverage.out.merge=false"/>
+		</junit>
+
+		<!--====Emma coverage reports===============================================-->
+		<!-- if enabled, generate coverage report(s): -->
+		<emma enabled="${emma.enabled}" >
+			<report sourcepath="${src.dir}"
+		          sort="+block,+name,+method,+class"
+		          metrics="method:70,block:80,line:80,class:100"
+		    >
+				<!-- collect all EMMA data dumps (metadata and runtime)
+		         [this can be done via nested <fileset> fileset elements
+			        or <file> elements pointing to a single file]:
+		    -->
+				<fileset dir="${coverage.dir}" >
+					<include name="*.emma" />
+				</fileset>
+
+				<!-- for every type of report desired, configure a nested
+		         element; various report parameters
+		         can be inherited from the parent <report>
+		         and individually overridden for each report type:
+		    -->
+				<txt outfile="${coverage.dir}/coverage.txt"
+		        depth="package"
+		   	  	columns="class,method,block,line,name"
+		    />
+				<xml outfile="${coverage.dir}/coverage.xml"
+		        depth="package"
+		    />
+				<html outfile="${coverage.dir}/coverage.html"
+		        depth="method"
+		        columns="name,class,method,block,line"
+		    />
+			</report>
+		</emma>
+		<!-- =================================================================== -->
+
+		<junitreport todir="${qa.dir}">
+			<fileset dir="${qa.dir}/testresults">
+				<include name="*.xml"/>
+			</fileset>
+			<report todir="${qa.dir}"
+	   	        format="noframes">
+				<param name="key1" expression="value1"/>
+				<param name="key2" expression="value2"/>
+			</report>
+		</junitreport>
+
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Creates the API documentation                                       -->
+	<!-- =================================================================== -->
+	<target name="javadocs" depends="prepare" description="Creates the API documentation">
+		<delete dir="${build.docs.api}"/>
+
+		<mkdir dir="${build.docs.api}"/>
+		<javadoc 
+	               sourcepath="${src.dir}"
+	               destdir="${build.docs.api}"        	       
+	      		   public="true"
+	               author="true"
+	               version="true"
+	               use="false"
+	               windowtitle="${name} ${version} "
+	      		   classpathref="build.classpath"
+	        >
+		</javadoc>
+	</target>
+	<!-- =================================================================== -->
+	<!-- Dependency analysis                                                 -->
+	<!-- =================================================================== -->
+
+	<target name="dependencyanalysis" depends="compile" description="Dependency ananlysis with JDepend">
+
+		<jdepend format="xml" outputfile="${qa.dir}/jdepend-report.xml">
+			<exclude name="java.*"/>
+			<exclude name="javax.*"/>
+			<exclude name="junit.*"/>
+			<exclude name="org.*"/>
+			<exclude name="*.test.*"/>
+			<exclude name="*.experimental.*"/>
+			<classespath>
+				<pathelement location="${build.classes}"/>
+			</classespath>
+		</jdepend>
+		<xslt basedir="${qa.dir}" destdir="${qa.dir}" includes="jdepend-report.xml" style="${ant.home}/etc/jdepend.xsl" />
+	</target>
+
+
+	<!-- =================================================================== -->
+	<!-- PMD report                                                  -->
+	<!-- =================================================================== -->
+
+
+	<target name="pmd" depends="compile">
+		<taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask"/>
+		<pmd rulesetfiles="rulesets/imports.xml,
+	        	               rulesets/unusedcode.xml,
+	        				   rulesets/basic.xml,
+	        				   rulesets/codesize.xml,
+	        				   rulesets/naming.xml,
+	        				   rulesets/imports.xml,
+	        				   rulesets/design.xml,
+	        	               rulesets/junit.xml,
+	        	               rulesets/braces.xml,
+	        	               rulesets/javabeans.xml,
+	        	               rulesets/clone.xml,
+	        				   rulesets/coupling.xml,
+	        				   rulesets/strictexception.xml" 
+			shortFilenames="true">
+			<formatter type="html" toFile="${qa.dir}/pmd_report.html"/>
+			<fileset dir="${src.dir}">
+				<include name="**/*.java"/>
+			</fileset>
+		</pmd>
+	</target>
+
+</project>
