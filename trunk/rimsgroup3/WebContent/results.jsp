@@ -93,7 +93,7 @@
 		    
 		    <label for="id${status.count}">ID Number:</label>
 		    <input type="text" name="id${status.count}" id="id${status.count}" size="15" />
-	    
+<!-- 	    
 		    <c:if test="${status.count > 1}">
 		    	<input type="button" id="moveUp${status.count}" onclick="moveUp(this.id);" value="Move Up"/>
 		    </c:if>
@@ -108,7 +108,7 @@
 <table align="left" width="60%">
 <tr>
 <td><label for="articleTitle">Article/Output Title:</label></td>
-<td><input type="text" name="articleTitle" id="articleTitle" size="85" value="<c:out value="${publication.articleTitle}" />" /></td>
+<td><input type="text" name="articleTitle" id="articleTitle" size="75" value="<c:out value="${publication.articleTitle}" />" /></td>
 </tr>
 <tr>
 	<td></td><td><label id="htmlTitle" ></label></td>
@@ -149,7 +149,7 @@
 </tr>
 <tr>
 <td><label for="keywords">Keywords:</label></td>
-<td><input type="text" name="keywords" id="keywords" size="65"  value="<c:out value="${publication.keyWords}" />"/></td>
+<td><input type="text" name="keywords" id="keywords" size="65"  value="<c:out value="${publication.keyWords}" />" /></td>
 </tr>
 </table>
 
