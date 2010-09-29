@@ -116,6 +116,7 @@ table.resultTable{
     -webkit-border-radius: 20px;
     -khtml-border-radius: 20px;
     border-radius: 20px;
+    width: 400px;
 }
 
 .smallLink {
