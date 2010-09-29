@@ -49,9 +49,13 @@ Connection connection;
 		{
 			this.connection = dataSource.getConnection();
 		}
+    	String path = getClass().getClassLoader().getResource("../../.").getPath();
+    	path = path.replace("%20", " ");
+    	String fs = System.getProperty("file.separator");
+    	
     	ScriptRunner runner = new ScriptRunner(this.connection ,false, true);
-    	//runner.runScript(new BufferedReader(new FileReader("/scripts/create-tables.sql")));
-    	//runner.runScript(new BufferedReader(new FileReader("/scripts/testCode.sql")));
+    	runner.runScript(new BufferedReader(new FileReader(path + "scripts" + fs + "create-tables.sql")));
+    	runner.runScript(new BufferedReader(new FileReader(path + "scripts" + fs + "testCode.sql")));
 	}
 	
 	public void tearDown(){
