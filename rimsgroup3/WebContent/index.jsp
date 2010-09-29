@@ -59,10 +59,11 @@ hza.style.display = state;
         
     </div>
     <c:if test="${param.success == null }">
-    </c:if>
+    </c:if> 
     <c:if test="${param.success == 'foundInDatabase'}">
         Publication has previously been submitted.		
     </c:if>
+
     <c:if test="${param.success == 'no'}">
         DOI search failed.		
     </c:if>

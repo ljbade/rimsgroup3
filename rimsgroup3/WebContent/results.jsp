@@ -24,14 +24,6 @@
 
 <form name="resultsForm" action="CommitRequest" method="post" onSubmit="">
 <input type="hidden" id="hidden" value="" />
-<div id="mainContainer" class="firstSet">
-<div>
-<label for="topAuthor">Author:</label><input type="text" id="topAuthor" />
-<label for="staffID">Staff ID:</label><input type="text" id="staffID" />
-<label for="unit">Unit:</label><input type="text" id="unit" />
-<label for="mailCode">Mail Code:</label><input type="text" id="mailCode" /> 
-</div>
-</div>
 <div class="secondSet" >
 <table class="resultTable" align="center">
 <tr>
@@ -71,6 +63,7 @@
 <div class="firstSet">
 <h2>Authors</h2>
 <div id="authorDiv">
+
 	<c:forEach items="${publication.authors}" var="author" varStatus="status">
 	<c:if test="${status.count==1}">
 		<script>
@@ -93,6 +86,8 @@
 		    
 		    <label for="id${status.count}">ID Number:</label>
 		    <input type="text" name="id${status.count}" id="id${status.count}" size="15" />
+		    
+		    <input type="radio" name="submitter" value="submitter" />
 <!-- 	    
 		    <c:if test="${status.count > 1}">
 		    	<input type="button" id="moveUp${status.count}" onclick="moveUp(this.id);" value="Move Up"/>
@@ -105,13 +100,18 @@
 </div>
 
 <div class="thirdSet">
+<h2>Publication Details</h2>
 <table align="left" width="60%">
+<tr>
+<td><label for="pubID">Publication ID:</label></td>
+<td><input type="text" name="pubID" id="articleTitle" size="75" /></td>
+</tr>
 <tr>
 <td><label for="articleTitle">Article/Output Title:</label></td>
 <td><input type="text" name="articleTitle" id="articleTitle" size="75" value="<c:out value="${publication.articleTitle}" />" /></td>
 </tr>
 <tr>
-	<td></td><td><label id="htmlTitle" ></label></td>
+<td></td><td><label id="htmlTitle" ></label></td>
 </tr>
 <tr>
 <td><label for="journalTitle">Journal/Publication Title:</label></td>
@@ -119,37 +119,42 @@
 </tr>
 <tr>
 <td><label for="year">Publication Year:</label></td>
-<td><input type="text" name="year" id="year" size="65" value="<c:out value="${publication.year}" />" /> </td>
+<td><input type="text" name="year" id="year" size="75" value="<c:out value="${publication.year}" />" /> </td>
 </tr>
 <tr>
 <td><label for="publisher">Publisher:</label></td>
-<td><input type="text" name="publisher" id="publisher" size="65" /></td>
+<td><input type="text" name="publisher" id="publisher" size="75" /></td>
 </tr>
 <tr>
 <td><label for="issn">ISSN:</label></td>
-<td><input type="text" name="issn" id="issn" size="65" value="<c:out value="${publication.issn}" />" /></td>
+<td><input type="text" name="issn" id="issn" size="75" value="<c:out value="${publication.issn}" />" /></td>
 </tr>
 <tr>
-<td><label for="volume">Volume/Number:</label></td>
-<td><input type="text" name="volume" id="volume" size="65" value="<c:out value="${publication.volume} / ${publication.issue}"/>" /></td>
+<td><label for="volume">Volume:</label></td>
+<td><input type="text" name="volume" id="volume" size="25" value="<c:out value="${publication.volume}"/>" />
+<label for="number">Number:&nbsp;&nbsp;&nbsp;</label>
+<input type="text" name="number" id="volume" size="25" value="<c:out value="${publication.issue}"/>" /></td>
 </tr>
 <tr>
-<td><label for="pageNum">Page numbers:</label></td>
-<td><input type="text" name="pageNum" id="pageNum" size="65" value="<c:out value="${publication.startPage}-${publication.endPage}" />" /> </td>
+<td>
+<label for="startPage">Start Page:</label></td>
+<td><input type="text" name="startPage" id="pageNum" size="25" value="<c:out value="${publication.startPage}" />" />
+<label for="endPage">End Page:</label>
+<input type="text" name="endPage" id="pageNum" size="25" value="<c:out value="${publication.endPage}" />" /> </td>
 </tr>
 <tr>
 <td><label for="url">URL Address:</label></td>
-<td><input type="text" name="url" id="url" size="45" value="<c:out value="${publication.url}" />" />
+<td><input type="text" name="url" id="url" size="63" value="<c:out value="${publication.url}" />" />
 	<a  class="smallLink" target="_new" href="<c:out value="${publication.url}" />" >Follow Link</a>
 </td>
 </tr>
 <tr>
 <td><label for="doi">DOI:</label></td>
-<td><input type="text" name="doi" id="doi" size="65" value="<c:out value="${publication.doi}" />" /></td>
+<td><input type="text" name="doi" id="doi" size="75" value="DOI:<c:out value="${publication.doi}" />" /></td>
 </tr>
 <tr>
 <td><label for="keywords">Keywords:</label></td>
-<td><input type="text" name="keywords" id="keywords" size="65"  value="<c:out value="${publication.keyWords}" />" /></td>
+<td><input type="text" name="keywords" id="keywords" size="75"  value="<c:out value="${publication.keyWords}" />" /></td>
 </tr>
 </table>
 

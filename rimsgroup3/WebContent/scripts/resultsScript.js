@@ -85,6 +85,12 @@ function addNew() {
 	newText.setAttribute("size","15");
 	newDiv.innerHTML+= "<label>&nbsp;ID Number:&nbsp;</label>";
 	newDiv.appendChild(newText);
+	
+	var radio = document.createElement('input');
+	radio.type = "radio";
+	radio.name = "submitter";
+	newDiv.innerHTML+= "&nbsp;";
+	newDiv.appendChild(radio);
 
 	var newMoveUpBtn = document.createElement('input');
 	newMoveUpBtn.type = "button";
