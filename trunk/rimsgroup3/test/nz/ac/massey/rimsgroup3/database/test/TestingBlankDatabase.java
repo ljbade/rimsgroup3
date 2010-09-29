@@ -3,6 +3,7 @@ package nz.ac.massey.rimsgroup3.database.test;
 
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -47,13 +48,15 @@ public class TestingBlankDatabase extends ServletTestCase{
 		this.dbSelection = "swctest";
     	DatabaseConnection datasource = new DatabaseConnection();
     	this.dataSource =  datasource.setUp(this.dbSelection);
-    	
     	synchronized (dataSource)
 		{
 			this.connection = dataSource.getConnection();
 		}
+    	String path = getClass().getClassLoader().getResource("../../.").getPath();
+    	path = path.replace("%20", " ");
+    	String fs = System.getProperty("file.separator");
     	ScriptRunner runner = new ScriptRunner(this.connection ,false, true);
-    	//runner.runScript(new BufferedReader(new FileReader("/scripts/create-tables.sql")));
+    	runner.runScript(new BufferedReader(new FileReader(path + "scripts" + fs +"create-tables.sql")));
     	
 	}
 	
