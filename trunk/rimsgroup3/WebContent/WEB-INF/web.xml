@@ -84,6 +84,16 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>DXDoiRequest</display-name>
+    <servlet-name>DXDoiRequest</servlet-name>
+    <servlet-class>nz.ac.massey.rimsgroup3.servlet.DXDoiRequest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DXDoiRequest</servlet-name>
+    <url-pattern>/DXDoiRequest</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>CommitRequest</display-name>
     <servlet-name>CommitRequest</servlet-name>
     <servlet-class>nz.ac.massey.rimsgroup3.servlet.CommitRequest</servlet-class>

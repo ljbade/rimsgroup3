@@ -46,8 +46,7 @@ hza.style.display = state;
     <td>
     <input type="text" name="search" id="search" size="30"/>
     </td>
-    </tr>
-    <tr>
+    
     <td>
     <input type="button" name="new" value="New Article" onclick="sendRequest('get', 'DoiRequest', document.getElementById('search').value)"/>
     </td>
@@ -79,6 +78,7 @@ hza.style.display = state;
     <div id="div1" style="display: none;" class="innerIndex">
     <form name="advancedForm" action="AdvancedRequest" method="post" onSubmit=""> 
     <h2>Advanced Search:</h2>
+    <span style="color:  navy; font-size: 8pt; text-align: right;">All fields are required.</span>
     <table>
     <td><label for="lName">Last Name:</label></td>
     <td><input type="text" name="lName" id="lName" /></td>
@@ -102,8 +102,14 @@ hza.style.display = state;
         
     </div>
     </form>
+    <br />
+    <form name="dxdoiForm" action="DXDoiRequest" method="post" onSubmit="" target="_blank">
+    Or use the DOI DX tool to go to the article:<br />
+    http://dx.doi.org/<input type='text' id="dxDoi" name="dxDoi" />
+    <br />
+    <input type='submit' name="dxDoiSearch" value='Locate Article' />
+    </form>
     </div>
   </div>
-</div>
 </body>
 </html>

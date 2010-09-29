@@ -52,8 +52,11 @@ function handleResponse(){
      if(response.indexOf("DOI found") != -1) {
     	 var progress = document.getElementById('ajax_response');
          progress.innerHTML = "DOI has already been processed.";
+     } else if (response.indexOf("DOI not found") != -1) {
+    	 var progress = document.getElementById('ajax_response');
+         progress.innerHTML = "That DOI could not be located.";
      }
-     else {
+     else if(response.indexOf("OK") != -1){
       //stop progress display
       var progress = document.getElementById('ajax_response');
       progress.innerHTML = "Search complete, redirecting...";

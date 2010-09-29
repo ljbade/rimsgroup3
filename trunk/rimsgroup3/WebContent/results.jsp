@@ -6,13 +6,16 @@
 <link rel="stylesheet" href="styles/main.css" type="text/css"/>
 <script type="text/javascript" src="scripts/resultsScript.js">
 </script>
+<script type="text/javascript" src="scripts/ajax.js"></script>
 <script type="text/javascript" src="scripts/printing.js"></script>
 <title>RIMS Assistant - Results</title>
 </head>
 <body>
 <script type="text/javascript">
 	window.onload = function() {
-		parse();
+		parse(); // replace special characters in the title string
+		//var resource = document.getElementById('url').value;
+		//getAbstract('get', 'AbstractText', resource); // get abstract text from the article page
 	};
 </script>
 <div class="results">
@@ -50,7 +53,7 @@
 <th>Research or Professsional/Community</th><th>Quality Assured?</th><th>Confidential?</th>
 </tr>
 <tr>
-<td><input type="radio" name="research" id="reasearchRB" value="research"/>Research (PBRF)<br/>
+<td><input type="radio" name="research" id="researchRB" value="research"/>Research (PBRF)<br/>
     <input type="radio" name="research" id="professionalRB" value="professional"/>Professional/Community
 </td>
 <td>
@@ -94,7 +97,7 @@
 		    <c:if test="${status.count > 1}">
 		    	<input type="button" id="moveUp${status.count}" onclick="moveUp(this.id);" value="Move Up"/>
 		    </c:if>
- -->
+
 	    </div>
 	</c:forEach>
 </div>
@@ -150,6 +153,8 @@
 </tr>
 </table>
 
+<div>
+<div id="abstract_progress"></div>
 <table class="abstract">
 <tr>
 <td>
@@ -166,7 +171,7 @@
     <td><label id="wordcount" class="smallLink"></label></td>
 </tr>
 </table>
-
+</div>
 </div>
 <div>
 <a href="index.jsp"><input type="button" name="back" value="Back" /></a>
