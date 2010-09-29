@@ -42,24 +42,71 @@ public class AbstractText extends HttpServlet {
         InputStream stream = connection.getInputStream();
         String streamStr = convertStreamToString(stream);
         
-        // process string version of page to find abstract
-        String result = null;
-        if(streamStr.contains("Abstract")) {
-        	result = streamStr.substring(streamStr.indexOf("Abstract"), streamStr.indexOf("Abstract") + 1011);
-        } else {
-        	result = "No abstract located";
-        }
+        // process string and return abstract (if possible)
+        abstractText = processString(streamStr);
         
+        // flush result to ajax function
         PrintWriter pwOut = response.getWriter();
         StringBuffer sfXml = new StringBuffer();
         response.setContentType("text/plain"); // ("text/html;charset=utf-8");
-        sfXml.append(result);
+        sfXml.append(abstractText);
         pwOut.println(sfXml.toString());
         pwOut.flush();
         pwOut.close();
 		} catch (Exception ex) {
 			
 		}
+	}
+	
+	/*
+	 * processString()
+	 * takes input string representing the entire page and attempts to break it down to the abstract text
+	 * input - string
+	 * output - string
+	 */
+	public String processString(String input) {
+		String result = null;
+		try {
+			// get array of positions of "Abstract" in the page
+			int[] positions = new int[7]; // best guess at max number of occurrences
+			int count = 0;
+			String shortStr = input; // version of input sting to be manipulated
+			int pos = 0; // holds true position of indexOf in string (as shortStr gets progressively shorter
+			int len = shortStr.length();
+			while (shortStr.indexOf("Abstract") != -1) {
+				positions[count] = shortStr.indexOf("Abstract") + pos; //pos = true position in original string
+				pos = positions[count] + shortStr.indexOf("Abstract");
+				count++;
+				shortStr = input.substring(pos + 8); // + 8 clears the actual word abstract
+	        }
+			// for each entry in positions array check for html tags near start of string that 
+			// indicate entry is not abstract text (</option>, </li>, etc)
+			// presence of </h is a good sign
+			String test = "";
+			int preferred = -1;
+			for(int i = 0; i < positions.length; i++) {
+				if(positions[i] != 0) {
+					test = input.substring(positions[i], 20);
+					if(test.contains("</h")) {
+						preferred = i;
+					}
+					else if(test.contains("</option>") || test.contains("</li>") || test.contains("</div>")) {
+						// probably poor choice - ignore
+					} else {
+						preferred = i;
+					}
+				}
+			}
+			// now strip out HTML tags from preferred position in positions
+			if(preferred == -1) {
+				return "Unable to extract abstract successfully."; 
+			}
+			result = input.substring(positions[preferred], 1200);
+			
+		} catch (Exception ex) {
+			result = ex.getMessage();
+		}
+        return result;
 	}
 	
 	/**
