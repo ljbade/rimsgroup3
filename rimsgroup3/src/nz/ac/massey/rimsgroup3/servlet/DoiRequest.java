@@ -38,6 +38,7 @@ public class DoiRequest extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException, SQLException {
         response.setContentType("text/html; charset=utf-8");
+        
         Connection connection = null;  
         String query = request.getParameter("search").toString().trim();
      
@@ -54,6 +55,7 @@ public class DoiRequest extends HttpServlet {
             PrintWriter out = response.getWriter();
             out.println("DOI found");
             out.flush();
+            out.close();
 
         }
         else
@@ -66,13 +68,21 @@ public class DoiRequest extends HttpServlet {
         		Publication detailedPublication = SearchAuthors.authorsInDatabase(connection, publication);
         		HttpSession session = request.getSession(true);   
              	session.setAttribute("publication", detailedPublication);  		
-             	PrintWriter out = response.getWriter();
+
+             // Return value.
+                PrintWriter out = response.getWriter();
                 out.println("OK");
                 out.flush();
+                out.close();
+        		
+
         	} else {
-        		PrintWriter out = response.getWriter();
+        		// Return value.
+                PrintWriter out = response.getWriter();
                 out.println("DOI not found");
                 out.flush();
+                out.close();
+
         	}
 
         }  

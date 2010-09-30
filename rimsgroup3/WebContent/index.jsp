@@ -1,5 +1,8 @@
 <%@ page  language="java" import="java.util.*" session="true" pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% 	response.setHeader("Cache-Control", "no-cache, must-revalidate, no-store, max-age=0, proxy-revalidate"); 
+	response.setHeader("Pragma","no-cache");
+	response.setDateHeader("Expires",-1);%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
