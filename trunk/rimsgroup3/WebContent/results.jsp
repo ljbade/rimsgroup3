@@ -82,10 +82,10 @@
 		    <input type="text" name="lName${status.count}" id="lName${status.count}" size="15" value="<c:out value="${author.lastName}" />" />
 		    
 		    <label for="afiliation${status.count}">Affiliation:</label>
-		    <input type="text" name="affiliation${status.count}" id="affiliation${status.count}" size="15" />
+		    <input type="text" name="affiliation${status.count}" id="affiliation${status.count}" size="15" value="<c:out value="${author.affiliation}" />" />
 		    
 		    <label for="id${status.count}">ID Number:</label>
-		    <input type="text" name="id${status.count}" id="id${status.count}" size="15" />
+		    <input type="text" name="id${status.count}" id="id${status.count}" size="15" value="<c:out value="${author.ID}" />"/>
 		    
 		    <input type="radio" name="submitter" value="submitter" />
 <!-- 	    

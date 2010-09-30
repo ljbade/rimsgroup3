@@ -61,17 +61,27 @@ public class CommitRequest extends HttpServlet {
     		author.setID(idNumber);
     		author.setFirstName(request.getParameter("fName" + counter));
     		author.setLastName(request.getParameter("lName"+ counter));
-    		author.setMiddleName(request.getParameter("mName" + counter));
+    		if(request.getParameter("mName" + counter) != "")
+    		{
+    			author.setMiddleName(request.getParameter("mName" + counter));
+    		}
+    		else
+    		{
+    			author.setMiddleName(null);
+    		}
     		author.setAffiliation(request.getParameter("affiliation" + counter));
     		author.setType(request.getParameter("type" + counter));
     		author.setDepartment(request.getParameter("department" + counter));
     		author.setCollege(request.getParameter("college" + counter));
+    		
+    		
     		i++;
     		counter = Integer.toString(i);
     		id = "id" + counter;
     		idNumber = request.getParameter(id);
     		authorList.add(author);
     	}
+    	
     	publication.setAuthors(authorList);
 		Connection connection = null;
 		synchronized (dataSource)

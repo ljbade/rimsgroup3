@@ -16,6 +16,7 @@ public class ReadStatements {
 		String authorFirstName = authoredIt.getFirstName();
 		String authorMiddleName = authoredIt.getMiddleName();
 		
+			
 		PreparedStatement statementAuthor = null;
 		try { 
 			if(authorMiddleName == null && authorFirstName.length() == 1)
@@ -80,6 +81,7 @@ public class ReadStatements {
 		authoredIt.setInDatabase(false);
 		String authorFirstName = authoredIt.getFirstName();
 		String authorMiddleName = authoredIt.getMiddleName();
+		
 		
 		PreparedStatement statementAuthor = null;
 		try { 

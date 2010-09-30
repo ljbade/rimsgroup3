@@ -17,6 +17,9 @@ public class SearchAuthors {
 			{
 				
 				Author author = authorList.get(i);
+				if (author.getMiddleName() == ""){
+					author.setMiddleName(null);
+				}
 				author = ReadStatements.masseyReadStatement(connection, author);
 				if (author.getInDatabase() != true)
 				{
