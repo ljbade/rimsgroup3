@@ -6,7 +6,7 @@ table{
 	font-size:9pt;
 }
 
-h3{
+h1{
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:16pt;
 	color:#FFF;
@@ -99,7 +99,7 @@ table.resultTable{
 	border:thin;
 	border-color:#000;
 	border-style:solid;
-	width:435px;
+	width:425px;
 	padding:10px;
 	-moz-border-radius: 20px;
     -webkit-border-radius: 20px;
@@ -121,7 +121,7 @@ table.resultTable{
     -webkit-border-radius: 20px;
     -khtml-border-radius: 20px;
     border-radius: 20px;
-    width: 400px;
+    width: 380px;
 }
 
 .smallLink {

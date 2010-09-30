@@ -19,7 +19,7 @@
 	};
 </script>
 <div class="results">
-<h3>Results</h3>
+<h1>Results</h1>
 <jsp:useBean id="publication" class="nz.ac.massey.rimsgroup3.metadata.bean.Journal" scope="session" ></jsp:useBean>
 
 <form name="resultsForm" action="CommitRequest" method="post" onSubmit="">

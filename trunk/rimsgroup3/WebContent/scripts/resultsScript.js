@@ -2,41 +2,6 @@
 var counter = 1;
 var max = 1;
 
-function advancedValid(){
-	var textField = document.getElementById('lName');
-	var errorMessage = "";
-	var valid = true;
-	
-	if(textField.value == ""){
-		errorMessage += "Last Name can't be empty\n";
-		valid = false;
-	}
-	
-	textField = document.getElementById('journalTitle');
-	if(textField.value == ""){
-		errorMessage += "Journal title can't be empty\n";
-		valid = false;
-	}
-	
-	textField = document.getElementById('articleTitle');
-	if(textField.value == ""){
-		errorMessage += "Article title can't be empty\n";
-		valid = false;
-	}
-	
-	textField = document.getElementById('year');
-	if(textField.value == ""){
-		errorMessage += "Publication year can't be empty\n";
-		valid = false;
-	}
-	
-	if(!valid){
-		alert(errorMessage);
-	}
-	
-	return valid;
-}
-
 function setCount(count){
 	counter = count;
 	counter++;

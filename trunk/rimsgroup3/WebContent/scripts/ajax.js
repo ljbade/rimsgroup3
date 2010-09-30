@@ -105,21 +105,65 @@ function handleAbstractResponse() {
 function sendAdvancedRequest(method, url, lname, journal, article, year){
 	  // start  progress display
 	  var progress = document.getElementById('ajax_response2');
-	  var html = "<br /><img src='ajax-loader.gif' /><br /> Search in progress. Please wait..."
+	  var html = "";
 	  progress.innerHTML = html;
+	  if(advancedValid()){
+		  var html = "<br /><img src='ajax-loader.gif' /><br /> Search in progress. Please wait...";
+		  progress.innerHTML = html;
 
-	  // send AJAX request
-	  if(method == 'get' || method == "GET"){
-		  var name = "?lName=" + lname;
-		  var journalTitle = "&journalTitle=" + journal;
-		  var articleTitle = "&articleTitle=" + article;
-		  var date = "&year=" + year;
-	     url = url + name + journalTitle + articleTitle + date;
-	     http.open(method,url,true);
-	     http.onreadystatechange = handleAdvancedResponse;
-	     http.send(null);
+		  // send AJAX request
+		  if(method == 'get' || method == "GET"){
+			  var name = "?lName=" + lname;
+			  var journalTitle = "&journalTitle=" + journal;
+			  var articleTitle = "&articleTitle=" + article;
+			  var date = "&year=" + year;
+		     url = url + name + journalTitle + articleTitle + date;
+		     http.open(method,url,true);
+		     http.onreadystatechange = handleAdvancedResponse;
+		     http.send(null);
+		  }
 	  }
+	  else{
+		  var html = "<br />Please fill in all fields";
+		  progress.innerHTML = html;
+	  }
+	  
+}
+
+function advancedValid(){
+	var textField = document.getElementById('lName');
+	var errorMessage = "";
+	var valid = true;
+	
+	if(textField.value == ""){
+		errorMessage += "Last Name can't be empty\n";
+		valid = false;
 	}
+	
+	textField = document.getElementById('journalTitle');
+	if(textField.value == ""){
+		errorMessage += "Journal title can't be empty\n";
+		valid = false;
+	}
+	
+	textField = document.getElementById('articleTitle');
+	if(textField.value == ""){
+		errorMessage += "Article title can't be empty\n";
+		valid = false;
+	}
+	
+	textField = document.getElementById('year');
+	if(textField.value == ""){
+		errorMessage += "Publication year can't be empty\n";
+		valid = false;
+	}
+	
+	if(!valid){
+		alert(errorMessage);
+	}
+	
+	return valid;
+}
 
 function handleAdvancedResponse(){
 	  if(http.readyState == 4 && http.status == 200){

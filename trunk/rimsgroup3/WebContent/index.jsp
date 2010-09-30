@@ -36,46 +36,37 @@ hza.style.display = state;
 
 <body>
 <div class="smallPage">
-  <h3>RIMS Assistant</h3>
+  <h1>RIMS Assistant</h1>
   
   <div class="innerIndex">
     <form name="searchForm" action="DoiRequest" method="post" onSubmit=""> 
-    <h2>DOI Search:</h2>
-    <table width="280px">
-    <tr>
-    <td>
-    <input type="text" name="search" id="search" size="30"/>
-    </td>
-    </tr>
-    <tr>
-
-    <td>
-    <input type="button" name="new" value="New Article" onclick="sendRequest('get', 'DoiRequest', document.getElementById('search').value)"/>
-    </td>
-    </tr>
-    
-    </table>
-    <div id="ajax_response" >
-        
-    </div>
-    <c:if test="${param.success == null }">
-    </c:if> 
-    <c:if test="${param.success == 'foundInDatabase'}">
-        Publication has previously been submitted.		
-    </c:if>
-
-    <c:if test="${param.success == 'no'}">
-        DOI search failed.		
-    </c:if>
-    <c:if test="${param.success == 'successfulCommit'}">
-        Publication has been successfully submitted.		
-    </c:if>
-    
+	    <h2>DOI Search:</h2>
+	    <table>
+	    <tr>
+		    <td><input type="text" name="search" id="search" size="30"/></td>
+		    <td><input type="button" name="new" value="New Article" onclick="sendRequest('get', 'DoiRequest', document.getElementById('search').value)"/></td>
+	    </tr>  
+	    </table>
+	    <div id="ajax_response" >
+	        
+	    </div>
+	    <c:if test="${param.success == null }">
+	    </c:if> 
+	    <c:if test="${param.success == 'foundInDatabase'}">
+	        Publication has previously been submitted.		
+	    </c:if>
+	
+	    <c:if test="${param.success == 'no'}">
+	        DOI search failed.		
+	    </c:if>
+	    <c:if test="${param.success == 'successfulCommit'}">
+	        Publication has been successfully submitted.		
+	    </c:if>
     </form>
    
     <p><a href="#" onClick="showhide('div1');">Advanced Search</a></p> 
     <!--  added closing div here --> 
-    </div>
+  </div>
     <br />
     <!--  advanced search div -->
     <div id="div1" style="display: none;" class="innerIndex">
