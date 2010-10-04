@@ -3,13 +3,18 @@
  */
 package nz.ac.massey.rimsgroup3.metadata.plugin;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Properties;
+import java.net.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -31,8 +36,6 @@ import nz.ac.massey.rimsgroup3.metadata.bean.Publication;
  *
  */
 public class CrossrefRetriever implements MetadataRetriever {
-
-	static String QUERY_STRING = "http://www.crossref.org/openurl/?id=doi:%s&noredirect=true&pid=s_allannz@yahoo.com&format=xsd_xml";
 	
 	/* (non-Javadoc)
 	 * @see nz.ac.massey.rimsgroup3.metadata.plugin.MetadataRetriever#getName()
@@ -240,10 +243,20 @@ public class CrossrefRetriever implements MetadataRetriever {
 	private InputStream performQuery(String doi)
 	{
 		InputStream stream;
+		// retrieve crossref API email from configuration.properties file
+		Properties config = new Properties();
+		String email = null;
+		try {
+			config.load(this.getClass().getClassLoader().getResourceAsStream("configuration.properties"));
+			email = config.getProperty("crossrefEmail");
+		} catch (Exception ex) {
+			// need to send back error message - possibly redirecting to help file, anchored to solution?
+		}
 		
+		String queryString = "http://www.crossref.org/openurl/?id=doi:%s&noredirect=true&pid=" + email + "&format=xsd_xml";
 		try {
 			// Build the query string
-			URL url = new URL(String.format(QUERY_STRING, doi));			
+			URL url = new URL(String.format(queryString, doi));			
 
 			// Do the query
 	        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
