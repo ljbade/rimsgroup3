@@ -19,6 +19,7 @@ function addNew() {
 	var newText = document.createElement('input');
 	newText.type = "text";
 	newText.name = "fName" + counter;
+	newText.id = "fName" + counter;
 	newText.setAttribute("size","15");
 	newDiv.innerHTML+= "<label>First Name:&nbsp;</label>";
 	newDiv.appendChild(newText);
@@ -26,12 +27,14 @@ function addNew() {
 	var newText = document.createElement('input');
 	newText.type = "text";
 	newText.name = "mName" + counter;
+	newText.id = "mName" + counter;
 	newText.setAttribute("size","15");
 	newDiv.innerHTML+= "<label>&nbsp;M. Name:&nbsp;</label>";
 	newDiv.appendChild(newText);
 	
 	var newText = document.createElement('input');
 	newText.type = "text";
+	newText.name = "lName" + counter;
 	newText.name = "lName" + counter;
 	newText.setAttribute("size","15");
 	newDiv.innerHTML+= "<label>&nbsp;Last Name:&nbsp;</label>";
@@ -40,6 +43,7 @@ function addNew() {
 	var newText = document.createElement('input');
 	newText.type = "text";
 	newText.name = "affiliation" + counter;
+	newText.id = "affiliation" + counter;
 	newText.setAttribute("size","15");
 	newDiv.innerHTML+= "<label>&nbsp;Affiliation:&nbsp;</label>";
 	newDiv.appendChild(newText);
@@ -47,6 +51,7 @@ function addNew() {
 	var newText = document.createElement('input');
 	newText.type = "text";
 	newText.name = "id" + counter;
+	newText.id = "id" + counter;
 	newText.setAttribute("size","15");
 	newDiv.innerHTML+= "<label>&nbsp;ID Number:&nbsp;</label>";
 	newDiv.appendChild(newText);

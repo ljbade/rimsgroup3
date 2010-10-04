@@ -17,6 +17,7 @@ public class DatabaseConnection implements DatabaseConnectI {
 		try {
 			Context init = new InitialContext();
 			Context ctx = (Context) init.lookup("java:comp/env");
+			// if something is passed to it, it's a test else its real
 			if (db == null)
 				dataSource = (DataSource) ctx.lookup("jdbc/rimsgroup3");
 			else if (db.equals("datatest"))

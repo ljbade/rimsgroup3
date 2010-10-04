@@ -12,7 +12,12 @@ import nz.ac.massey.rimsgroup3.metadata.bean.*;
 
 public class InsertStatements {
 
-
+	/**
+	 * 
+	 * @param connection
+	 * @param author
+	 * @return
+	 */
 	public static PreparedStatement masseyAuthorStatement(Connection connection,
 			Author author) {
 		try {
@@ -43,6 +48,12 @@ public class InsertStatements {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param connection
+	 * @param author
+	 * @return
+	 */
 	public static PreparedStatement miscAuthorStatement(Connection connection,
 			Author author) {
 		try {
@@ -71,7 +82,12 @@ public class InsertStatements {
 		}
 	}
 	
-	
+	/**
+	 * 
+	 * @param connection
+	 * @param doi
+	 * @return
+	 */
 	public static PreparedStatement publicationStatment(Connection connection, 
 			String doi){
 		try {
