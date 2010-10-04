@@ -126,6 +126,7 @@ public class CrossrefRetriever implements MetadataRetriever {
 			String givenName = safelyGetElement(element, "given_name");
 			
 			if (givenName.length() > 0) {
+				givenName = givenName.replace(".", "");
 				int middleIndex = givenName.indexOf(' ');
 				if (middleIndex != -1) {
 					author.setFirstName(givenName.substring(0, middleIndex));

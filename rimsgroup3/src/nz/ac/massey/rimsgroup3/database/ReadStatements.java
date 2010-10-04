@@ -10,6 +10,12 @@ import nz.ac.massey.rimsgroup3.metadata.bean.*;
 
 public class ReadStatements {
 	
+	/**
+	 * Reads the database using the best fit information, provided by the authors
+	 * @param connection
+	 * @param author
+	 * @return
+	 */
 	public static Author miscReadStatement(Connection connection, Author author) {
 		Author authoredIt = author;
 		authoredIt.setInDatabase(false);
@@ -76,6 +82,12 @@ public class ReadStatements {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param connection
+	 * @param author
+	 * @return
+	 */
 	public static Author masseyReadStatement(Connection connection, Author author) {
 		Author authoredIt = author;
 		authoredIt.setInDatabase(false);
@@ -145,6 +157,12 @@ public class ReadStatements {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param connection
+	 * @param query
+	 * @return
+	 */
 	public static Boolean publicationReadStatment(Connection connection, String query){
 		try {
 			PreparedStatement statementPublication = connection.prepareStatement
