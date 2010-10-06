@@ -8,7 +8,7 @@
 </script>
 <script type="text/javascript" src="scripts/ajax.js"></script>
 <script type="text/javascript" src="scripts/printing.js"></script>
-<title>RIMS Assistant - Results</title>
+<title>Proficio - Results</title>
 </head>
 <body>
 <script type="text/javascript">
@@ -19,7 +19,7 @@
 	};
 </script>
 <div class="results">
-<h1>Results</h1>
+<h1 align="left">Proficio</h1>
 <jsp:useBean id="publication" class="nz.ac.massey.rimsgroup3.metadata.bean.Journal" scope="session" ></jsp:useBean>
 
 <form name="resultsForm" action="CommitRequest" method="post" onSubmit="">

@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="styles/main.css" type="text/css"/>
-<title>RIMS Assistant - Home</title>
+<title>Proficio - Home</title>
 <script type="text/javascript" src="scripts/resultsScript.js"></script>
 <script type="text/javascript" src="scripts/ajax.js"></script>
 <script language="javascript"> 
@@ -39,15 +39,15 @@ hza.style.display = state;
 
 <body>
 <div class="smallPage">
-  <h1>RIMS Assistant</h1>
+  <h1 align="left">Proficio</h1>
   
   <div class="innerIndex">
     <form name="searchForm" action="DoiRequest" method="post" onSubmit=""> 
 	    <h2>DOI Search:</h2>
 	    <table>
 	    <tr>
-		    <td><input type="text" name="search" id="search" size="30"/></td>
-		    <td><input type="button" name="new" value="New Article" onclick="sendRequest('get', 'DoiRequest', document.getElementById('search').value)"/></td>
+		    <td><input type="text" name="search" id="search" size="30" onkeydown="if (event.keyCode == 13) document.getElementById('searchBtn').click()"/></td>
+		    <td><input type="button" id="searchBtn" name="new" value="New Article" onclick="sendRequest('get', 'DoiRequest', document.getElementById('search').value)"/></td>
 	    </tr>  
 	    </table>
 	    <div id="ajax_response" >
@@ -79,22 +79,22 @@ hza.style.display = state;
     <table>
     <tr>
     	<td><label for="lName">Last Name:</label></td>
-    	<td><input type="text" name="lName" id="lName" /></td>
+    	<td><input type="text" name="lName" id="lName" onkeydown="if (event.keyCode == 13) document.getElementById('advSearch').click()"/></td>
     </tr>
     <tr>
    	 	<td><label for="journalTitle">Journal/Publication Title:</label></td>
-    	<td><input type="text" name="journalTitle" id="journalTitle" /></td>
+    	<td><input type="text" name="journalTitle" id="journalTitle" onkeydown="if (event.keyCode == 13) document.getElementById('advSearch').click()"/></td>
     </tr>
     <tr>
         <td><label for="articleTitle">Article Title:</label></td>
-        <td><input type="text" name="articleTitle" id="articleTitle" /></td>
+        <td><input type="text" name="articleTitle" id="articleTitle" onkeydown="if (event.keyCode == 13) document.getElementById('advSearch').click()"/></td>
     </tr>
     <tr>
     	<td><label for="year">Publication Year:</label></td>
-    	<td><input type="text" name="year" id="year" /></td>
+    	<td><input type="text" name="year" id="year" onkeydown="if (event.keyCode == 13) document.getElementById('advSearch').click()"/></td>
     </tr>
     </table>
-    <input type="button" name="advSearch" value="Search" onclick="sendAdvancedRequest('get', 'AdvancedRequest', document.getElementById('lName').value, document.getElementById('journalTitle').value, document.getElementById('articleTitle').value, document.getElementById('year').value);" />
+    <input type="button" id="advSearch" name="advSearch" value="Search" onclick="sendAdvancedRequest('get', 'AdvancedRequest', document.getElementById('lName').value, document.getElementById('journalTitle').value, document.getElementById('articleTitle').value, document.getElementById('year').value);" />
     <br />
     <div id="ajax_response2" >
         
@@ -103,9 +103,9 @@ hza.style.display = state;
     <br />
     <form name="dxdoiForm" action="DXDoiRequest" method="post" onSubmit="" target="_blank">
     Or use the DOI DX tool to go to the article:<br />
-    http://dx.doi.org/<input type='text' id="dxDoi" name="dxDoi" />
+    http://dx.doi.org/<input type='text' id="dxDoi" name="dxDoi" onkeydown="if (event.keyCode == 13) document.getElementById('dxDoiSearch').click()"/>
     <br />
-    <input type='submit' name="dxDoiSearch" value='Locate Article' />
+    <input type='submit' id="dxDoiSearch" name="dxDoiSearch" value='Locate Article' />
     </form>
     </div>
   </div>
