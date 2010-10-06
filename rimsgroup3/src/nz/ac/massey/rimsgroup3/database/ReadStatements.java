@@ -3,6 +3,7 @@ package nz.ac.massey.rimsgroup3.database;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
 import nz.ac.massey.rimsgroup3.metadata.bean.*;
@@ -11,7 +12,8 @@ import nz.ac.massey.rimsgroup3.metadata.bean.*;
 public class ReadStatements {
 	
 	/**
-	 * Reads the database using the best fit information, provided by the authors
+	 * Reads the misc_author table using the best fit information, provided by the results returned 
+	 * from the DOI.
 	 * @param connection
 	 * @param author
 	 * @return
@@ -25,6 +27,7 @@ public class ReadStatements {
 			
 		PreparedStatement statementAuthor = null;
 		try { 
+			// uses the best fit according to the author information passed. 
 			if(authorMiddleName == null && authorFirstName.length() == 1)
 			{
 				statementAuthor = connection.prepareStatement
@@ -75,15 +78,16 @@ public class ReadStatements {
 			if  (statementAuthor != null) statementAuthor.close();
 			return authoredIt;
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			e.printStackTrace();
-			return null;
+			return author;
 		}
 	}
 	
 	/**
-	 * 
+	 * Reads the massey_author table using the best fit information, provided by the results returned 
+	 * from the DOI.
 	 * @param connection
 	 * @param author
 	 * @return
@@ -97,6 +101,7 @@ public class ReadStatements {
 		
 		PreparedStatement statementAuthor = null;
 		try { 
+			// uses the best fit according to the information passed to it. 
 			if(authorMiddleName == null && authorFirstName.length() == 1)
 			{
 				statementAuthor = connection.prepareStatement
@@ -150,15 +155,15 @@ public class ReadStatements {
 			if  (statementAuthor != null) statementAuthor.close();
 			return authoredIt;
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			e.printStackTrace();
-			return null;
+			return author;
 		}
 	}
 	
 	/**
-	 * 
+	 * Returns a boolean whether the DOI has previously been submitted into the system
 	 * @param connection
 	 * @param query
 	 * @return
@@ -178,7 +183,7 @@ public class ReadStatements {
 				return publicationCheck;
 			}
 		
-			catch (Exception e)
+			catch (SQLException e)
 			{
 				e.printStackTrace();
 				return null;

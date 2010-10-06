@@ -34,20 +34,34 @@ public class DoiRequest extends HttpServlet {
 	    	this.dataSource =  datasource.setUp(db);
 	       }
 
-
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException, SQLException {
+    throws ServletException, IOException{
         response.setContentType("text/html; charset=utf-8");
         
         Connection connection = null;  
+        Boolean doiInDB = false;
         String query = request.getParameter("search").toString().trim();
      
         // local database is checked here first for already saved info
-        synchronized (dataSource)
-		{		
-			connection = dataSource.getConnection();
-		}
-        Boolean doiInDB = ReadStatements.publicationReadStatment(connection, query);
+        try 
+        {
+        	synchronized (dataSource)
+        	{		
+        		connection = dataSource.getConnection();
+        	}
+        	doiInDB = ReadStatements.publicationReadStatment(connection, query);
+        }
+        catch(SQLException e)	
+        {
+        	e.printStackTrace();
+        }
         if (doiInDB == true )
         {  	
 
@@ -65,7 +79,14 @@ public class DoiRequest extends HttpServlet {
            
         //redirect to response page once all done processing
         	if (publication != null) {
-        		Publication detailedPublication = SearchAuthors.authorsInDatabase(connection, publication);
+        		Publication detailedPublication = publication;
+        		try {
+        			
+        			detailedPublication = SearchAuthors.authorsInDatabase(connection, publication);
+        		}
+        		catch(Exception e) {
+        			e.printStackTrace();
+        		}
         		HttpSession session = request.getSession(true);   
              	session.setAttribute("publication", detailedPublication);  		
 
@@ -86,6 +107,8 @@ public class DoiRequest extends HttpServlet {
         	}
 
         }  
+      
+        
 		try
 		{
 			if (connection != null)
@@ -107,23 +130,13 @@ public class DoiRequest extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        try {
-			processRequest(request, response);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        processRequest(request, response);
     } 
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        try {
-			processRequest(request, response);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        processRequest(request, response);
     }
    
     @Override

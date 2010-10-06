@@ -2,6 +2,7 @@ package nz.ac.massey.rimsgroup3.database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.*;
 
 
@@ -13,7 +14,8 @@ import nz.ac.massey.rimsgroup3.metadata.bean.*;
 public class InsertStatements {
 
 	/**
-	 * 
+	 * Inserts the details into the Massey_author table, It will update if it has previously been 
+	 * submitted.
 	 * @param connection
 	 * @param author
 	 * @return
@@ -41,7 +43,7 @@ public class InsertStatements {
 			statementMasseyAuthor.setString(13, author.getType());
 			return statementMasseyAuthor;
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			e.printStackTrace();
 			return null;
@@ -49,7 +51,8 @@ public class InsertStatements {
 	}
 	
 	/**
-	 * 
+	 * Inserts the details into the Misc_author table, It will update if it has previously been 
+	 * submitted.
 	 * @param connection
 	 * @param author
 	 * @return
@@ -75,7 +78,7 @@ public class InsertStatements {
 			statementMiscAuthor.setString(11, author.getAffiliation());
 			return statementMiscAuthor;
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			e.printStackTrace();
 			return null;
@@ -83,7 +86,7 @@ public class InsertStatements {
 	}
 	
 	/**
-	 * 
+	 * Inserts the DOI information into the publication table
 	 * @param connection
 	 * @param doi
 	 * @return
@@ -96,7 +99,7 @@ public class InsertStatements {
 				statementPublication.setString(1, doi);
 				return statementPublication;
 			}
-			catch (Exception e)
+			catch (SQLException e)
 			{
 				e.printStackTrace();
 				return null;
