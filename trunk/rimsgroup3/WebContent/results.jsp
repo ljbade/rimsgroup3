@@ -4,8 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="styles/main.css" type="text/css"/>
-<script type="text/javascript" src="scripts/resultsScript.js">
-</script>
+<script type="text/javascript" src="scripts/resultsScript.js"></script>
 <script type="text/javascript" src="scripts/ajax.js"></script>
 <script type="text/javascript" src="scripts/printing.js"></script>
 <title>Proficio - Results</title>
@@ -104,7 +103,7 @@
 <table align="left" width="60%">
 <tr>
 <td><label for="pubID">Publication ID:</label></td>
-<td><input type="text" name="pubID" id="articleTitle" size="75" /></td>
+<td><input type="text" name="pubID" id="pubID" size="75" /></td>
 </tr>
 <tr>
 <td><label for="articleTitle">Article/Output Title:</label></td>
