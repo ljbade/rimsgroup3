@@ -39,15 +39,14 @@ hza.style.display = state;
 
 <body>
 <div class="smallPage">
-  <h1 align="left">Proficio</h1>
-  
+<img alt="Proficio" src="images/proficio.jpg" />
   <div class="innerIndex">
     <form name="searchForm" action="DoiRequest" method="post" onSubmit=""> 
 	    <h2>DOI Search:</h2>
 	    <table>
 	    <tr>
-		    <td><input type="text" name="search" id="search" size="30" onkeydown="if (event.keyCode == 13) document.getElementById('searchBtn').click()"/></td>
-		    <td><input type="button" id="searchBtn" name="new" value="New Article" onclick="sendRequest('get', 'DoiRequest', document.getElementById('search').value)"/></td>
+		    <td><input type="text" name="search" id="search" size="45" onkeydown="if (event.keyCode == 13) document.getElementById('searchBtn').click()"/></td>
+		    <td><input type="button" id="searchBtn" name="new" value="Search" onclick="sendRequest('get', 'DoiRequest', document.getElementById('search').value)"/></td>
 	    </tr>  
 	    </table>
 	    <div id="ajax_response" >

@@ -58,22 +58,10 @@ function addNew() {
 	
 	var radio = document.createElement('input');
 	radio.type = "radio";
-	radio.name = "submitter" + counter;
+	radio.name = "submitter";
 	radio.id = "submitter" + counter;
 	newDiv.innerHTML+= "&nbsp;";
 	newDiv.appendChild(radio);
-
-	var newMoveUpBtn = document.createElement('input');
-	newMoveUpBtn.type = "button";
-	newMoveUpBtn.value = "Move Up";
-	newMoveUpBtn.id = "moveUp" + counter;
-	newDiv.innerHTML+= "&nbsp;";
-	newMoveUpBtn.onclick = function(){
-		moveUp("moveUp" + counter);
-	};
-
-	// Append new button input to the newDiv
-	//newDiv.appendChild(newMoveUpBtn);
 	
 	// Append newDiv input to the mainContainer div
 	mainContainer.appendChild(newDiv);
@@ -85,31 +73,6 @@ function addNew() {
 	document.getElementById('hidden').value = rowCount;
 	
 	alignSubmitter();
-}
-
-function moveUp(name) {
-	var thisButton = document.getElementById(name);
-	var thisDiv = thisButton.parentNode.getAttribute("id");
-	
-	var temp = document.getElementById("fName" + thisDiv).value;
-	document.getElementById("fName" + thisDiv).value = document.getElementById("fName" + (thisDiv - 1)).value;
-	document.getElementById("fName" + (thisDiv - 1)).value = temp;
-	
-	var temp = document.getElementById("mName" + thisDiv).value;
-	document.getElementById("mName" + thisDiv).value = document.getElementById("mName" + (thisDiv - 1)).value;
-	document.getElementById("mName" + (thisDiv - 1)).value = temp;
-	
-	var temp = document.getElementById("lName" + thisDiv).value;
-	document.getElementById("lName" + thisDiv).value = document.getElementById("lName" + (thisDiv - 1)).value;
-	document.getElementById("lName" + (thisDiv - 1)).value = temp;
-	
-	var temp = document.getElementById("affiliation" + thisDiv).value;
-	document.getElementById("affiliation" + thisDiv).value = document.getElementById("affiliation" + (thisDiv - 1)).value;
-	document.getElementById("affiliation" + (thisDiv - 1)).value = temp;
-	
-	var temp = document.getElementById("id" + thisDiv).value;
-	document.getElementById("id" + thisDiv).value = document.getElementById("id" + (thisDiv - 1)).value;
-	document.getElementById("id" + (thisDiv - 1)).value = temp;
 }
 
 function deleteIt(){
