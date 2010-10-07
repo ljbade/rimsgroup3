@@ -58,7 +58,8 @@ function addNew() {
 	
 	var radio = document.createElement('input');
 	radio.type = "radio";
-	radio.name = "submitter";
+	radio.name = "submitter" + counter;
+	radio.id = "submitter" + counter;
 	newDiv.innerHTML+= "&nbsp;";
 	newDiv.appendChild(radio);
 
@@ -82,6 +83,8 @@ function addNew() {
 	var rowCount = document.getElementById('hidden').value;
 	rowCount++;
 	document.getElementById('hidden').value = rowCount;
+	
+	alignSubmitter();
 }
 
 function moveUp(name) {
@@ -141,4 +144,15 @@ function parse() {
 		}
 	document.getElementById('articleTitle').value = title;
 	document.getElementById('htmlTitle').innerHTML = title;
+}
+
+function alignSubmitter(){
+	var submitRadio = document.getElementById('submitter1');
+	var submitLabel = document.getElementById('submitterLabel');
+	
+	var radioTop = submitRadio.offsetTop;
+	var radioLeft = submitRadio.offsetLeft;
+	submitLabel.style.position = 'absolute';
+	submitLabel.style.top = radioTop - 30;
+	submitLabel.style.left = radioLeft - 20;
 }
