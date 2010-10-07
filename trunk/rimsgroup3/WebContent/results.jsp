@@ -19,7 +19,7 @@
 	};
 </script>
 <div class="results">
-<h1 align="left">Proficio</h1>
+<img alt="Proficio" src="images/proficio.jpg" />
 <jsp:useBean id="publication" class="nz.ac.massey.rimsgroup3.metadata.bean.Journal" scope="session" ></jsp:useBean>
 
 <form name="resultsForm" action="CommitRequest" method="post" onSubmit="">
