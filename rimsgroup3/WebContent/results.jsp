@@ -63,7 +63,7 @@
 <div class="firstSet">
 <h2>Authors</h2>
 <div id="authorDiv">
-
+<label id="submitterLabel" style="position:absolute; left: -2000px;">Submitter</label>
 	<c:forEach items="${publication.authors}" var="author" varStatus="status">
 	<c:if test="${status.count==1}">
 		<script>
@@ -87,7 +87,7 @@
 		    <label for="id${status.count}">ID Number:</label>
 		    <input type="text" name="id${status.count}" id="id${status.count}" size="15" value="<c:out value="${author.ID}" />"/>
 		    
-		    <input type="radio" name="submitter" value="submitter" />
+		    <input type="radio" id="submitter${status.count}" name="submitter" value="submitter" />
 <!-- 	    
 		    <c:if test="${status.count > 1}">
 		    	<input type="button" id="moveUp${status.count}" onclick="moveUp(this.id);" value="Move Up"/>
@@ -186,5 +186,8 @@
 
 </form>
 </div>
+<script type="text/javascript">
+	alignSubmitter();
+</script>
 </body>
 </html>
