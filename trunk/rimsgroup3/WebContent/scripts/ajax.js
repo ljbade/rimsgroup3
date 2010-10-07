@@ -32,6 +32,8 @@ var http = createRequestObject();
 function sendRequest(method, url, doi){
   // start  progress display
   var progress = document.getElementById('ajax_response');
+  var empty = "";
+  progress.innerHTML = empty;
   var html = "<br /><img src='ajax-loader.gif' /><br /> Search in progress. Please wait..."
   progress.innerHTML = html;
 
@@ -105,8 +107,8 @@ function handleAbstractResponse() {
 function sendAdvancedRequest(method, url, lname, journal, article, year){
 	  // start  progress display
 	  var progress = document.getElementById('ajax_response2');
-	  var html = "";
-	  progress.innerHTML = html;
+	  var empty = "";
+	  progress.innerHTML = empty;
 	  if(advancedValid()){
 		  var html = "<br /><img src='ajax-loader.gif' /><br /> Search in progress. Please wait...";
 		  progress.innerHTML = html;
