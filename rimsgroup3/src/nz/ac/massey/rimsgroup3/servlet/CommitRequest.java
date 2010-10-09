@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +25,7 @@ import nz.ac.massey.rimsgroup3.metadata.bean.*;
 public class CommitRequest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	DataSource dataSource;
-       
+	ServletContext servletCtx;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -37,12 +38,17 @@ public class CommitRequest extends HttpServlet {
         
     	super.init(config);
     	String db = config.getInitParameter("test");
+    	servletCtx = getServletContext();
+        servletCtx.log("CommitRequest Init has been invoked");
     	DatabaseConnectI datasource = new DatabaseConnection();
     	this.dataSource =  datasource.setUp(db);
     	
       }
+    
+    
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException, SQLException {
+    throws ServletException, IOException {
     	response.setContentType("text/html; charset=utf-8");
     	Publication publication = new Publication();
     	
@@ -84,18 +90,20 @@ public class CommitRequest extends HttpServlet {
     	
     	publication.setAuthors(authorList);
 		Connection connection = null;
+		
+		try
+		{
 		synchronized (dataSource)
 		{
 			connection = dataSource.getConnection();
 		}
-		try
-		{
 			InsertDetails.detailsToInsert(connection,publication);
 			response.sendRedirect("index.jsp?success=successfulCommit");
 		}
 		catch(Exception e)
 		{
-			System.out.println("fail commiting");
+			servletCtx.log("Failed to commit to the Database",e);
+			response.sendRedirect("index.jsp");
 		}
 		try
 		{
@@ -106,7 +114,7 @@ public class CommitRequest extends HttpServlet {
 		}
 		catch (SQLException e)
 		{
-			System.err.println(e.getMessage());
+			servletCtx.log("Failed at closing the connection", e);
 		}
 	
     }
@@ -117,12 +125,8 @@ public class CommitRequest extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 	throws ServletException, IOException {
-		 try {
 				processRequest(request, response);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 	
 	}
 
@@ -131,12 +135,8 @@ public class CommitRequest extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 try {
 				processRequest(request, response);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 	}
 
 }

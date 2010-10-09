@@ -26,10 +26,43 @@ h2 {
 	color: #09F;
 	text-align: left;
 }
+
+h3 {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:18pt;
+	color: #09F;
+	text-align: left;
+	padding-left: 62px;
+}
+		
+h4 {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14pt;
+	text-align: left;
+	padding-left: 62px;
+}
+
+
+
 label{
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:9pt;
 }
+
+
+ul {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:9pt;
+	text-align: left;
+	padding-left: 75px;
+	}
+	
+ol {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11pt;
+	text-align: left;
+	padding-left: 83px;
+	}
 
 #authorDiv{
 	overflow:auto;
@@ -105,6 +138,13 @@ table.resultTable{
 	font-size:9pt;
 }
 
+table.description{
+	padding:5px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:9pt;
+	text-align: left;
+	}
+
 .smallPage{
 	background-color:#09F;
 	border:thin;
@@ -144,8 +184,10 @@ table.resultTable{
 .rightAligned {
     text-align: right;
 }
+
 .abstract {
     float: right;
     margin-left: 0px;
     padding-left: 0px;
 }
+
