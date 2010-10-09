@@ -43,7 +43,7 @@
    	the Follow Link link <br/> 
    	<br/>  </li>
    	<li>If you wish to print set the check box to print.<br/> Fill out any blank text fields and 
-   	click the appropriate radio buttons, in Proficio that are relevant to information that is required
+   	click the appropriate radio buttons in Proficio, that are relevant to information that is required
    	for printing (any information left blank will not be printed). <br/> 
    	<br/> </li>
    	<li>Publication ID is the RIMS system ID number after committing the article to the RIMS system. <br/>
