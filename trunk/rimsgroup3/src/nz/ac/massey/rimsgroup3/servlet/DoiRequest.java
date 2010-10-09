@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,9 +27,12 @@ public class DoiRequest extends HttpServlet {
    
 	private static final long serialVersionUID = -2950062021582777363L;
 	DataSource dataSource;
+	ServletContext servletCtx;
 	
 	  public void init(ServletConfig config) throws ServletException {
 	     	super.init(config);
+	     	servletCtx = getServletContext();
+	        servletCtx.log("DoiRequest Init has been invoked");
 	    	String db = config.getInitParameter("test");
 	    	DatabaseConnectI datasource = new DatabaseConnection();
 	    	this.dataSource =  datasource.setUp(db);
@@ -57,10 +61,12 @@ public class DoiRequest extends HttpServlet {
         		connection = dataSource.getConnection();
         	}
         	doiInDB = ReadStatements.publicationReadStatment(connection, query);
-        }
+        	
+        }        
+
         catch(SQLException e)	
         {
-        	e.printStackTrace();
+        	 servletCtx.log("Failed reading the publication", e);
         }
         if (doiInDB == true )
         {  	
@@ -85,7 +91,7 @@ public class DoiRequest extends HttpServlet {
         			detailedPublication = SearchAuthors.authorsInDatabase(connection, publication);
         		}
         		catch(Exception e) {
-        			e.printStackTrace();
+        			servletCtx.log("Failed at Searching Authors", e);
         		}
         		HttpSession session = request.getSession(true);   
              	session.setAttribute("publication", detailedPublication);  		
@@ -118,7 +124,7 @@ public class DoiRequest extends HttpServlet {
 		}
 		catch (SQLException e)
 		{
-			System.err.println(e.getMessage());
+			servletCtx.log("Failed at closing the connection", e);
 		}
 
         

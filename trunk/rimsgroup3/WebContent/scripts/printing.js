@@ -107,6 +107,7 @@ function checkPrinting(form) {
 		newWin.document.write("<tr><td><strong>Pages:</strong></td><td>" + document.getElementById('pageNum').value + "</td></tr>");
 		newWin.document.write("<tr><td><strong>URL:</strong></td><td>" + document.getElementById('url').value + "</td></tr>");
 		newWin.document.write("<tr><td><strong>DOI:</strong></td><td>" + document.getElementById('doi').value + "</td></tr>");
+		newWin.document.write("<tr><td><strong>Keywords:</strong></td><td>" + document.getElementById('keywords').value + "</td></tr>");
 		newWin.document.write("<tr><td><strong>Abstract Text:</strong></td><td rowspan='12'>" + document.getElementById('abstract').value + "</td></tr>"); 
 		
 		newWin.document.write("</table></div>");
