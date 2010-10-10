@@ -66,18 +66,27 @@ public class AbstractText extends HttpServlet {
 	 */
 	public String processString(String input) {
 		String result = null;
+		input = input.substring(input.indexOf("Abstract")); // strip of head of input so it starts at first Abstract occurrence
 		try {
 			// get array of positions of "Abstract" in the page
-			int[] positions = new int[7]; // best guess at max number of occurrences
+			int[] positions = new int[7]; // guess at max number of occurrences
 			int count = 0;
 			String shortStr = input; // version of input sting to be manipulated
 			int pos = 0; // holds true position of indexOf in string (as shortStr gets progressively shorter
+			Boolean foundSome = false;
 			while (shortStr.indexOf("Abstract") != -1) {
+				// find the location of each 'Abstract' and keep it in the positions array
 				positions[count] = shortStr.indexOf("Abstract") + pos; //pos = true position in original string
-				pos = positions[count] + shortStr.indexOf("Abstract");
+				pos = pos + shortStr.indexOf("Abstract");
 				count++;
-				shortStr = input.substring(pos + 8); // + 8 clears the actual word abstract
+				int newPos = pos + 8;
+				shortStr = input.substring(newPos); // truncate shortStr by removing the found Abstract instance - + 8 clears the actual word abstract
+				foundSome = true;
 	        }
+			if (!foundSome) {
+				// skip the rest of the processing
+				return "Unable to extract abstract successfully."; 
+			}
 			// for each entry in positions array check for html tags near start of string that 
 			// indicate entry is not abstract text (</option>, </li>, etc)
 			// presence of </h is a good sign
