@@ -24,5 +24,7 @@ public class PersonTest extends TestCase {
 		assertEquals("John", person.getFirstName());
 		assertEquals("B.", person.getMiddleName());
 		assertEquals("Doe", person.getLastName());
+		
+		assertEquals(person, person);
 	}
 }

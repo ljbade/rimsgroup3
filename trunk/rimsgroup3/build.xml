@@ -38,7 +38,8 @@
 	<!-- =================================================================== -->
 	<!-- Main target: compile, jar,test and build java docs                                                                           -->
 	<!-- =================================================================== -->
-	<target name="all" description="Main target - compile, jar, docs, PMD and test " depends="emma,compile,tests,jar,javadocs,dependencyanalysis,pmd">
+	<!--<target name="all" description="Main target - compile, jar, docs, PMD and test " depends="emma,compile,tests,jar,javadocs,dependencyanalysis,pmd">-->
+	<target name="all" description="Main target - compile, jar, docs, PMD and test " depends="emma,compile,tests,jar">
 		<echo>Build finished !</echo>
 	</target>
 	<!-- =================================================================== -->
@@ -166,7 +167,7 @@
 		<!-- Instrument the classes, this takes the normal classes, and makes instrumented classes instead -->
 		<!-- Note that EMMA takes regular ANT path elements as instrumentation input, which is exceedingly convenient -->
 
-		<emma enabled="${emma.enabled}" >
+		<emma enabled="${emma.enabled}">
 			<instr instrpathref="emma.coverage" 
 			    	destdir="${instr.dir}" 
 			    	metadatafile="${coverage.dir}/metadata.emma" 
@@ -189,12 +190,12 @@
 				<fileset dir="${build.classes}" includes="**/test/*.class" />
 			</batchtest>
 			<jvmarg value="-Demma.coverage.out.file=${coverage.dir}/coverage.emma"/>
-			<jvmarg value="-Demma.coverage.out.merge=false"/>
+			<jvmarg value="-Demma.coverage.out.merge=true"/>
 		</junit>
 
 		<!--====Emma coverage reports===============================================-->
 		<!-- if enabled, generate coverage report(s): -->
-		<emma enabled="${emma.enabled}" >
+		<emma enabled="${emma.enabled}">
 			<report sourcepath="${src.dir}"
 		          sort="+block,+name,+method,+class"
 		          metrics="method:70,block:80,line:80,class:100"

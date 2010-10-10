@@ -23,8 +23,8 @@ public class MetadataRetrieverFactoryTest extends TestCase {
 	// TODO: change this to use a mock plugin?
 	public void testFindDoi() {
 		ArrayList<String> dois = new ArrayList<String>();
-		dois.add("crossref");
-		dois.add("scopus");
+		dois.add("10.3998/3336451.0009.101");
+		dois.add("10.1016/j.entcs.2006.02.004");
 		
 		for (String doi : dois)	{
 			Publication publication = factory.retrievePublication(doi);

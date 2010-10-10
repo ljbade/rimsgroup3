@@ -45,7 +45,6 @@ public class ConferenceTest extends TestCase {
 		conference.setAbstractText("This is a cool article");
 		conference.setKeyWords(keyWords);
 		conference.setUrl("http://www.google.com");
-		conference.setIsQualityAssured(true);
 		conference.setAuthors(authors);
 		
 		assertEquals("0123456789", conference.getID());
@@ -59,9 +58,7 @@ public class ConferenceTest extends TestCase {
 		assertEquals("This is a cool article", conference.getAbstractText());
 		assertEquals(keyWords, conference.getKeyWords());
 		assertEquals("http://www.google.com", conference.getUrl());
-		assertEquals(true, conference.getIsQualityAssured());
-		
-		assertEquals("John B. Doe, James F. Smith, ", conference.getAuthorsString());
+		assertEquals(authors, conference.getAuthors());
 		
 		conference.setAbstractTitle("How to create an Ant buildscript");
 		conference.setConferenceName("Conference on Automated Building");
@@ -74,5 +71,7 @@ public class ConferenceTest extends TestCase {
 		assertEquals("26/09/2010", conference.getStartDate());
 		assertEquals("03/10/2010", conference.getEndDate());
 		assertEquals("Auckland", conference.getLocation());
+		
+		assertEquals(conference, conference);
 	}
 }

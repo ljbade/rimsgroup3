@@ -46,7 +46,6 @@ public class PublicationTest extends TestCase {
 		publication.setAbstractText("This is a cool article");
 		publication.setKeyWords(keyWords);
 		publication.setUrl("http://www.google.com");
-		publication.setIsQualityAssured(true);
 		publication.setAuthors(authors);
 		
 		assertEquals("0123456789", publication.getID());
@@ -60,8 +59,8 @@ public class PublicationTest extends TestCase {
 		assertEquals("This is a cool article", publication.getAbstractText());
 		assertEquals(keyWords, publication.getKeyWords());
 		assertEquals("http://www.google.com", publication.getUrl());
-		assertEquals(true, publication.getIsQualityAssured());
+		assertEquals(authors, publication.getAuthors());
 		
-		assertEquals("John B. Doe, James F. Smith, ", publication.getAuthorsString());
+		assertEquals(publication, publication);
 	}
 }

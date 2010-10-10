@@ -72,7 +72,6 @@ public class AbstractText extends HttpServlet {
 			int count = 0;
 			String shortStr = input; // version of input sting to be manipulated
 			int pos = 0; // holds true position of indexOf in string (as shortStr gets progressively shorter
-			int len = shortStr.length();
 			while (shortStr.indexOf("Abstract") != -1) {
 				positions[count] = shortStr.indexOf("Abstract") + pos; //pos = true position in original string
 				pos = positions[count] + shortStr.indexOf("Abstract");
