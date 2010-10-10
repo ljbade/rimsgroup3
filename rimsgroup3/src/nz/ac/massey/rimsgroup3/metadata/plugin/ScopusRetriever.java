@@ -57,6 +57,9 @@ public class ScopusRetriever implements MetadataRetriever {
 		JsonObject jsonObj = gson.fromJson(json, JsonObject.class);
 		JsonResult result = jsonObj.PartOK.Results[0];
 		
+		if (!result.equals("ar") && !result.equals("ip") && !result.equals("bz"))
+			return null;
+		
 		Journal journal = new Journal();
 		journal.setAbstractText(StringEscapeUtils.unescapeHtml(result.abstractString));
 		journal.setArticleTitle(StringEscapeUtils.unescapeHtml(result.title));
