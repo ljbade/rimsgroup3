@@ -46,7 +46,6 @@ public class JournalTest extends TestCase {
 		journal.setAbstractText("This is a cool article");
 		journal.setKeyWords(keyWords);
 		journal.setUrl("http://www.google.com");
-		journal.setIsQualityAssured(true);
 		journal.setAuthors(authors);
 		
 		assertEquals("0123456789", journal.getID());
@@ -60,9 +59,7 @@ public class JournalTest extends TestCase {
 		assertEquals("This is a cool article", journal.getAbstractText());
 		assertEquals(keyWords, journal.getKeyWords());
 		assertEquals("http://www.google.com", journal.getUrl());
-		assertEquals(true, journal.getIsQualityAssured());
-		
-		assertEquals("John B. Doe, James F. Smith, ", journal.getAuthorsString());
+		assertEquals(authors, journal.getAuthors());
 		
 		journal.setVolume("4");
 		journal.setIssue("10");
@@ -73,5 +70,7 @@ public class JournalTest extends TestCase {
 		assertEquals("10", journal.getIssue());
 		assertEquals("Journal of Java Programming", journal.getJournalTitle());
 		assertEquals("Writing Java Test Cases", journal.getArticleTitle());
+		
+		assertEquals(journal, journal);
 	}
 }

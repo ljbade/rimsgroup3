@@ -11,6 +11,51 @@ public class Information {
 	private Journal journal;
 	private Publication publication;
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Information other = (Information) obj;
+		if (authors == null) {
+			if (other.authors != null)
+				return false;
+		} else if (!authors.equals(other.authors))
+			return false;
+		if (book == null) {
+			if (other.book != null)
+				return false;
+		} else if (!book.equals(other.book))
+			return false;
+		if (conference == null) {
+			if (other.conference != null)
+				return false;
+		} else if (!conference.equals(other.conference))
+			return false;
+		if (editors == null) {
+			if (other.editors != null)
+				return false;
+		} else if (!editors.equals(other.editors))
+			return false;
+		if (journal == null) {
+			if (other.journal != null)
+				return false;
+		} else if (!journal.equals(other.journal))
+			return false;
+		if (publication == null) {
+			if (other.publication != null)
+				return false;
+		} else if (!publication.equals(other.publication))
+			return false;
+		return true;
+	}
+
 	/**
 	 * @return the list of authors
 	 */

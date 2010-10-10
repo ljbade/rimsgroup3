@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import nz.ac.massey.rimsgroup3.Service;
+import nz.ac.massey.rimsgroup3.metadata.MetadataRetrieverFactory;
 import nz.ac.massey.rimsgroup3.metadata.bean.Publication;
 
 /**
@@ -85,7 +85,7 @@ public class AdvancedRequest extends HttpServlet {
     
     // send found DOI to normal search methods
     private void DOIsearch(String doi, HttpServletRequest request, HttpServletResponse response) {
-        Publication publication = Service.get().retrievePublication(doi);
+        Publication publication = MetadataRetrieverFactory.get().retrievePublication(doi);
         HttpSession session = request.getSession(true);
         session.setAttribute("publication", publication);
 

@@ -16,5 +16,7 @@ public class EditorTest extends TestCase {
 		assertEquals("John", editor.getFirstName());
 		assertEquals("B.", editor.getMiddleName());
 		assertEquals("Doe", editor.getLastName());
+		
+		assertEquals(editor, editor);
 	}
 }

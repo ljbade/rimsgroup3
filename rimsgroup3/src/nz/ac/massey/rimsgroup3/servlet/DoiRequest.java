@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
-import nz.ac.massey.rimsgroup3.Service;
 import nz.ac.massey.rimsgroup3.database.*;
+import nz.ac.massey.rimsgroup3.metadata.MetadataRetrieverFactory;
 import nz.ac.massey.rimsgroup3.metadata.bean.Publication;
 
 /**
@@ -81,7 +81,7 @@ public class DoiRequest extends HttpServlet {
         else
         {
         // pass DOI to Crossref if local db fails
-        	Publication publication = Service.get().retrievePublication(query);        
+        	Publication publication = MetadataRetrieverFactory.get().retrievePublication(query);        
            
         //redirect to response page once all done processing
         	if (publication != null) {

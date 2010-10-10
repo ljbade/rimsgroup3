@@ -47,7 +47,6 @@ public class BookTest extends TestCase {
 		book.setAbstractText("This is a cool article");
 		book.setKeyWords(keyWords);
 		book.setUrl("http://www.google.com");
-		book.setIsQualityAssured(true);
 		book.setAuthors(authors);
 		
 		assertEquals("0123456789", book.getID());
@@ -61,9 +60,7 @@ public class BookTest extends TestCase {
 		assertEquals("This is a cool article", book.getAbstractText());
 		assertEquals(keyWords, book.getKeyWords());
 		assertEquals("http://www.google.com", book.getUrl());
-		assertEquals(true, book.getIsQualityAssured());
-		
-		assertEquals("John B. Doe, James F. Smith, ", book.getAuthorsString());
+		assertEquals(authors, book.getAuthors());
 		
 		Editor editor1 = new Editor();		
 		editor1.setFirstName("John");
@@ -88,5 +85,7 @@ public class BookTest extends TestCase {
 		assertEquals("Servlets", book.getChapterTitle());
 		assertEquals("Java Web Apps", book.getBookTitle());
 		assertEquals(editors, book.getEditors());
+		
+		assertEquals(book, book);
 	}
 }

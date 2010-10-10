@@ -19,18 +19,88 @@ public class Publication {
 	protected String abstractText;
 	protected List<String> keyWords;
 	protected String url;	
-	protected boolean isQualityAssured;
 	protected List<Author> authors;
 	protected String publisher;
 	protected String publicationCategory;
 	protected int numberOfAuthors;
 	
-	public void setNumberOfAuthors(int numberOfAuthors) {
-		this.numberOfAuthors = numberOfAuthors;
+	public int getNumberOfAuthors() {
+		return authors.size();
 	}
 
-	public int getNumberOfAuthors() {
-		return numberOfAuthors;
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Publication other = (Publication) obj;
+		if (abstractText == null) {
+			if (other.abstractText != null)
+				return false;
+		} else if (!abstractText.equals(other.abstractText))
+			return false;
+		if (authors == null) {
+			if (other.authors != null)
+				return false;
+		} else if (!authors.equals(other.authors))
+			return false;
+		if (doi == null) {
+			if (other.doi != null)
+				return false;
+		} else if (!doi.equals(other.doi))
+			return false;
+		if (endPage == null) {
+			if (other.endPage != null)
+				return false;
+		} else if (!endPage.equals(other.endPage))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (issn == null) {
+			if (other.issn != null)
+				return false;
+		} else if (!issn.equals(other.issn))
+			return false;
+		if (keyWords == null) {
+			if (other.keyWords != null)
+				return false;
+		} else if (!keyWords.equals(other.keyWords))
+			return false;
+		if (publicationCategory == null) {
+			if (other.publicationCategory != null)
+				return false;
+		} else if (!publicationCategory.equals(other.publicationCategory))
+			return false;
+		if (publisher == null) {
+			if (other.publisher != null)
+				return false;
+		} else if (!publisher.equals(other.publisher))
+			return false;
+		if (startPage == null) {
+			if (other.startPage != null)
+				return false;
+		} else if (!startPage.equals(other.startPage))
+			return false;
+		if (url == null) {
+			if (other.url != null)
+				return false;
+		} else if (!url.equals(other.url))
+			return false;
+		if (year == null) {
+			if (other.year != null)
+				return false;
+		} else if (!year.equals(other.year))
+			return false;
+		return true;
 	}
 
 	/**
@@ -188,20 +258,6 @@ public class Publication {
 	}
 	
 	/**
-	 * @return the isQualityAssured
-	 */
-	public boolean getIsQualityAssured() {
-		return isQualityAssured;
-	}
-	
-	/**
-	 * @param isQualityAssured the isQualityAssured to set
-	 */
-	public void setIsQualityAssured(boolean isQualityAssured) {
-		this.isQualityAssured = isQualityAssured;
-	}
-	
-	/**
 	 * @return the authors
 	 */
 	public List<Author> getAuthors() {
@@ -213,18 +269,6 @@ public class Publication {
 	 */
 	public void setAuthors(List<Author> authors) {
 		this.authors = authors;
-	}
-	
-	public String getAuthorsString() {
-		StringBuilder authorsString = new StringBuilder();
-		
-		for (Author author : authors) {
-			authorsString.append(author.getFirstName() + " " 
-					+ author.getMiddleName() + (author.getMiddleName().length() != 0 ? " " : "") 
-						+ author.getLastName() + ", ");
-		}
-		
-		return authorsString.toString();
 	}
 	
 }

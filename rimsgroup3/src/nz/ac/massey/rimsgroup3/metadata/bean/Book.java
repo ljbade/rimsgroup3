@@ -11,6 +11,41 @@ import java.util.List;
  */
 public class Book extends Publication {
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Book other = (Book) obj;
+		if (bookTitle == null) {
+			if (other.bookTitle != null)
+				return false;
+		} else if (!bookTitle.equals(other.bookTitle))
+			return false;
+		if (chapterTitle == null) {
+			if (other.chapterTitle != null)
+				return false;
+		} else if (!chapterTitle.equals(other.chapterTitle))
+			return false;
+		if (editors == null) {
+			if (other.editors != null)
+				return false;
+		} else if (!editors.equals(other.editors))
+			return false;
+		if (placePublished == null) {
+			if (other.placePublished != null)
+				return false;
+		} else if (!placePublished.equals(other.placePublished))
+			return false;
+		return true;
+	}
+
 	private String placePublished;
 	private String chapterTitle;
 	private String bookTitle;

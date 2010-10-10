@@ -3,8 +3,6 @@
  */
 package nz.ac.massey.rimsgroup3.metadata.plugin;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -12,9 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Properties;
-import java.net.*;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -26,8 +22,6 @@ import org.xml.sax.SAXException;
 
 import nz.ac.massey.rimsgroup3.metadata.MetadataRetriever;
 import nz.ac.massey.rimsgroup3.metadata.bean.Author;
-import nz.ac.massey.rimsgroup3.metadata.bean.Book;
-import nz.ac.massey.rimsgroup3.metadata.bean.Conference;
 import nz.ac.massey.rimsgroup3.metadata.bean.Journal;
 import nz.ac.massey.rimsgroup3.metadata.bean.Publication;
 
@@ -42,8 +36,7 @@ public class CrossrefRetriever implements MetadataRetriever {
 	 */
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Crossref";
 	}
 
 	/* (non-Javadoc)
@@ -106,7 +99,6 @@ public class CrossrefRetriever implements MetadataRetriever {
 		result.setEndPage((safelyGetElement(xmlDoc, "last_page")));
 		ArrayList<Author> authors = parseAuthors(xmlDoc);
 		result.setAuthors(authors);
-		result.setNumberOfAuthors(authors.size());
 		
 		return result;
 	}
@@ -161,34 +153,6 @@ public class CrossrefRetriever implements MetadataRetriever {
 		result.setArticleTitle(safelyGetElement(xmlDoc, "article_title"));
 		
 		return result;
-	}
-	
-	private Book parseBook(Document xmlDoc) {
-		Book result = new Book();
-		
-		return result;
-	}
-	
-	private Conference parseConference() {
-		Conference result = new Conference();
-		
-		return result;
-	}
-	
-	
-	/**
-	 * Parses the string into an int handling the case where the string is not valid.
-	 * 
-	 * @param string the string to parse
-	 * @return the parsed int or 0 if there was an error
-	 */
-	private int safeParseInt(String string) {
-		try {
-			return Integer.parseInt(string);
-		}
-		catch (NumberFormatException e) {
-			return 0;
-		}
 	}
 	
 	/**

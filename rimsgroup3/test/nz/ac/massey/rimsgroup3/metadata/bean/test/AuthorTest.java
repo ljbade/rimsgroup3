@@ -24,7 +24,6 @@ public class AuthorTest extends TestCase {
 		author.setType("Staff");
 		author.setDepartment("School of Engineering and Advanced Technology");
 		author.setCollege("College of Science");
-		author.setEmail("jdoe@massey.ac.nz");
 		author.setInDatabase(true);
 		
 		assertEquals("0123456789", author.getID());
@@ -36,7 +35,8 @@ public class AuthorTest extends TestCase {
 		assertEquals("Staff", author.getType());
 		assertEquals("School of Engineering and Advanced Technology", author.getDepartment());
 		assertEquals("College of Science", author.getCollege());
-		assertEquals("jdoe@massey.ac.nz", author.getEmail());
 		assertEquals(true, author.getInDatabase());
+		
+		assertEquals(author, author);
 	}
 }
