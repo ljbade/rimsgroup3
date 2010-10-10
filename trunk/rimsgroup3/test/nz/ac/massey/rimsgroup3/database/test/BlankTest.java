@@ -20,12 +20,12 @@ import nz.ac.massey.rimsgroup3.metadata.bean.*;
 import nz.ac.massey.rimsgroup3.runner.ScriptRunner;
 
 
-public class TestingBlankDatabase extends ServletTestCase{
+public class BlankTest extends ServletTestCase{
 	DataSource dataSource;
 	private String dbSelection;
 	Connection connection;
 	
-	public TestingBlankDatabase(String name)
+	public BlankTest(String name)
 	{
 		super(name);
 		System.setProperty("cactus.contextURL", "http://localhost:8080/rimsgroup3");
