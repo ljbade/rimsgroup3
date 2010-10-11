@@ -124,15 +124,6 @@
 <td><label for="publisher">Publisher:</label></td>
 <td><input type="text" name="publisher" id="publisher" size="75" /></td>
 </tr>
-<tr>
-<td><label for="publisher">Publisher(autocomplete):</label></td>
-<td>
-	<select>
-		<option>Hello</option>
-	</select>
-</td>
-</tr>
-<tr>
 <td><label for="issn">ISSN:</label></td>
 <td><input type="text" name="issn" id="issn" size="75" value="<c:out value="${publication.issn}" />" /></td>
 </tr>
