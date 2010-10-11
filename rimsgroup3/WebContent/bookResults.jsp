@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="styles/main.css" type="text/css"/>
 <script type="text/javascript" src="scripts/resultsScript.js"></script>
 <script type="text/javascript" src="scripts/ajax.js"></script>
-<script type="text/javascript" src="scripts/printing.js"></script>
+<script type="text/javascript" src="scripts/bookPrinting.js"></script>
 <title>Proficio - Results</title>
 </head>
 <body>
@@ -99,42 +99,42 @@
 <table align="left" width="60%">
 <tr>
 <td><label for="pubID">Publication ID:</label></td>
-<td><input type="text" name="pubID" size="75" /></td>
+<td><input type="text" name="pubID" id="pubID" size="75" /></td>
 </tr>
 <tr>
 <td><label for="editors">Editors:</label></td>
-<td><input type="text" name="editors" size="75" value="<c:out value="${publication.editors}" />"/></td>
+<td><input type="text" name="editors" id="editors" size="75" value="<c:out value="${publication.editorsStr}" />" /></td>
 </tr>
 <tr>
 <td><label for="articleTitle">Chapter/Other Title:</label></td>
-<td><input type="text" name="chapterTitle" size="75" value="<c:out value="${publication.chapterTitle}" />" /></td>
+<td><input type="text" name="chapterTitle" id="chapterTitle" size="75" value="<c:out value="${publication.chapterTitle}" />" /></td>
 </tr>
 <tr>
 <td><label for="journalTitle">Book Title:</label></td>
-<td><input type="text" name="bookTitle" size="75" value="<c:out value="${publication.bookTitle}" />" /></td>
+<td><input type="text" name="bookTitle" id="bookTitle" size="75" value="<c:out value="${publication.bookTitle}" />" /></td>
 </tr>
 <tr>
 <td><label for="year">Publication Year:</label></td>
-<td><input type="text" name="year" size="75" value="<c:out value="${publication.year}" />" /> </td>
+<td><input type="text" name="year" id="year" size="75" value="<c:out value="${publication.year}" />" /> </td>
 </tr>
 <tr>
 <td><label for="publisher">Publisher:</label></td>
-<td><input type="text" name="publisher" id="publisher" size="75" /></td>
+<td><input type="text" name="publisher" id="publisher" size="75" value="<c:out value="${publication.publisher}" />" /></td>
 </tr>
 <tr>
 <td><label for="issn">ISSN:</label></td>
-<td><input type="text" name="issn"  size="75" value="<c:out value="${publication.issn}" />" /></td>
+<td><input type="text" name="issn"  id="issn" size="75" value="<c:out value="${publication.issn}" />" /></td>
 </tr>
 <tr>
 <td><label for="placePublished">Place Published:</label></td>
-<td><input type="text" name="placePublished" size="25" value="<c:out value="${publication.placePublished}"/>" /></td>
+<td><input type="text" name="placePublished" id="placePublished" size="25" value="<c:out value="${publication.placePublished}"/>" /></td>
 </tr>
 <tr>
 <td>
 <label for="startPage">Start Page:</label></td>
-<td><input type="text" name="startPage" id="pageNum" size="25" value="<c:out value="${publication.startPage}" />" />
+<td><input type="text" name="startPage" id="startPageNum" size="25" value="<c:out value="${publication.startPage}" />" />
 <label for="endPage">End Page:</label>
-<input type="text" name="endPage" id="pageNum" size="25" value="<c:out value="${publication.endPage}" />" /> </td>
+<input type="text" name="endPage" id="endPageNum" size="25" value="<c:out value="${publication.endPage}" />" /> </td>
 </tr>
 <tr>
 <td><label for="url">URL Address:</label></td>

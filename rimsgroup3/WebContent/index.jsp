@@ -38,6 +38,7 @@ hza.style.display = state;
 </head>
 
 <body>
+<div id="container">
 <div class="smallPage">
 <img alt="Proficio" src="images/proficio.jpg" />
   <div class="innerIndex">
@@ -45,7 +46,7 @@ hza.style.display = state;
 	    <h2>DOI Search:</h2>
 	    <table>
 	    <tr>
-		    <td><input type="text" name="search" id="search" size="45" onkeydown="if (event.keyCode == 13) document.getElementById('searchBtn').click()"/></td>
+		    <td><input type="text" name="search" id="search" size="45" onkeydown="if (event.keyCode == 13) sendRequest('get', 'DoiRequest', document.getElementById('search').value)"/></td>
 		    <td><input type="button" id="searchBtn" name="new" value="Search" onclick="sendRequest('get', 'DoiRequest', document.getElementById('search').value)"/></td>
 	    </tr>  
 	    </table>
@@ -90,7 +91,7 @@ hza.style.display = state;
     </tr>
     <tr>
     	<td><label for="year">Publication Year:</label></td>
-    	<td><input type="text" name="year" id="year" onkeydown="if (event.keyCode == 13) document.getElementById('advSearch').click()"/></td>
+    	<td><input type="text" name="year" id="year" onkeydown="if (event.keyCode == 13) sendAdvancedRequest('get', 'AdvancedRequest', document.getElementById('lName').value, document.getElementById('journalTitle').value, document.getElementById('articleTitle').value, document.getElementById('year').value);"/></td>
     </tr>
     </table>
     <input type="button" id="advSearch" name="advSearch" value="Search" onclick="sendAdvancedRequest('get', 'AdvancedRequest', document.getElementById('lName').value, document.getElementById('journalTitle').value, document.getElementById('articleTitle').value, document.getElementById('year').value);" />
@@ -108,5 +109,6 @@ hza.style.display = state;
     </form>
     </div>
   </div>
+</div>
 </body>
 </html>

@@ -30,20 +30,27 @@ return req;
 //Make the XMLHttpRequest Object
 var http = createRequestObject();
 function sendRequest(method, url, doi){
-  // start  progress display
-  var progress = document.getElementById('ajax_response');
-  var empty = "";
-  progress.innerHTML = empty;
-  var html = "<br /><img src='ajax-loader.gif' /><br /> Search in progress. Please wait..."
-  progress.innerHTML = html;
-
-  // send AJAX request
-  if(method == 'get' || method == "GET"){
-     url = url + "?search=" + doi;
-     http.open(method,url,true);
-     http.onreadystatechange = handleResponse;
-     http.send(null);
-  }
+	// check doi textbox was not empty
+	if(doi.length < 1) {
+		var progress = document.getElementById('ajax_response');
+		var html = "<br />A DOI needs to be entered...";
+		progress.innerHTML = html;
+	} else {
+	  // start  progress display
+	  var progress = document.getElementById('ajax_response');
+	  var empty = "";
+	  progress.innerHTML = empty;
+	  var html = "<br /><img src='ajax-loader.gif' /><br /> Search in progress. Please wait...";
+	  progress.innerHTML = html;
+	
+	  // send AJAX request
+	  if(method == 'get' || method == "GET"){
+	     url = url + "?search=" + doi;
+	     http.open(method,url,true);
+	     http.onreadystatechange = handleResponse;
+	     http.send(null);
+	  }
+	}
 }
 
 //response handler for doiRequest method
@@ -63,9 +70,14 @@ function handleResponse(){
       var progress = document.getElementById('ajax_response');
       progress.innerHTML = "Search complete, redirecting...";
 
-      // redirect to results
-      window.location = "results.jsp";
-
+      // redirect to results page for relevant type
+      if(response.indexOf("journal") != -1) {
+    	  window.location = "results.jsp";
+      }else if (response.indexOf("book") != -1) {
+    	  window.location = "bookResults.jsp";
+      } else if ((response.indexOf("conference") != -1) ) {
+    	  window.location = "conferenceResults.jsp";
+      }
      }
   }
 }
