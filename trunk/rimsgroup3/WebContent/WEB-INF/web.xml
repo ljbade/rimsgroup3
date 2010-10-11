@@ -102,4 +102,34 @@
     <servlet-name>CommitRequest</servlet-name>
     <url-pattern>/CommitRequest</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AutoComplete</display-name>
+    <servlet-name>AutoComplete</servlet-name>
+    <servlet-class>nz.ac.massey.rimsgroup3.servlet.Autocomplete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AutoComplete</servlet-name>
+    <url-pattern>/AutoComplete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AutoComplete2</display-name>
+    <servlet-name>AutoComplete2</servlet-name>
+    <servlet-class>nz.ac.massey.rimsgroup3.servlet.AutoComplete2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AutoComplete2</servlet-name>
+    <url-pattern>/AutoComplete2</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DXDoirequest</display-name>
+    <servlet-name>DXDoirequest</servlet-name>
+    <servlet-class>nz.ac.massey.rimsgroup3.servlet.DXDoirequest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DXDoirequest</servlet-name>
+    <url-pattern>/DXDoirequest</url-pattern>
+  </servlet-mapping>
 </web-app>

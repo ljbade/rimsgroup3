@@ -13,8 +13,8 @@
 <script type="text/javascript">
 	window.onload = function() {
 		parse(); // replace special characters in the title string
-		//var resource = document.getElementById('url').value;
-		//getAbstract('get', 'AbstractText', resource); // get abstract text from the article page
+		var resource = document.getElementById('url').value;
+		getAbstract('get', 'AbstractText', resource); // get abstract text from the article page
 	};
 </script>
 <div class="results">
@@ -123,6 +123,14 @@
 <tr>
 <td><label for="publisher">Publisher:</label></td>
 <td><input type="text" name="publisher" id="publisher" size="75" /></td>
+</tr>
+<tr>
+<td><label for="publisher">Publisher(autocomplete):</label></td>
+<td>
+	<select>
+		<option>Hello</option>
+	</select>
+</td>
 </tr>
 <tr>
 <td><label for="issn">ISSN:</label></td>

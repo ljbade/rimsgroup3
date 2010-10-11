@@ -9,37 +9,22 @@ function checkPrinting(form) {
 		// journal contribution area
 		// find contribution radio button that was ticked
 		newWin.document.write("" +
-				"<div class='contribution'><b>Journal Contribution</b><br /><table class='topTable'>");
+				"<div class='contribution'><b>Conference Contribution</b><br /><table class='topTable'>>");
 		
-		if(document.getElementById('reviewRB').checked) {
-			newWin.document.write("<tr><td><input type='radio' id='reviewRB' checked='true' >Review Article</input></td>");
+		if(document.getElementById('abstractRB').checked) {
+			newWin.document.write("<tr><td><input type='radio' id='abstractRB' checked='true' >Abstract in Published Proceedings</input></td>");
 		} else {
-			newWin.document.write("<tr><td><input type='radio' id='reviewRB'>Review Article</input></td>");
+			newWin.document.write("<tr><td><input type='radio' id='abstractRB'>Abstract in Published Proceedings</input></td>");
 		}
-		if (document.getElementById('fullArticleRB').checked) {
-			newWin.document.write("<td><input type='radio' id='fullArticleRB' checked='true'>Full Article in Personal Publication</input></td>");
+		if (document.getElementById('proceedingsRB').checked) {
+			newWin.document.write("<td><input type='radio' id='proceedingsRB' checked='true'>Proceedings Editor</input></td>");
 		} else {
-			newWin.document.write("<td><input type='radio' id='fullArticleRB'>Full Article in Personal Publication</input></td>");
+			newWin.document.write("<td><input type='radio' id='proceedingsRB'>Proceedings Editor</input></td>");
 		}
-		if(document.getElementById('editorRB').checked){
-			newWin.document.write("<td><input type='radio' id='editorRB' checked='true'>Journal Editor</input></td></tr>");
+		if(document.getElementById('fullPaperRB').checked){
+			newWin.document.write("<td><input type='radio' id='fullPaperRB' checked='true'>Full Paper in Published Proceedings</input></td></tr>");
 		} else {
-			newWin.document.write("<td><input type='radio' id='editorRB'>Journal Editor</input></td></tr>");
-		}
-		if(document.getElementById('fullArticle2RB').checked) {
-			newWin.document.write("<tr><td><input type='radio' id='fullArticle2RB' checked='true'>Full Article in Journal</input></td>");
-		} else {
-			newWin.document.write("<tr><td><input type='radio' id='fullArticle2RB'>Full Article in Journal</input></td>");
-		}
-		if (document.getElementById('niscRB').checked) {
-			newWin.document.write("<td><input type='radio' id='niscRB' checked='true'>Editorial, Brief Communication, Letter or Note</input></td>");
-		} else {
-			newWin.document.write("<td><input type='radio' id='niscRB'>Editorial, Brief Communication, Letter or Note</input></td>");
-		}
-		if(document.getElementById('otherRB').checked){
-			newWin.document.write("<td><input type='radio' id='otherRB' checked='true'>Other</input></td></tr>");
-		} else {
-			newWin.document.write("<td><input type='radio' id='otherRB'>Other</input></td></tr>");
+			newWin.document.write("<td><input type='radio' id='fullPaperRB'>Full Paper in Published Proceedings</input></td></tr>");
 		}
 		// blank row
 		newWin.document.write("<tr><td>&nbsp;</td></tr>");
@@ -80,9 +65,9 @@ function checkPrinting(form) {
 		newWin.document.write("<tr><td>&nbsp;</td></tr>");
 		// set article title and journal 
 		newWin.document.write("<div><table width='80%'>"); 
-		newWin.document.write("<tr><td width='16%'><strong>Article:</strong></td><td width='84%'>" + document.getElementById('articleTitle').value + "</td></tr>");
-		newWin.document.write("<tr><td><strong>Publication:</strong></td><td>" +  document.getElementById('journalTitle').value + "</td></tr>");
-		newWin.document.write("<tr><td><strong>Publication Date:</strong></td><td>" + document.getElementById('year').value + "</td></tr>");
+		newWin.document.write("<tr><td width='16%'><strong>Title of Abstract/Paper:</strong></td><td width='84%'>" + document.getElementById('abstractTitle').value + "</td></tr>");
+		newWin.document.write("<tr><td><strong>Conference name/proceedings title::</strong></td><td>" +  document.getElementById('conferenceName').value + "</td></tr>");
+		newWin.document.write("<tr><td><strong>Location:</strong></td><td>" + document.getElementById('location').value + "</td></tr>");
 		newWin.document.write("<tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr></table></div>");
 			
 		
@@ -102,9 +87,12 @@ function checkPrinting(form) {
 		
 		// article details
 		newWin.document.write("<table>");
+		newWin.document.write("<tr><td><strong>Editors:</strong></td><td>" + document.getElementById('editors').value + "</td></tr>");
+		newWin.document.write("<tr><td><strong>Start Date:</strong></td><td>" + document.getElementById('startDate').value + "</td></tr>");
+		newWin.document.write("<tr><td><strong>End Date:</strong></td><td>" + document.getElementById('endDate').value + "</td></tr>");
 		newWin.document.write("<tr><td><strong>ISSN/ISBN:</strong></td><td>" + document.getElementById('issn').value + "</td></tr>");
-		newWin.document.write("<tr><td><strong>Volume:</strong></td><td>" + document.getElementById('volume').value + "</td></tr>");
-		newWin.document.write("<tr><td><strong>Pages:</strong></td><td>" + document.getElementById('pageNum').value + "</td></tr>");
+		newWin.document.write("<tr><td><strong>Start Page:</strong></td><td>" + document.getElementById('startPageNum').value + "</td></tr>");
+		newWin.document.write("<tr><td><strong>End Page:</strong></td><td>" + document.getElementById('endPageNum').value + "</td></tr>");
 		newWin.document.write("<tr><td><strong>URL:</strong></td><td>" + document.getElementById('url').value + "</td></tr>");
 		newWin.document.write("<tr><td><strong>DOI:</strong></td><td>" + document.getElementById('doi').value + "</td></tr>");
 		newWin.document.write("<tr><td>&nbsp;</td><td>");
