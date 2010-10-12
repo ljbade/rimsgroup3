@@ -22,11 +22,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import nz.ac.massey.rimsgroup3.metadata.MetadataRetriever;
-import nz.ac.massey.rimsgroup3.metadata.bean.Author;
-import nz.ac.massey.rimsgroup3.metadata.bean.Editor;
-import nz.ac.massey.rimsgroup3.metadata.bean.Journal;
-import nz.ac.massey.rimsgroup3.metadata.bean.Publication;
-
+import nz.ac.massey.rimsgroup3.metadata.bean.*;
 /**
  * @author Leith
  *
