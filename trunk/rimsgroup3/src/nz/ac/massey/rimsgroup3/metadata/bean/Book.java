@@ -3,7 +3,13 @@
  */
 package nz.ac.massey.rimsgroup3.metadata.bean;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  * @author Leith
@@ -49,7 +55,8 @@ public class Book extends Publication {
 	private String placePublished;
 	private String chapterTitle;
 	private String bookTitle;
-	private List<Editor> editors;
+	private List<Editor> editors; 
+	private String editorsStr;
 	
 	/**
 	 * @return the placePublished
@@ -57,14 +64,13 @@ public class Book extends Publication {
 	public String getPlacePublished() {
 		return placePublished;
 	}
-	
 	/**
 	 * @param placePublished the placePublished to set
 	 */
 	public void setPlacePublished(String placePublished) {
 		this.placePublished = placePublished;
 	}
-	
+		
 	/**
 	 * @return the chapterTitle
 	 */
@@ -103,7 +109,15 @@ public class Book extends Publication {
 	/**
 	 * @param editors the editors to set
 	 */
-	public void setEditors(List<Editor> editors) {
+	public void setEditors(ArrayList<Editor> editors) {
 		this.editors = editors;
+	}
+	
+	// get string version of editors
+	public String getEditorsStr() {
+		return editorsStr;
+	}
+	public void setEditorStr(String editorsStr) {
+		this.editorsStr = editorsStr;
 	}
 }
