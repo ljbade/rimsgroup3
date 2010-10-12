@@ -19,6 +19,7 @@
 		//getAbstract('get', 'AbstractText', resource); // get abstract text from the article page
 	};
 </script>
+<div id="page">
 <div class="results">
 <img alt="Proficio" src="images/proficio.jpg" />
 <jsp:useBean id="publication" class="nz.ac.massey.rimsgroup3.metadata.bean.Book" scope="session" ></jsp:useBean>
@@ -204,5 +205,6 @@
 <script type="text/javascript">
 	alignSubmitter();
 </script>
+</div>
 </body>
 </html>

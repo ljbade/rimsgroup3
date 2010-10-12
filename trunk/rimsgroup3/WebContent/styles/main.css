@@ -71,7 +71,9 @@ ol {
 	overflow:auto;
 	height:100px;
 }
-
+#page {
+	text-align: center;	
+}
 div.results{
 	background-color:#09F;
 	border:thin;
