@@ -8,6 +8,8 @@
 <script type="text/javascript" src="scripts/ajax.js"></script>
 <script type="text/javascript" src="scripts/printing.js"></script>
 <script type="text/javascript" src="scripts/autocomplete.js"></script>
+<script type="text/javascript" src="scripts/copy.js"></script>
+<script type="text/javascript" src="ZeroClipboard.js"></script>
 <title>Proficio - Results</title>
 </head>
 <body>
@@ -104,60 +106,74 @@
 <table align="left" width="60%">
 <tr>
 <td><label for="pubID">Publication ID:</label></td>
-<td><input type="text" name="pubID" id="pubID" size="75" /></td>
+<td><input type="text" name="pubID" id="pubID" size="65" /></td>
 </tr>
 <tr>
 <td><label for="articleTitle">Article/Output Title:</label></td>
-<td><input type="text" name="articleTitle" id="articleTitle" size="75" value="<c:out value="${publication.articleTitle}" />" /></td>
+<td><input type="text" name="articleTitle" id="articleTitle" size="65" value="<c:out value="${publication.articleTitle}" />" />
+<img src="images/copy.jpg" onclick="copyToClipboard('articleTitle');"/></td>
 </tr>
 <tr>
-<td></td><td><label id="htmlTitle" ></label></td>
+<td></td><td><label id="htmlTitle" ></label>
+<img src="images/copy.jpg" onclick="copyToClipboard('htmlTitle');"/></td>
 </tr>
 <tr>
 <td><label for="journalTitle">Journal/Publication Title:</label></td>
-<td><input type="text" name="journalTitle" id="journalTitle" size="75" value="<c:out value="${publication.journalTitle}" />" /></td>
+<td><input type="text" name="journalTitle" id="journalTitle" size="65" value="<c:out value="${publication.journalTitle}" />" />
+<img src="images/copy.jpg" onclick="copyToClipboard('journalTitle');"/></td>
 </tr>
 <tr>
 <td><label for="year">Publication Year:</label></td>
-<td><input type="text" name="year" id="year" size="75" value="<c:out value="${publication.year}" />" /> </td>
+<td><input type="text" name="year" id="year" size="65" value="<c:out value="${publication.year}" />" />
+<img src="images/copy.jpg" onclick="copyToClipboard('year');" /></td>
 </tr>
 <tr>
 <td><label for="publisher">Publisher:</label></td>
-<td><input type="text" name="publisher" id="publisher" size="75" autocomplete="off" onkeyup="doCompletion();" /></td>
+<td><input type="text" name="publisher" id="publisher" size="65" />
+<img src="images/copy.jpg" /></td>
 </tr>
 
 <tr><td id="auto-row"> </td></tr>
 
 <tr>
 <td><label for="issn">ISSN:</label></td>
-<td><input type="text" name="issn" id="issn" size="75" value="<c:out value="${publication.issn}" />" /></td>
+<td><input type="text" name="issn" id="issn" size="65" value="<c:out value="${publication.issn}" />" />
+<img src="images/copy.jpg" onclick="alert('hello');"/></td>
 </tr>
 <tr>
 <td><label for="volume">Volume:</label></td>
-<td><input type="text" name="volume" id="volume" size="25" value="<c:out value="${publication.volume}"/>" />
+<td><input type="text" name="volume" id="volume" size="23" value="<c:out value="${publication.volume}"/>" />
+<img src="images/copy.jpg" />
 <label for="number">Number:&nbsp;&nbsp;&nbsp;</label>
-<input type="text" name="number" id="volume" size="25" value="<c:out value="${publication.issue}"/>" /></td>
+<input type="text" name="number" id="volume" size="23" value="<c:out value="${publication.issue}"/>" />
+<img src="images/copy.jpg" />
+</td>
 </tr>
 <tr>
 <td>
 <label for="startPage">Start Page:</label></td>
-<td><input type="text" name="startPage" id="pageNum" size="25" value="<c:out value="${publication.startPage}" />" />
+<td><input type="text" name="startPage" id="pageNum" size="23" value="<c:out value="${publication.startPage}" />" />
+<img src="images/copy.jpg" />
 <label for="endPage">End Page:</label>
-<input type="text" name="endPage" id="pageNum" size="25" value="<c:out value="${publication.endPage}" />" /> </td>
-</tr>
-<tr>
-<td><label for="url">URL Address:</label></td>
-<td><input type="text" name="url" id="url" size="63" value="<c:out value="${publication.url}" />" />
-	<a  class="smallLink" target="_new" href="<c:out value="${publication.url}" />" >Follow Link</a>
+<input type="text" name="endPage" id="pageNum" size="23" value="<c:out value="${publication.endPage}" />" /> 
+<img src="images/copy.jpg" />
 </td>
 </tr>
 <tr>
+<td><label for="url">URL Address:</label></td>
+<td><input type="text" name="url" id="url" size="53" value="<c:out value="${publication.url}" />" />
+	<a  class="smallLink" target="_new" href="<c:out value="${publication.url}" />" >Follow Link</a>
+<img src="images/copy.jpg" /></td>
+</tr>
+<tr>
 <td><label for="doi">DOI:</label></td>
-<td><input type="text" name="doi" id="doi" size="75" value="DOI:<c:out value="${publication.doi}" />" /></td>
+<td><input type="text" name="doi" id="doi" size="65" value="DOI:<c:out value="${publication.doi}" />" />
+<img src="images/copy.jpg" /></td>
 </tr>
 <tr>
 <td><label for="keywords">Keywords:</label></td>
-<td><input type="text" name="keywords" id="keywords" size="75"  value="<c:out value="${publication.keyWords}" />" /></td>
+<td><input type="text" name="keywords" id="keywords" size="65"  value="<c:out value="${publication.keyWords}" />" />
+<img src="images/copy.jpg" /></td>
 </tr>
 </table>
 
