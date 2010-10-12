@@ -138,7 +138,7 @@
 <tr>
 <td><label for="issn">ISSN:</label></td>
 <td><input type="text" name="issn" id="issn" size="65" value="<c:out value="${publication.issn}" />" />
-<img src="images/copy.jpg" onclick="alert('hello');"/></td>
+<img src="images/copy.jpg" onclick="copyToClipboard('issn');"/></td>
 </tr>
 <tr>
 <td><label for="volume">Volume:</label></td>
