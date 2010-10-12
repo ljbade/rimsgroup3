@@ -128,10 +128,13 @@
 </tr>
 <tr>
 <td><label for="publisher">Publisher:</label></td>
-<td><input type="text" name="publisher" id="publisher" size="65" />
+<td><input type="text" name="publisher" id="publisher" size="65" autocomplete="off" onkeyup="doCompletion();" value="<c:out value="${publication.publisher}" />" />
 <img src="images/copy.jpg" onclick="copyToClipboard('publisher');"/>
 </td>
 </tr>
+
+<tr><td id="auto-row"> </td></tr>
+
 <tr>
 <td><label for="issn">ISSN:</label></td>
 <td><input type="text" name="issn"  id="issn" size="65" value="<c:out value="${publication.issn}" />" />
@@ -211,6 +214,10 @@
 </div>
 
 </form>
+<div id="menu-popup">
+<table id="completeTable" border="1" bordercolor="black" cellpadding="0" cellspacing="0"> </table>
+</div>
+
 </div>
 <script type="text/javascript">
 	alignSubmitter();
