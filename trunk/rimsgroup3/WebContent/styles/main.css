@@ -165,7 +165,6 @@ table.description{
 	margin-right: auto;
 	margin-left: auto;
 	margin-top: 40px;
-	
 }
 
 .innerIndex{
@@ -192,5 +191,12 @@ table.description{
     float: right;
     margin-left: 0px;
     padding-left: 0px;
+}
+
+img.smallImg{
+	text-align:right;
+	width:30px;
+	height:30px;
+	padding-right:10px;
 }
 

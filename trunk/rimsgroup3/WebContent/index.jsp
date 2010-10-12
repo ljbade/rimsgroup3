@@ -108,6 +108,9 @@ hza.style.display = state;
     <input type='submit' id="dxDoiSearch" name="dxDoiSearch" value='Locate Article' />
     </form>
     </div>
+   <div align="right"> 
+   <a href="userManual.jsp"><img alt="Help" src="images/help.gif" class="smallImg"/></a>
+   </div>
   </div>
 </div>
 </body>
