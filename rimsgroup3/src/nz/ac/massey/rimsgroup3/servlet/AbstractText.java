@@ -71,10 +71,11 @@ public class AbstractText extends HttpServlet {
 			// get array of positions of "Abstract" in the page
 			int[] positions = new int[7]; // guess at max number of occurrences
 			int count = 0;
-			String shortStr = input; // version of input sting to be manipulated
+			String shortStr = input; // version of input string to be manipulated
 			int pos = 0; // holds true position of indexOf in string (as shortStr gets progressively shorter
 			Boolean foundSome = false;
 			while (shortStr.indexOf("Abstract") != -1) {
+				int test = shortStr.indexOf("Abstract");
 				// find the location of each 'Abstract' and keep it in the positions array
 				positions[count] = shortStr.indexOf("Abstract") + pos; //pos = true position in original string
 				pos = pos + shortStr.indexOf("Abstract");
