@@ -9,7 +9,7 @@ function checkPrinting(form) {
 		// journal contribution area
 		// find contribution radio button that was ticked
 		newWin.document.write("" +
-				"<div class='contribution'><b>Conference Contribution</b><br /><table class='topTable'>>");
+				"<div class='contribution'><b>Conference Contribution</b><br /><table class='topTable'>");
 		
 		if(document.getElementById('abstractRB').checked) {
 			newWin.document.write("<tr><td><input type='radio' id='abstractRB' checked='true' >Abstract in Published Proceedings</input></td>");
@@ -65,7 +65,7 @@ function checkPrinting(form) {
 		newWin.document.write("<tr><td>&nbsp;</td></tr>");
 		// set article title and journal 
 		newWin.document.write("<div><table width='80%'>"); 
-		newWin.document.write("<tr><td width='16%'><strong>Title of Abstract/Paper:</strong></td><td width='84%'>" + document.getElementById('abstractTitle').value + "</td></tr>");
+		newWin.document.write("<tr><td width='25%'><strong>Title of Abstract/Paper:</strong></td><td width='75%'>" + document.getElementById('abstractTitle').value + "</td></tr>");
 		newWin.document.write("<tr><td><strong>Conference name/proceedings title::</strong></td><td>" +  document.getElementById('conferenceName').value + "</td></tr>");
 		newWin.document.write("<tr><td><strong>Location:</strong></td><td>" + document.getElementById('location').value + "</td></tr>");
 		newWin.document.write("<tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr></table></div>");

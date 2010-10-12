@@ -7,6 +7,8 @@
 <script type="text/javascript" src="scripts/resultsScript.js"></script>
 <script type="text/javascript" src="scripts/ajax.js"></script>
 <script type="text/javascript" src="scripts/conferencePrinting.js"></script>
+<script type="text/javascript" src="scripts/copy.js"></script>
+<script type="text/javascript" src="ZeroClipboard.js"></script>
 <title>Proficio - Results</title>
 </head>
 <body>
@@ -98,63 +100,86 @@
 <table align="left" width="60%">
 <tr>
 <td><label for="pubID">Publication ID:</label></td>
-<td><input type="text" name="pubID" id="pubID" size="75" /></td>
+<td><input type="text" name="pubID" id="pubID" size="65" /></td>
 </tr>
 <tr>
 <td><label for="editors">Editors:</label></td>
-<td><input type="text" name="editors" id="editors" size="75" value="<c:out value="" />"/></td>
+<td><input type="text" name="editors" id="editors" size="65" value="<c:out value="" />"/>
+<img src="images/copy.jpg" onclick="copyToClipboard('editors');"/></td>
 </tr>
 <tr>
 <td><label for="abstractTitle">Title of abstract/paper:</label></td>
-<td><input type="text" name="abstractTitle" id="abstractTitle" size="75" value="<c:out value="${publication.abstractTitle}" />" /></td>
+<td><input type="text" name="abstractTitle" id="abstractTitle" size="65" value="<c:out value="${publication.abstractTitle}" />" />
+<img src="images/copy.jpg" onclick="copyToClipboard('abstractTitle');"/>
+</td>
 </tr>
 <tr>
 <td><label for="conferenceName">Conference name/proceedings title:</label></td>
-<td><input type="text" name="conferenceName" id="conferenceName" size="75" value="<c:out value="${publication.conferenceName}" />" /></td>
+<td><input type="text" name="conferenceName" id="conferenceName" size="65" value="<c:out value="${publication.conferenceName}" />" />
+<img src="images/copy.jpg" onclick="copyToClipboard('conferenceName');"/>
+</td>
 </tr>
 <tr>
 <td><label for="year">Publication Year:</label></td>
-<td><input type="text" name="year" id="year" size="75" value="<c:out value="${publication.year}" />" /> </td>
+<td><input type="text" name="year" id="year" size="65" value="<c:out value="${publication.year}" />" /> 
+<img src="images/copy.jpg" onclick="copyToClipboard('year');"/>
+</td>
 </tr>
 <tr>
 <td><label for="publisher">Publisher:</label></td>
-<td><input type="text" name="publisher" id="publisher" size="75" /></td>
+<td><input type="text" name="publisher" id="publisher" size="65" />
+<img src="images/copy.jpg" onclick="copyToClipboard('publisher');"/>
+</td>
 </tr>
 <tr>
 <td><label for="issn">ISSN:</label></td>
-<td><input type="text" name="issn"  id="issn" size="75" value="<c:out value="${publication.issn}" />" /></td>
+<td><input type="text" name="issn"  id="issn" size="65" value="<c:out value="${publication.issn}" />" />
+<img src="images/copy.jpg" onclick="copyToClipboard('issn');"/>
+</td>
 </tr>
 <tr>
 <td><label for="location">Location:</label></td>
-<td><input type="text" name="location" id="location" size="25" value="<c:out value="${publication.location}"/>" /></td>
+<td><input type="text" name="location" id="location" size="25" value="<c:out value="${publication.location}"/>" />
+<img src="images/copy.jpg" onclick="copyToClipboard('location');"/>
+</td>
 </tr>
 <tr>
 <td>
 <label for="startDate">Start Date:</label></td>
-<td><input type="text" name="startDate" id="startDate" size="25" value="<c:out value="${publication.startDate}" />" />
+<td><input type="text" name="startDate" id="startDate" size="23" value="<c:out value="${publication.startDate}" />" />
+<img src="images/copy.jpg" onclick="copyToClipboard('startDate');"/>
 <label for="endDate">End Date:</label>
-<input type="text" name="endDate" id="endDate" size="25" value="<c:out value="${publication.endDate}" />" /> </td>
+<input type="text" name="endDate" id="endDate" size="23" value="<c:out value="${publication.endDate}" />" /> 
+<img src="images/copy.jpg" onclick="copyToClipboard('endDate');"/>
+</td>
 </tr>
 <tr>
 <td>
 <label for="startPage">Start Page:</label></td>
-<td><input type="text" name="startPage" id="startPageNum" size="25" value="<c:out value="${publication.startPage}" />" />
+<td><input type="text" name="startPage" id="startPageNum" size="23" value="<c:out value="${publication.startPage}" />" />
+<img src="images/copy.jpg" onclick="copyToClipboard('startPageNum');"/>
 <label for="endPage">End Page:</label>
-<input type="text" name="endPage" id="endPageNum" size="25" value="<c:out value="${publication.endPage}" />" /> </td>
+<input type="text" name="endPage" id="endPageNum" size="23" value="<c:out value="${publication.endPage}" />" />
+<img src="images/copy.jpg" onclick="copyToClipboard('endPageNum');"/>
+ </td>
 </tr>
 <tr>
 <td><label for="url">URL Address:</label></td>
 <td><input type="text" name="url" id="url" size="63" value="<c:out value="${publication.url}" />" />
+<img src="images/copy.jpg" onclick="copyToClipboard('url');"/>
 	<a  class="smallLink" target="_new" href="<c:out value="${publication.url}" />" >Follow Link</a>
 </td>
 </tr>
 <tr>
 <td><label for="doi">DOI:</label></td>
-<td><input type="text" name="doi" id="doi" size="75" value="DOI:<c:out value="${publication.doi}" />" /></td>
+<td><input type="text" name="doi" id="doi" size="65" value="DOI:<c:out value="${publication.doi}" />" />
+<img src="images/copy.jpg" onclick="copyToClipboard('doi');"/></td>
 </tr>
 <tr>
 <td><label for="keywords">Keywords:</label></td>
-<td><input type="text" name="keywords" id="keywords" size="75"  value="<c:out value="${publication.keyWords}" />" /></td>
+<td><input type="text" name="keywords" id="keywords" size="65"  value="<c:out value="${publication.keyWords}" />" />
+<img src="images/copy.jpg" onclick="copyToClipboard('keywords');"/>
+</td>
 </tr>
 </table>
 
