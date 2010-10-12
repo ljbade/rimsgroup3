@@ -130,7 +130,7 @@
 </tr>
 <tr>
 <td><label for="publisher">Publisher:</label></td>
-<td><input type="text" name="publisher" id="publisher" size="65" />
+<td><input type="text" name="publisher" id="publisher" size="65" autocomplete="off" onkeyup="doCompletion();" value="<c:out value="${publication.publisher}" />" />
 <img src="images/copy.jpg" onclick="copyToClipboard('publisher');" /></td>
 </tr>
 

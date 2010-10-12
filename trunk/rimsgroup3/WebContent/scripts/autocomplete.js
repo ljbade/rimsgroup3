@@ -40,13 +40,18 @@ function createRequestObject(){
 	   isIE = false;
       req = new XMLHttpRequest();
       
+      
      }
      catch (e) {
      // Internet Explorer
-    	 isIE = true;
+    	 
+    	 
       try {
       //For IE 6
+    	  
       req = new ActiveXObject("Msxml2.XMLHTTP");
+      
+	 
      } catch (e) {
      try {
       //For IE 5
@@ -141,19 +146,8 @@ function appendPublisher(name) {
 
 	var row;
 	var nameCell;
-	
-	if (isIE)
-	{
 		row = completeTable.insertRow(completeTable.rows.length);
 		nameCell = row.insertCell(0);
-	}
-	else 
-	{
-		row = document.createElement("tr");
-		nameCell = document.createElement("td");
-		row.appendChild(nameCell);
-		completeTable.appendChild(row);
-	}
 		row.className = "popupRow";
 		nameCell.setAttribute("bgcolor", "#FFFAFA");
 		nameCell.setAttribute("width", "60%");
@@ -162,7 +156,7 @@ function appendPublisher(name) {
 		linkElement.className = "popupItem";
 		linkElement.setAttribute("href","javascript:enter('"+name+"')");
 		linkElement.appendChild(document.createTextNode(name));
-		nameCell.appendChild(linkElement);
+		nameCell.appendChild(linkElement); 
 }
 
 function enter(name){
