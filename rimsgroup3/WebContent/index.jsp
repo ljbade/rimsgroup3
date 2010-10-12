@@ -38,7 +38,7 @@ hza.style.display = state;
 </head>
 
 <body>
-<div id="container">
+<div id="page">
 <div class="smallPage">
 <img alt="Proficio" src="images/proficio.jpg" />
   <div class="innerIndex">
