@@ -130,7 +130,7 @@
 <tr>
 <td><label for="publisher">Publisher:</label></td>
 <td><input type="text" name="publisher" id="publisher" size="65" />
-<img src="images/copy.jpg" /></td>
+<img src="images/copy.jpg" onclick="copyToClipboard('publisher');" /></td>
 </tr>
 
 <tr><td id="auto-row"> </td></tr>
@@ -143,32 +143,32 @@
 <tr>
 <td><label for="volume">Volume:</label></td>
 <td><input type="text" name="volume" id="volume" size="23" value="<c:out value="${publication.volume}"/>" />
-<img src="images/copy.jpg" />
+<img src="images/copy.jpg" onclick="copyToClipboard('volume');"/>
 <label for="number">Number:&nbsp;&nbsp;&nbsp;</label>
-<input type="text" name="number" id="volume" size="23" value="<c:out value="${publication.issue}"/>" />
-<img src="images/copy.jpg" />
+<input type="text" name="number" id="number" size="23" value="<c:out value="${publication.issue}"/>" />
+<img src="images/copy.jpg" onclick="copyToClipboard('number');"/>
 </td>
 </tr>
 <tr>
 <td>
 <label for="startPage">Start Page:</label></td>
-<td><input type="text" name="startPage" id="pageNum" size="23" value="<c:out value="${publication.startPage}" />" />
-<img src="images/copy.jpg" />
+<td><input type="text" name="startPage" id="startPageNum" size="23" value="<c:out value="${publication.startPage}" />" />
+<img src="images/copy.jpg" onclick="copyToClipboard('startPageNum');"/>
 <label for="endPage">End Page:</label>
-<input type="text" name="endPage" id="pageNum" size="23" value="<c:out value="${publication.endPage}" />" /> 
-<img src="images/copy.jpg" />
+<input type="text" name="endPage" id="endPageNum" size="23" value="<c:out value="${publication.endPage}" />" /> 
+<img src="images/copy.jpg" onclick="copyToClipboard('endPageNum');"/>
 </td>
 </tr>
 <tr>
 <td><label for="url">URL Address:</label></td>
 <td><input type="text" name="url" id="url" size="53" value="<c:out value="${publication.url}" />" />
 	<a  class="smallLink" target="_new" href="<c:out value="${publication.url}" />" >Follow Link</a>
-<img src="images/copy.jpg" /></td>
+<img src="images/copy.jpg" onclick="copyToClipboard('url');"/></td>
 </tr>
 <tr>
 <td><label for="doi">DOI:</label></td>
 <td><input type="text" name="doi" id="doi" size="65" value="DOI:<c:out value="${publication.doi}" />" />
-<img src="images/copy.jpg" /></td>
+<img src="images/copy.jpg" onclick="copyToClipboard('doi');" /></td>
 </tr>
 <tr>
 <td><label for="keywords">Keywords:</label></td>
