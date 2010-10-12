@@ -7,6 +7,7 @@
 <script type="text/javascript" src="scripts/resultsScript.js"></script>
 <script type="text/javascript" src="scripts/ajax.js"></script>
 <script type="text/javascript" src="scripts/printing.js"></script>
+<script type="text/javascript" src="scripts/autocomplete.js"></script>
 <title>Proficio - Results</title>
 </head>
 <body>
@@ -21,7 +22,7 @@
 <img alt="Proficio" src="images/proficio.jpg" />
 <jsp:useBean id="publication" class="nz.ac.massey.rimsgroup3.metadata.bean.Journal" scope="session" ></jsp:useBean>
 
-<form name="resultsForm" action="CommitRequest" method="post" onSubmit="">
+<form id="resultsForm" name="resultsForm" action="CommitRequest" method="post" onSubmit="">
 <input type="hidden" id="hidden" value="" />
 <div class="secondSet" >
 <table class="resultTable" align="center">
@@ -122,8 +123,12 @@
 </tr>
 <tr>
 <td><label for="publisher">Publisher:</label></td>
-<td><input type="text" name="publisher" id="publisher" size="75" /></td>
+<td><input type="text" name="publisher" id="publisher" size="75" autocomplete="off" onkeyup="doCompletion();" /></td>
 </tr>
+
+<tr><td id="auto-row"> </td></tr>
+
+<tr>
 <td><label for="issn">ISSN:</label></td>
 <td><input type="text" name="issn" id="issn" size="75" value="<c:out value="${publication.issn}" />" /></td>
 </tr>
@@ -174,6 +179,8 @@
     <td><label id="wordcount" class="smallLink"></label></td>
 </tr>
 </table>
+
+ 
 </div>
 </div>
 <div>
@@ -183,6 +190,11 @@
 </div>
 
 </form>
+<div id="menu-popup">
+<table id="completeTable" border="1" bordercolor="black" cellpadding="0" cellspacing="0"> </table>
+</div>
+
+
 </div>
 <script type="text/javascript">
 	alignSubmitter();
