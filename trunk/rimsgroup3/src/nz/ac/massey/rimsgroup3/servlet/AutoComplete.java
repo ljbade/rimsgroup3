@@ -61,7 +61,6 @@ public class AutoComplete extends HttpServlet {
     			while(tokenizer.hasMoreTokens())
     			{
     				String token = tokenizer.nextToken();
-    				System.out.println(token);
     				if (token.toLowerCase().startsWith(targetId))
     				{
     					
@@ -81,8 +80,6 @@ public class AutoComplete extends HttpServlet {
  	           response.getWriter().write("<publishers>" + 
  	                   stringbuff.toString() + "</publishers>"); 
  	           out.close();
- 	           System.out.println("<publishers>" + 
- 	                   stringbuff.toString() + "</publishers>");
  	       } 
     		else { 
  	           response.setStatus(HttpServletResponse.SC_NO_CONTENT); 

@@ -1,10 +1,11 @@
 package nz.ac.massey.rimsgroup3.servlet;
 
-import java.io.IOException;
+import java.io.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -49,12 +50,54 @@ public class CommitRequest extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
     	response.setContentType("text/html; charset=utf-8");
+    	
+    	try{
+    		String publisher = request.getParameter("publisher").trim();
+    		if (publisher != null)
+    		{
+    			Boolean inText = false;
+    			String path = getClass().getClassLoader().getResource("../../.").getPath();
+    		    path = path.replace("%20", " ");
+    		    String fs = System.getProperty("file.separator");
+    		    
+    		    InputStream publisherText = new FileInputStream(path + "publishers" + fs + "publishers.txt");
+        		BufferedReader reading = new BufferedReader(new InputStreamReader(publisherText));
+        		String line = null;
+        		StringTokenizer tokenizer;
+        		while ((line = reading.readLine()) != null)
+        		{
+        			tokenizer = new StringTokenizer(line, ",");
+        			while(tokenizer.hasMoreTokens())
+        			{
+        				String token = tokenizer.nextToken().toLowerCase();
+        				if(publisher.toLowerCase().equals(token))
+        				{
+        					inText = true;
+        					break;
+        				}
+        			}
+        		}
+        		reading.close();
+        		if (inText == false){
+        		FileWriter filewriter = new FileWriter(path + "publishers" + fs + "publishers.txt",true);
+        		BufferedWriter writer = new BufferedWriter(filewriter);
+                writer.write("," + publisher );
+                writer.close();
+        		}
+    		}
+    	}
+    	catch (Exception e){
+    		servletCtx.log("Unable to access publishers.txt",e);
+    	}
+    	
+    	
     	Publication publication = new Publication();
     	
     	List<Author> authorList = new ArrayList<Author>();
     	String doi = request.getParameter("doi");
     	doi = doi.substring(doi.indexOf(":")+1);
     	publication.setDoi(doi);
+    	
     	int i = 1;
     	String counter = Integer.toString(i);
     	String id = "id" + counter;
