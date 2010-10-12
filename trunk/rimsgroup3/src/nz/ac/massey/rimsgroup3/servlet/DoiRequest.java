@@ -60,23 +60,19 @@ public class DoiRequest extends HttpServlet {
         	{		
         		connection = dataSource.getConnection();
         	}
-        	doiInDB = ReadStatements.publicationReadStatment(connection, query);
-        	
+        	doiInDB = ReadStatements.publicationReadStatment(connection, query);	
         }        
-
         catch(SQLException e)	
         {
         	 servletCtx.log("Failed reading the publication", e);
         }
         if (doiInDB == true )
         {  	
-
         	// Return value.
             PrintWriter out = response.getWriter();
             out.println("DOI found");
             out.flush();
             out.close();
-
         }
         else
         {
@@ -96,12 +92,12 @@ public class DoiRequest extends HttpServlet {
         		HttpSession session = request.getSession(true);   
              	session.setAttribute("publication", detailedPublication);  		
 
+             	String type = detailedPublication.getDoiType();
              // Return value.
                 PrintWriter out = response.getWriter();
-                out.println("OK");
+                out.println("OK " + type);
                 out.flush();
                 out.close();
-        		
 
         	} else {
         		// Return value.
@@ -109,12 +105,8 @@ public class DoiRequest extends HttpServlet {
                 out.println("DOI not found");
                 out.flush();
                 out.close();
-
         	}
-
         }  
-      
-        
 		try
 		{
 			if (connection != null)
@@ -125,12 +117,7 @@ public class DoiRequest extends HttpServlet {
 		catch (SQLException e)
 		{
 			servletCtx.log("Failed at closing the connection", e);
-		}
-
-        
-       /** } */
-
-        
+		}        
 }
     
     @Override
