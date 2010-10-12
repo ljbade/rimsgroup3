@@ -11,6 +11,7 @@ import java.util.List;
  */
 public class Publication {
 	
+	protected String doiType;
 	protected String id;
 	protected String doi;
 	protected String year;
@@ -27,7 +28,12 @@ public class Publication {
 	public int getNumberOfAuthors() {
 		return authors.size();
 	}
-
+	public String getDoiType() {
+		return doiType;
+	}
+	public void setDoiType(String type) {
+		doiType = type;
+	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
