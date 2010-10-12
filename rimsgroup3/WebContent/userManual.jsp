@@ -10,18 +10,19 @@
 <body>
 
 <div class="results">
-<a name="contents"><img alt="Proficio" src="images/proficio.jpg" /></a>
+<a name="contents" href="index.jsp"><img alt="Proficio" src="images/proficio.jpg" /></a>
  <div class="secondSet" >	
  <h3> Contents  </h3> 
 	<ol>
 		<li><a href="#userguide">User Guide</a> </li>
 		<li><a href="#glossary">Glossary Of Terms</a> </li>
 	</ol>
+<br/>
+<a href="index.jsp">Back to DOI search page</a>
 </div>
 
  <div class="secondSet" >	
 	<h3> <a name="userguide"> 1. User Guide: </a></h3> 
-	<div class="rightAligned" > <p> <a href="#contents"> Top Of Page</a> </p> </div>
  	<h4> Basic Search </h4>
  	<img alt="index page" src="images/index.jpg" />
  	<ul>
@@ -69,6 +70,8 @@
 	 We apologise for the inconvience that was caused. </li>
 	</ul>
 	<div class="rightAligned" > <p> <a href="#contents"> Top Of Page</a> <br/> <br/> </p></div>
+	<br/>
+<a href="index.jsp">Back to DOI search page</a>
  </div>
  
  <div class="secondSet" >
@@ -82,6 +85,8 @@
   	<tr> <td>7. Link </td>					<td>&nbsp</td> <td>8. Check Box </td> </tr> 
   	</table>
   	<div class="rightAligned" > <p> <a href="#contents"> Top Of Page</a> <br/> <br/> </p> </div>
+  	<br/>
+<a href="index.jsp">Back to DOI search page</a>
  </div>
 </div>
 </body>
