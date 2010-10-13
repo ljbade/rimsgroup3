@@ -38,8 +38,7 @@
 	<!-- =================================================================== -->
 	<!-- Main target: compile, jar,test and build java docs                                                                           -->
 	<!-- =================================================================== -->
-	<!--<target name="all" description="Main target - compile, jar, docs, PMD and test " depends="emma,compile,tests,jar,javadocs,dependencyanalysis,pmd">-->
-	<target name="all" description="Main target - compile, jar, war, docs, PMD and test " depends="emma,compile,tests,jar,war">
+	<target name="all" description="Main target - compile, jar, docs, PMD and test " depends="emma,compile,tests,jar,javadocs,dependencyanalysis,pmd">
 		<echo>Build finished !</echo>
 	</target>
 	<!-- =================================================================== -->
