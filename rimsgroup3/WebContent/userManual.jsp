@@ -10,7 +10,7 @@
 <body>
 
 <div class="results">
-<a name="contents" href="index.jsp"><img alt="Proficio" src="images/proficio.jpg" /></a>
+<a name="contents" href="index.jsp"><img alt="Proficio" src="images/proficio.jpg" style="border:none;"/></a>
  <div class="secondSet" >	
  <h3> Contents  </h3> 
 	<ol>
@@ -43,7 +43,7 @@
  	Click the new tab that has appeared to access the remaining information. Alternatively click
    	the Follow Link link <br/> 
    	<br/>  </li>
-   	<li>If you wish to print set the check box to print.<br/> Fill out any blank text fields and 
+   	<li>If you wish to print, set the check box to print.<br/> Fill out any blank text fields and 
    	click the appropriate radio buttons in Proficio, that are relevant to information that is required
    	for printing (any information left blank will not be printed). <br/> 
    	<br/> </li>
@@ -63,11 +63,11 @@
    	<ul>
 	<li> If for whatever reason you are not supplied with a DOI, click the  Advanced Search link  <br/> 
 	 <br/>  </li> 
-	 <li> Fill out the all the appropiate fields, click the bottom Search button  <br/>
+	 <li> Fill out the all the appropriate fields, click the bottom Search button  <br/>
 	 <br/> </li>
 	 <li> If the application somehow fails please use the DX DOI tool to locate the article.  <br/>
 	 Enter in the DOI and click the Locate Article button. <br/> 
-	 We apologise for the inconvience that was caused. </li>
+	 We apologise for the inconvenience  that was caused. </li>
 	</ul>
 	<div class="rightAligned" > <p> <a href="#contents"> Top Of Page</a> <br/> <br/> </p></div>
 	<br/>

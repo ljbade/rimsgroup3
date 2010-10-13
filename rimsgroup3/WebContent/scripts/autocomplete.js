@@ -5,15 +5,17 @@
 var isIE;
 var completeTable;
 var publisherField;
-var autorow;
+var menuPopup;
 var http;
 
 function initRequest() {
 	http = createRequestObject();
 	publisherField = document.getElementById("publisher");
-	var menu = document.getElementById("auto-row");
-	autorow = document.getElementById("menu-popup");
-	autorow.style.top = getElementY(menu);
+	var pubTable = document.getElementById('publicationTable');
+	var autoRow = document.getElementById("auto-row");
+	menuPopup = document.getElementById("menu-popup");
+	menuPopup.style.top = getElementY(autoRow);
+	menuPopup.style.left = publisherField.parentNode.offsetLeft + pubTable.offsetLeft;
 	completeTable = document.getElementById("completeTable");
 	completeTable.setAttribute("bordercolor", "white");
 }
@@ -31,7 +33,7 @@ function getElementY(element){
 	targetTop += element.y;
 	}
 	return targetTop;
-	}
+}
 
 function createRequestObject(){
    var req;
@@ -63,15 +65,6 @@ function createRequestObject(){
 }
 return req;
 }
- /*function AJAXInteraction(url) {
-
-	http=GetXmlHttpObject();
-	http.onreadystatechange = processRequest;
-	http.open("GET", url, true);
-	http.send(null);
-
-	}*/
-
 
 function doCompletion() {
 	initRequest();
@@ -81,15 +74,12 @@ function doCompletion() {
     }
     else 
     {
-        var url = "AutoComplete?action=complete&id=" + 
-                escape(publisherField.value);
-        
+        var url = "AutoComplete?action=complete&id=" + escape(publisherField.value);
         
         http.open("GET", url, true);
         http.send(null);
         http.onreadystatechange = processRequest;
-           
-        
+     
     }
 } 
 function processRequest () {
@@ -149,7 +139,7 @@ function appendPublisher(name) {
 		row = completeTable.insertRow(completeTable.rows.length);
 		nameCell = row.insertCell(0);
 		row.className = "popupRow";
-		nameCell.setAttribute("bgcolor", "#FFFAFA");
+		nameCell.setAttribute("bgcolor", "#FFFFFF");
 		nameCell.setAttribute("width", "60%");
 
 		var linkElement = document.createElement("a");
@@ -163,7 +153,7 @@ function enter(name){
 
 	document.getElementById("publisher").value=name;
 	clearTable();
-	}
+}
 
 
 

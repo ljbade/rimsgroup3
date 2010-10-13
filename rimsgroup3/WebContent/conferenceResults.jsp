@@ -8,15 +8,13 @@
 <script type="text/javascript" src="scripts/ajax.js"></script>
 <script type="text/javascript" src="scripts/conferencePrinting.js"></script>
 <script type="text/javascript" src="scripts/copy.js"></script>
-<script type="text/javascript" src="ZeroClipboard.js"></script>
+<script type="text/javascript" src="clipboard/ZeroClipboard.js"></script>
 <title>Proficio - Results</title>
 </head>
 <body>
 <script type="text/javascript">
 	window.onload = function() {
 		parse(); // replace special characters in the title string
-		//var resource = document.getElementById('url').value;
-		//getAbstract('get', 'AbstractText', resource); // get abstract text from the article page
 	};
 </script>
 <div id="page">
