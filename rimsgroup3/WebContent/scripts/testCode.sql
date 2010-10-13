@@ -55,7 +55,7 @@ INSERT INTO MISC_AUTHOR VALUES("0861134",'F'		,'Canning'	,'Ceaser','Dublin Unive
 INSERT INTO MISC_AUTHOR VALUES("0761135",'Alex'		,'Bleh'		,'S'	,'Victoria University'	);
 INSERT INTO MISC_AUTHOR VALUES("0461136",'Q'	,	'Sang'		,Null	,'Cali University'	);
 INSERT INTO MISC_AUTHOR VALUES("0561136",'Good'	,	'Archery'	,'Homer','Victoria University'	); 
-INSERT INTO MISC_AUTHOR VALUES("0661138",'z'	,	'Daphine'	,'D'	,'Dublin University'	); 
+INSERT INTO MISC_AUTHOR VALUES("0661138",'Z'	,	'Daphine'	,'D'	,'Dublin University'	); 
 INSERT INTO MISC_AUTHOR VALUES("0261139",'R'	,	'Mccaw'		,Null	,'Tokoyo University'	);
 INSERT INTO MISC_AUTHOR VALUES("0061140",'T'	,	'Umagan'		,'A'	,'Kyoto University'	);
 INSERT INTO MISC_AUTHOR VALUES("0061141",'C'	,	'Smith'		,'A'	,'Victoria University'	);

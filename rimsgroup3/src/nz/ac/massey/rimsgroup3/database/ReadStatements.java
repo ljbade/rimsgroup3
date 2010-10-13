@@ -62,18 +62,28 @@ public class ReadStatements {
 			}
 			
 			statementAuthor.setString(1, author.getLastName());
-			statementAuthor.setString(2, author.getFirstName());
+			statementAuthor.setString(2, authorFirstName);
 			if (authorMiddleName != null)
 			{
-				statementAuthor.setString(3, author.getMiddleName());
+				statementAuthor.setString(3, authorMiddleName);
+			}
+			else
+			{
+				authorMiddleName = "";
 			}
 			ResultSet authorRS = statementAuthor.executeQuery();
 			while (authorRS.next())
 			{
 				authoredIt.setID(authorRS.getString(1));
 				authoredIt.setAffiliation(authorRS.getString(2));
-				authoredIt.setMiddleName(authorRS.getString(3));
-				authoredIt.setFirstName(authorRS.getString(4));
+				if(authorRS.getString(3) != null && authorRS.getString(3).length() >= authorMiddleName.length())
+				{
+					authoredIt.setMiddleName(authorRS.getString(3));
+				}
+				if(authorRS.getString(4) != null && authorRS.getString(4).length() >= authorFirstName.length())
+				{
+					authoredIt.setFirstName(authorRS.getString(4));
+				}
 				authoredIt.setInDatabase(true);
 			}
 			if  (statementAuthor != null) statementAuthor.close();
@@ -138,10 +148,14 @@ public class ReadStatements {
 			}
 			
 			statementAuthor.setString(1, author.getLastName());
-			statementAuthor.setString(2, author.getFirstName());
+			statementAuthor.setString(2, authorFirstName);
 			if (authorMiddleName != null)
 			{
-				statementAuthor.setString(3, author.getMiddleName());
+				statementAuthor.setString(3, authorMiddleName);
+			}
+			else
+			{
+				authorMiddleName = "";
 			}
 			ResultSet authorRS = statementAuthor.executeQuery();
 			while (authorRS.next())
@@ -150,8 +164,14 @@ public class ReadStatements {
 				authoredIt.setType(authorRS.getString(2));
 				authoredIt.setDepartment(authorRS.getString(3));
 				authoredIt.setCollege(authorRS.getString(4));
-				authoredIt.setMiddleName(authorRS.getString(5));
-				authoredIt.setFirstName(authorRS.getString(6));
+				if(authorRS.getString(5) != null && authorRS.getString(5).length() >= authorMiddleName.length())
+				{
+					authoredIt.setMiddleName(authorRS.getString(5));
+				}
+				if(authorRS.getString(6) != null && authorRS.getString(6).length() >= authorFirstName.length())
+				{
+					authoredIt.setFirstName(authorRS.getString(6));
+				}
 				authoredIt.setAffiliation("Massey");
 				authoredIt.setInDatabase(true);
 			}

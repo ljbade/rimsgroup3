@@ -143,10 +143,10 @@ Connection connection;
 		Author masseyCheck2 = new Author();
 		masseyCheck2.setFirstName("E");
 		masseyCheck2.setLastName("Harte");
-		masseyCheck2.setMiddleName("c");
+		masseyCheck2.setMiddleName("C");
 		
 		Author masseyCheck3 = new Author();
-		masseyCheck3.setFirstName("zidane");
+		masseyCheck3.setFirstName("Zidane");
 		masseyCheck3.setLastName("Anderson");
 		masseyCheck3.setMiddleName("D");
 		
@@ -155,31 +155,31 @@ Connection connection;
 		masseyCheck4.setLastName("Mccaw");
 		
 		Author masseyCheck5 = new Author();
-		masseyCheck5.setFirstName("names");
-		masseyCheck5.setLastName("noddy");
-		masseyCheck5.setMiddleName("damn");
+		masseyCheck5.setFirstName("Names");
+		masseyCheck5.setLastName("Noddy");
+		masseyCheck5.setMiddleName("Damn");
 		
 		Author masseyCheck6 = new Author();
-		masseyCheck6.setFirstName("c");
+		masseyCheck6.setFirstName("C");
 		masseyCheck6.setLastName("Smithy");
-		masseyCheck6.setMiddleName("apache");
+		masseyCheck6.setMiddleName("Apache");
 		
 		Author miscCheck1 = new Author();
-		miscCheck1.setFirstName("z");
+		miscCheck1.setFirstName("Z");
 		miscCheck1.setLastName("Daphine");
 		
 		Author miscCheck2 = new Author();
-		miscCheck2.setFirstName("e");
+		miscCheck2.setFirstName("E");
 		miscCheck2.setLastName("Bobbison");
-		miscCheck2.setMiddleName("c");
+		miscCheck2.setMiddleName("C");
 		
 		Author miscCheck3 = new Author();
-		miscCheck3.setFirstName("boris");
+		miscCheck3.setFirstName("Boris");
 		miscCheck3.setLastName("Harte");
 		miscCheck3.setMiddleName("D");
 		
 		Author miscCheck4 = new Author();
-		miscCheck4.setFirstName("tana");
+		miscCheck4.setFirstName("Tana");
 		miscCheck4.setLastName("Umagan");
 		
 		Author miscCheck5 = new Author();
@@ -188,9 +188,9 @@ Connection connection;
 		miscCheck5.setMiddleName("Ceaser");
 		
 		Author miscCheck6 = new Author();
-		miscCheck6.setFirstName("q");
+		miscCheck6.setFirstName("Q");
 		miscCheck6.setLastName("Bosling");
-		miscCheck6.setMiddleName("maximus");
+		miscCheck6.setMiddleName("Maximus");
 		
 		authorsChecked.add(masseyCheck1);
 		authorsChecked.add(miscCheck1);
@@ -284,8 +284,9 @@ Connection connection;
 		List <Author> authorsExpected = new ArrayList<Author>();
 		
 		Author masseyExp1 = new Author();
-		masseyExp1.setFirstName("E");
+		masseyExp1.setFirstName("Eskimo");
 		masseyExp1.setLastName("Bobbison");
+		masseyExp1.setMiddleName("Full");
 		masseyExp1.setAffiliation("Massey");
 		masseyExp1.setCollege("Science");
 		masseyExp1.setType("Student");
@@ -293,9 +294,9 @@ Connection connection;
 		masseyExp1.setID("61120");
 		
 		Author masseyExp2 = new Author();
-		masseyExp2.setFirstName("E");
+		masseyExp2.setFirstName("Esky");
 		masseyExp2.setLastName("Harte");
-		masseyExp2.setMiddleName("c");
+		masseyExp2.setMiddleName("C");
 		masseyExp2.setAffiliation("Massey");
 		masseyExp2.setCollege("Science");
 		masseyExp2.setType("Professor");
@@ -303,7 +304,7 @@ Connection connection;
 		masseyExp2.setID("61132");
 		
 		Author masseyExp3 = new Author();
-		masseyExp3.setFirstName("zidane");
+		masseyExp3.setFirstName("Zidane");
 		masseyExp3.setLastName("Anderson");
 		masseyExp3.setMiddleName("D");
 		masseyExp3.setAffiliation("Massey");
@@ -322,9 +323,9 @@ Connection connection;
 		masseyExp4.setID("61139");
 		
 		Author masseyExp5 = new Author();
-		masseyExp5.setFirstName("names");
-		masseyExp5.setLastName("noddy");
-		masseyExp5.setMiddleName("damn");
+		masseyExp5.setFirstName("Names");
+		masseyExp5.setLastName("Noddy");
+		masseyExp5.setMiddleName("Damn");
 		masseyExp5.setAffiliation("Massey");
 		masseyExp5.setCollege("Science");
 		masseyExp5.setType("Student");
@@ -332,9 +333,9 @@ Connection connection;
 		masseyExp5.setID("61149");
 		
 		Author masseyExp6 = new Author();
-		masseyExp6.setFirstName("c");
+		masseyExp6.setFirstName("Cloud");
 		masseyExp6.setLastName("Smithy");
-		masseyExp6.setMiddleName("apache");
+		masseyExp6.setMiddleName("Apache");
 		masseyExp6.setAffiliation("Massey");
 		masseyExp6.setCollege("Science");
 		masseyExp6.setType("Student");
@@ -342,28 +343,30 @@ Connection connection;
 		masseyExp6.setID("61142");
 		
 		Author miscExp1 = new Author();
-		miscExp1.setFirstName("z");
+		miscExp1.setFirstName("Z");
 		miscExp1.setLastName("Daphine");
+		miscExp1.setMiddleName("D");
 		miscExp1.setAffiliation("Dublin University");
 		miscExp1.setID("0661138");
 		
 		Author miscExp2 = new Author();
-		miscExp2.setFirstName("e");
+		miscExp2.setFirstName("Eskimo");
 		miscExp2.setLastName("Bobbison");
-		miscExp2.setMiddleName("c");
+		miscExp2.setMiddleName("C");
 		miscExp2.setAffiliation("Dublin University");
 		miscExp2.setID("0961120");
 		
 		Author miscExp3 = new Author();
-		miscExp3.setFirstName("boris");
+		miscExp3.setFirstName("Boris");
 		miscExp3.setLastName("Harte");
 		miscExp3.setMiddleName("D");
 		miscExp3.setAffiliation("Dublin University");
 		miscExp3.setID("0461132");
 		
 		Author miscExp4 = new Author();
-		miscExp4.setFirstName("tana");
+		miscExp4.setFirstName("Tana");
 		miscExp4.setLastName("Umagan");
+		miscExp4.setMiddleName("A");
 		miscExp4.setAffiliation("Kyoto University");
 		miscExp4.setID("0061140");
 		
@@ -375,9 +378,9 @@ Connection connection;
 		miscExp5.setID("0861134");
 		
 		Author miscExp6 = new Author();
-		miscExp6.setFirstName("q");
+		miscExp6.setFirstName("Q");
 		miscExp6.setLastName("Bosling");
-		miscExp6.setMiddleName("maximus");
+		miscExp6.setMiddleName("Maximus");
 		miscExp6.setAffiliation("Cali University");
 		miscExp6.setID("0561131");
 		
