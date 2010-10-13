@@ -273,7 +273,6 @@ public class CrossrefRetriever implements MetadataRetriever {
 		return node.getTextContent();
 	}
 	
-	// TODO: clean up duplicate code
 	/**
 	 * Retrieves the element from the XML element handling the case where the element does not exist.
 	 * 

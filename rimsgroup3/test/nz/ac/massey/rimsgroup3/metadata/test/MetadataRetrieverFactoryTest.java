@@ -20,7 +20,6 @@ public class MetadataRetrieverFactoryTest extends TestCase {
 		factory = MetadataRetrieverFactory.get();
 	}
 	
-	// TODO: change this to use a mock plugin?
 	public void testFindDoi() {
 		ArrayList<String> dois = new ArrayList<String>();
 		dois.add("10.3998/3336451.0009.101");

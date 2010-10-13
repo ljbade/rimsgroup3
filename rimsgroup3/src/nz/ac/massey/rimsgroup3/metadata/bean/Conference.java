@@ -8,48 +8,6 @@ package nz.ac.massey.rimsgroup3.metadata.bean;
  *
  */
 public class Conference extends Publication {
-	
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Conference other = (Conference) obj;
-		if (abstractTitle == null) {
-			if (other.abstractTitle != null)
-				return false;
-		} else if (!abstractTitle.equals(other.abstractTitle))
-			return false;
-		if (conferenceName == null) {
-			if (other.conferenceName != null)
-				return false;
-		} else if (!conferenceName.equals(other.conferenceName))
-			return false;
-		if (endDate == null) {
-			if (other.endDate != null)
-				return false;
-		} else if (!endDate.equals(other.endDate))
-			return false;
-		if (location == null) {
-			if (other.location != null)
-				return false;
-		} else if (!location.equals(other.location))
-			return false;
-		if (startDate == null) {
-			if (other.startDate != null)
-				return false;
-		} else if (!startDate.equals(other.startDate))
-			return false;
-		return true;
-	}
-
 	private String abstractTitle;
 	private String conferenceName;
 	private String startDate;
@@ -124,5 +82,45 @@ public class Conference extends Publication {
 	 */
 	public void setLocation(String location) {
 		this.location = location;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Conference other = (Conference) obj;
+		if (abstractTitle == null) {
+			if (other.abstractTitle != null)
+				return false;
+		} else if (!abstractTitle.equals(other.abstractTitle))
+			return false;
+		if (conferenceName == null) {
+			if (other.conferenceName != null)
+				return false;
+		} else if (!conferenceName.equals(other.conferenceName))
+			return false;
+		if (endDate == null) {
+			if (other.endDate != null)
+				return false;
+		} else if (!endDate.equals(other.endDate))
+			return false;
+		if (location == null) {
+			if (other.location != null)
+				return false;
+		} else if (!location.equals(other.location))
+			return false;
+		if (startDate == null) {
+			if (other.startDate != null)
+				return false;
+		} else if (!startDate.equals(other.startDate))
+			return false;
+		return true;
 	}
 }

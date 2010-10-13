@@ -13,43 +13,6 @@ public class Author extends Person {
 	private String department, college;
 	private String affiliation;
 	private boolean inDatabase;
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Author other = (Author) obj;
-		if (affiliation == null) {
-			if (other.affiliation != null)
-				return false;
-		} else if (!affiliation.equals(other.affiliation))
-			return false;
-		if (college == null) {
-			if (other.college != null)
-				return false;
-		} else if (!college.equals(other.college))
-			return false;
-		if (department == null) {
-			if (other.department != null)
-				return false;
-		} else if (!department.equals(other.department))
-			return false;
-		if (inDatabase != other.inDatabase)
-			return false;
-		if (type == null) {
-			if (other.type != null)
-				return false;
-		} else if (!type.equals(other.type))
-			return false;
-		return true;
-	}
 
 	/**
 	 * @return the affiliation
@@ -119,6 +82,43 @@ public class Author extends Person {
 	 */
 	public boolean getInDatabase() {
 		return inDatabase;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Author other = (Author) obj;
+		if (affiliation == null) {
+			if (other.affiliation != null)
+				return false;
+		} else if (!affiliation.equals(other.affiliation))
+			return false;
+		if (college == null) {
+			if (other.college != null)
+				return false;
+		} else if (!college.equals(other.college))
+			return false;
+		if (department == null) {
+			if (other.department != null)
+				return false;
+		} else if (!department.equals(other.department))
+			return false;
+		if (inDatabase != other.inDatabase)
+			return false;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
+			return false;
+		return true;
 	}
 	
 }

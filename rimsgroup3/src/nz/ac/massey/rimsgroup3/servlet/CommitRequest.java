@@ -31,7 +31,6 @@ public class CommitRequest extends HttpServlet {
      */
     public CommitRequest() {
         super();
-        // TODO Auto-generated constructor stub
     }
     
     public void init(ServletConfig config) throws ServletException {

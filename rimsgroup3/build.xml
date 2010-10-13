@@ -191,6 +191,8 @@
 			</batchtest>
 			<jvmarg value="-Demma.coverage.out.file=${coverage.dir}/coverage.emma"/>
 			<jvmarg value="-Demma.coverage.out.merge=true"/>
+			<jvmarg value="-Dhttp.proxyHost=tur-cache.massey.ac.nz"/>
+			<jvmarg value="-Dhttp.proxyPort=8080"/>
 		</junit>
 
 		<!--====Emma coverage reports===============================================-->
