@@ -14,13 +14,13 @@
 	<property name="build.classes" value="${build.dir}/classes"/>
 	<property name="build.lib" value="${build.dir}/lib"/>
 	<property name="build.jar" value="${build.lib}/${name}-${version}.jar"/>
+	<property name="build.war" value="${build.lib}/${name}-${version}.war"/>
 	<property name="build.test.jar" value="${build.lib}/${name}-tests-${version}.jar"/>
 	<property name="build.tests.jar" value="${build.lib}/${name}-testsuite-${version}.jar"/>
 	<property name="build.docs" value="${build.dir}/docs"/>
 	<property name="build.docs.api" value="${build.docs}/api"/>
 	<property name="build.tmp" value="${build.dir}/tmp"/>
 	<property name="qa.dir" value="${build.dir}/qa-reports"/>
-	<property name="main.class.swing" value="ui.GUI"/>
 	<property name="tomcat.dir" value="${basedir}/../../tomcat" />
 	<property name="tomcat.lib" value="${tomcat.dir}/lib" />
 
@@ -39,7 +39,7 @@
 	<!-- Main target: compile, jar,test and build java docs                                                                           -->
 	<!-- =================================================================== -->
 	<!--<target name="all" description="Main target - compile, jar, docs, PMD and test " depends="emma,compile,tests,jar,javadocs,dependencyanalysis,pmd">-->
-	<target name="all" description="Main target - compile, jar, docs, PMD and test " depends="emma,compile,tests,jar">
+	<target name="all" description="Main target - compile, jar, war, docs, PMD and test " depends="emma,compile,tests,jar,war">
 		<echo>Build finished !</echo>
 	</target>
 	<!-- =================================================================== -->
@@ -91,7 +91,6 @@
 		<filter token="TITLE" value="${name}"/>
 		<filter token="VERSION" value="${version}"/>
 		<filter token="VENDOR" value="Massey University"/>
-		<filter token="MAIN_CLASS" value="${main.class.swing}"/>
 		<copy file="WebContent/META-INF/MANIFEST.MF" tofile="${build.tmp}/manifest.mf" filtering="yes"/>
 		<!-- separate jar files for runtime and tests -->
 		<jar jarfile="${build.jar}" 
@@ -111,6 +110,37 @@
            basedir="${build.classes}"
            includes="**/test/**"
       />
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Create the WAR                                                                                                                               -->
+	<!-- =================================================================== -->
+	<target name="war" depends="compile" description="Creates the war file">
+		<!-- here we set certain meta information in the jar file dynamically by replacing values in a template -->
+		<filter token="NAME" value="${name}"/>
+		<filter token="TITLE" value="${name}"/>
+		<filter token="VERSION" value="${version}"/>
+		<filter token="VENDOR" value="Massey University"/>
+		<copy file="WebContent/META-INF/MANIFEST.MF" tofile="${build.tmp}/manifest-war.mf" filtering="yes"/>
+		<war warfile="${build.war}" webxml="WebContent/WEB-INF/web.xml" manifest="${build.tmp}/manifest-war.mf">
+			<classes dir="${build.classes}" excludes="**/test/**,**/experimental/**" />
+			<lib dir="WebContent/WEB-INF/lib" />
+			<webinf dir="WebContent/WEB-INF">
+				<exclude name="lib/**" />
+				<!--<exclude name="classes/META-INF/**" />-->
+			</webinf>
+			<webinf dir="WebContent/META-INF">
+				<exclude name="MANIFEST.MF" />
+			</webinf>
+			<fileset dir="WebContent">
+				<exclude name="WEB-INF/**" />
+				<exclude name="META-INF/**" />
+			</fileset>
+			<!--<service type="nz.ac.massey.rimsgroup3.metadata.MetadataRetriever">
+				<provider classname="nz.ac.massey.rimsgroup3.metadata.plugin.CrossrefRetriever" />
+				<provider classname="nz.ac.massey.rimsgroup3.metadata.plugin.ScopusRetriever" />
+			</service>-->
+		</war>
 	</target>
 
 	<!-- ====================================================================== -->
