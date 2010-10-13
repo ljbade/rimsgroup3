@@ -26,7 +26,7 @@ public class AutoCompleteTest extends ServletTestCase  {
 	}
 	
 	public void testSAutoComplete() throws ServletException, IOException{
-		String input = "s";	
+		String input = "sp";	
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/AutoComplete?id=" + input); 
 		dispatcher.forward(request, response); 
 	}
@@ -49,7 +49,7 @@ public class AutoCompleteTest extends ServletTestCase  {
 	}
 	
 	public void testNoAutoComplete() throws ServletException, IOException{
-		String input = "";	
+		String input = "P";	
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/AutoComplete?id=" + input); 
 		dispatcher.forward(request, response); 
 	}
@@ -59,5 +59,14 @@ public class AutoCompleteTest extends ServletTestCase  {
 		assertEquals("",output);
 	}
 	
+	public void testEmptyAutoComplete() throws ServletException, IOException{
+		String input = "";	
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/AutoComplete?id=" + input); 
+		dispatcher.forward(request, response); 
+	}
 	
+	public void endEmptyAutoComplete(WebResponse response) {
+		String output = response.getText();
+		assertEquals("",output);
+	}
 }
