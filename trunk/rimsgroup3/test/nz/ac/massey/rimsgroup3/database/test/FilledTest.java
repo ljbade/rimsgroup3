@@ -5,24 +5,14 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
+
 import java.util.ArrayList;
 import java.util.List;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import org.apache.cactus.*;
-import org.apache.catalina.Server;
-import org.eclipse.jdt.internal.compiler.batch.FileSystem.Classpath;
-
-import junit.framework.*;
 
 import nz.ac.massey.rimsgroup3.database.*;
 import nz.ac.massey.rimsgroup3.metadata.bean.*;
