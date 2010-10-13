@@ -10,9 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import nz.ac.massey.rimsgroup3.database.DatabaseConnectI;
-import nz.ac.massey.rimsgroup3.database.DatabaseConnection;
-
 /**
  * Servlet implementation class AutoComplete
  */
