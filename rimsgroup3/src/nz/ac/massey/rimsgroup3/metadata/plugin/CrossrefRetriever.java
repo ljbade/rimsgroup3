@@ -55,7 +55,9 @@ public class CrossrefRetriever implements MetadataRetriever {
 	private Publication processResult(InputStream stream, String doi)
 	{
 		if (stream == null)
+		{
 			return null;
+		}
 		
 		// Create an XML document object from the InputStream
         DocumentBuilderFactory xmlFactory = DocumentBuilderFactory.newInstance();
@@ -325,6 +327,7 @@ public class CrossrefRetriever implements MetadataRetriever {
 	        connection.connect();
 	        stream = connection.getInputStream();
 			
+	        System.out.println("performQuery done");
 	        return stream;
 	        
 		} catch (MalformedURLException e) {
