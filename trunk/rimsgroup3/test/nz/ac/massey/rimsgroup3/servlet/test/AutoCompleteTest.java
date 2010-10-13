@@ -3,18 +3,9 @@ package nz.ac.massey.rimsgroup3.servlet.test;
 
 import java.io.IOException;
 
-import	 nz.ac.massey.rimsgroup3.servlet.*;
-
-
-import javax.naming.Context; 
-import javax.naming.InitialContext;  
-import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;  
-import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
-import javax.sql.DataSource;  
+import javax.servlet.ServletException;  
 import org.apache.cactus.*;  
-import junit.framework.*; 
 
 
 public class AutoCompleteTest extends ServletTestCase  {
