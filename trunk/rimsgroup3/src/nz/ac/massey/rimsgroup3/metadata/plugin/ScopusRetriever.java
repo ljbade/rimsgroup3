@@ -50,15 +50,28 @@ public class ScopusRetriever implements MetadataRetriever {
 	
 	private Publication decodeJson(String json)
 	{
+		if (json.isEmpty()) {
+			return null;
+		}
+		
 		json = json.substring(json.indexOf("(") + 1, json.lastIndexOf(")"));
+		
+		if (json.isEmpty()) {
+			return null;
+		}
 		
 		Gson gson = new Gson();
 		
 		JsonObject jsonObj = gson.fromJson(json, JsonObject.class);
+		if (jsonObj == null || jsonObj.PartOK == null || jsonObj.PartOK.Results.length == 0)
+		{
+			return null;
+		}
 		JsonResult result = jsonObj.PartOK.Results[0];
 		
-		if (!result.equals("ar") && !result.equals("ip") && !result.equals("bz"))
-			return null;
+		if (!result.doctype.equals("ar") && !result.doctype.equals("ip") && !result.doctype.equals("bz")) {
+			return null;	
+		}
 		
 		Journal journal = new Journal();
 		journal.setAbstractText(StringEscapeUtils.unescapeHtml(result.abstractString));
@@ -76,17 +89,38 @@ public class ScopusRetriever implements MetadataRetriever {
 		journal.setUrl(StringEscapeUtils.unescapeHtml(result.inwardurl));
 		journal.setVolume(StringEscapeUtils.unescapeHtml(result.vol));
 		
-		if (result.firstauth != null)
-		{
-			ArrayList<Author> authors = new ArrayList<Author>();
-			Author author = new Author();
-			author.setFirstName(result.firstauth.split(", ")[0]);
-			author.setLastName(result.firstauth.split(", ")[1]);
-			author.setAffiliation(result.affiliations);
+
+		ArrayList<Author> authors = new ArrayList<Author>();
+		Author author = new Author();
+		
+		if (result.firstauth != null) {
+			String[] parts = result.firstauth.split(", ");
 			
-			authors.add(author);
-			journal.setAuthors(authors);
+			if (parts.length < 2) {
+				author.setFirstName("");
+				author.setMiddleName("");
+				author.setLastName("");
+				author.setAffiliation("");
+			} else if (parts.length < 3) {
+				author.setFirstName(parts[0]);
+				author.setMiddleName("");
+				author.setLastName(parts[1]);
+			} else {
+				author.setFirstName(parts[0]);
+				author.setMiddleName(parts[1]);
+				author.setLastName(parts[parts.length - 1]);
+			}
+			
+			author.setAffiliation(result.affiliations);
+		} else {
+			author.setFirstName("");
+			author.setMiddleName("");
+			author.setLastName("");
+			author.setAffiliation("");
 		}
+		
+		authors.add(author);
+		journal.setAuthors(authors);
 		
 		return journal;
 	}

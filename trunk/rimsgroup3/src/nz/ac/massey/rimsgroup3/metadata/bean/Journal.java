@@ -12,41 +12,6 @@ public class Journal extends Publication {
 	private String issue;
 	private String journalTitle;
 	private String articleTitle;
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Journal other = (Journal) obj;
-		if (articleTitle == null) {
-			if (other.articleTitle != null)
-				return false;
-		} else if (!articleTitle.equals(other.articleTitle))
-			return false;
-		if (issue == null) {
-			if (other.issue != null)
-				return false;
-		} else if (!issue.equals(other.issue))
-			return false;
-		if (journalTitle == null) {
-			if (other.journalTitle != null)
-				return false;
-		} else if (!journalTitle.equals(other.journalTitle))
-			return false;
-		if (volume == null) {
-			if (other.volume != null)
-				return false;
-		} else if (!volume.equals(other.volume))
-			return false;
-		return true;
-	}
 
 	/**
 	 * @return the volume
@@ -102,5 +67,40 @@ public class Journal extends Publication {
 	 */
 	public void setArticleTitle(String articleTitle) {
 		this.articleTitle = articleTitle;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Journal other = (Journal) obj;
+		if (articleTitle == null) {
+			if (other.articleTitle != null)
+				return false;
+		} else if (!articleTitle.equals(other.articleTitle))
+			return false;
+		if (issue == null) {
+			if (other.issue != null)
+				return false;
+		} else if (!issue.equals(other.issue))
+			return false;
+		if (journalTitle == null) {
+			if (other.journalTitle != null)
+				return false;
+		} else if (!journalTitle.equals(other.journalTitle))
+			return false;
+		if (volume == null) {
+			if (other.volume != null)
+				return false;
+		} else if (!volume.equals(other.volume))
+			return false;
+		return true;
 	}
 }

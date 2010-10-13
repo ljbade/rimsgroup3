@@ -3,6 +3,9 @@
  */
 package nz.ac.massey.rimsgroup3.metadata.plugin.test;
 
+import java.util.ArrayList;
+
+import nz.ac.massey.rimsgroup3.metadata.bean.Author;
 import nz.ac.massey.rimsgroup3.metadata.bean.Journal;
 import nz.ac.massey.rimsgroup3.metadata.plugin.CrossrefRetriever;
 import junit.framework.TestCase;
@@ -32,6 +35,15 @@ public class CrossrefRetrieverTest extends TestCase {
 		expected.setStartPage("");
 		expected.setEndPage("");
 		expected.setUrl("http://dx.doi.org/10.3998/3336451.0009.101");
+		
+		Author expectedAuthor = new Author();
+		expectedAuthor.setFirstName("Geoffrey");
+		expectedAuthor.setMiddleName("");
+		expectedAuthor.setLastName("Bilder");
+		
+		ArrayList<Author> expectedAuthors = new ArrayList<Author>();
+		expectedAuthors.add(expectedAuthor);
+		expected.setAuthors(expectedAuthors);
 		
 		Journal result = (Journal) retriever.retrievePublication(doi);
 		
