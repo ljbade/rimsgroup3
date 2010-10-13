@@ -9,7 +9,7 @@
 <script type="text/javascript" src="scripts/printing.js"></script>
 <script type="text/javascript" src="scripts/autocomplete.js"></script>
 <script type="text/javascript" src="scripts/copy.js"></script>
-<script type="text/javascript" src="ZeroClipboard.js"></script>
+<script type="text/javascript" src="clipboard/ZeroClipboard.js"></script>
 <title>Proficio - Results</title>
 </head>
 <body>
@@ -17,7 +17,7 @@
 	window.onload = function() {
 		parse(); // replace special characters in the title string
 		var resource = document.getElementById('url').value;
-		getAbstract('get', 'AbstractText', resource); // get abstract text from the article page
+		//getAbstract('get', 'AbstractText', resource); // get abstract text from the article page
 	};
 </script>
 <div id="page">
@@ -104,7 +104,7 @@
 
 <div class="thirdSet">
 <h2>Publication Details</h2>
-<table align="left" width="60%">
+<table align="left" width="60%" id="publicationTable">
 <tr>
 <td><label for="pubID">Publication ID:</label></td>
 <td><input type="text" name="pubID" id="pubID" size="65" /></td>
@@ -197,7 +197,6 @@
 </tr>
 </table>
 
- 
 </div>
 </div>
 <div>
@@ -207,8 +206,8 @@
 </div>
 
 </form>
-<div id="menu-popup">
-<table id="completeTable" border="1" bordercolor="black" cellpadding="0" cellspacing="0"> </table>
+<div class="menu-popup" id="menu-popup">
+<table class="completeTable" id="completeTable" border="1" bordercolor="black" cellpadding="0" cellspacing="0"> </table>
 </div>
 
 

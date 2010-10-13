@@ -97,20 +97,6 @@ function getAbstract(method, url, resource){
 	  }
 }
 
-// response handler for getAbstract method
-function handleAbstractResponse() {
-	if(http.readyState == 4 && http.status == 200){
-	     var response = http.responseText;
-	     if(response){
-	      //stop progress display
-	      var progress = document.getElementById('abstract_progress');
-	      progress.innerHTML = "";
-	      // display response
-	      document.getElementById('abstract').innerHTML = response;
-	     }
-	}
-}
-
 
 
 // advancedRequest AJAX methods
