@@ -11,9 +11,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.apache.catalina.Session;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -40,9 +43,8 @@ public class CrossrefRetriever implements MetadataRetriever {
 	/* (non-Javadoc)
 	 * @see nz.ac.massey.rimsgroup3.metadata.plugin.MetadataRetriever#retrievePublication(java.lang.String)
 	 */
-	@Override
-	public Publication retrievePublication(String doi) {
-		InputStream xml = performQuery(doi);
+	public Publication retrievePublication(String doi, HttpServletRequest request) {
+		InputStream xml = performQuery(doi, request);
 		return processResult(xml, doi);
 	}
 	
@@ -79,8 +81,8 @@ public class CrossrefRetriever implements MetadataRetriever {
 		// check for failed response from cross ref
 		NodeList nodeList = null;
 		try {
-		nodeList = xmlDoc.getElementsByTagName("msg");
-			if(nodeList.item(0).getTextContent().equals("DOI not found in CrossRef")) {
+		nodeList = xmlDoc.getElementsByTagName("crossref");
+			if(nodeList.getLength() < 1) { // no crossref tag in response indicates a failure
 				return null;
 			}
 		} catch (Exception ex) {
@@ -302,7 +304,7 @@ public class CrossrefRetriever implements MetadataRetriever {
 	 * @param doi the DOI to fetch
 	 * @return the XML to parse
 	 */
-	private InputStream performQuery(String doi)
+	private InputStream performQuery(String doi, HttpServletRequest request)
 	{
 		InputStream stream;
 		// retrieve crossref API email from configuration.properties file
@@ -314,7 +316,13 @@ public class CrossrefRetriever implements MetadataRetriever {
 		} catch (Exception ex) {
 			// need to send back error message - possibly redirecting to help file, anchored to solution?
 		}
-		
+		if (email.length() < 1) {
+			String err = "A crossref email does not exist in the configuration.properties file. Please check the help file for the resolution.";
+			
+			HttpSession session = request.getSession(true);   
+         	session.setAttribute("error", err);        	 
+			return null;
+		}
 		String queryString = "http://www.crossref.org/openurl/?id=doi:%s&noredirect=true&pid=" + email + "&format=unixref";
 		// format can also be xsd_xml but this returns less usable data
 		try {

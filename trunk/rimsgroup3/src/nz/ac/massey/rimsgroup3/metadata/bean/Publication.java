@@ -25,7 +25,7 @@ public class Publication {
 	protected String publicationCategory;
 	protected int numberOfAuthors;
 	
-	public int getNumberOfAuthors() {
+	public int getNumberOfAuthors() { 
 		return authors.size();
 	}
 	public String getDoiType() {

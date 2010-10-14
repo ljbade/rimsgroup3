@@ -13,6 +13,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.lang.StringEscapeUtils;
 
 import com.google.gson.Gson;
@@ -41,14 +44,16 @@ public class ScopusRetriever implements MetadataRetriever {
 	 * @see nz.ac.massey.rimsgroup3.metadata.plugin.MetadataRetriever#retrievePublication(java.lang.String)
 	 */
 	@Override
-	public Publication retrievePublication(String doi) {
-		String json = performQuery(doi);
-		if(json == null){
-		return null;
-		}
-		Publication publication = decodeJson(json);
+	public Publication retrievePublication(String doi, HttpServletRequest request) {
+		String json = performQuery(doi, request);
+		// test json exists
+		if(json == null) {
+			return null;
+		} else {
+			Publication publication = decodeJson(json);
 		
-		return publication;
+			return publication;
+		}
 	}
 	
 	private Publication decodeJson(String json)
@@ -171,7 +176,7 @@ public class ScopusRetriever implements MetadataRetriever {
 	 * @param doi the DOI to fetch
 	 * @return the JSON to parse
 	 */
-	private String performQuery(String doi)
+	private String performQuery(String doi, HttpServletRequest request)
 	{
 		InputStream stream;
 		// retrieve scopus API devId from configuration.properties file
@@ -183,7 +188,13 @@ public class ScopusRetriever implements MetadataRetriever {
 		} catch (Exception ex) {
 			// need to send back error message - possibly redirecting to help file, anchored to solution?
 		}
-		
+		if (devId.length() < 1) {
+			String err = "A Scopus developer ID does not exist in the configuration.properties file. Please check the help file for the resolution.";
+			
+			HttpSession session = request.getSession(true);   
+         	session.setAttribute("error", err);        	 
+			return null;
+		}
 		String queryString = "http://searchapi.scopus.com/search.url?preventCache=HtiAvheNOPEiOU3Ecpkq&devId=" + devId + "&search=DOI(" + doi + ")&callback=rimsgroup3" +
 		"&fields=title,doctype,citedbycount,inwardurl,sourcetitle,issn,vol,issue,page,pubdate,eid,scp,doi,firstauth,authlist,affiliations,abstract";
 		try {

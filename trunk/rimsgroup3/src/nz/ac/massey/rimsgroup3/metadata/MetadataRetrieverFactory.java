@@ -5,6 +5,8 @@ package nz.ac.massey.rimsgroup3.metadata;
 
 import java.util.ServiceLoader;
 
+import javax.servlet.http.HttpServletRequest;
+
 import nz.ac.massey.rimsgroup3.metadata.bean.Publication;
 
 
@@ -33,13 +35,13 @@ public class MetadataRetrieverFactory {
 		return ref;
 	}
 	
-	public synchronized Publication retrievePublication(String doi) {
+	public synchronized Publication retrievePublication(String doi, HttpServletRequest request) {
 		
 		// Iterate through all the plugins
 		for (MetadataRetriever metadataRetriever : metadataRetrievers) {
 			
 			// Ask each one to find the DOI
-			Publication publication = metadataRetriever.retrievePublication(doi);
+			Publication publication = metadataRetriever.retrievePublication(doi, request);
 			
 			// If plugin found a DOI return it
 			if (publication != null)
