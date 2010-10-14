@@ -57,7 +57,7 @@
 </div>
 
 <div class="firstSet">
-<h2>Authors</h2>
+<h2>Authors</h2> Number of authors is: <span id="authorCount">${publication.numberOfAuthors}</span>
 <div id="authorDiv">
 <label id="submitterLabel" style="position:absolute; left: -2000px;">Submitter</label>
 	<c:forEach items="${publication.authors}" var="author" varStatus="status">
@@ -95,7 +95,7 @@
 <input align="right" type="button" value="Add" onClick="addNew();"/><input align="right" type="button" value="Delete" onClick="deleteIt();"/>
 </div>
 
-<div class="thirdSet">
+<div class="thirdSet" style="height:410px">
 <h2>Publication Details</h2>
 <table align="left" width="60%">
 <tr>

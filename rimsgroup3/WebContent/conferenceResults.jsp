@@ -56,7 +56,7 @@
 </div>
 
 <div class="firstSet">
-<h2>Authors</h2>
+<h2>Authors</h2> Number of authors is: <span id="authorCount">${publication.numberOfAuthors}</span>
 <div id="authorDiv">
 <label id="submitterLabel" style="position:absolute; left: -2000px;">Submitter</label>
 	<c:forEach items="${publication.authors}" var="author" varStatus="status">

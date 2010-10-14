@@ -67,12 +67,18 @@ function addNew() {
 	mainContainer.appendChild(newDiv);
 	counter++;
 	
+	
 	// increment value in hidden field so print script knows total number of author rows
 	var rowCount = document.getElementById('hidden').value;
 	rowCount++;
 	document.getElementById('hidden').value = rowCount;
+	var authorCount = document.getElementById('authorCount');
+	authorCount.innerHTML = rowCount;
 	
 	alignSubmitter();
+	var objDiv = document.getElementById("authorDiv");
+	objDiv.scrollTop = objDiv.scrollHeight;
+
 }
 
 function deleteIt(){
@@ -80,11 +86,15 @@ function deleteIt(){
 		var mainContainer = document.getElementById('authorDiv');
 		mainContainer.removeChild(document.getElementById(counter-1));
 		counter--;
-	}
-	// decrement value in hidden field so print script knows total number of author rows
-	var rowCount = document.getElementById('hidden').value;
-	rowCount--;
-	document.getElementById('hidden').value = rowCount;
+		// decrement value in hidden field so print script knows total number of author rows
+		var rowCount = document.getElementById('hidden').value;
+		rowCount--;
+		document.getElementById('hidden').value = rowCount;
+		var authorCount = document.getElementById('authorCount');
+		authorCount.innerHTML = rowCount;
+	}	
+	var objDiv = document.getElementById("authorDiv");
+	objDiv.scrollTop = objDiv.scrollHeight;
 }
 
 

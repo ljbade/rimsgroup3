@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-
-import org.apache.catalina.Session;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -161,7 +159,8 @@ public class CrossrefRetriever implements MetadataRetriever {
 			
 			if (givenName.length() > 0) {
 				givenName = givenName.replace(".", "");
-				int middleIndex = givenName.indexOf(' ');
+				givenName = swapWhiteSpaces(givenName);
+				int middleIndex = givenName.indexOf(" ");
 				if (middleIndex != -1) {
 					author.setFirstName(givenName.substring(0, middleIndex));
 					author.setMiddleName(givenName.substring(middleIndex + 1, givenName.length() - 1));
@@ -181,6 +180,19 @@ public class CrossrefRetriever implements MetadataRetriever {
 		}
 		
 		return authors;
+	}
+	
+	private String swapWhiteSpaces(String str){
+		StringBuffer sb = new StringBuffer();
+		for(int i=0;i<str.length();i++){
+			char c = str.charAt(i);
+			if(Character.isWhitespace(c)){
+				c = ' ';
+			}
+			sb.append(c);
+		}
+		
+		return sb.toString();
 	}
 	
 	/* 

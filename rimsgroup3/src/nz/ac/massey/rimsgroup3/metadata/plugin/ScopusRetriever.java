@@ -102,7 +102,7 @@ public class ScopusRetriever implements MetadataRetriever {
 		Author author = new Author();
 		
 		if (result.firstauth != null) {
-			String[] parts = result.firstauth.split(", ");
+			String[] parts = swapWhiteSpaces(result.firstauth).split(", ");
 			
 			if (parts.length < 2) {
 				author.setFirstName("");
@@ -216,6 +216,19 @@ public class ScopusRetriever implements MetadataRetriever {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	private String swapWhiteSpaces(String str){
+		StringBuffer sb = new StringBuffer();
+		for(int i=0;i<str.length();i++){
+			char c = str.charAt(i);
+			if(Character.isWhitespace(c)){
+				c = ' ';
+			}
+			sb.append(c);
+		}
+		
+		return sb.toString();
 	}
 
 	// from http://www.kodejava.org/examples/266.html
