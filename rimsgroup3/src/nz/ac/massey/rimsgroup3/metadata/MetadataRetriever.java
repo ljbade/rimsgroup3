@@ -3,6 +3,8 @@
  */
 package nz.ac.massey.rimsgroup3.metadata;
 
+import javax.servlet.http.HttpServletRequest;
+
 import nz.ac.massey.rimsgroup3.metadata.bean.Publication;
 
 
@@ -21,7 +23,8 @@ public interface MetadataRetriever {
 	/**
 	 * Searches the database for the publication matching the given DOI and returns all the metadata found.
 	 * @param doi the Document Object Identifier to search for
+	 * @param request 
 	 * @return the found metadata
 	 */
-	Publication retrievePublication(String doi);
+	Publication retrievePublication(String doi, HttpServletRequest request);
 }

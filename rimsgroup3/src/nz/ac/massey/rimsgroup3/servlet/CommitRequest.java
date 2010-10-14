@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import nz.ac.massey.rimsgroup3.database.*;
 
@@ -144,6 +145,10 @@ public class CommitRequest extends HttpServlet {
 		catch(Exception e)
 		{
 			servletCtx.log("Failed to commit to the Database",e);
+			String err = "A database is not available, the DOIs are not being saved. Please check the help file for the resolution.";
+			
+			HttpSession session = request.getSession(true);   
+         	session.setAttribute("error", err);     
 			response.sendRedirect("index.jsp");
 		}
 		try

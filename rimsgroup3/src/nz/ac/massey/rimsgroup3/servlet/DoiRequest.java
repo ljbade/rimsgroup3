@@ -52,7 +52,11 @@ public class DoiRequest extends HttpServlet {
         Connection connection = null;  
         Boolean doiInDB = false;
         String query = request.getParameter("search").toString().trim();
-     
+        
+        // reset error attribute of session for new search
+        HttpSession session = request.getSession(true);
+        session.setAttribute("error", "");
+        
         // local database is checked here first for already saved info
         try 
         {
@@ -77,7 +81,7 @@ public class DoiRequest extends HttpServlet {
         else
         {
         // pass DOI to Crossref if local db fails
-        	Publication publication = MetadataRetrieverFactory.get().retrievePublication(query);        
+        	Publication publication = MetadataRetrieverFactory.get().retrievePublication(query,  request);        
            
         //redirect to response page once all done processing
         	if (publication != null) {
@@ -89,7 +93,7 @@ public class DoiRequest extends HttpServlet {
         		catch(Exception e) {
         			servletCtx.log("Failed at Searching Authors", e);
         		}
-        		HttpSession session = request.getSession(true);   
+        		session = request.getSession(true);   
              	session.setAttribute("publication", detailedPublication);  		
 
              	String type = detailedPublication.getDoiType();
@@ -100,11 +104,22 @@ public class DoiRequest extends HttpServlet {
                 out.close();
 
         	} else {
+        		// check for error messages
+        		session = request.getSession(true);   
+             	if(session.getAttribute("error") != null) {
+             	// Return value.
+                    PrintWriter out = response.getWriter();
+                    out.println("error");
+                    out.flush();
+                    out.close();
+             		
+             	} else {
         		// Return value.
                 PrintWriter out = response.getWriter();
                 out.println("DOI not found");
                 out.flush();
                 out.close();
+             	}
         	}
         }  
 		try
