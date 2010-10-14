@@ -5,6 +5,8 @@ package nz.ac.massey.rimsgroup3.metadata.plugin.test;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import nz.ac.massey.rimsgroup3.metadata.bean.Author;
 import nz.ac.massey.rimsgroup3.metadata.bean.Journal;
 import nz.ac.massey.rimsgroup3.metadata.plugin.CrossrefRetriever;
@@ -44,8 +46,8 @@ public class CrossrefRetrieverTest extends TestCase {
 		ArrayList<Author> expectedAuthors = new ArrayList<Author>();
 		expectedAuthors.add(expectedAuthor);
 		expected.setAuthors(expectedAuthors);
-		
-		Journal result = (Journal) retriever.retrievePublication(doi);
+		HttpServletRequest request = null;
+		Journal result = (Journal) retriever.retrievePublication(doi,request);
 		
 		assertTrue(result != null);
 		assertEquals(expected, result);

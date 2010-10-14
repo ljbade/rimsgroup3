@@ -86,7 +86,9 @@ public class ReadStatements {
 				}
 				authoredIt.setInDatabase(true);
 			}
-			if  (statementAuthor != null) statementAuthor.close();
+			if  (statementAuthor != null) {
+				statementAuthor.close();
+			}
 			return authoredIt;
 		}
 		catch (SQLException e)
@@ -175,7 +177,9 @@ public class ReadStatements {
 				authoredIt.setAffiliation("Massey");
 				authoredIt.setInDatabase(true);
 			}
-			if  (statementAuthor != null) statementAuthor.close();
+			if  (statementAuthor != null) {
+				statementAuthor.close();
+			}
 			return authoredIt;
 		}
 		catch (SQLException e)
@@ -202,7 +206,10 @@ public class ReadStatements {
 					publicationCheck = true;
 				else 
 					publicationCheck = false;
-				if (statementPublication != null) statementPublication.close();
+				if (statementPublication != null) {
+					statementPublication.close();
+				}
+					
 				return publicationCheck;
 			}
 		

@@ -85,7 +85,7 @@ public class AdvancedRequest extends HttpServlet {
     
     // send found DOI to normal search methods
     private void DOIsearch(String doi, HttpServletRequest request, HttpServletResponse response) {
-        Publication publication = MetadataRetrieverFactory.get().retrievePublication(doi);
+        Publication publication = MetadataRetrieverFactory.get().retrievePublication(doi,request);
         HttpSession session = request.getSession(true);
         session.setAttribute("publication", publication);
 

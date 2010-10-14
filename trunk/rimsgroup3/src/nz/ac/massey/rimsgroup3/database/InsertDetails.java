@@ -26,8 +26,8 @@ public class InsertDetails {
 			String doi = publication.getDoi();
 			// insert publication DOI to Publication table
 			PreparedStatement statementPublication = InsertStatements.publicationStatment(connection, doi);
-			statementPublication.executeUpdate();
 			if (statementPublication != null){
+				statementPublication.executeUpdate();
 				statementPublication.close();
 			}
 		
@@ -40,8 +40,8 @@ public class InsertDetails {
 				if (author.getAffiliation().toLowerCase().contains("massey"))
 				{
 					PreparedStatement statementMasseyAuthor = InsertStatements.masseyAuthorStatement(connection, author);
-					statementMasseyAuthor.executeUpdate();
 					if (statementMasseyAuthor != null) {
+						statementMasseyAuthor.executeUpdate();
 						statementMasseyAuthor.close();
 					}
 				}
@@ -49,8 +49,9 @@ public class InsertDetails {
 				else
 				{
 					PreparedStatement statementMiscAuthor = InsertStatements.miscAuthorStatement(connection, author);
-					statementMiscAuthor.executeUpdate();
+					
 					if (statementMiscAuthor != null) {
+						statementMiscAuthor.executeUpdate();
 						statementMiscAuthor.close();
 					}
 				}
