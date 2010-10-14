@@ -94,7 +94,7 @@
 <input align="right" type="button" value="Add" onClick="addNew();"/><input align="right" type="button" value="Delete" onClick="deleteIt();"/>
 </div>
 
-<div class="thirdSet">
+<div class="thirdSet" style="height:440px">
 <h2>Publication Details</h2>
 <table align="left" width="60%">
 <tr>
@@ -167,9 +167,9 @@
 </tr>
 <tr>
 <td><label for="url">URL Address:</label></td>
-<td><input type="text" name="url" id="url" size="63" value="<c:out value="${publication.url}" />" />
+<td><input type="text" name="url" id="url" size="52" value="<c:out value="${publication.url}" />" />
+<a  class="smallLink" target="_new" href="<c:out value="${publication.url}" />" >Follow Link</a>
 <img src="images/copy.jpg" onclick="copyToClipboard('url');"/>
-	<a  class="smallLink" target="_new" href="<c:out value="${publication.url}" />" >Follow Link</a>
 </td>
 </tr>
 <tr>
