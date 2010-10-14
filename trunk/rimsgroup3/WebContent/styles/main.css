@@ -66,7 +66,11 @@ ol {
 	text-align: left;
 	padding-left: 83px;
 	}
-
+#errorDiv {
+	font-size: 11pt;
+	font-family: verdana;
+	color: #fff;	
+}
 #authorDiv{
 	overflow:auto;
 	height:100px;
@@ -201,14 +205,12 @@ table.description{
 	left:255px;
 }
 
-
-
-
 img.smallImg{
 	text-align:right;
 	width:30px;
 	height:30px;
 	padding-right:10px;
+	border: 0;
 }
 
 

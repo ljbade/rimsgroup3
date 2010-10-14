@@ -15,6 +15,7 @@
  <h3> Contents  </h3> 
 	<ol>
 		<li><a href="#userguide">User Guide</a> </li>
+		<li><a href="#faqs">FAQs</a></li>
 		<li><a href="#glossary">Glossary Of Terms</a> </li>
 	</ol>
 <br/>
@@ -73,9 +74,23 @@
 	<br/>
 <a href="index.jsp">Back to DOI search page</a>
  </div>
- 
+ <div class="secondSet">
+ 	<h3> <a name="faqs"> 2. FAQs: </a></h3>
+ 	<div class="rightAligned" > <p> <a href="#contents"> Top Of Page</a> </p>  </div>
+ 	<div style="text-align: left; margin: 15px;">
+ 	<b>I got an error about an email or devloper key being missing.</b><br />
+ 	The APIs used by Proficio usually require registered emails or developer keys to work correctly. This is generally handled
+ 	by the devloper but can be registered by the Proficio users (your system administrator
+ 	 will need to do this).
+ 	 <br /><br /><br />
+ 	 <b>I got an error about a database not being available.</b><br />
+ 	 Proficio uses a MySql database to record details relating to staff members and DOIs that have been committed
+ 	 using the program. If a database is not available these details wil be missing and Proficio will not be able to offer
+ 	 all of its functionality. Please contact your system administrator.
+ 	</div>
+ </div>
  <div class="secondSet" >
- 	<h3> <a name="glossary"> 2. Glossary of terms: </a></h3>
+ 	<h3> <a name="glossary"> 3. Glossary of terms: </a></h3>
  	<div class="rightAligned" > <p> <a href="#contents"> Top Of Page</a> </p> </div>
   	<img alt="description of browsers" src="images/describing.jpg" />	
   	<table class="description" align="center">
