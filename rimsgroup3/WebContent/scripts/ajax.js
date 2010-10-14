@@ -31,11 +31,12 @@ return req;
 var http = createRequestObject();
 function sendRequest(method, url, doi){
 	// check doi textbox was not empty
-	if(doi.indexOf(" ") != -1) {
+	/*if(doi.indexOf(" ") != -1) {
 		var progress = document.getElementById('ajax_response');
 		var html = "<br />A DOI does not include spaces...";
 		progress.innerHTML = html;
-	} else if(doi.length < 1) {
+	} else */
+		if(doi.length < 1) {
 		var progress = document.getElementById('ajax_response');
 		var html = "<br />A DOI needs to be entered...";
 		progress.innerHTML = html;
