@@ -100,8 +100,8 @@ function checkPrinting(form) {
 				newWin.document.write("<tr><td>" + document.getElementById(id).value + "</td><td><b>" + document.getElementById(first).value + "  " + document.getElementById(middle).value); 
 				newWin.document.write(" " + document.getElementById(last).value + "  (submitter)</b></td><td>" + document.getElementById(affil).value + "</td></tr>");				
 			} else {
-				newWin.document.write("<tr><td>" + document.getElementById(id).value + "  " + document.getElementById(first).value); 
-				newWin.document.write(" " + document.getElementById(middle).value + "</td><td>" + document.getElementById(last).value + "</td><td>" + document.getElementById(affil).value + "</td></tr>");
+				newWin.document.write("<tr><td>" + document.getElementById(id).value + "</td><td>" + document.getElementById(first).value); 
+				newWin.document.write(" " + document.getElementById(middle).value + " " + document.getElementById(last).value + "</td><td>" + document.getElementById(affil).value + "</td></tr>");
 			}
 			
 		}
