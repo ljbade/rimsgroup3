@@ -52,7 +52,10 @@ public class DoiRequest extends HttpServlet {
         Connection connection = null;  
         Boolean doiInDB = false;
         String query = request.getParameter("search").toString().trim();
-        
+        query = query.replace(" ","");
+        query = query.toLowerCase().replace("doi:","");
+        query = query.replace("http://", "");
+        query = query.replace("dx.doi.org/", "");
         // reset error attribute of session for new search
         HttpSession session = request.getSession(true);
         session.setAttribute("error", "");
