@@ -87,7 +87,7 @@ public class BlankTest extends ServletTestCase{
 			assertTrue(true);
 		}
 		catch(Exception e){
-			assertFalse(false);
+			assertFalse(true);
 		}
 	  
 		Boolean checkInDB = ReadStatements.publicationReadStatment(this.connection, doi);

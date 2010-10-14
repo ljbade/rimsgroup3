@@ -5,6 +5,8 @@ package nz.ac.massey.rimsgroup3.metadata.test;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import nz.ac.massey.rimsgroup3.metadata.MetadataRetrieverFactory;
 import nz.ac.massey.rimsgroup3.metadata.bean.Publication;
 import junit.framework.TestCase;
@@ -26,7 +28,8 @@ public class MetadataRetrieverFactoryTest extends TestCase {
 		dois.add("10.1016/j.entcs.2006.02.004");
 		
 		for (String doi : dois)	{
-			Publication publication = factory.retrievePublication(doi);
+			HttpServletRequest request = null;
+			Publication publication = factory.retrievePublication(doi,request);
 			
 			assertTrue(publication != null);
 		}

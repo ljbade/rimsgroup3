@@ -92,7 +92,18 @@ public class InsertStatements {
 	 */
 	public static PreparedStatement publicationStatment(Connection connection, 
 			String doi){
-		try {
+			Boolean alreadyInDatabase = false;
+			try{
+				alreadyInDatabase = ReadStatements.publicationReadStatment(connection, doi) ;
+			}
+			catch (Exception e)
+			{
+				
+			}
+			
+			if(alreadyInDatabase == false)
+			{
+			try {
 			PreparedStatement statementPublication = connection.prepareStatement
 			("INSERT INTO PUBLICATION " + "VALUES(?)");
 				statementPublication.setString(1, doi);
@@ -100,9 +111,14 @@ public class InsertStatements {
 			}
 			catch (SQLException e)
 			{
-				e.printStackTrace();
+				
 				return null;
 			}
+			}
+			else{
+				return null;
+			}
+			
 			
 	}
 	
