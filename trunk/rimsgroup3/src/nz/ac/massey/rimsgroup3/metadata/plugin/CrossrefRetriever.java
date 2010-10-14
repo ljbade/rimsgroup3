@@ -334,8 +334,6 @@ public class CrossrefRetriever implements MetadataRetriever {
 	        connection.setRequestMethod("GET");
 	        connection.connect();
 	        stream = connection.getInputStream();
-			
-	        System.out.println("performQuery done");
 	        return stream;
 	        
 		} catch (MalformedURLException e) {
