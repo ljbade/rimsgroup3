@@ -31,7 +31,11 @@ return req;
 var http = createRequestObject();
 function sendRequest(method, url, doi){
 	// check doi textbox was not empty
-	if(doi.length < 1) {
+	if(doi.indexOf(" ") != -1) {
+		var progress = document.getElementById('ajax_response');
+		var html = "<br />A DOI does not include spaces...";
+		progress.innerHTML = html;
+	} else if(doi.length < 1) {
 		var progress = document.getElementById('ajax_response');
 		var html = "<br />A DOI needs to be entered...";
 		progress.innerHTML = html;
@@ -57,14 +61,15 @@ function sendRequest(method, url, doi){
 function handleResponse(){
   if(http.readyState == 4 && http.status == 200){
      var response = http.responseText;
-     
      if(response.indexOf("DOI found") != -1) {
     	 var progress = document.getElementById('ajax_response');
          progress.innerHTML = "DOI has already been processed.";
      } else if (response.indexOf("DOI not found") != -1) {
     	 var progress = document.getElementById('ajax_response');
          progress.innerHTML = "That DOI could not be located.";
-     }
+     } else if(response.indexOf("error") != -1) {
+    	 window.location = "index.jsp";
+	} 
      else if(response.indexOf("OK") != -1){
       //stop progress display
       var progress = document.getElementById('ajax_response');

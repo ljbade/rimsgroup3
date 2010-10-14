@@ -41,7 +41,25 @@ hza.style.display = state;
 <div id="page">
 <div class="smallPage">
 <img alt="Proficio" src="images/proficio.jpg" />
+<div id="errorDiv">
+ 	<%
+ 	try {
+	HttpSession indexSession = request.getSession(true);
+	if(session.getAttribute("error") == null){   
+	
+	} else {
+		String err = (String)indexSession.getAttribute("error");
+		if(err.length() > 1) {
+			%>
+			<label id="errorlbl" ><%= err %></label>
+			<%
+		}
+	}
+ 	} catch (Exception e) {}
+ 	%> 	 
+ </div>
   <div class="innerIndex">
+  	
     <form name="searchForm" action="DoiRequest" method="post" onSubmit=""> 
 	    <h2>DOI Search:</h2>
 	    <table>

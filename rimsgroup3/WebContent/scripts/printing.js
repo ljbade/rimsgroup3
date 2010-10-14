@@ -86,7 +86,7 @@ function checkPrinting(form) {
 		newWin.document.write("<tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr></table></div>");
 		
 		// authors section
-		newWin.document.write("<div><table width='60%'><tr><td width='35%'><strong>Authors</strong></td><td width='35%'><strong>Affiliation</strong></td><td width='30%'><strong>Staff ID</strong></td></tr>");
+		newWin.document.write("<div><table width='80%'><tr><td width='35%'><strong>Authors</strong></td><td width='35%'><strong>Affiliation</strong></td><td width='30%'><strong>Staff ID</strong></td></tr>");
 		var authorsCount = document.getElementById('hidden').value;
 		for(i = 1; i <= authorsCount; i++) {
 			var first = "fName" + i;			
@@ -94,8 +94,15 @@ function checkPrinting(form) {
 			var last = "lName" + i;
 			var affil = "affiliation" + i;
 			var id = "id" + i;
-			newWin.document.write("<tr><td>" + document.getElementById(first).value + "  " + document.getElementById(middle).value); 
-			newWin.document.write(" " + document.getElementById(last).value + "</td><td>" + document.getElementById(affil).value + "</td><td>" + document.getElementById(id).value + "</td></tr>");
+			var submitter = "submitter" + i;
+			if(document.getElementById(submitter).checked) {
+				newWin.document.write("<tr><td><b>" + document.getElementById(first).value + "  " + document.getElementById(middle).value); 
+				newWin.document.write(" " + document.getElementById(last).value + "  (submitter)</b></td><td>" + document.getElementById(affil).value + "</td><td>" + document.getElementById(id).value + "</td></tr>");				
+			} else {
+				newWin.document.write("<tr><td>" + document.getElementById(first).value + "  " + document.getElementById(middle).value); 
+				newWin.document.write(" " + document.getElementById(last).value + "</td><td>" + document.getElementById(affil).value + "</td><td>" + document.getElementById(id).value + "</td></tr>");
+			}
+			
 		}
 		newWin.document.write("<tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr></table>");
 		
