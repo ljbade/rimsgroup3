@@ -100,6 +100,9 @@ public class DoiRequest extends HttpServlet {
              	session.setAttribute("publication", detailedPublication);  		
 
              	String type = detailedPublication.getDoiType();
+             	if(type==null){
+             		type= "journal";
+             	}
              // Return value.
                 PrintWriter out = response.getWriter();
                 out.println("OK " + type);
