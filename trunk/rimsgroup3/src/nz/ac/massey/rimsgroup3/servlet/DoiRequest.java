@@ -58,7 +58,7 @@ public class DoiRequest extends HttpServlet {
         query = query.replace("dx.doi.org/", "");
         // reset error attribute of session for new search
         HttpSession session = request.getSession(true);
-        session.setAttribute("error", "");
+        session.setAttribute("error", null);
         
         // local database is checked here first for already saved info
         try 
@@ -109,24 +109,23 @@ public class DoiRequest extends HttpServlet {
                 out.flush();
                 out.close();
 
-        	} else {
-        		// check for error messages
-        		session = request.getSession(true);   
-             	if(session.getAttribute("error") != null) {
-             	// Return value.
-                    PrintWriter out = response.getWriter();
-                    out.println("error");
-                    out.flush();
-                    out.close();
-             		
-             	} else {
+        	}  else {
         		// Return value.
                 PrintWriter out = response.getWriter();
                 out.println("DOI not found");
                 out.flush();
                 out.close();
              	}
+        	
         	}
+    		// check for error messages
+    		session = request.getSession(true);   
+         	if(session.getAttribute("error") != null) {
+         	// Return value.
+                PrintWriter out = response.getWriter();
+                out.println("error");
+                out.flush();
+                out.close();
         }  
 		try
 		{
