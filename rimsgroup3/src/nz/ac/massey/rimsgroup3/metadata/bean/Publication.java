@@ -26,6 +26,9 @@ public class Publication {
 	protected int numberOfAuthors;
 	
 	public int getNumberOfAuthors() { 
+		if (authors == null){
+			return 0;
+		}
 		return authors.size();
 	}
 	public String getDoiType() {
