@@ -41,9 +41,9 @@
    	(Ctrl+V) the text into corresponding text field in the RIMS system.<br/> 
    	<br/> </li>
    	<li>Any information not retrieved from the Proficio will have to be filled out manually.  <br/> 
- 	Click the new tab that has appeared to access the remaining information. Alternatively click
-   	the Follow Link link <br/> 
-   	<br/>  </li>
+ 	Alternatively click	the Follow Link link. <br/>
+   	Authors can be added manually by clicking the Add button in the centre of the page. <br/> 
+   	<br/> </li>
    	<li>If you wish to print, set the check box to print.<br/> Fill out any blank text fields and 
    	click the appropriate radio buttons in Proficio, that are relevant to information that is required
    	for printing (any information left blank will not be printed). <br/> 
