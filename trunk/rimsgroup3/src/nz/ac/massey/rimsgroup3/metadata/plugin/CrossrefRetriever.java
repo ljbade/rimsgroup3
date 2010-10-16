@@ -136,7 +136,7 @@ public class CrossrefRetriever implements MetadataRetriever {
 		result.setEndPage((safelyGetElement(xmlDoc, "last_page")));
 		ArrayList<Author> authors = parseAuthors(xmlDoc);
 		result.setAuthors(authors);
-		
+		result.setSource("CrossRef"); // indicate plugin that returned the data
 		return result;
 	}
 	

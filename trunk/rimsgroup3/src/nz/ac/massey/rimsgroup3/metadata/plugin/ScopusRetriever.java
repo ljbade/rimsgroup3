@@ -51,7 +51,7 @@ public class ScopusRetriever implements MetadataRetriever {
 			return null;
 		} else {
 			Publication publication = decodeJson(json);
-		
+		    publication.setSource("Scopus");
 			return publication;
 		}
 	}

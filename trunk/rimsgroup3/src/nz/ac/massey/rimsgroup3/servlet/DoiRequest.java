@@ -110,6 +110,11 @@ public class DoiRequest extends HttpServlet {
                 out.close();
 
         	}  else {
+        		// check for error messages
+        		session = request.getSession(true);   
+             	if(session.getAttribute("error") != null) {
+             	response.sendRedirect("index.jsp");
+             	} else {
         		// Return value.
                 PrintWriter out = response.getWriter();
                 out.println("DOI not found");
@@ -118,14 +123,6 @@ public class DoiRequest extends HttpServlet {
              	}
         	
         	}
-    		// check for error messages
-    		session = request.getSession(true);   
-         	if(session.getAttribute("error") != null) {
-         	// Return value.
-                PrintWriter out = response.getWriter();
-                out.println("error");
-                out.flush();
-                out.close();
         }  
 		try
 		{
