@@ -80,7 +80,7 @@ function checkPrinting(form) {
 		newWin.document.write("<tr><td>&nbsp;</td></tr>");
 		// set article title and journal 
 		newWin.document.write("<div><table width='80%'>"); 
-		newWin.document.write("<tr><td width='25%'><strong>Article:</strong></td><td width='75%'>" + document.getElementById('pubID').value + "</td></tr>");
+		newWin.document.write("<tr><td width='25%'><strong>RIMS Publication ID:</strong></td><td width='75%'>" + document.getElementById('pubID').value + "</td></tr>");
 		newWin.document.write("<tr><td width='25%'><strong>Article:</strong></td><td width='75%'>" + document.getElementById('articleTitle').value + "</td></tr>");
 		newWin.document.write("<tr><td><strong>Publication:</strong></td><td>" +  document.getElementById('journalTitle').value + "</td></tr>");
 		newWin.document.write("<tr><td><strong>Publication Date:</strong></td><td>" + document.getElementById('year').value + "</td></tr>");

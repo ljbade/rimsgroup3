@@ -69,7 +69,8 @@ function handleResponse(){
     	 var progress = document.getElementById('ajax_response');
          progress.innerHTML = "That DOI could not be located.";
      } else if(response.indexOf("error") != -1) {
-    	 window.location = "index.jsp";
+    	 var progress = document.getElementById('ajax_response');
+         progress.innerHTML = "The DOI could not be found, it may be malformed";
 	} 
      else if(response.indexOf("OK") != -1){
       //stop progress display
@@ -85,6 +86,7 @@ function handleResponse(){
     	  window.location = "conferenceResults.jsp";
       }
      }
+     
   }
 }
 

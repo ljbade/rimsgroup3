@@ -44,7 +44,9 @@ h4 {
 	text-align: left;
 	padding-left: 62px;
 }
-
+.smallHeading {
+	font-size: 10pt;	
+}
 
 
 label{
