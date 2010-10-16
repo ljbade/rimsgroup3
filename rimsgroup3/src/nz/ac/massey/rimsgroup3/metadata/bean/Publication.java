@@ -24,6 +24,7 @@ public class Publication {
 	protected String publisher;
 	protected String publicationCategory;
 	protected int numberOfAuthors;
+	protected String source;
 	
 	public int getNumberOfAuthors() { 
 		if (authors == null){
@@ -280,4 +281,11 @@ public class Publication {
 		this.authors = authors;
 	}
 	
+	public void setSource(String source) {
+		this.source = source;
+	}
+	
+	public String getSource() {
+		return source;
+	}
 }
