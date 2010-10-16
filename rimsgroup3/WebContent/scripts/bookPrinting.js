@@ -4,7 +4,7 @@ function checkPrinting(form) {
 	if(printCheck.checked) {
 		var newWin = window.open();
 		newWin.document.write('<html><head><link type="text/css" href="styles/print.css" rel="stylesheet" /></head><body>');
-		newWin.document.write("<img src='images/logo.gif'> /><br /><br/>");
+		newWin.document.write("<img src='images/logo.gif' /><br /><br/>");
 		
 		// journal contribution area
 		// find contribution radio button that was ticked
@@ -70,6 +70,7 @@ function checkPrinting(form) {
 		newWin.document.write("<tr><td>&nbsp;</td></tr>");
 		// set article title and journal 
 		newWin.document.write("<div><table width='80%'>"); 
+		newWin.document.write("<tr><td width='25%'><strong>RIMS Publication ID:</strong></td><td width='75%'>" + document.getElementById('pubID').value + "</td></tr>");
 		newWin.document.write("<tr><td width='25%'><strong>Article:</strong></td><td width='75%'>" + document.getElementById('bookTitle').value + "</td></tr>");
 		newWin.document.write("<tr><td><strong>Chapter Title:</strong></td><td>" +  document.getElementById('chapterTitle').value + "</td></tr>");
 		newWin.document.write("<tr><td><strong>Publication Date:</strong></td><td>" + document.getElementById('year').value + "</td></tr>");

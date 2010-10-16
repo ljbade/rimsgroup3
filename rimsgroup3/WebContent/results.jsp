@@ -103,7 +103,7 @@
 </div>
 
 <div class="thirdSet">
-<h2>Publication Details</h2>
+<h2>Publication Details <span class="smallHeading">&nbsp;&nbsp;&nbsp;&nbsp;(Data retrieved from <c:out value="${publication.source}" />)</span></h2>
 <table align="left" width="60%" id="publicationTable">
 <tr>
 <td><label for="pubID">Publication ID:</label></td>
