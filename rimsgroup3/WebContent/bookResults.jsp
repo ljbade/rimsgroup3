@@ -9,6 +9,7 @@
 <script type="text/javascript" src="scripts/bookPrinting.js"></script>
 <script type="text/javascript" src="scripts/copy.js"></script>
 <script type="text/javascript" src="clipboard/ZeroClipboard.js"></script>
+<script type="text/javascript" src="scripts/autocomplete.js"></script>
 <title>Proficio - Results</title>
 </head>
 <body>
@@ -97,7 +98,7 @@
 
 <div class="thirdSet" style="height:410px">
 <h2>Publication Details <span class="smallHeading">&nbsp;&nbsp;&nbsp;&nbsp;(Data retrieved from <c:out value="${publication.source}" />)</span></h2>
-<table align="left" width="60%">
+<table align="left" width="60%" id="publicationTable">
 <tr>
 <td><label for="pubID">Publication ID:</label></td>
 <td><input type="text" name="pubID" id="pubID" size="65" /></td>
