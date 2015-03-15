@@ -1,0 +1,1 @@
+This project is to develop a piece of software to aid in the contribution of academic papers to the RIMS database.
